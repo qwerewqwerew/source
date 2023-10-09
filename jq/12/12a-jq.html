@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #crossfade {
+      position: relative;
+      margin: auto;
+      padding: 0;
+      list-style-type: none;
+      width: 600px;
+      height: 400px;
+      overflow: hidden;
+    }
+
+    #crossfade li {
+      position: absolute;
+      width: 600px;
+      height: 400px;
+    }
+
+    #crossfade p {
+      position: absolute;
+      bottom: 0;
+      padding: 20px;
+      color: #fff;
+      background: #000;
+      background-color: rgba(0, 0, 0, 0.6);
+      margin: 0;
+      left: 0;
+      right: 0;
+    }
+  </style>
+  <script src='https://code.jquery.com/jquery-3.7.1.min.js'></script>
+  <script>
+    $(() => {
+      $('#crossfade li').hide().filter(':first').show();
+      setInterval(slideshow, 3000);
+      function slideshow() {
+        $('#crossfade li:first').fadeOut('slow').next().fadeIn('slow').end().appendTo('#crossfade');
+      }
+    })
+  </script>
+</head>
+
+<body>
+  <div id="content">
+    <h3>Simple Crossfade Waterfalls Slideshow </h3>
+    <ul id="crossfade">
+      <li>
+        <a href="http://en.wikipedia.org/wiki/Agua_Azul"><img src="./img/600/AguaAzul.jpg" alt="Agua Azul" /></a>
+        <p>Agua Azul, Mexico</p>
+      </li>
+      <li>
+        <a href="http://en.wikipedia.org/wiki/Burney_Falls"><img src="./img/600/BurneyFalls.jpg" alt="Burney Falls" /></a>
+        <p>Burney Falls, California, USA</p>
+      </li>
+      <li>
+        <a href="http://en.wikipedia.org/wiki/Venezuala"><img src="./img/600/Cachoeira_do_Pacheco.jpg" alt="Cachoeira do Pacheco" /></a>
+        <p>Cachoeira do Pacheco, Venezuela</p>
+      </li>
+      <li>
+        <a href="http://en.wikipedia.org/wiki/Deer_Leap_Falls"><img src="./img/600/Deer_Leap_Falls.jpg" alt="Deer Leap Falls" /></a>
+        <p>Deer Leap Falls, Pennsylvania, USA</p>
+      </li>
+      <li>
+        <a href="http://en.wikipedia.org/wiki/Fulmer_Falls"><img src="./img/600/Fulmer_Falls.jpg" alt="Fulmer Falls" /></a>
+        <p>Fulmer Falls, Pennsylvania, USA</p>
+      </li>
+      <li>
+        <a href="http://en.wikipedia.org/wiki/Hopetoun_Falls"><img src="./img/600/Hopetoun_Falls.jpg" alt="Hopetoun Falls" /></a>
+        <p>Hopetoun Falls, Victoria, Australia</p>
+      </li>
+      <li>
+        <a href="http://en.wikipedia.org/wiki/Ohiopyle_State_Park"><img src="./img/600/Jonathans_Run.jpg" alt="" /></a>
+        <p>Jonathan's Run, Pennsylvania, USA</p>
+      </li>
+      <li>
+        <a href="http://en.wikipedia.org/wiki/Kjosfossen"><img src="./img/600/Kjosfossen.jpg" alt="Kjosfossen" /></a>
+        <p>Kjosfossen, Norway</p>
+      </li>
+      <li>
+        <a href="http://en.wikipedia.org/wiki/Krimml_Waterfalls"><img src="./img/600/KrimmlFalls.jpg" alt="Krimml Falls" /></a>
+        <p>Krimml Falls, Salzburgerland, Austria</p>
+      </li>
+      <li>
+        <a href="http://en.wikipedia.org/wiki/Madhabkunda"><img src="./img/600/Madhabkunda_Falls.jpg" alt="Madhabkunda Falls" /></a>
+        <p>Madhabkunda Falls, Bangladesh</p>
+      </li>
+      <li>
+        <a href="http://en.wikipedia.org/wiki/Manavgat_Waterfall"><img src="./img/600/Manavgat.jpg" alt="Manavgat Waterfall" /></a>
+        <p>Manavgat Waterfall, Turkey</p>
+      </li>
+      <li>
+        <a href="http://en.wikipedia.org/wiki/Niagra_Falls"><img src="./img/600/Niagara_Falls.jpg" alt="Niagara Falls" /></a>
+        <p>Niagara Falls, USA and Canada</p>
+      </li>
+      <li>
+        <a href="http://en.wikipedia.org/wiki/British_Columbia"><img src="./img/600/Nymph_Falls.jpg" alt="Nymph Falls" /></a>
+        <p>Nymph Falls, British Columbia, Canada</p>
+      </li>
+    </ul>
+</body>
+
+</html>
