@@ -1,0 +1,5 @@
+#crossfade {position: relative;margin: auto;padding: 0;list-style-type: none;width: 600px;height: 400px;overflow: hidden; }
+
+#crossfade li {position: absolute;width: 600px;height: 400px; }
+
+#crossfade p {position: absolute;bottom: 0;padding: 20px;color: #fff;background: #000;background-color: rgba(0, 0, 0, 0.6);margin: 0;left: 0;right: 0; }
