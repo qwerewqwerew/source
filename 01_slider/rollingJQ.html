@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			/* img 72px+여백8px = 80px */
+			#frame {
+				width: 232px;
+				height: 88px;
+				position: relative;
+				margin: 10px auto;
+				border: 1px solid blue;
+				overflow: hidden;
+			}
+
+			#banner {
+				width: 400px;
+				border: 1px solid red;
+				height: 54px;
+				display: flex;
+				position: absolute;
+			}
+
+			#banner li {
+				flex: 0 0 78px;
+				list-style: none;
+				width: 78px;
+				height: 100%;
+				background-color: gray;
+				font-size: 2em;
+				margin-right: 1px;
+			}
+		</style>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script>
+			//document.addEventListenter("DOMContentLoaded",function(){})
+			$(function () {
+				//변수
+				let list = $("#banner");
+				const show_num = 3;
+				const total = list.find("li").length; //li 의 갯수 (슬라이드한개)
+				const li_width = list.find("li").eq(0).width();
+				const copyObj = list.find("li").clone();
+				list.append(copyObj);
+				const control = $(".controls");
+				//슬라이드기능 구현시 번호를 저장할 변수를 먼저만들자
+				let num = 0;
+				let check = false;
+				const timer = setInterval(autoplay, 2000);
+
+				$(".next").click(function () {
+					if (num == total) {
+						num = 0; //0
+						list.css("left", 0);
+					}
+					num++; //요기의 num 0
+					list.stop().animate({ left: -li_width * num }, 1000);
+					//control.trigger("click")
+					return false;
+				});
+				$(".prev").click(function () {
+					if (num == 0) {
+						num = total; //3
+						list.css("left", -li_width * num);
+					}
+					num--;
+					list.stop().animate({ left: -li_width * num }, 1000);
+					return false;
+				});
+				$(".next,.prev").hover(
+					function () {
+						clearInterval(timer);
+					},
+					function () {
+						timer = setInterval(autoplay, 2000);
+					}
+				);
+
+				control.click(function () {
+					console.log(control.text());
+					if (control.text() === "stop") {
+						control.text("play");
+						clearInterval(timer);
+					} else {
+						control.text("stop");
+						setInterval(autoplay, 2000);
+					}
+				});
+				function autoplay() {
+					if (num == total) {
+						num = 0;
+						list.css("left", 0);
+					}
+					num++;
+					list.stop().animate({ left: -li_width * num }, 1000);
+				}
+			});
+		</script>
+	</head>
+
+	<body>
+		<h1>Rolling</h1>
+		<div id="frame">
+			<ul id="banner">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+		<a href="#" class="prev">prev</a>
+		<a href="#" class="next">next</a>
+		<a href="#" class="controls">stop</a>
+	</body>
+</html>

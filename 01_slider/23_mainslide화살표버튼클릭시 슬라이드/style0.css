@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+/*
+ * Slideshow
+ */
+#brandVisual ul{
+    overflow: hidden;
+    position: relative;
+    min-width: 960px;
+    height: 465px;
+    list-style: none;
+}
+#brandVisual ul li {
+    display: none;
+    position: absolute;
+    left: 50%;
+    margin-left: -800px;
+}
+

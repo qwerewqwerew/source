@@ -1,0 +1,67 @@
+#stories{
+	width: 100%;
+	background: #edecec;
+	float: left;
+}
+
+#stories .issue{
+	background: #fffafa;
+	width: 100%;	height: 650px;
+
+}
+#stories .issue .container{
+	width: 90%;	height: 600px;	max-width: 2100px;
+	margin: 25px 5%;
+	position: relative;
+	float: left;
+}
+
+#stories .issue .imgBox .page{
+	float: left;
+	position: absolute;	top: 0;	left: 50%;
+	margin-left: -340px;
+	width: 680px;	height: 450px;
+	background: #333333;
+}
+#stories .issue .imgBox .page .view{
+	overflow: hidden;
+	position: absolute;
+	width: 0%;	height: 450px;
+}
+#stories .issue .imgBox .page .on{width: 100%;}
+#stories .issue .imgBox .page .view img{
+	position: absolute;
+	top: 0;
+}
+#stories .issue .imgBox .right{right: 0px;}
+#stories .issue .imgBox .btn a{
+	position: absolute;
+	text-transform: uppercase;
+	color: #333333;
+	font-weight: bold;
+}
+#stories .issue .imgBox .btn .prev{
+	left: 100px;	top: 40%;
+	transform: rotate(-90deg);
+}
+#stories .issue .imgBox .btn .next{
+	right: 100px;	top: 40%;
+	transform: rotate(90deg);
+}
+#stories .issue .imgBox .btn_bt{
+	position: absolute;	bottom: 50px;	left: 50%;
+	margin-left: -42.5px;
+}
+#stories .issue .imgBox .btn_bt a{
+	display: block;
+	width: 15px;	height: 15px;
+	float: left;
+	margin-right: 20px;
+	background: #d0d0d0;
+	border-radius: 50%;
+}
+#stories .issue .imgBox .btn_bt a.on{
+	background: #333333;
+	border: 4px solid #dadada;
+	box-sizing: border-box;
+}

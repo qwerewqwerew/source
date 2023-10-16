@@ -1,0 +1,7 @@
+﻿@media screen and (max-width:1280px) {
+	ul.slide{width:280%;}
+}
+
+@media screen and (max-width:640px) {
+	ul.slide{width:560%;}
+}

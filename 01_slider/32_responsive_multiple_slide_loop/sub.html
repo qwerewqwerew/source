@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>BASE - multiple slide loop</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+
+    <body>
+        <!-- partial:index.partial.html -->
+        <div class="container">
+            <div class="slide_wrapper subslide">
+                <ul class="slides">
+                    <li>slide 01</li>
+                    <li>slide 02</li>
+                    <li>slide 03</li>
+                    <li>slide 04</li>
+                    <li>slide 05</li>
+                </ul>
+                <p class="controls">
+                    <span class="prev">prev</span>
+                    <span class="next">next</span>
+                </p>
+            </div>
+        </div>
+        <!-- partial -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <!-- <script src="./script.js"></script> -->
+        <script src="./mango_slide.js"></script>
+        <script>
+            $('.subslide').mangoSlide({
+                slideWidth: 400,
+                slideMargin: 20,
+                maxSlides: 2
+            });
+        </script>
+    </body>
+
+</html>

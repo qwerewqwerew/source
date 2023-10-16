@@ -1,0 +1,11 @@
+*{margin:0; padding:0;}
+li{list-style: none;}
+.container{width:660px; margin: 100px auto; overflow: hidden;}
+
+.slide_wrapper{position:relative; width:660px;  overflow: hidden;padding-top: 200px;/* left:50%; transform:translateX(-50%); */}
+.slides{position:absolute; left:0; top:0; width:100%; height:200px;/*  background:#e0d595; */}
+.slides li{position:absolute; width:200px; height:200px; background:#ccc;}
+.controls{text-align:center; margin-top:50px;}
+.controls span{background:#be8856; color:#fff; padding:10px 20px; margin:0 10px; display:inline-block;}
+
+.pager{list-style: none; display:flex;justify-content: space-between;font-size: 2em;}

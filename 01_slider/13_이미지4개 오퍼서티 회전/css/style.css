@@ -1,0 +1,88 @@
+#stories{width: 100%; background: #efecec; }
+#stories .selectedStories .container .storiesBody{
+	width: 100%; height: 600px; position: relative;}
+#stories .selectedStories .container .storiesBody .contents{
+	width: 22%;
+	height: auto;
+	background: #fff;
+	position: absolute;
+	transition:transform 1s;
+	box-shadow: 0 0 5px #d0d0d0;
+}
+#stories .selectedStories .container .storiesBody .col1{
+	left: 50%;
+	margin-left: -11%;
+	top: 100px;
+	transform: scale(1);
+	z-index: 1;
+}
+#stories .selectedStories .container .storiesBody .col2{
+	left: 10%;
+	top:50px;
+	transform: scale(.9);
+	opacity: .5;
+}
+#stories .selectedStories .container .storiesBody .col3{
+	left: 50%;
+	margin-left: -11%;
+	transform: scale(.8);
+	opacity: .2;
+}
+#stories .selectedStories .container .storiesBody .col4{
+	left: 68%;
+	top:50px;
+	transform: scale(.9);
+	opacity: .5;
+}
+
+#stories .selectedStories .container .storiesBody .contents .conImg{
+	width: 100%;
+	position: relative;
+}
+#stories .selectedStories .container .storiesBody .contents img{width: 100%;}
+#stories .selectedStories .container .storiesBody .contents .conT{
+	padding: 10px  15px;
+	position: relative;
+}
+#stories .selectedStories .container .storiesBody .contents .conT dl dt a{
+	color: #000;
+	font-size: 12px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	display: inline-block;
+	padding: 10px 0 0;
+}
+#stories .selectedStories .container .storiesBody .contents .conT dl dd{
+	font-size: 90%;
+	font-weight: 500;
+	line-height: 100%;
+	margin-top: 5px;
+}
+#stories .selectedStories .container .storiesBody .contents .conT p{
+	text-align: right;
+	font-style: italic;
+	margin-top: 10px;
+	font-size: 80%;
+}
+#stories .selectedStories .container .storiesBody .contentsBtn>a{
+	color: #333;
+	font-weight: bold;
+	text-transform: uppercase;
+	position: absolute;
+}
+#stories .selectedStories .container .storiesBody .contentsBtn>.prev{
+	top: 40%; left: 10px;
+}
+#stories .selectedStories .container .storiesBody .contentsBtn>.next{
+	top: 40%; right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
