@@ -77,10 +77,10 @@ function moveSlideCb(n) {
 }
 
 let timer = undefined;
-
+autoSlide()
 function autoSlide() {
 	timer = setInterval(() => {
-		//moveSlideCb(currentIdx + 1);
+		moveSlideCb(currentIdx + 1);
 		//console.log(currentIdx);
 	}, 650);
 }
