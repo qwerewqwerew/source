@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg1: #285dfb;
+      --bg2: #537dfb;
+      --bg3: #7e9efc;
+      --bg4: #a9befd;
+      --bg5: #d4dffe;
+    }
+
+    .bg1 {
+      background-color: var(--bg1);
+      color: var(--bg5);
+    }
+
+    .bg2 {
+      background-color: var(--bg2);
+      color: var(--bg4);
+    }
+
+    .bg3 {
+      background-color: var(--bg3);
+      color: var(--bg3);
+    }
+
+    .bg4 {
+      background-color: var(--bg4);
+      color: var(--bg2);
+    }
+
+    .bg5 {
+      background-color: var(--bg5);
+      color: var(--bg1);
+    }
+
+    section {
+      overflow: hidden;
+      text-align: center;
+      width: 100%;
+      padding-left: 4vw;
+      padding-right: 4vw;
+      height: 100vh;
+    }
+
+    section h2 {
+      padding: 6vw;
+    }
+
+    .section1 .box {
+      display: inline-block;
+      /* 최소, 최대가 명확한 경우 사용가능 */
+      width: clamp(100px, 30%, 100%);
+      height: 300px;
+      transition: all 2s;
+    }
+
+    .section1 .box1 {
+      transform: translateX(-200%);
+    }
+
+    .section1 .box2 {
+      transform: translateX(200%);
+    }
+
+    .section1 .box.in {
+      transform: translateX(-200%);
+    }
+
+    .section2 .gallery {
+      margin-top: 10vw;
+      position: relative;
+      display: flex;
+    }
+
+    .section2 .gallery .box {
+      width: 200px;
+      height: 300px;
+      position: absolute;
+      opacity: 0;
+      top: 100%;
+    }
+
+    .section2 .bg3 {
+      left: 20%;
+    }
+
+    .section2 .bg4 {
+      left: 45%;
+    }
+
+    .section2 .bg5 {
+      right: 20%;
+    }
+  </style>
+  <style>
+    .section3 {
+      display: flex;
+      color: #333;
+      gap: 2rem;
+    }
+
+    .section3 .item:nth-child(1) {
+      flex-basis: 60%;
+    }
+
+    .section3 .item:nth-child(2) {
+      flex-basis: 40%;
+      align-self: center;
+    }
+
+    .section3 figure {
+      position: relative;
+      box-shadow: -1rem 1rem 3rem -2rem rgba(0, 0, 0, 0.5);
+    }
+
+    .section3 figure:before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: var(--bg1);
+      transition: clip-path 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    }
+
+    .section3 figure img {
+      width: 100%;
+      display: block;
+      clip-path: inset(0 100% 0 0);
+      /* duration 0.6 delay 0.3 */
+      transition: clip-path 0.6s 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    }
+
+    .section3 figure figcaption {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--bg1);
+      mix-blend-mode: difference;
+      transition: clip-path 0.3s 0.9s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    }
+
+    .section3 figure::before,
+    .section3 figure figcaption {
+      clip-path: inset(0 0 0 100%);
+    }
+
+    .section3.is-animated figure::before,
+    .section3.is-animated figure img,
+    .section3.is-animated figure figcaption {
+      clip-path: inset(0);
+    }
+  </style>
+  <script src='https://code.jquery.com/jquery-3.7.1.min.js'></script>
+  <script>
+    $(() => {
+      const sections = $('section');
+      let speed = Math.floor(sections.outerHeight() * 0.2);
+      let topArr = [];
+      let winSCT;
+
+      sections.each((idx, section) => {
+        $(section).addClass(`bg${idx + 1}`);
+        const sectionTop = $(section).offset().top;
+        topArr.push(sectionTop);
+      });
+
+      $(window).on('scroll', () => {
+        winSCT = $(window).scrollTop();
+
+        if (winSCT > topArr[0] && winSCT < topArr[1] - speed) {
+          sections.eq(0).find('.box').css('transform', 'translateX(0%)');
+        }
+
+        if (winSCT > topArr[1] && winSCT < topArr[2] - speed) {
+          sections.eq(1).find('.bg3').stop().delay(100).animate({ top: 0, opacity: 1 }, 500, 'swing');
+          sections.eq(1).find('.bg4').stop().delay(200).animate({ top: -100, opacity: 1 }, 800, 'swing');
+          sections.eq(1).find('.bg5').stop().delay(300).animate({ top: -200, opacity: 1 }, 1100, 'swing');
+        }
+
+        if (winSCT > topArr[2] && winSCT < topArr[3] - speed) {
+          console.log(winSCT > topArr[2] && winSCT < topArr[3]);
+          sections.eq(2).addClass('is-animated');
+        }
+      });
+    })
+
+  </script>
+</head>
+
+<body>
+  <section class="section1">
+    <h2>section1</h2>
+    <div class="container">
+      <div class="box box1 bg2"></div>
+      <div class="box box2 bg3"></div>
+    </div>
+  </section>
+  <section class="section2">
+    <h2>section2</h2>
+    <div class="gallery">
+      <div class="box bg3"></div>
+      <div class="box bg4"></div>
+      <div class="box bg5"></div>
+    </div>
+  </section>
+  <section class="section3">
+    <div class="item">
+      <h2>section3</h2>
+      <figure><img src="http://qwerew.cafe24.com/images/1.jpg" alt="">
+        <figcaption>yum yum</figcaption>
+      </figure>
+    </div>
+    <div class="item">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe est nostrum amet eligendi quas fugit libero cumque deserunt voluptate placeat dolorum culpa praesentium reiciendis, aliquid ad illum laborum, harum ratione.</p>
+    </div>
+  </section>
+  <section class="section4">
+    <h2>section4</h2>
+    <div class="box box1 bg2"></div>
+    <div class="box box2 bg1"></div>
+  </section>
+  <section class="section5">
+    <h2>section5</h2>
+    <div class="box box1 bg2"></div>
+    <div class="box box2 bg3"></div>
+  </section>
+</body>
+
+</html>
