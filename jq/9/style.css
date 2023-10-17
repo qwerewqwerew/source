@@ -107,7 +107,6 @@ section {
 	line-height: 100vh;
 	text-align: center;
 	background-color: yellow;
-	margin: 40vw auto;
 }
 section::selection {
 	color: red;

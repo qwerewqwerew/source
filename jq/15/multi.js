@@ -41,7 +41,6 @@ function slideLayout(sw, sm) {
 	newSlides.each(function (idx) {
 		$(this).css({ left: moveAmt * idx + 'px', width: sw + 'px' });
 	});
-
 }
 slideLayout(slideWidth, slideGap);
 
@@ -49,7 +48,7 @@ function setSlidePos() {
 	const ulMoveAmt = -moveAmt * slideCount;
 	slides.css({ transform: `translateX(${ulMoveAmt}px)` });
 }
-setSlidePos()
+setSlidePos();
 //이동함수
 function moveSlide() {
 	currentIdx++;
@@ -57,8 +56,7 @@ function moveSlide() {
 		slides.css('left', 0);
 		currentIdx = 0;
 	}
-	console.log(currentIdx);
-	console.log(moveAmt);
+
 	slides.stop().animate({ left: moveAmt * -currentIdx }, 500);
 }
 
@@ -71,17 +69,21 @@ function moveSlideCb(n) {
 		if (currentIdx > slideCount) {
 			slides.css('left', 0);
 			currentIdx = 0;
+		} else if (currentIdx < -(slideCount - 1)) {
+			console.log(moveAmt * slideCount);
+			slides.css('left', -moveAmt * slideCount);
+			currentIdx = slideCount;
 		}
 	});
 	currentIdx = n;
+	console.log(currentIdx);
 }
 
 let timer = undefined;
-autoSlide()
+autoSlide();
 function autoSlide() {
 	timer = setInterval(() => {
 		moveSlideCb(currentIdx + 1);
-		//console.log(currentIdx);
 	}, 650);
 }
 function stopSlide() {
@@ -123,4 +125,4 @@ function responsiveSlide(params) {
 		setSlidePos();
 	});
 }
-responsiveSlide()
+responsiveSlide();
