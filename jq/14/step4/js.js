@@ -1,6 +1,6 @@
 $(() => {
 	const sections = $('section');
-	let speed = Math.floor(sections.outerHeight() * 0.3);
+	let speed = Math.floor($(window).height() * 0.5);
 	let topArr = [];
 	let winSCT;
 	sections.each((idx, section) => {
@@ -27,7 +27,7 @@ $(() => {
 			sections.eq(2).addClass('is-animated');
 		}
 		if (winSCT > topArr[3] && winSCT < topArr[4]) {
-			sections.eq(3).addClass('is-animated');
+			sections.eq(3).addClass('is-animated').siblings.removeClass('is-animated');
 		}
 	});
 	pipScroll();
@@ -62,24 +62,5 @@ $(() => {
 		pipScroll();
 	});
 
-	function responsivePip(params) {
-		$(window).on('resize', function () {
-			const section = sections.eq(3);
-			const devices = ['.mockup.pc', '.mockup.mobile'];
-			let winWidth = $(this).width();
-			console.log(winWidth);
-			if (winWidth < 1000) {
-				$.each(devices, function (i, deviceEl) {
-					let device = section.find(deviceEl);
-					console.log(device);
-					let screen = device.find('.mask>img');
-					let mask = device.find('.mask');
-					heightDifference = screen.height() - mask.height() * 1;
-					// heightDifference를 다시 설정.
-					device.data('heightDifference', heightDifference);
-					console.log(heightDifference);
-				});
-			}
-		});
-	}
+
 }); //jQuery
