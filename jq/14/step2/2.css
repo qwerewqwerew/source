@@ -1,0 +1,46 @@
+.section1 .box {
+	display: inline-block;
+	/* 최소, 최대가 명확한 경우 사용가능 */
+	width: clamp(100px, 30%, 100%);
+	height: 300px;
+	transition: all 2s;
+}
+
+.section1 .box1 {
+	transform: translateX(-200%);
+}
+
+.section1 .box2 {
+	transform: translateX(200%);
+}
+
+.section1 .box.in {
+	transform: translateX(-200%);
+}
+
+.section2 {
+	position: relative;
+
+}
+.section2 .gallery{
+	position:relative;
+}
+.section2 .gallery .box {
+	width: 15vw;
+	height: 200px;
+	position: absolute;
+	opacity: 0;
+	top: 100vw;
+}
+
+.section2 .bg3 {
+	left: 10vw;
+}
+
+.section2 .bg4 {
+	left: 40vw;
+}
+
+.section2 .bg5 {
+	right: 10vw;
+}

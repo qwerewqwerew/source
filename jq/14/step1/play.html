@@ -5,103 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --bg1: #285dfb;
-      --bg2: #537dfb;
-      --bg3: #7e9efc;
-      --bg4: #a9befd;
-      --bg5: #d4dffe;
-    }
-
-    .bg1 {
-      background-color: var(--bg1);
-      color: var(--bg5);
-    }
-
-    .bg2 {
-      background-color: var(--bg2);
-      color: var(--bg4);
-    }
-
-    .bg3 {
-      background-color: var(--bg3);
-      color: var(--bg3);
-    }
-
-    .bg4 {
-      background-color: var(--bg4);
-      color: var(--bg2);
-    }
-
-    .bg5 {
-      background-color: var(--bg5);
-      color: var(--bg1);
-    }
-
-    section {
-      overflow: hidden;
-      text-align: center;
-      width: 100%;
-      height: 100vh;
-    }
-
-    section h2 {
-      padding: 12vw 6vw;
-    }
-
-    .container {}
-
-    .box {
-      display: inline-block;
-      /* 최소, 최대가 명확한 경우 사용가능 */
-      width: clamp(100px, 30%, 100%);
-      height: 300px;
-      transition: all 2s;
-    }
-
-    .box1 {
-      transform: translateX(-200%);
-    }
-
-    .box2 {
-      transform: translateX(200%);
-    }
-
-    .box.in {
-      transform: translateX(-200%);
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="1.css">
   <script src='https://code.jquery.com/jquery-3.7.1.min.js'></script>
-  <script>
-    $(() => {
-      $(window).on('scroll', () => {
-        let winSCT;
-        const sections = $('section');
-        winSCT = $(window).scrollTop();
-        sections.each(function (idx, o) {
-          $(o).addClass(`bg${idx + 1}`);
-          const tg = $(this);
-          const tgtop = tg.offset().top;
-          if (winSCT > tgtop) {
-            tg.find('.box').css('transform', 'translateX(0%)');
-          } else if (winSCT > tgtop) {
-            tg.find('.box').css('transform', 'translateX(0%)');
-          } else if (winSCT > tgtop) {
-            tg.find('.box').css('transform', 'translateX(0%)');
-          } else if (winSCT > tgtop) {
-          } else if (winSCT > tgtop) {
-          }
-        });
-      });
-    })
-  </script>
+  <script src="1.js">  </script>
 </head>
 
 <body>

@@ -3,14 +3,7 @@ const win = $(window),
 	gnb = $('.gnb li'),
 	sideNav = $('.sideNav>li');
 
-/* function scrollAni() {
-  let tg = $(this);
-	let index = tg.index();
-	let section = sections.eq(index);
-	let offset = section.offset().top;
-	$('html,body').stop().animate({ scrollTop: offset }, 1000, 'easeOutCirc');
-}
- */
+
 gnb.on('click', function (e) {
 	e.preventDefault();
   let tg = $(this);
