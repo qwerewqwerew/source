@@ -1,13 +1,13 @@
 .section3 {position: relative;display: flex;color: #333;gap: 2rem; }
-.section3 h2 {position: absolute; }
 .section3 .item {padding-top: 10rem; }
 .section3 .item:nth-child(1) {flex-basis: 60%; }
 
 .section3 .item:nth-child(2) {flex-basis: 40%;align-self: center; }
 
 .section3 figure {position: relative;box-shadow: -1rem 1rem 3rem -2rem rgba(0, 0, 0, 0.5); }
+.section3 h2 {position: absolute; }
 
-.section3 figure:before {position: absolute;top: 0;right: 0;bottom: 0;left: 0;background: var(--bg1);transition: clip-path 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28); }
+.section3 figure:before {content:'';position: absolute;top: 0;right: 0;bottom: 0;left: 0;background: var(--bg1);transition: clip-path 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28); }
 
 .section3 figure img {width: 100%;display: block;clip-path: inset(0 100% 0 0);/* duration 0.6 delay 0.3 */
 transition: clip-path 0.6s 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28); }

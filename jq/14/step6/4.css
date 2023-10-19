@@ -1,12 +1,6 @@
-.section5,
-.section4 {
-	position: relative;
-}
-.section4 > h2 {
-	padding: 6vw;
-}
-.section4 .container,
-.section5 .container {
+.section4 {position:relative;}
+.section4>h2{padding:6vw;}
+.section4 .container {
 	position: relative;
 }
 
