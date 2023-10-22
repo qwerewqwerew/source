@@ -65,6 +65,9 @@ setInterval(() => {
 }, 650);
 
 function moveSlideCb(n) {
+	if (slides.is(':animated')) {
+		return;
+	}
 	slides.stop().animate({ left: moveAmt * -n }, 500, function () {
 		if (currentIdx > slideCount) {
 			slides.css('left', 0);

@@ -50,34 +50,40 @@ function setSlidePos() {
 }
 setSlidePos();
 //이동함수
-function moveSlide(n) {
-	console.log(currentIdx);
-	currentIdx = n;
-
-	slides.stop().animate({ left: moveAmt * -n }, 500);
-
-	if (currentIdx > slideCount) {
-		slides.css('left', 0);
-		currentIdx = 0;
-	}
-	if (currentIdx < -(slideCount - 1)) {
-		console.log(moveAmt * slideCount);
-		slides.css('left', -moveAmt * slideCount);
-		currentIdx = slideCount;
-	}
-}
 
 function moveSlideCb(n) {
-	slides.stop().animate({ left: moveAmt * -n }, 500);
-
+	if (slides.is(':animated')) {
+		return;
+	}
+	slides.stop().animate({ left: moveAmt * -n }, 500, function () {
+		if (currentIdx > slideCount) {
+			slides.css('left', 0);
+			currentIdx = 0;
+		} else if (currentIdx < -(slideCount - 1)) {
+			slides.css('left', -moveAmt * slideCount);
+			currentIdx = slideCount;
+		}
+	});
+	currentIdx = n;
 	console.log(currentIdx);
 }
+nextBtn.on('click', function () {
+	moveSlideCb(currentIdx + 1);
+});
+prevBtn.on('click', function () {
+	// 이동 중이면 무시
+	if (slides.is(':animated')) {
+		return;
+	}
+
+	moveSlideCb(currentIdx - 1);
+});
 
 let timer = undefined;
 autoSlide();
 function autoSlide() {
 	timer = setInterval(() => {
-		moveSlide(currentIdx + 1);
+		moveSlideCb(currentIdx + 1);
 	}, 650);
 }
 function stopSlide() {
@@ -94,10 +100,10 @@ slideWrapper.on({
 });
 
 nextBtn.on('click', function () {
-	moveSlide(currentIdx + 1);
+	moveSlideCb(currentIdx + 1);
 });
 prevBtn.on('click', function () {
-	moveSlide(currentIdx - 1);
+	moveSlideCb(currentIdx - 1);
 });
 function responsiveSlide(params) {
 	//반응형슬라이드
