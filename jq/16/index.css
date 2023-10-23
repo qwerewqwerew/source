@@ -1,0 +1,37 @@
+.all_scrollFixed{overflow: hidden;}
+.all_scrollFixed::before {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    width: 1000%;
+    height: 10000%;
+    background-color: rgba(0, 0, 0, 0.2);
+    transform: translateX(-50%);
+    content: '';
+    z-index: 95;
+}
+
+#sitemap{
+    display:none;
+    position:fixed;
+    z-index: 100;
+    background:rgb(14, 62, 221);
+    left:0;
+    right:0;
+    top:0;
+   height:80vh;
+   overflow:hidden;
+}
+.contentmap{
+    left:50%;
+    transform:translateX(-50%);
+    position:fixed;
+    width:80%;
+    height:80vh;
+    background:red;
+    overflow-y:auto;    
+}
+
+li{height:100px;}
+
+button{width:150px;height:150px; font-size:2em; }
