@@ -1,0 +1,48 @@
+
+.container {
+	position: fixed;
+	left: 0;
+	top: 0;
+	display: flex;
+}
+.item {
+	width: 100vw;
+	height: 100vh;
+	position: relative;
+}
+#section1 {
+	background-color: #111;
+}
+#section2 {
+	background-color: #222;
+}
+#section3 {
+	background-color: #333;
+}
+#section4 {
+	background-color: #444;
+}
+#section5 {
+	background-color: #555;
+}
+#section6 {
+	background-color: #666;
+}
+#section7 {
+	background-color: #777;
+}
+#section8 {
+	background-color: #888;
+}
+#section9 {
+	background-color: #999;
+}
+
+.num {
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+	color: #fff;
+	font-size: 20vw;
+	z-index: 10000;
+}

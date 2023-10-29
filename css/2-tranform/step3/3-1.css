@@ -1,0 +1,27 @@
+.transform_container {
+	width: 200px;
+	margin: 30px auto;
+}
+img {
+	width: 100%;
+	border: 1px solid #ccc;
+	border-radius: 50%;
+	box-shadow: 5px 5px 63px 2px #00000040;
+	animation: rotateAnimal 2.5s infinite alternate; /* rotateAnimal 애니메이션 2.5초 동안 실행. 무한 반복 */
+	animation-play-state: paused;
+	animation-fill-mode: forwards;
+}
+img:hover {
+	animation-play-state: running;
+}
+@keyframes rotateAnimal {
+	from {
+		transform: perspective(200px) rotateY(0deg);
+	}
+	50% {
+		transform: perspective(200px) rotateY(-180deg);
+	}
+	to {
+		transform: perspective(200px) rotateY(-360deg);
+	}
+}

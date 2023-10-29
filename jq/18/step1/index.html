@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Carousel with Tabs and Lightbox</title>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" />
+  <style>
+    .tabs {
+      margin: 50px;
+    }
+
+    .tab-button-outer {
+      display: flex;
+      justify-content: center;
+    }
+
+    .tab-button {
+      background-color: #ccc;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    .tab-button:hover {
+      background-color: #ddd;
+    }
+
+    .tab-button.active {
+      background-color: #bbb;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .carousel {
+      width: 300px;
+      margin: 50px auto;
+    }
+
+    .carousel img {
+      width: 100%;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="tabs">
+    <div class="tab-button-outer">
+      <div id="tab1" class="tab-button active">Tab 1</div>
+      <div id="tab2" class="tab-button">Tab 2</div>
+      <div id="tab3" class="tab-button">Tab 3</div>
+    </div>
+    <div id="content1" class="tab-content active carousel">
+      <a href="http://qwerew.cafe24.com/images/1.jpg" class="popup"><img src="http://qwerew.cafe24.com/images/1.jpg"></a>
+      <a href="http://qwerew.cafe24.com/images/2.jpg" class="popup"><img src="http://qwerew.cafe24.com/images/2.jpg"></a>
+      <a href="http://qwerew.cafe24.com/images/3.jpg" class="popup"><img src="http://qwerew.cafe24.com/images/3.jpg"></a>
+      <a href="http://qwerew.cafe24.com/images/4.jpg" class="popup"><img src="http://qwerew.cafe24.com/images/4.jpg"></a>
+    </div>
+    <div id="content2" class="tab-content carousel">
+      <a href="http://qwerew.cafe24.com/images/5.jpg" class="popup"><img src="http://qwerew.cafe24.com/images/5.jpg"></a>
+      <a href="http://qwerew.cafe24.com/images/6.jpg" class="popup"><img src="http://qwerew.cafe24.com/images/6.jpg"></a>
+      <a href="http://qwerew.cafe24.com/images/7.jpg" class="popup"><img src="http://qwerew.cafe24.com/images/7.jpg"></a>
+      <a href="http://qwerew.cafe24.com/images/8.jpg" class="popup"><img src="http://qwerew.cafe24.com/images/8.jpg"></a>
+    </div>
+    <div id="content3" class="tab-content carousel">
+      <a href="http://qwerew.cafe24.com/images/1.jpg" class="popup"><img src="http://qwerew.cafe24.com/images/1.jpg"></a>
+      <a href="http://qwerew.cafe24.com/images/2.jpg" class="popup"><img src="http://qwerew.cafe24.com/images/2.jpg"></a>
+      <a href="http://qwerew.cafe24.com/images/3.jpg" class="popup"><img src="http://qwerew.cafe24.com/images/3.jpg"></a>
+      <a href="http://qwerew.cafe24.com/images/4.jpg" class="popup"><img src="http://qwerew.cafe24.com/images/4.jpg"></a>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      // 처음에는 첫 번째 탭의 캐로셀만 초기화합니다.
+      //slick 캐로셀
+      $('#content1.carousel').slick({ slidesToShow: 2 });
+
+      $('.tab-button').on('click', function () {
+        var tabButtonId = $(this).attr('id');
+        $('.tab-button').removeClass('active');
+        $('.tab-content').removeClass('active');
+
+        $(this).addClass('active');
+        var targetContent = $("#" + 'content' + tabButtonId.slice(-1));
+        targetContent.addClass('active');
+
+        // 탭 버튼을 클릭할 때마다 해당하는 캐로셀을 초기화합니다.
+        // 이전에 초기화했던 캐로셀은 먼저 해제(unslick)하고 다시 초기화합니다.
+        if (targetContent.hasClass('slick-initialized')) {
+          targetContent.slick('unslick');
+        }
+        targetContent.slick({ slidesToShow: 2 });
+      });
+
+      $('.popup').magnificPopup({ type: 'image' });
+    });
+  </script>
+</body>
+
+</html>

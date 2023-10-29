@@ -1,0 +1,34 @@
+.transform_container {
+	width: 800px;
+	margin: 20px auto;
+}
+.origin {
+	width: 100px;
+	height: 100px;
+	margin: 40px;
+	border: 1px solid black;
+  display: inline-block;
+}
+.origin > div {
+	width: 100px;
+	height: 100px;
+	background-color: orange;
+	transition: all 3s; /* 3초 동안 회전하도록 트랜지션 적용 */
+}
+
+/* ============================================= */
+/* ============================================= */
+/* ============================================= */
+
+.rotatex:hover {
+	transform: rotateX(55deg); /* x축으로 55도 회전 */
+}
+.rotatey:hover {
+	transform: rotateY(55deg); /* y축으로 55도 회전 */
+}
+.rotatez:hover {
+	transform: rotateZ(55deg); /* z축으로 55도 회전 */
+}
+.rotatexyz:hover {
+	transform: rotate3d(0, 1.2, -1.5, 55deg); /* x,y,z축으로 55도 회전 */
+}

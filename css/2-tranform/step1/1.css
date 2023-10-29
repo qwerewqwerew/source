@@ -1,0 +1,27 @@
+div.transform_container {width: 50%;margin: 200px auto; }
+div.transform_container img {transition: all 0.35s;width: 100%; }
+
+div.transform_container:hover img { }
+
+div.transform_container {perspective: 1000px;border: 1px solid; }
+div.transform_container:hover img {transform: translate3D(100px, 100px, 200px); }
+
+/* ===
+ 2 perspective-origin
+=== */
+/* 카메라와의 거리가 가까우니까 더 크게 보임 1000내외가 적절 */
+
+/* perspective-origin: 50% 50%; 시선 위치 조절 -> 기본 50% 50%*/
+div.transform_container { perspective: 500px; perspective-origin: 50% 50%; }
+div.transform_container:hover img { transform:translate3D(0px,0px,200px); }
+
+
+/* ===
+ 3 scale 은 translateZ와 함께 사용
+=== */
+
+div { perspective-origin:0px 10px; }
+div img { transform:scaleZ(1); }
+
+div:hover img { transform:translateZ(200px) scaleZ(5); }
+div:hover img { transform:translateZ(200px) rotateZ(180deg); }
