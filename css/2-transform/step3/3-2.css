@@ -20,7 +20,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: auto;
 }
 
 .card {
@@ -63,14 +62,13 @@ body {
   transform: translateZ(80px);
   background: linear-gradient(to right, #e98b89, #547fc0);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 
 }
 
 .card span {
   position: absolute;
   bottom: 40px;
-  right: -280px;
+  right: -80px;
   font-size: 37px;
   font-weight: 600;
   transform: translateZ(35px);

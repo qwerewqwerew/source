@@ -3,11 +3,12 @@
 	margin: 20px auto;
 }
 .origin {
+	perspective: 1000px;
 	width: 100px;
 	height: 100px;
 	margin: 40px;
 	border: 1px solid black;
-  display: inline-block;
+	display: inline-block;
 }
 .origin > div {
 	width: 100px;
@@ -21,14 +22,14 @@
 /* ============================================= */
 
 .rotatex:hover {
-	transform: rotateX(55deg); /* x축으로 55도 회전 */
+	transform: translateZ(200px) rotateX(55deg); /* x축으로 55도 회전 */
 }
 .rotatey:hover {
-	transform: rotateY(55deg); /* y축으로 55도 회전 */
+	transform: translateZ(200px) rotateY(55deg); /* y축으로 55도 회전 */
 }
 .rotatez:hover {
-	transform: rotateZ(55deg); /* z축으로 55도 회전 */
+	transform: translateZ(200px) rotateZ(55deg); /* z축으로 55도 회전 */
 }
 .rotatexyz:hover {
-	transform: rotate3d(0, 1.2, -1.5, 55deg); /* x,y,z축으로 55도 회전 */
+	transform: translateZ(200px) rotate3d(0, 1.2, -1.5, 55deg); /* x,y,z축으로 55도 회전 */
 }
