@@ -1,0 +1,4 @@
+.btns {position: fixed;width: 100%;z-index: 10; }
+.btns .container {position: relative;max-width: 900px;padding: 20px;background-color: transparent;transition: 0.3s;margin: auto;display: flex;justify-content: center;border-radius: 0 0 10px 10px; }
+.btns .container.bgshow {padding: 20px;background-color: #9ad7d9; }
+section {height: 500vh; }

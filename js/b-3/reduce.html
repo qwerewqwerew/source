@@ -9,9 +9,43 @@
 
 <body>
   <script>
-    const a = [1, 2, 3, 4]
+    const a = [1, 2, 3, 4]  //1+2, 3+3, 6+4 = 10
     a.reduce((prev, value) => { return prev + value }, 0)
     console.log(a.reduce((prev, value) => { return prev + value }, 0));
+
+    const b = [1, 2, 3, 4, 5]
+    const c = b.reduce((p, v) => { return p * v }, 1)
+    console.log(c); //120
+    const d = b.reduce((p, v) => { return (p > v) ? p : v })//p보다 v가 크면 p ->최대값
+    console.log(d); //5
+
+  </script>
+  <script>
+    const letter = ["Tom", "Huck", "Becky"];
+    const newLetter = letter.reduce((p, v) => { return p + "❤" + v }, "초기값")
+    console.log(newLetter);
+
+  </script>
+  <script>
+
+    //순열목록을 구하는 reduce
+    function permutation(a) {
+      //순열목록(list)을 각 순열의 요소(element)로 추가하면서 갱신해 나간다
+      return a.reduce((list, element) => {
+        let newList = []; //이 배열에 새로운 순열 목록을 저장함
+        list.forEach((seq) => {
+          //seq배열 끝에서 두번쨰 요소부터 앞에서 두번째 요소에 이르기까지 차례대로 element 를 삽입한다. 그후에 각각을 newlist에 추가한다.
+          for (let i = seq.length; i >= 0; i--) {
+            let newseq = [].concat(seq);
+            newseq.splice(i, 0, element);
+            newList.push(newseq)
+          }
+        })
+        return newList;
+      }, [[]])
+    }
+    const ab = [1, 2, 3];
+    permutation(ab).forEach(function(v){console.log(v);})
   </script>
 </body>
 

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.parent {
+				container-type: inline-size;
+				container-name: child-style;
+				width: 100%;
+				height: 200px;
+				display: grid;
+				border: 3px solid gray;
+			}
+			.child {
+				width: 100px;
+				height: 100px;
+				background: blue;
+			}
+			@container child-style (max-width:600px) {
+				.child {
+					background: red;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="parent">
+			<div class="child"></div>
+		</div>
+	</body>
+</html>
+<!-- ~~container-type~~ 에는 ~~size~~, ~~inline-size~~, ~~normal~~ 속성값이 존재한다.
+
+- ~~inline-size~~ : 인라인 레벨 기준으로 컨테이너를 적용. 요소의 ~~width~~ 값에 따라 반응형이 동작된다.
+- ~~size~~ : 블록 레벨 기준으로 컨테이너를 적용. ~~width~~ 뿐만 아니라 ~~height~~ 값에 따라 반응형이 동작 된다.
+- ~~normal~~ : 해당 값이 부여된 요소를 container에서 제외시킨다. 일종의 none 의미라고 보면 되겠다. -->

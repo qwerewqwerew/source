@@ -1,0 +1,13 @@
+.bg__img {
+	margin: 0;
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	background: url(./1x/bg.jpg) no-repeat;
+	background-size:contain;
+	transition: all 1s;
+	opacity: 0;
+}
+.bg__img--show {
+	opacity: 1;
+}

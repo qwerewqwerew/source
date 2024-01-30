@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			/* 이렇게 하면 글꼴 크기가 최소 16픽셀(320픽셀 뷰포트에서)에서 최대 22픽셀(1000픽셀 뷰포트에서)로 확장됩니다.  */
+			html {
+				font-size: 16px;
+			}
+			@media screen and (min-width: 320px) {
+				html {
+					font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+				}
+			}
+			@media screen and (min-width: 1000px) {
+				html {
+					font-size: 22px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		The font-size of this text varies depending on the base font of the page, and the size of the viewport.
+	</body>
+</html>
