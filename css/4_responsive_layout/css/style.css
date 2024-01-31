@@ -1,0 +1,95 @@
+/* grid 클래스에 col과 gutter 의 변수 지정
+변수값은 하위요소에 상속됨
+html 태그의 적용부분에 해당 클래스를 추가함
+*/
+.grid {
+	--col: 88px;
+	--gu: 24px;
+}
+
+.container {
+	max-width: var(--max-width);
+	width: 100%;
+	margin: auto;
+}
+.df {
+	display: flex;
+}
+header {
+	height: calc(var(--h) * 3);
+}
+header .df {
+	justify-content: space-between;
+	align-items: center;
+}
+
+main {
+}
+section.hero {
+	margin: auto;
+	/* 변수를 대입하여 박스크기 계산 */
+	width: calc((var(--col) * 12) + (var(--gu) * 11));
+	height: calc(var(--h) * 22);
+	/* 배경색을 변수로 지정 없을경우 두번째 인자가 적용됨 */
+	background-color: var(--text1, gray);
+}
+
+section.hero .df {
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.row {
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+section .title {
+	margin-top: calc(var(--h) * 5);
+	margin-bottom: calc(var(--h) * 2.5);
+	text-align: center;
+}
+
+section .card {
+	flex: 1 1 30%;
+	width: calc((var(--col) * 4) + (var(--gu) * 3));
+	margin-bottom: var(--gu);
+	min-height: calc(var(--h) * 16);
+	border: 1px solid var(--text1, gray);
+	padding: var(--h);
+	border-radius: 8px;
+}
+section .card:not(:nth-child(3n)) {
+	margin-right: var(--gu);
+}
+section .card .thumb {
+	max-width: calc((var(--col) * 3) + (var(--gu) * 3));
+	min-height: calc(var(--h) * 7);
+	background-color: gray;
+}
+section .card .text_wrap {
+	flex-direction: column;
+}
+section .card .button_wrap {
+}
+
+@media screen and (max-width: 990px) {
+	:root {
+		--max-width: 960px;
+	}
+	.grid {
+		--col: 56px;
+		--gu: 24px;
+	}
+	section .card.wide {
+		width: calc((var(--col) * 6) + (var(--gu) * 5));
+	}
+	section .card.wide .thumb {
+		max-width: calc((var(--col) * 6%) + (var(--gu) * 5));
+		min-height: calc(var(--h) * 7);
+		background-color: gray;
+	}
+
+	section .card .button_wrap {
+	}
+}

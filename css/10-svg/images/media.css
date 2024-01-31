@@ -1,0 +1,9 @@
+.st0{fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10; stroke:#ffff00;}
+ @media screen and (max-width:900px){
+	 .top{display:block;}
+  .st0 { stroke:#D1D3D4;}
+}
+@media screen and (max-width:500px){
+ .top{display:none;}
+ .st0 { stroke:#d00000;}
+}

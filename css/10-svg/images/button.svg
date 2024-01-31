@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- <?xml-stylesheet type="text/css" href="media.css"?> 
+ -->
+ <svg version="1.1" id="button" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20 20" width="10" height="100%" style="enable-background:new 0 0 20 20;" xml:space="preserve" >
+<style type="text/css">
+
+.st0{fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10; stroke:#ffff00;}
+ @media screen and (max-width:900px){
+	 .top{display:block;}
+  .st0 { stroke:#D1D3D4;}
+}
+@media screen and (max-width:500px){
+ .top{display:none;}
+ .st0 { stroke:#d00000;}
+}
+</style>
+<g id="bottom">
+	<line class="st0 top" x1="4" y1="4.5" x2="17" y2="4.5" />
+	<line class="st0" x1="4" y1="8.5" x2="17" y2="8.5"/>
+	<line class="st0" x1="4" y1="12.5" x2="17" y2="12.5"/></g>
+</svg>

@@ -1,0 +1,9 @@
+#wrapper1 {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 200, minmax(200px, 1fr)); /* 남는공간 꽉 채움 */
+  grid-template-rows:minmax(50px, auto);
+}
+#wrapper2{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));  /* 칼럼 최소 너비만큼 채워서 표시 */
+}
