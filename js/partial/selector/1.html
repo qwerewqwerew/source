@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.focused input {
+				background: red;
+				color: white;
+			}
+
+			.focused input::-webkit-input-placeholder {
+				color: white;
+			}
+
+			.focused input::input-placeholder {
+				color: white;
+        opacity: 1;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="search">
+			<input type="text" />
+		</div>
+
+		<script>
+			const searchEl = document.querySelector('.search');
+			const searchInputEl = searchEl.querySelector('input');
+			searchEl.addEventListener('click', function () {
+				searchInputEl.focus();
+			});
+			searchInputEl.addEventListener('focus', function () {
+				searchEl.classList.add('focused');
+				searchInputEl.setAttribute('placeholder', '통합검색');
+			});
+			searchInputEl.addEventListener('blur', function () {
+				searchEl.classList.remove('focused');
+				searchInputEl.setAttribute('placeholder', '');
+			});
+		</script>
+	</body>
+</html>

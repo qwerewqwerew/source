@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.bgcolor--blue {
+				background-color: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<button>click</button>
+		<script>
+			document.querySelector('button').onclick = function () {
+				document.body.classList.toggle('bgcolor--blue');
+			};
+		</script>
+	</body>
+</html>

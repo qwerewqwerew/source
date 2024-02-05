@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			class Breed {
+				constructor() {
+					this.kind = '말티즈';
+				}
+				printKind() {
+					console.log(this.kind);
+				}
+			}
+			class Dog extends Breed {
+				constructor() {
+					super();
+					this.name = '망고';
+				}
+				printName() {
+					console.log(this.name);
+				}
+			}
+			const dog = new Dog();
+			dog.printName();
+			dog.printKind();
+		</script>
+	</body>
+</html>

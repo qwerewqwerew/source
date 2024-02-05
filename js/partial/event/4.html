@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			document.addEventListener('click', function (e) {
+				const box = document.createElement('div');
+				box.style.position = 'absolute';
+				box.style.width = '100px';
+				box.style.height = '100px';
+				box.style.backgroundColor = `rgb(${Math.ceil(Math.random() * 255)},${Math.ceil(Math.random() * 255)},${Math.ceil(Math.random() * 255)})`;
+				box.style.top = `${e.clientY - 50}px`;
+				box.style.left = `${e.clientX - 50}px`;
+				document.body.appendChild(box);
+			});
+		</script>
+	</body>
+</html>
