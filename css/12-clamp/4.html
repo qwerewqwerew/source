@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.title {
+				font-size: clamp(16px, 5vw, 50px);
+			}
+		</style>
+	</head>
+	<body>
+		<h1 class="title">타이틀타이틀타이틀타이틀</h1>
+		<script>
+			let txt = document.createElement('p');
+			const ele = document.querySelector('.title');
+			txt.innerText += getComputedStyle(ele).fontSize;
+			document.body.appendChild(txt);
+		</script>
+	</body>
+</html>
