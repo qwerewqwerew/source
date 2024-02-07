@@ -6,113 +6,50 @@
 		<title>Document</title>
 		<link rel="stylesheet" href="reset.css" />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+		<link rel="stylesheet" href="3.css" />
+		<link rel="stylesheet" href="4.css" />
 		<style>
-			body {
-				background-color: lightyellow;
-				transition: all 1s;
-			}
-			.bgcolor--blue {
-				background-color: lightblue;
-			}
-			.bgcolor--gray {
-				background-color: lightgray;
-			}
-
-			.bg_img {
-				margin: 0;
+			.btns_toggle-btn {
 				position: absolute;
-				width: 100vw;
-				height: 100vh;
-				background: url('bg.png');
-				transition: all 1s;
-				opacity: 0;
-			}
-			.bg_img--show {
-				opacity: 1;
-			}
-			/* modify */
-			.btns_menu {
-				display: flex;
-			}
-			button {
-				background-color: #9ad7d9;
-				border: transparent;
-				padding: 1rem;
-				display: block;
-				cursor: pointer;
-			}
-			.btns {
-				position: fixed;
-				width: 100%;
-				margin: auto;
-				z-index: 10;
-			}
-			.btns .container {
-				position: relative;
-				max-width: 900px;
-				padding: 20px;
-				background-color: transparent;
+				top: 10px;
+				right: 32px;
+				color: #193f40;
 				transition: 0.3s;
-				margin: auto;
-				display: flex;
-				justify-content: center;
-				border-radius: 0 0 10px 10px;
+				display: none;
 			}
-			.btns .container.bgshow {
-				padding: 20px;
-				background-color: #9ad7d9;
-			}
-			section {
-				padding-top: 100px;
-				height: 100vh;
-			}
-			section h2 {
-				color: #9ad7d9;
-				font-size: 5rem;
-				text-align: center;
-			}
-			section p {
-				width: clamp(30%, 50%, 50%);
-				font-size: 1.4rem;
-				margin: auto;
-				line-height: 1.75;
-			}
-		</style>
-		<style>
-			.arrow-up {
-				position: fixed;
-				bottom: 50px;
-				right: 50px;
-				width: 70px;
-				height: 70px;
-				color: rgb(255, 255, 255);
-				background-color: rgb(33, 112, 231);
-				border-radius: 50%;
-				text-align: center;
-				opacity: 0;
-				padding: 0;
-			}
-			.arrow-up span {
-				line-height: 70px;
-				font-size: 30px;
-			}
-			.arrow-up.visible {
-				opacity: 1;
-			}
-		</style>
-		<style>
-			section {
-				width: 100%;
-				height: 100vh;
-				padding-top: 88px;
-			}
-			.wrapper {
-				max-width: 1200px;
-				margin: auto;
-				text-align: center;
-			}
-			h3 {
+			.btns_toggle-btn span {
 				font-size: 24px;
+			}
+			@media screen and (max-width: 700px) {
+				body .btns .container.bgshow {
+					backdrop-filter: blur(10px);
+					background-color: #9ad7d955;
+					/* filter: blur(10px); */
+				}
+				.btns.container {
+					background-color: #9accd9;
+					border-radius: 0;
+					padding: 24px;
+				}
+				.btns_toggle-btn {
+					display: block;
+				}
+				.btns_menu {
+					flex-direction: column;
+					width: 100%;
+					align-items: center;
+					justify-content: center;
+					padding-top: 20px;
+					display: none;
+				}
+				.btns_menu.open {
+					display: flex;
+				}
+				.btns_menu button {
+					display: block;
+					margin: 10px auto;
+					width: 80%;
+				}
 			}
 		</style>
 	</head>
@@ -127,7 +64,9 @@
 					<button class="btn skills" data-link="#works">works</button>
 					<button class="btn contact" data-link="#contact">contact</button>
 				</div>
-				<button class="btns_toggle-btn"><span class="material-icons">menu</span></button>
+				<button class="btns_toggle-btn">
+					<span class="material-symbols-outlined"> menu </span>
+				</button>
 			</div>
 		</div>
 		<section id="home">
@@ -167,45 +106,12 @@
 		</section>
 
 		<button class="arrow-up"><span class="material-symbols-outlined"> arrow_upward </span></button>
+		<script src="4.js"></script>
 		<script>
-			const navContainer = document.querySelector('.btns .container');
-			document.addEventListener('scroll', function () {
-				console.log(window.scrollY);
-				if (window.scrollY > 60) {
-					navContainer.classList.add('bgshow');
-				} else {
-					navContainer.classList.remove('bgshow');
-				}
-			});
-
-			const arrowUp = document.querySelector('.arrow-up');
-
-			document.addEventListener('scroll', function () {
-				if (window.scrollY > 500) {
-					arrowUp.classList.add('visible');
-				} else {
-					arrowUp.classList.remove('visible');
-				}
-			});
-
-			const home = document.querySelector('#home');
-
-			arrowUp.addEventListener('click', function () {
-				home.scrollIntoView({ behavior: 'smooth' });
-			});
-			/* add */
-			const btnsMenu = document.querySelector('.btns_menu');
-			btnsMenu.addEventListener('click', (event) => {
-				const target = event.target;
-				const link = target.dataset.link;
-				console.log(link);
-				if (link == null) {
-					return;
-				}
-				const scrollTo = document.querySelector(link);
-				console.log(scrollTo);
-				scrollTo.scrollIntoView({ behavior: 'smooth', block: 'start' });
-				btnsMenu.classList.remove('open');
+			const btnsToggleBtn = document.querySelector('.btns_toggle-btn');
+			btnsToggleBtn.addEventListener('click', function (e) {
+				e.preventDefault();
+				btnsMenu.classList.toggle('open');
 			});
 		</script>
 	</body>
