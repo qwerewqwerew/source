@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			#box {
+				width: 100px;
+				height: 100px;
+				background: #0000ff;
+				display: inline-block;
+				position: absolute;
+				top: 10%;
+				color: #fff;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">Click me</div>
+		<script>
+			window.addEventListener('load', function () {
+				var el = document.querySelector('#box');
+				el.onclick = function () {
+					this.animate(
+						[
+							{ left: '0%', transform: 'rotate(0deg)' },
+							{ left: '50%', transform: 'rotate(360deg)' },
+						],
+						2000
+					);
+				};
+			});
+		</script>
+	</body>
+</html>
