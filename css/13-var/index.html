@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			:root {
+				--color-white: #ffffff;
+				--color-light-grey: #7c7979;
+				--color-grey: #616161;
+				--color-dark-grey: #4d4d4d;
+				--color-black: #000000;
+				--font-large: 48px;
+				--font-medium: 28px;
+				--font-regular: 18px;
+				--weight-bold: 700;
+				--weight-semi-bold: 600;
+				--weight-regular: 400;
+				--size-border-radius: 4px;
+			}
+			h1 {
+				font-size: var(--font-large);
+				font-weight: var(--weight-bold);
+				color: var(--color-black);
+			}
+			h2 {
+				font-size: var(--font-medium);
+				font-weight: var(--weight-semi-bold);
+				color: var(--color-black);
+			}
+			h3 {
+				font-size: var(--font-regular);
+				font-weight: var(--weight-regular);
+				color: var(--color-black);
+			}
+			@media screen and (max-width: 700px) {
+				body {
+					background-color: var(--color-black);
+				}
+				h1 {
+					color: var(--color-white);
+				}
+				h2 {
+					color: var(--color-white);
+				}
+				h3 {
+					color: var(--color-white);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<h1>h1</h1>
+		<h2>h2</h2>
+		<h3>h3</h3>
+	</body>
+</html>
