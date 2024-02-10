@@ -1,0 +1,70 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	background-color: skyblue;
+}
+.container {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+}
+p {
+	font-size: 20px;
+}
+ul {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #ccc;
+	margin: 0;
+	padding: 0;
+	background: url('imgs/5.jpg');
+	background-size: cover;
+	background-position: left;
+}
+ul li {
+	list-style: none;
+	position: relative;
+	width: 20%;
+	height: 100%;
+	border-right: 1px solid rgb(233, 233, 233);
+	float: left;
+	box-sizing: border-box;
+	transition: 0.3s;
+	text-align: center;
+}
+
+ul li:nth-child(1) {
+	background: url('imgs/1.jpg');
+	background-size: cover;
+	background-position: center;
+}
+ul li:nth-child(2) {
+	background: url('imgs/2.jpg');
+	background-size: cover;
+	background-position: center;
+}
+ul li:nth-child(3) {
+	background: url('imgs/3.jpg');
+	background-size: cover;
+	background-position: center;
+}
+ul li:nth-child(4) {
+	background: url('imgs/4.jpg');
+	background-size: cover;
+	background-position: center;
+}
+ul li:nth-child(5) {
+	background: url('imgs/5.jpg');
+	background-size: cover;
+	background-position: center;
+}
+ul:hover li { width: 10%;}
+ul li:hover { width: 60%;}
+ul li .content { position: absolute; left: 0; width: 100%;
+background-color: rgba(0,0,0,3); box-sizing: border-box; color: white;
+opacity: 0; padding: 060px 40px 60px;}
+ul li:hover .content { bottom: 0; transition: 300ms; transition-delay: 150ms; opacity: 1; }
