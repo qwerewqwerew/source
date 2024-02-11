@@ -3,12 +3,3 @@
 ## 블루마켓
 [구현화면](https://qwerewqwerew.github.io/source/webDesign/bluemarket/site/final/index.html)
 
-
-
----
-
-git add .
-git commit -m "source"
-git push origin main
-
----
