@@ -1,0 +1,99 @@
+.wrap { width: 100%; position: relative; display: flex; flex-wrap: wrap; }
+.row { display: flex; }
+.inner { max-width: 90rem; width: 100%; margin: auto; }
+/*** header ***/
+header { width: 100%; max-width: 20rem; height: 40rem; }
+header:before { content: ''; display: block; position: absolute; width: 0%; height: 30rem; top: 71px; left: 200px; z-index: 2; transition: all 0.3s; backdrop-filter: blur(20px); background: #ffffff56; }
+header.on:before { width: 100%; }
+header h1.logo { width: 20rem; height: 4rem; line-height: 4rem; text-align: center; }
+header h1.logo a { color: var(--primary); }
+header nav { margin-top: 4rem; position: relative; z-index: 5; }
+header nav ul.depth1 li { position: relative; width: 100%; }
+header nav ul.depth2 { position: absolute; right: -600px; top: -0; display: none; width: 600px; }
+header nav ul.depth2 li { display: inline; }
+header nav ul.depth2 li a { width: 20%; display: inline-block; }
+header nav ul li a { display: block; padding: 2rem; padding-left: 2rem; color: var(--text3); transition: color 300ms; }
+header nav ul li:hover > a { background: var(--accent); color: #fff; }
+header .spotmenu { display: flex; margin-top: 4rem; gap: 1rem; }
+header .spotmenu li { flex: 1 1 100px; text-align: center; }
+header .spotmenu li a { display: block; padding: 1rem; background: var(--background); transition: all 0.3s; }
+header .spotmenu li:hover a { background: var(--primary); color: #fff; }
+
+/***main***/
+main { width: 100%; max-width: calc(100% - 20rem); }
+
+/* main_slides */
+main .main_slides { width: 100%; height: 40rem; }
+main .slide_wrap { width: 100%; height: 40rem; position: relative; overflow: hidden; }
+main .slide_wrap .textbox { max-width: 50%; text-align: center; color: #fff; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+main .slide_wrap .textbox span { display: block; }
+main .slide_wrap li { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: all 1s ease-in-out; }
+main .slide_wrap li.on { opacity: 1; }
+main .slide_wrap li.slide1 { background: url(../images/slide1.png) no-repeat center center/cover; }
+main .slide_wrap li.slide2 { background: url(../images/slide2.png) no-repeat center center/cover; }
+main .slide_wrap li.slide3 { background: url(../images/slide3.png) no-repeat center center/cover; }
+
+/* banner */
+main .banner { width: 100%; min-height: 20rem; padding: 3rem 4rem; background-color: var(--background); }
+
+main .banner .row .col_l { flex: 1 1 14rem; height: 14rem; background: url(../images/banner.png) no-repeat; }
+main .banner .row .col_m { flex: 0 1 64rem; }
+main .banner .row p { margin-top: 2.4rem; }
+main .banner .row .col_r { flex: 1 1 5rem; background: url(../images/arrow.png) no-repeat center center; }
+
+/* board */
+main .board { width: 100%; min-height: 25rem; padding: 1rem; }
+  main .board .buttons li { width: 9rem; padding: 1rem; text-align: center; border: 2px solid var(--background); background-color: var(--background); }
+  main .board .buttons li.on { border: 2px solid var(--background); border-bottom-color: transparent; background-color: #fff; }
+  main .board .buttons li a { display: block; }
+  main .board .panels { max-width: 69.4rem;  flex-direction: column; border: 2px solid var(--background); border-top: none; position: relative; }
+  main .board .panels:after { content: ''; position: absolute; right: -2px; top: -2px; background-color: var(--background); width: calc(100% - 17.6rem); height: 2px; }
+  main .board .panels .row span { cursor: pointer; }
+  main .board .panels .row span:hover { text-decoration: underline; }
+  main .board .panels .row:last-child { margin-bottom: 0; }
+  main .board .panels #panel1,main .board .panels #panel2 { position: relative; padding-top:1rem;}
+  main .board .panels #panel1 h2,main .board .panels #panel2 h2 { position: absolute; right: 70rem; width: 20rem; text-align: center; line-height: 1.25; color: var(--text1); padding: 1rem; }
+
+    /* 공지사항 */
+    main .board .panels #panel1 .row { width: 61rem; padding:0 3.9rem; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; }
+
+
+/* 갤러리 */
+main .board .panels #panel2 { display: none; }
+main .board .panels #panel2 .row {  width: 61rem; height:16rem;  margin-bottom: 1.2rem; justify-content: space-between; margin:auto; gap:1rem; padding-bottom:1rem;}
+main .board .panels #panel2 li {position:relative;  width:33.3%; text-align:center; overflow: hidden;}
+   #panel2 .row li a{ display: block; width:100%; height:100%; }
+    #panel2 .row li img{ width:100%;}
+    #panel2 .row li span.comment2{ color:white; position:absolute; left:50%;bottom:-100%; transform: translateX(-50%); text-overflow:ellipsis; white-space: nowrap; overflow: hidden; background:#70707067; width:100%; transition: all .5s; padding:1rem 0; }
+    #panel2 .row li a:hover span{bottom:-0%;}
+
+
+/* footer */
+footer { width: 100%; min-height: 12rem; align-items: center; text-align: center; background-color: var(--background); }
+footer .logo { text-align: center; line-height: 1.25; }
+footer .right { width: 100%; }
+
+footer .top { gap: 1rem; align-items: center; justify-content: center; margin: 2rem 0 1rem; }
+footer .top li { position: relative; margin-right: 0.5rem; }
+footer .top li:last-child:before { background: none; }
+footer .top li:before { position: absolute; content: ''; background: var(--background); top: 50%; right: -0.5rem; height: 1rem; width: 0.1rem; transform: translateY(-50%); }
+footer .top a { display: block; color: var(--text2); }
+
+/* quick */
+main .quick_nav { position: fixed; right: 1rem; top: 1rem; width: 9rem; height: 23rem; padding: 2rem 2rem 1rem; background-color: var(--background); z-index: 10; display: flex; flex-direction: column; justify-content: space-evenly; }
+
+main .quick_nav li:not(last-child) { margin-bottom: 1rem; }
+main .quick_nav li a { display: block; text-align: center; }
+main .quick_nav li a * { display: block; }
+main .quick_nav li a img { margin: 0 auto 0.2rem; }
+
+/* popup */
+.board .popup { position: fixed; z-index: 99999; width: 50rem; height: 30rem; background: #e8e9ee url(../images/popup.png) no-repeat right bottom; top: 50%; left: 50%; display: flex; justify-content: space-around; display: none; }
+.board .popup .text { position: absolute; top: 1rem; left: 2rem; }
+.board .popup .text .h1 { color: var(--primary); }
+.board .popup a { position: absolute; right: 1rem; top: 1rem; z-index: 9999999;}
+
+
+.overlay { display: none; position: fixed; background: rgba(0, 0, 0, 0.5); left: 0; right: 0; top: 0; bottom: 0; z-index: 999; }
+
+.overlay.open { display: block; }
