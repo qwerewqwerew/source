@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC</title>
+</head>
+<body>
+    <!-- http://detectmobilebrowsers.com/ -->
+    <h1>PC전용페이지</h1>
+    <div class="pc">PC</div>
+    <div class="mobile">Mobile</div>
+    
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/detectmobilebrowser.js"></script>
+<!-- // 01
+<script>
+    if(jQuery.browser.mobile==true){
+        $('.pc').hide();
+        $('.mobile').show();
+    }else{
+        $('.pc').show();
+        $('.mobile').hide();
+    }
+</script>
+ -->
+
+<!-- //02  
+    <script>
+     console.log(location.href);
+     if(jQuery.browser.mobile==true){
+        location.href="./mobile/"
+    }
+ </script>
+  -->
+ <!-- vanilla js -->
+<script>
+   /* https://developer.mozilla.org/ko/docs/Web/API/Window/devicePixelRatio */
+    if(window.devicePixelRatio>1){
+        location.href="./mobile/"
+    }
+
+
+</script>
+ 
+ 
+ 
+ 
+ 
+ </html>
