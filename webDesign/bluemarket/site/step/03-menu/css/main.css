@@ -10,7 +10,7 @@ header {width: 100%;max-width: 20rem;height: 40rem; }
 
   header nav {margin-top: 4rem;position: relative; z-index: 5;  }
   header nav ul.depth1 li {position: relative;width: 100%; }
-  header nav ul.depth2 {position: absolute;right:-600px;;top: 0;display: none; width:600px; }
+  header nav ul.depth2 {position: absolute;right:-600px;top: 0;display: none; width:600px; }
   header nav ul.depth2 li {display: inline; }
   header nav ul.depth2 li a {width: 20%;display: inline-block;}
   header nav ul li a {display: block;padding: 2rem;padding-left: 2rem;color: var(--text3);transition: color 300ms; }

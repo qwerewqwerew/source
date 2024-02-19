@@ -1,19 +1,16 @@
 // menu
 const depth1 = $('.depth1');
-depth1.hover(
-	() => {
-		depth1.find('.depth2').each((i, o) => {
-			$(o).css('display', 'block');
-			$('header').addClass('on');
-		});
+depth1.on({
+	mouseenter: function () {
+		$('.depth2').css('display', 'block');
+		$('header').addClass('on');
 	},
-	() => {
-		depth1.find('.depth2').each((i, o) => {
-			$(o).css('display', 'none');
-			$('header').removeClass('on');
-		});
-	}
-);
+	mouseleave: function () {
+		$('.depth2').css('display', 'none');
+		$('header').removeClass('on');
+	},
+});
+
 
 // slide
 const slides = $('.slide_wrap li');

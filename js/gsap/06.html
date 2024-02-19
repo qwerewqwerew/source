@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				overflow: hidden;
+			}
+
+			#title {
+				width: 700px;
+				margin: 100px auto 0;
+			}
+
+			.container {
+				padding: 20px;
+			}
+
+			h1 {
+				margin-bottom: 20px;
+			}
+
+			p {
+				margin-bottom: 15px;
+			}
+
+			a {
+				display: block;
+				width: 100px;
+				padding: 10px;
+				background-color: blueviolet;
+				text-decoration: none;
+				color: white;
+				text-align: center;
+				border-radius: 10px;
+			}
+
+			#thumbnail {
+				width: 700px;
+				height: 300px;
+				margin: 0 auto;
+				padding: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<section id="title">
+			<div class="container">
+				<h1 class="animation1">JavaScript GSAP Library Animation</h1>
+				<p class="animation1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, dolore.</p>
+				<a id="cta" class="animation1" href="#">Button</a>
+			</div>
+		</section>
+		<section id="thumbnail">
+			<img src="http://placekitten.com/200/300" />
+		</section>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+		<script>
+			let t1 = gsap.timeline({ defaults: { duration: 1 } });
+
+			t1.from('h1', { y: -50, opacity: 0 }).from('p', { y: -50, opacity: 0 }, '-=0.5').from('a', { y: -50, opacity: 0 }, '-=0.5').from('img', { y: 200, opacity: 0 }, '-=0.5');
+
+			document.getElementById('cta').addEventListener('click', () => {
+				t1.reversed() ? t1.play() : t1.reverse();
+			});
+		</script>
+	</body>
+</html>
