@@ -4,31 +4,37 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
-		<link rel="stylesheet" href="12b.css" />
+		<link rel="stylesheet" href="12d.css" />
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 		<script>
 			$(() => {
+				const slide = $('#crossfade li');
+
+				// 정렬
+				slide.each((i, o) => {
+					$(o).css('left', i * 100 + '%');
+				});
+
 				let idx = 0;
-				$('#crossfade li').hide();
-				$('#crossfade li').eq(0).show();
-				setInterval(slideshow, 3000);
-				function slideshow() {
-					$('#crossfade li').eq(idx).fadeOut('slow');
+
+				// 무한루프를 위한 setInterval
+				setInterval(() => {
+					slide.eq(idx).stop().animate({ left: -100 + '%' }, 1000, function () {
+						$(this).css('left', (slide.length - 1) * 100 + '%');
+					});
 					idx++;
-					if (idx > $('#crossfade li').length - 1) {
+					if (idx > slide.length - 1) {
 						idx = 0;
 					}
-					$('#crossfade li').eq(idx).fadeIn('slow');
-				}
+					slide.eq(idx).stop().animate({ left: 0 + '%' }, 1000);
+				}, 3000); // 3초마다 반복
 			});
 		</script>
-		<!-- 		<script src="02.js"></script>
-		<script src="03.js"></script> -->
 	</head>
 
 	<body>
 		<div id="content">
-			<h3>Simple Crossfade Waterfalls Slideshow</h3>
+			<h3>Slideshow</h3>
 			<ul id="crossfade">
 				<li>
 					<a href="#"><img src="http://qwerew.cafe24.com/images/1.jpg" alt="" /></a>
