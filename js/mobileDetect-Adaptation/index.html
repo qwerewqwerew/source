@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PC</title>
-</head>
-<body>
-    <!-- http://detectmobilebrowsers.com/ -->
-    <h1>PC전용페이지</h1>
-    <div class="pc">PC</div>
-    <div class="mobile">Mobile</div>
-    
-</body>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="js/detectmobilebrowser.js"></script>
-<!-- // 01
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>PC</title>
+	</head>
+	<body>
+		<!-- http://detectmobilebrowsers.com/ -->
+		<h1>PC전용페이지</h1>
+		<div class="pc">PC</div>
+		<div class="mobile">Mobile</div>
+	</body>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="js/detectmobilebrowser.js"></script>
+	<!-- // 01
 <script>
     if(jQuery.browser.mobile==true){
         $('.pc').hide();
@@ -26,7 +25,7 @@
 </script>
  -->
 
-<!-- //02  
+	<!-- //02
     <script>
      console.log(location.href);
      if(jQuery.browser.mobile==true){
@@ -34,18 +33,21 @@
     }
  </script>
   -->
- <!-- vanilla js -->
-<script>
-   /* https://developer.mozilla.org/ko/docs/Web/API/Window/devicePixelRatio */
-    if(window.devicePixelRatio>1){
-        location.href="./mobile/"
-    }
+	<!-- vanilla js -->
+	<script>
+		/* https://developer.mozilla.org/ko/docs/Web/API/Window/devicePixelRatio */
+		const mobile = document.querySelector('.mobile');
+		let mobileEvent = 0;
 
-
-</script>
- 
- 
- 
- 
- 
- </html>
+		function pageChage(mobileEvent) {
+			if (window.devicePixelRatio > 1 || mobileEvent > 0) {
+				location.href = './mobile/';
+			}
+		}
+		mobile.onclick = function (e) {
+			e.preventDefault();
+			mobileEvent = 1;
+			pageChage(mobileEvent);
+		};
+	</script>
+</html>

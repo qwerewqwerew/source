@@ -11,12 +11,20 @@
 		<div class="mobile">Mobile</div>
 	</body>
 	<script>
-		/* console.log(location.href); */
-		if (window.devicePixelRatio <= 1) {
-			location.href = '../index.html';
+		const pc = document.querySelector('.pc');
+		let pcEvent = 0;
+		pc.onclick = function (e) {
+			e.preventDefault();
+			pcEvent = 1;
+			pageChage(pcEvent);
+		};
+		function pageChage(pcEvent) {
+			if (Math.floor(window.devicePixelRatio) > 2 || pcEvent > 0) {
+				location.href = '../index.html';
+			}
 		}
 	</script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 	<!-- <script src="../js/detectmobilebrowser.js"></script>
 <script>
     if(jQuery.browser.mobile==false){

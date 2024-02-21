@@ -11,7 +11,6 @@ depth1.on({
 	},
 });
 
-
 // slide
 const slides = $('.slide_wrap li');
 let idx = 0;
