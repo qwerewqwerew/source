@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="12d.css" />
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script>
+			$(() => {
+				const slide = $('#crossfade li');
+				let current = 0;
+				// 정렬
+				slide.each((i, o) => {
+					$(o).css('left', i * 100 + '%');
+				});
+
+				setInterval(function () {
+					var prev = slide.eq(current);
+					move(prev, 0, '-100%');
+					current++;
+					if (current == slide.length) {
+						current = 0;
+					}
+					var next = slide.eq(current);
+					move(next, '100%', '0%');
+				}, 3000);
+
+				function move(tg, start, end) {
+					tg.css('left', start).stop().animate({ left: end }, 1000);
+				}
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="content">
+			<h3>Slideshow</h3>
+			<ul id="crossfade">
+				<li>
+					<a href="#"><img src="http://qwerew.cafe24.com/images/1.jpg" alt="" /></a>
+					<p>1번</p>
+				</li>
+				<li>
+					<a href="#"><img src="http://qwerew.cafe24.com/images/2.jpg" alt="" /></a>
+					<p>2번</p>
+				</li>
+				<li>
+					<a href="#"><img src="http://qwerew.cafe24.com/images/3.jpg" alt="" /></a>
+					<p>3번</p>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>
