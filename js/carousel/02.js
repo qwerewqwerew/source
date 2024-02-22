@@ -1,5 +1,5 @@
 window.addEventListener('load', function () {
-	var MOVEING_PX = 4,
+	let MOVEING_PX = 4,
 		AUTO_TIME = 2000,
 		slide = document.getElementById('slide'),
 		indi = document.createElement('ul'),
@@ -17,15 +17,15 @@ window.addEventListener('load', function () {
 	// init
 	slideCntItem[0].style.left = 0;
 	playBtn[0].style.display = 'block';
-	var indi = document.createElement('ul');
-	for (var i = 0; i < slideCntItem.length; i++) {
+	indi = document.createElement('ul');
+	for (let i = 0; i < slideCntItem.length; i++) {
 		indi.innerHTML += '<li></li>';
 	}
 	indi.classList.add('indi');
 	indi.children[0].classList.add('on');
 	slide.append(indi);
 
-	for (var j = 0; j < indi.children.length; j++) {
+	for (let j = 0; j < indi.children.length; j++) {
 		indiClick(j);
 	}
 
