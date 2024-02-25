@@ -1,0 +1,28 @@
+/*
+* Variables for breakpoints
+*/
+$mobile: 568px;
+$tablet: 768px;
+$desktop: 992px;
+
+/*
+* Map for breakpoints
+*/
+$breakpoints: (
+	'sm': (
+		min-width: $mobile,
+	),
+	'md': (
+		min-width: $tablet,
+	),
+	'lg': (
+		min-width: $desktop,
+	),
+);
+@mixin responsive($size) {
+	$query: map-get($breakpoints, $size);
+	$min-width: map-get($query, min-width);
+	@media (min-width: #{$min-width}) {
+		@content;
+	}
+}

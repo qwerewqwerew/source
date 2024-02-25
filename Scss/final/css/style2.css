@@ -1,0 +1,206 @@
+@import url("https://qwerewqwerew.github.io/source/style/reset.css");
+body {
+  background: #f5f5ee;
+}
+
+.section1-item span:nth-child(1) {
+  color: #ac5040;
+  font-size: 24px;
+}
+
+.section1-box {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.section1-item, main, header {
+  padding: 2vw 4vw;
+}
+
+body {
+  color: #333;
+  background-color: #fff;
+}
+
+.dark-theme {
+  color: #fff;
+  background-color: #000;
+}
+
+.mid-theme {
+  color: #f00;
+  background-color: #aaa;
+}
+
+/*
+* Variables for breakpoints
+*/
+/*
+* Map for breakpoints
+*/
+.photo_box {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8rem;
+  background-color: #3f51b5;
+}
+.photo_box li:nth-child(1) {
+  background: url("https://qwerew.cafe24.com/images/1.jpg") no-repeat;
+  background-size: cover;
+  width: 20px;
+  height: 8rem;
+}
+.photo_box li:nth-child(2) {
+  background: url("https://qwerew.cafe24.com/images/2.jpg") no-repeat;
+  background-size: cover;
+  width: 40px;
+  height: 8rem;
+}
+.photo_box li:nth-child(3) {
+  background: url("https://qwerew.cafe24.com/images/3.jpg") no-repeat;
+  background-size: cover;
+  width: 60px;
+  height: 8rem;
+}
+.photo_box li:nth-child(4) {
+  background: url("https://qwerew.cafe24.com/images/4.jpg") no-repeat;
+  background-size: cover;
+  width: 80px;
+  height: 8rem;
+}
+.photo_box li:nth-child(5) {
+  background: url("https://qwerew.cafe24.com/images/5.jpg") no-repeat;
+  background-size: cover;
+  width: 100px;
+  height: 8rem;
+}
+
+s nav {
+  background-color: #3f51b5;
+}
+s nav a {
+  color: #cfd8dc;
+}
+
+.banners li:nth-of-type(1) {
+  background: url("https://qwerew.cafe24.com/images/5.jpg") 0 0/cover no-repeat;
+  width: 25%;
+  height: 100%;
+}
+
+.banners li:nth-of-type(2) {
+  background: url("https://qwerew.cafe24.com/images/6.jpg") 0 0/cover no-repeat;
+  width: 25%;
+  height: 100%;
+}
+
+.banners li:nth-of-type(3) {
+  background: url("https://qwerew.cafe24.com/images/7.jpg") 0 0/cover no-repeat;
+  width: 25%;
+  height: 100%;
+}
+
+.banners {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 900px;
+  height: 400px;
+}
+
+.palette {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+.palette span {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.palette span:nth-child(1) {
+  background-color: #3f51b5;
+}
+
+.palette span:nth-child(2) {
+  background-color: #c5e1a5;
+}
+
+.palette span:nth-child(3) {
+  background-color: #cfd8dc;
+}
+
+.palette span:nth-child(4) {
+  background-color: #3fb5a7;
+}
+
+.palette span:nth-child(5) {
+  background-color: #76b53f;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+header h1 {
+  color: #0c08ff;
+  font-size: 2rem;
+  background-color: #6ffaff;
+}
+header nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20rem;
+}
+header nav ul > li {
+  width: 8rem;
+}
+
+main section {
+  background-color: yellow;
+}
+@media (min-width: 568px) {
+  main section {
+    background-color: pink;
+  }
+}
+@media (min-width: 768px) {
+  main section {
+    background-color: blue;
+  }
+}
+@media (min-width: 992px) {
+  main section {
+    background-color: red;
+  }
+}
+
+.section1-box {
+  width: 80rem;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.section1-item {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  color: #ff0000;
+  font-size: 2rem;
+  background-color: #d8d8d8;
+}/*# sourceMappingURL=style2.css.map */

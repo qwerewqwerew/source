@@ -2,6 +2,8 @@
 // for문을 이용해 nth-선택자에게 각각의 image를 배경에 넣어준다.
 $img_path: 'https://qwerew.cafe24.com/images/';
 $size: 10, 20, 30, 40, 50;
+//지역변수 color 의 값이 전역으로 변경될경우 다른 전역변수와의 충돌방지코드
+$color: null;
 
 // 범위 1이상 5이하
 .photo_box {
@@ -18,7 +20,7 @@ $size: 10, 20, 30, 40, 50;
 			height: $col1;
 		}
 	}
-}
+}s
 nav {
 	background-color: nth($color, 1);
 	a {
@@ -34,7 +36,7 @@ $array: (
 @each $i, $name in $array {
 	.banners li:nth-of-type(#{$i}) {
 		background: url('#{$name}') 0 0 / cover no-repeat;
-		width: nth($size, 1) * 10% / 4;
+		width: calc(nth($size, 1) * 10% / 4);
 		height: nth($size, 1) * 10%;
 	}
 }
