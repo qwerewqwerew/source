@@ -1,0 +1,28 @@
+*{margin: 0; padding: 0; }
+ul,li{list-style: none}
+a{color:#333; text-decoration: none}
+.cf:after{content: ""; display: block; clear: both;}
+fl{float:left;}
+
+#wrap{width:1000px; height: 650px; margin:  50px auto; background: #aaa;}
+#header{width:200px; height: 650px; float: left; background: #bbb;}
+.logo{width: 200px; height: 120px; background: #ff0;}
+.nav{width: 200px; height: 530px; background:  #ffdd22; box-sizing: border-box; position: relative;}
+.nav li{text-align: center; background: #fdfd33; margin-bottom: 1px; }
+.nav li a{padding: 10px; display: block; color: aqua; background: rgba(0,0,0,.3)}
+.nav li a:hover{ background: rgba(0,0,0,.4)}
+.nav li .sub{display: none; position: absolute; left:200px; top:0; width: 200px;}
+.nav li .sub li {width:100%}
+.nav li .sub li a{background: #ffdd33;}
+.nav li .sub li a:hover{background: rgba(0,0,0,.3);}
+#content{float:left; width: 800px; height: 650px; background: #ccc;}
+#banner{height: 350px; width: 800px; background: #ddd;}
+#contents{height: 200px; width: 800px; background: #eee;}
+#contents>div{width:33.333%; float:left; height:inherit;}
+#contents>div.content1{background: #444;}
+#contents>div.content2{background: #222;}
+#contents>div.content3{background: #333;}
+#footer{height: 100px; width: 800px; background: #555}
+.footer1{width:150px; float: left; background: #555; height:100px;}
+.footer2{width:650px; float: left; background: #666; height: 50px;}
+.footer3{width:650px; float: left; background: #888; height: 50px;}

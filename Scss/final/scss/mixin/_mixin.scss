@@ -1,0 +1,17 @@
+@mixin fontSizeBgColor($fontSize, $bgColor, $color: #333) {
+	color: $color;
+	font-size: $fontSize;
+	background-color: $bgColor;
+}
+@mixin hover($color, $deco: none) {
+	color: $color;
+	text-decoration: $deco;
+	@content;
+}
+@mixin flexDirectJustiAlign($direct: row, $justify: flex-start, $align: flex-start) {
+	display: flex;
+	flex-direction: $direct;
+	justify-content: $justify;
+	align-items: $align;
+	@content;
+}

@@ -1,0 +1,18 @@
+		<svg width="150" height="150" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+			<style>
+				.r_text {
+					animation: rotate 10s linear infinite;
+          transform-origin:50% 50% ;
+					font-size:1rem;
+				}
+				@keyframes rotate {
+					to {
+						transform: rotate(1turn);
+					}
+				}
+			</style>
+			<path id="line" d="M109.5 75C109.5 94.0538 94.0538 109.5 75 109.5C55.9462 109.5 40.5 94.0538 40.5 75C40.5 55.9462 55.9462 40.5 75 40.5C94.0538 40.5 109.5 55.9462 109.5 75Z" fill="rgba(0,0,0,0)" />
+			<text class="r_text">
+				<textPath xlink:href="#line">Sentence Examples | Examples of Words Used in a Sentence</textPath>
+			</text>
+		</svg>

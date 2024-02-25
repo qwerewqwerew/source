@@ -1,0 +1,86 @@
+*{margin: 0; padding: 0}
+ul, li{list-style: none}
+a{text-decoration: none; color:#222328}
+.cf:after{content: ""; display: block; clear: both}
+.hidden{position: absolute; overflow: hidden; text-indent: -9999em; font-size: 0}
+body{background: #fff; color:#222328}
+
+.pop{width: 100%; height: 100%; background: rgba(0,0,0,.4); position: absolute; z-index: 9999; top:0; left:0; display: none}
+.pop .pop_wrap{width: 500px; height: 500px; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; padding: 30px; box-sizing: border-box}
+.pop h2{ padding-top: 30px; text-align: center}
+.pop h3{ padding-top: 30px; text-align: center}
+.pop p{padding-top: 20px; font-size: 12px}
+.pop button{ position: absolute; right: 50px; bottom: 50px; background: #ccc; width: 100px; height: 50px; border: none}
+
+/*레이아웃*/
+#wrap{width: 1200px; height: 700px; margin: 50px auto; box-sizing: border-box;}
+
+/*머릿말*/
+#header{width: 100%; height: 100px; }
+.logo{float:left;  width: 200px;  margin-top: 30px; text-align: center}
+.nav{float:right; width:800px; margin-top: 28px;}
+.nav li{float:left; width:25%; text-align: center; position: relative; z-index: 999999;}
+.nav li a{display: block; padding: 10px; font-weight: 700; transition:all .5s;}
+.nav li a:hover{background: #ff2c46; color:#fff;}
+.nav li ul.sub{position: absolute; background: #eee; display: none; height: 210px; z-index: 9999;}
+.nav li ul.sub li{width: 100%;}
+
+
+/*배너*/
+#banner{width: 100%; height: 300px; position: relative;}
+#banner ul{width: 100%; height: 100%; position: relative; overflow: hidden}
+#banner ul li{position: absolute; top:100%; width: 100%; height: 100%;}
+#banner ul li:first-child{top:0}
+
+
+/*본문*/
+#contents{width: 100%; height: 200px;}
+#contents >article{float: left; width: 400px; height: 100%; padding:10px; box-sizing: border-box;}
+#contents .content1{}
+/*탭*/
+.tab{overflow: hidden}
+.tab li{float:left; width:100px; height: 35px;  border: 1px solid #ff2c46; text-align: center; line-height: 2.1}
+.tab li:last-child{margin-left: -1px;}
+.tab li.active{background: #ff2c46}
+.tab li.active a{color: #fff}
+.tab_content{position: relative;}
+.tab_content>div{width: 380px; height: 140px; border: 1px solid #ff2c46;  font-size: 13px; padding: 10px; line-height: 1.8; box-sizing: border-box; letter-spacing: -1px; position: absolute; }
+.tab_content .board ul li{letter-spacing: -1px;}
+.tab_content .board ul li a{display: block; float:left; width:80%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis}
+.tab_content .board ul li span{width: 15%; display: block; float: right; font-size:12px; line-height: 2}
+.tab_content .gallery{background: #fff}
+.tab_content .gallery ul{overflow: hidden; margin-top: 10px}
+.tab_content .gallery ul li{float:left;}
+.tab_content .gallery ul li img{width: 110px; display: block; margin-right: 13px;}
+.tab_content .gallery ul li:last-child img{margin-right: 0}
+
+
+#contents .content3 .banner_wrap a{display: block;  float: left; margin-right: 10px}
+#contents .content3 .banner_wrap a:last-child{margin-right: 0}
+
+/*하단*/
+#footer{width: 100%; height: 100px; display:flex;}
+#footer>div{float:left; height: 100%}
+#footer .f_logo{width: 200px; height: inherit; text-align: center; margin-top: 30px}
+#footer .f_copy{width: 800px; padding: 30px; box-sizing: border-box;}
+#footer .f_copy address{font-style: normal; font-size: 12px; line-height: 1.8}
+#footer .f_sns{width:200px; padding-top: 20px }
+#footer .f_sns .sns li{float:left; width: 50px; height:30px; overflow: hidden; background: url(../img/social_icon1.jpg) no-repeat 0 0; background-size:100%; margin-left: 10px; }
+#footer .f_sns .sns li.twitter{background-position: 0 -60px}
+#footer .f_sns .sns li.facebook{background-position: 0 -30px}
+#footer .f_sns .sns li.youtube{background-position: 0 -85px}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

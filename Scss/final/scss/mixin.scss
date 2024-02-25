@@ -1,0 +1,100 @@
+@charset "utf-8";
+@import url(./reset.css);
+
+@mixin fontSizeBgColor($fontSize, $bgColor, $color: #333) {
+	color: $color;
+	font-size: $fontSize;
+	background-color: $bgColor;
+}
+@mixin hover($color, $deco: none) {
+	color: $color;
+	text-decoration: $deco;
+	@content;
+}
+@mixin flexDirectJustiAlign($direct: row, $justify: flex-end, $align: stretch) {
+	display: flex;
+	flex-direction: $direct;
+	justify-content: $justify;
+	align-items: $align;
+	@content;
+}
+
+body {
+	background: ivory;
+}
+
+header {
+	@include flexDirectJustiAlign();
+	padding: 2vw 4vw;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+	a {
+		color: red;
+	}
+	& a {
+		color: blue;
+	}
+
+	h1 {
+		flex: 1 1 30%;
+		& > a {
+			@include fontSizeBgColor(2rem, #6ffaff, #0c08ff);
+		}
+		a:hover {
+			@include hover(pink, underline) {
+				background: yellow;
+			}
+		}
+	}
+
+	nav {
+		flex: 1 1 50%;
+	}
+
+	button {
+		flex: 1 1 10%;
+		a:hover {
+			color: red;
+		}
+		&:hover a {
+			@include fontSizeBgColor(2rem, yellow);
+		}
+	}
+
+	ul {
+		display: flex;
+		width: 80%;
+
+		& li {
+			flex: 1 1 30%;
+		}
+
+		& ul {
+			display: block;
+		}
+	}
+}
+
+main {
+	padding: 2vw 4vw;
+}
+.section1 {
+	&-box {
+		background: #c9c9c9;
+		max-width: 500px;
+		margin: auto;
+		@include flexDirectJustiAlign(column);
+		border-radius: 8px;
+		border: 4px solid #d5d5d5;
+		box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+	}
+
+	&-box > &-item {
+		width: 30%;
+		@include flexDirectJustiAlign(row, space-between, center) {
+			gap: 50px;
+		}
+		padding: 1vw;
+		box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+		border: 4px solid #6361e7;
+	}
+}

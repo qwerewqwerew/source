@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>세로 메뉴 </title>
+	<link rel="stylesheet" href="css/style1.css"/>
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script>
+    jQuery(document).ready(function(){
+       $(".nav>ul>li").hover(function(){
+			$(this).find('.sub').stop().slideDown();
+	   },function(){
+			$(this).find('.sub').stop().slideUp();
+	   });
+    });
+    </script>
+</head>
+<body>
+	<div id="wrap">
+		<aside id="sidemenu" class="cf">
+			<h1 class="logo">로고</h1>
+			<nav class="nav">
+				<ul>
+					<li><a href="#">menu1</a>
+						<ul class="sub">
+							<li><a href="#">sub1</a></li>
+							<li><a href="#">sub2</a></li>
+							<li><a href="#">sub3</a></li>
+							<li><a href="#">sub4</a></li>
+						</ul>
+					</li>
+					<li><a href="#">menu2</a>
+						<ul class="sub">
+							<li><a href="#">sub1</a></li>
+							<li><a href="#">sub2</a></li>
+							<li><a href="#">sub3</a></li>
+							<li><a href="#">sub4</a></li>
+						</ul>
+					</li>
+					<li><a href="#">menu3</a>
+						<ul class="sub">
+							<li><a href="#">sub1</a></li>
+							<li><a href="#">sub2</a></li>
+							<li><a href="#">sub3</a></li>
+							<li><a href="#">sub4</a></li>
+						</ul>
+					</li>
+					<li><a href="#">menu4</a>
+						<ul class="sub">
+							<li><a href="#">sub1</a></li>
+							<li><a href="#">sub2</a></li>
+							<li><a href="#">sub3</a></li>
+							<li><a href="#">sub4</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</aside>
+		<section id="content">
+			<section id="banner">
+				<h2>이미지슬라이드</h2>
+			</section>
+			<section id="contents" class="cf">
+				<div class="content1"><h3>공지사항</h3></div>
+				<div class="content2"><h3>갤러리</h3></div>
+				<div class="content3"><h3>팝업</h3></div>
+			</section>
+			<section id="footer" class="cf">
+				<div class="footer1"><h3>로고</h3></div>
+				<div class="footer2"><h3>하단메뉴</h3></div>
+				<div class="footer3"><h3>카피라이트</h3></div>
+			</section>
+		</section>
+	</div>
+</body>
+</html>

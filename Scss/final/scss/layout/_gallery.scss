@@ -1,0 +1,65 @@
+// Scss - for문
+// for문을 이용해 nth-선택자에게 각각의 image를 배경에 넣어준다.
+$img_path: 'https://qwerew.cafe24.com/images/';
+$size: 10, 20, 30, 40, 50;
+
+// 범위 1이상 5이하
+.photo_box {
+	$color: (#3f51b5, #c5e1a5, #cfd8dc, #3fb5a7, #76b53f) !global;
+	@include flexDirectJustiAlign() {
+		gap: $col1;
+	}
+	background-color: nth($color, 1);
+	@for $i from 1 through 5 {
+		& li:nth-child(#{$i}) {
+			background: url('#{$img_path}#{$i}.jpg') no-repeat;
+			background-size: cover;
+			width: $i * 20px;
+			height: $col1;
+		}
+	}
+}
+nav {
+	background-color: nth($color, 1);
+	a {
+		color: nth($color, 3);
+	}
+}
+
+$array: (
+	1: 'https://qwerew.cafe24.com/images/5.jpg',
+	2: 'https://qwerew.cafe24.com/images/6.jpg',
+	3: 'https://qwerew.cafe24.com/images/7.jpg',
+);
+@each $i, $name in $array {
+	.banners li:nth-of-type(#{$i}) {
+		background: url('#{$name}') 0 0 / cover no-repeat;
+		width: nth($size, 1) * 10% / 4;
+		height: nth($size, 1) * 10%;
+	}
+}
+.banners {
+	@include flexDirectJustiAlign() {
+		justify-content: space-between;
+	}
+	width: nth($size, 3) * 30px;
+	height: nth($size, 2) * 20px;
+}
+.palette {
+	@include flexDirectJustiAlign() {
+		justify-content: space-between;
+		gap: nth($size, 1) * 1px;
+	}
+
+	span {
+		border-radius: 50%;
+		width: nth($size, 1) * 3px;
+		height: nth($size, 1) * 3px;
+	}
+}
+@each $name in $color {
+	$i: index($color, $name);
+	.palette span:nth-child(#{$i}) {
+		background-color: #{$name};
+	}
+}

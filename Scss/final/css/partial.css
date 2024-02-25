@@ -1,0 +1,57 @@
+@import url("https://qwerewqwerew.github.io/source/style/reset.css");
+body {
+  background: #f5f5ee;
+}
+
+.section1-item span:nth-child(1) {
+  color: #ac5040;
+  font-size: 24px;
+}
+
+.section1-box {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.section1-item, main, header {
+  padding: 2vw 4vw;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+header h1 {
+  color: #0c08ff;
+  font-size: 2rem;
+  background-color: #6ffaff;
+}
+header nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+header nav ul > li {
+  width: 8rem;
+}
+
+.section1-box {
+  width: 80rem;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.section1-item {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  color: #ff0000;
+  font-size: 2rem;
+  background-color: #d8d8d8;
+}/*# sourceMappingURL=partial.css.map */

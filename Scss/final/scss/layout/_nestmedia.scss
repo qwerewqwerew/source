@@ -1,0 +1,65 @@
+$sm: '(max-width: 500px)';
+$md: '(min-width:501px) and (max-width:900px)';
+$lg: '(min-width:901px)';
+
+
+header {
+	@media #{$sm} {
+		background-color: red;
+		padding: 1vw;
+		@content;
+	}
+	@media #{$md} {
+		background-color: blue;
+		@content;
+	}
+	@media #{$lg} {
+		background-color: green;
+		@content;
+	}
+
+	h1 {
+		@include fontSizeBgColor(2rem, #6ffaff, #0c08ff);
+	}
+	nav ul {
+		@include flexDirectJustiAlign(row, space-between, center);
+		& > li {
+			width: $col1;
+			@media #{$sm} {
+				width: calc($col1 / 2);
+			}
+		}
+	}
+}
+
+main {
+	@extend %padding;
+	.section1 {
+		&-box {
+			@extend %boxshadow;
+			width: $col1 * 10;
+			margin: auto;
+			@include flexDirectJustiAlign();
+			@media #{$lg} {
+				width: $col1 * 7;
+			}
+			@media #{$md} {
+				width: $col1 * 5;
+			}
+			@media #{$sm} {
+				width: 100%;
+				line-height: 1.7;
+				@include flexDirectJustiAlign(column, center, stretch);
+			}
+		}
+		&-item {
+			flex: 1 1 0;
+			@include flexDirectJustiAlign(column);
+			@include fontSizeBgColor(2rem, #d8d8d8, $color-red);
+			@extend %padding;
+			span:nth-child(1) {
+				@extend %colorSize;
+			}
+		}
+	}
+}

@@ -1,0 +1,27 @@
+/* Gallery Section */
+
+.gallery {
+  max-width: $container;
+  margin: 0 auto;
+  padding: $l-size 0;
+
+  .swirl {
+    max-width: 420px;
+    @include center-block();
+
+    &.upside-down {
+      transform: rotate(180deg);
+    }
+  }
+
+  .gallery-grid {
+    padding: $l-size 0;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+    img {
+      @include border-radius(20px 20px 20px 80px);
+    }
+  }
+}

@@ -1,0 +1,22 @@
+$bg-color: #ff0;
+$color-red: #ff0000;
+$width100: 100px;
+$per20: 20%;
+
+header ul li {
+	$color-blue: #011f4b;
+	flex: 1 1 30%;
+	width: $width100 * 3;
+	font-size: calc($width100 - 50px);
+	a {
+		color: $color-blue;
+	}
+}
+body {
+	background: $bg-color;
+}
+.box > .item > .para {
+	color: #333;
+	font-size: 24px;
+	color: $color-red;
+}

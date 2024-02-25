@@ -1,0 +1,92 @@
+body {
+	background: ivory;
+}
+
+header {
+	display: flex;
+	padding: 2vw 4vw;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+	* {
+		border: {
+			width: 2px;
+			style: solid;
+			color: #0d9716;
+			left-width: 0;
+			radius: 10%;
+		}
+	}
+	a {
+		color: red;
+	}
+	& a {
+		color: blue;
+	}
+
+	h1 {
+		flex: 1 1 30%;
+		@at-root & *,
+			& * {
+			border: none;
+		}
+		& > a {
+			color: green;
+			font-size: 2rem;
+		}
+	}
+
+	nav {
+		flex: 1 1 50%;
+	}
+	button {
+		flex: 1 1 10%;
+
+		a:hover {
+			color: red;
+		}
+		&:hover a {
+			background: pink;
+		}
+	}
+	ul {
+		display: flex;
+		width: 80%;
+	}
+} //header
+
+main {
+	padding: {
+		top: 100px * 2;
+		right: 100px * 5;
+		bottom: 100px * 2;
+		left: 100px * 5;
+	}
+}
+.section1 {
+	&-box {
+		background: #c9c9c9;
+		max-width: 500px;
+		margin: auto;
+		display: flex;
+		border-radius: 8px;
+		border: 4px solid #d5d5d5;
+		box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+	}
+
+	&-box > &-item {
+		width: 30%;
+		display: flex;
+		flex-direction: column;
+		padding: 1vw;
+		box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+		border: 4px solid #6361e7;
+	}
+
+	&-box > &-item > &-title {
+		color: #333;
+		font-size: 32px;
+	}
+	&-box > &-item > &-para {
+		color: #333;
+		font-size: 24px;
+	}
+} //.section1

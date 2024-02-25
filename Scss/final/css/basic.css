@@ -1,0 +1,68 @@
+@charset "utf-8";
+@import url(./reset.css);
+body {
+	background: ivory;
+}
+
+header {
+	display: flex;
+	padding: 2vw 4vw;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+header h1 {
+	flex: 1 1 30%;
+}
+
+header nav {
+	flex: 1 1 50%;
+}
+
+header button {
+	flex: 1 1 10%;
+}
+
+header ul {
+	display: flex;
+	width: 80%;
+}
+
+header ul li {
+	flex: 1 1 30%;
+}
+
+header ul ul {
+	display: block;
+}
+
+main {
+	padding: 2vw 4vw;
+}
+
+.section1-box {
+	background: #c9c9c9;
+	max-width: 500px;
+	margin: auto;
+	display: flex;
+	border-radius: 8px;
+	border: 4px solid #d5d5d5;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.section1-box > .section1-item {
+	width: 30%;
+	display: flex;
+	flex-direction: column;
+	padding: 1vw;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+	border: 4px solid #6361e7;
+}
+
+.section1-box > .section1-item > .section1-title {
+	color: #333;
+	font-size: 32px;
+}
+.section1-box > .section1-item > .section1-para {
+	color: #333;
+	font-size: 24px;
+}

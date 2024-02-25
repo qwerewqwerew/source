@@ -1,0 +1,25 @@
+*{margin: 0; padding: 0}
+ul, li{list-style: none;}
+a{text-decoration: none;}
+.cf:after{content:""; display: block; clear: both}
+#wrap{width: 1200px; height: 850px; background: #ffbfcf; margin: 50px auto; box-sizing:border-box;}
+#sidemenu{float: left; width: 300px; height: 850px; background: #ffe599;}
+.logo{width: 300px; height: 150px; background:#ffbfef}
+.nav{width: 300px; height: 700px; background:#ffb299}
+.nav li{text-align: center; background: #cfbfff; margin-bottom: 1px; position: relative;}
+.nav li a{padding: 10px; display: block; color: #fff; background: rgba(0,0,0,.3)}
+.nav li a:hover{background: rgba(0,0,0,.4)}
+.nav li ul{display: none; position: absolute;  width: 200px; left: 300px; top: 0;}
+.nav li ul li{height: 40px;  border-bottom: 1px solid #ccc}
+#content{float: left; width: 900px; height: 850px; background: #efbfff;}
+#banner{width: 900px; height: 450px; background: #dfbfff}
+#contents{box-sizing:border-box;}
+#contents>div{float: left; width: 33.3333%; height: 300px;}
+#contents>div.content1{background: #e699ff;}
+#contents>div.content2{background: #ff99e6}
+#contents>div.content3{background: #ff99ff}
+#footer{box-sizing:border-box;}
+.footer1{float: left; width: 200px; height: 100px; background: #cfbfff;}
+.footer2{float: left; width: 700px; height: 50px; background: #ff99cc;}
+.footer3{float: left; width: 700px; height: 50px; background: #ff99b3;}
+

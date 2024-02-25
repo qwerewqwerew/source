@@ -1,0 +1,86 @@
+@import url(./reset.css);
+.section1-box > .section1-item > .section1-para, .section1-box > .section1-item > .section1-title {
+  color: #ac5040;
+  font-size: 36px;
+}
+
+.section1-box-item, .section1-box, header {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.section1-box-item, main, header {
+  padding: 2vw 4vw;
+}
+
+body {
+  background: ivory;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: stretch;
+}
+header a {
+  color: red;
+}
+header a {
+  color: blue;
+}
+header h1 {
+  flex: 1 1 30%;
+}
+header h1 > a {
+  color: #0c08ff;
+  font-size: 2rem;
+  background-color: #6ffaff;
+}
+header h1 a:hover {
+  color: pink;
+  text-decoration: underline;
+}
+header nav {
+  flex: 1 1 50%;
+}
+header button {
+  flex: 1 1 10%;
+}
+header button a:hover {
+  color: red;
+}
+header button:hover a {
+  color: #333;
+  font-size: 2rem;
+  background-color: yellow;
+}
+header ul {
+  display: flex;
+  width: 80%;
+}
+header ul li {
+  flex: 1 1 30%;
+}
+header ul ul {
+  display: block;
+}
+
+.section1-box {
+  background: #c9c9c9;
+  max-width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: stretch;
+  border-radius: 8px;
+  border: 4px solid #d5d5d5;
+}
+.section1-box-item {
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: 4px solid #6361e7;
+}/*# sourceMappingURL=extend.css.map */

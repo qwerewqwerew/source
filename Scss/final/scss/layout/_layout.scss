@@ -1,0 +1,35 @@
+header {
+	@extend %padding;
+	@include flexDirectJustiAlign(row, space-between, center);
+	h1 {
+		@include fontSizeBgColor(2rem, #6ffaff, #0c08ff);
+	}
+	nav ul {
+		@include flexDirectJustiAlign(row, space-between, center) {
+			gap: $gu1;
+		}
+		& > li {
+			width: $col1;
+		}
+	}
+}
+main {
+	@extend %padding;
+}
+.section1 {
+	&-box {
+		@extend %boxshadow;
+		width: $col1 * 10;
+		margin: auto;
+		@include flexDirectJustiAlign();
+	}
+	&-item {
+		flex: 1 1 0;
+		@include flexDirectJustiAlign(column);
+		@include fontSizeBgColor(2rem, #d8d8d8, $color-red);
+		@extend %padding;
+		span:nth-child(1) {
+			@extend %colorSize;
+		}
+	}
+}

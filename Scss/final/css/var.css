@@ -1,0 +1,18 @@
+header ul li {
+  flex: 1 1 30%;
+  width: 300px;
+  font-size: 50px;
+}
+header ul li a {
+  color: #011f4b;
+}
+
+body {
+  background: #ff0;
+}
+
+.box > .item > .para {
+  color: #333;
+  font-size: 24px;
+  color: #ff0000;
+}/*# sourceMappingURL=var.css.map */

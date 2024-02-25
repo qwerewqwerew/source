@@ -1,0 +1,47 @@
+/* Colors */
+$bakery-brown: #885345;
+$border-grey: #c7c7c7;
+
+/* Fonts */
+$oswald: 'Oswald', sans-serif;
+
+/* Spacing */
+$l-size: 40px;
+$container: 960px;
+
+/* Mixins */
+@mixin border-radius($radius-size) {
+  border-radius: $radius-size;
+  -moz-border-radius: $radius-size;
+  -webkit-border-radius: $radius-size;
+  -ms-border-radius: $radius-size;
+}
+
+@mixin center-block() {
+  display: block;
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Placeholders */
+.btn {
+  padding: 10px;
+  font-size: 12px;
+  @include border-radius(0);
+}
+
+@mixin button($primary, $secondary) {
+  @extend .btn;
+
+  background-color: $secondary;
+  color: $primary;
+  border: 1px solid $primary;
+
+  &:hover,
+  &:focus {
+    background-color: $primary;
+    color: $secondary;
+    border-color: $secondary;
+  }
+}

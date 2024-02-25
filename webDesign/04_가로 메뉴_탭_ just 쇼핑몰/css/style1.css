@@ -1,0 +1,60 @@
+*{margin: 0; padding: 0}
+ul,li{list-style: none}
+a{text-decoration: none; color:#222328}
+.hidden{position: absolute; overflow: hidden; text-indent: -9999px; font-size: 0;}
+.cf:after{content: ""; display: block; clear: both}
+
+/*팝업*/
+.pop{width: 100%; height: 100%; background: rgba(0,0,0,.4); position: absolute; z-index: 101; top: 0; left: 0; display: none; }
+.pop img{width: 500px; height: 500px; position: relative; top: 50%; left: 50%; margin: -250px 0 0 -250px;}
+.pop button{padding: 10px 20px; background: #fff; position: relative; top:47%; left: 45%}
+
+/* 레이아웃 */
+#wrap{width:1200px; height:700px; margin: 50px auto;  box-sizing: border-box;}
+
+/*header*/
+#header{width: 1200px; height: 100px;}
+.logo{float:left; width: 200px; height: 100px; line-height: 100px; text-align: center;}
+.nav{float: right;width: 800px; margin-top:28px;}
+.nav li{float: left; width: 25%; text-align: center; position: relative; z-index: 100;}
+.nav li a{display:block; padding: 10px; font-weight: bold; transition: all 0.5s;}
+.nav li a:hover{background: #ff2c46; color: #fff;}
+.nav li ul.sub{position: absolute; top: 47px; left:0; background:  #eee;  display: none}
+.nav li ul.sub li{width:100%}
+
+/*슬라이드*/
+#banner{width: 1200px; height: 300px; position: relative}
+#banner ul{width: 1200px; height: 300px; overflow: hidden; position: relative}
+#banner ul li{width: 1200px; height: 300px; position: absolute; top:100%;}
+#banner ul li:first-child{top: 0;}
+
+/*contents*/
+#contents{width: 1200px; height: 200px; box-sizing: border-box;}
+#contents>article{width: 400px;  float:left; box-sizing: border-box; padding: 10px; height: inherit;}
+
+/*탭*/
+.tab li{width: 100px; height: 35px; float: left; border: 1px solid #ff2c46; text-align: center; margin-right:  5px; line-height: 2.1; }
+.tab li.active{background: #ff2c46;}
+.tab li.active >a{color: #fff;}
+.tab_content{position: relative;}
+.tab_content>div{position: absolute; width: 380px; height: 140px; border: 1px solid #ff2c46; font-size: 13px; padding: 10px; line-height: 1.8; box-sizing: border-box; top: 36px; letter-spacing: -1px;}
+.tab_content .board ul li{letter-spacing: -1px;}
+.tab_content .board ul li a{display: block; float:left; width: 80%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.tab_content .board ul li span{width: 15%; display: block; float: right; text-align: right; font-size: 12px;}
+.tab_content .gallery ul li{float:left;}
+.tab_content .gallery ul li img{width: 110px; display: block; margin-right: 13px;}
+.tab_content .gallery ul li:last-child img{margin-right: 0;}
+
+#contents>article.content3 .banner_wrap a{display: block; float:left; margin-right:10px;}
+#contents>article.content3 .banner_wrap a:last-child{margin-right: 0px;}
+
+/*footer*/
+#footer{width: 1200px; height: 100px; background:  #f9f9f9; box-sizing: border-box;}
+.footer1{float:left; width: 200px; height: inherit; text-align: center;}
+.footer1 img{padding-top: 30px;}
+.footer2{float:left; width: 800px; height: inherit; padding: 30px; box-sizing: border-box;}
+.footer2 address{font-style: normal; font-size: 12px; line-height: 1.8}
+.footer3{float:left; width: 200px; height: inherit; }
+.footer3 .sns{margin-top: 20px;}
+.footer3 .sns li{float:left;}
+.footer3 .sns li img{width: 25px; padding: 20px;}
