@@ -1,29 +1,7 @@
-body {
-	background-color: lightyellow;
-	transition: all 1s;
-}
-.btns {
-	position: relative;
-	top: 0px;
-	width: 600px;
-	margin: auto;
-}
+body {background-color: lightyellow;transition: all 1s; }
+.btns {position: relative;top: 0px;width: 600px;margin: auto; }
 
-.bg_img {
-	margin: 0;
-	position: absolute;
-	width: 100vw;
-	height: 100vh;
-	background: url(./1x/bg.jpg) no-repeat;
-	transition: all 1s;
-	opacity: 0;
-}
-.bg_img__show {
-	opacity: 1;
-}
-.bgcolor--blue {
-	background-color: lightblue;
-}
-.bgcolor--gray {
-	background-color: lightgray;
-}
+.bg_img {margin: 0;position: absolute;width: 100vw;height: 100vh;background: url(./1x/bg.jpg) no-repeat;transition: all 1s;opacity: 0; }
+.bg_img__show {opacity: 1; }
+.bgcolor--blue {background-color: lightblue; }
+.bgcolor--gray {background-color: lightgray; }

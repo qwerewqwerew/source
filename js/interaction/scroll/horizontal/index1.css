@@ -1,0 +1,39 @@
+.sticky-parent {
+	height: 700vh;
+}
+.sticky {
+	position: sticky;
+	top: 0px;
+	max-height: 100vh;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+.dim {
+	display: block;
+	min-width: 50vw;
+	height: 100vh;
+}
+.horizontal {
+	display: flex;
+}
+.br {
+	height: 100vh;
+	width: 100vw;
+}
+footer {
+	height: 100vh;
+	width: 100vw;
+}
+
+@media (max-width: 620px) {
+	.dim {
+		display: block;
+		min-width: 100vw;
+		height: 100vh;
+	}
+}
+
+p {
+	font-size: 10em;
+	text-align: center;
+}

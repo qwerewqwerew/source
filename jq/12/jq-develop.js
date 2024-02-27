@@ -1,4 +1,4 @@
-$(function () {
+$(()=> {
 	const visual = $('#brandVisual>ul>li');
 	const button = $('#buttonList>li');
 	const leftBtn = $('.btnImg .prev');
