@@ -1,16 +1,15 @@
 $(function () {
-	var visual = $('#brandVisual>ul>li'); // 슬라이드 이미지
-	var button = $('#buttonList>li'); // 버튼
-	var leftBtn = $('.btnImg .prev');
-	var rightBtn = $('.btnImg .next');
-	var current = 0; // 현재 보이는 이미지
-	var setIntervalId; // clearInterval을 쓰기 위해 변수명이 필요함
-
-	var counterEl = '<div class="counter">1';
+	const visual = $('#brandVisual>ul>li'); // 슬라이드 이미지
+	const button = $('#buttonList>li'); // 버튼
+	const leftBtn = $('.btnImg .prev');
+	const rightBtn = $('.btnImg .next');
+	let setIntervalId; // clearInterval을 쓰기 위해 변수명이 필요함
+	let counterEl = '<div class="counter">1';
 	$('#wrap').append(counterEl);
-	var counter = $('.counter');
+	const counter = $('.counter');
 
-	timer();
+	let current = 0; // 현재 보이는 이미지를 여기서 선언
+
 	function timer() {
 		setIntervalId = setInterval(function () {
 			var prev = visual.eq(current);
