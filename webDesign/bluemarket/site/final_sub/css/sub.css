@@ -233,8 +233,8 @@ main form .box input::placeholder {
 	line-height: 140%;
 }
 
-#logout_btn,
-#login_btn {
+#logout,
+#login {
 	display: table;
 	margin: auto;
 	width: 20.5rem;
@@ -247,11 +247,11 @@ main form .box input::placeholder {
 	line-height: 5.6rem;
 	cursor: pointer;
 }
-#logout_btn,
-#login_btn img {
+#logout,
+#login img {
 	vertical-align: middle;
 }
 
-#logout_btn {
+#logout {
 	display: none;
 }

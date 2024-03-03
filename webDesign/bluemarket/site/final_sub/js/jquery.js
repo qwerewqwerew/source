@@ -56,34 +56,59 @@ $('.close').on('click', function (e) {
 	$('.overlay').hide();
 });
 
-const mainBanner = $('.main_banner');
-const form = $('#login_form .id, #login_form .pw');
-let oldText = mainBanner.text();
+/* 로그인구현 */
 
-if (localStorage.getItem('userId')) {
-	$('.main_banner').text('Welcome, ' + localStorage.getItem('userId') + '!');
-	form.hide();
-	$('#logout_btn').show();
+const loginButton = $('#login');
+const logoutButton = $('#logout');
+let text = $('.main_banner h2');
+let textold = text.text();
+
+function init() {
+	if (!localStorage.getItem('user')) {
+		localStorage.setItem('user', JSON.stringify({ id: 'test', password: '5246', isLoggedIn: false }));
+	}
 }
 
-form.on('submit', function (e) {
-	e.preventDefault();
-	oldText;
-	let userId = $('#u_id').val();
-	let userPw = $('#u_pw').val();
-	// 사용자 이름과 비밀번호를 로컬스토리지에 저장
-	localStorage.setItem('userId', userId);
-	localStorage.setItem('userPw', userPw);
+function login() {
+	let uid = $('#uid').val();
+	let upw = $('#upw').val();
 
-	mainBanner.text('Welcome, ' + userId + '!');
-	form.hide();
-	$('#logout_btn').show();
+	let user = JSON.parse(localStorage.getItem('user'));
+
+	if (uid === user.id && upw === user.password) {
+		alert('로그인 성공!');
+		text.text(`${uid}님 ${textold}`);
+		$('.id,.pwd,#login').hide();
+		$('#logout').show();
+		user.isLoggedIn = true;
+		localStorage.setItem('user', JSON.stringify(user));
+	} else {
+		alert('아이디 또는 비밀번호가 틀렸습니다.');
+	}
+}
+
+function logout() {
+	let user = JSON.parse(localStorage.getItem('user'));
+	if (user.isLoggedIn) {
+		alert('로그아웃 성공!');
+		user.isLoggedIn = false;
+		localStorage.setItem('user', JSON.stringify(user));
+		text.text(`${textold}`);
+		$('.id,.pwd,#login').show();
+		$('#logout').hide();
+	} else {
+		alert('로그인 상태가 아닙니다.');
+	}
+}
+
+init();
+
+loginButton.on('click', function (e) {
+	e.preventDefault();
+	login();
 });
 
-$('#logout_btn').on('click', function () {
-	localStorage.removeItem('userId');
-	localStorage.removeItem('userPw');
-
-	form.show();
-	$('#logout_btn').hide();
+logoutButton.on('click', function (e) {
+	e.preventDefault();
+	logout();
 });
