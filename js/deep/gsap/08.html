@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+
+			button {
+				cursor: pointer;
+				padding: 8px 16px;
+				margin: 10px 5px;
+			}
+
+			body {
+				display: flex;
+				position: relative;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				height: 300vh;
+			}
+
+			.box-container {
+				top: 50vh;
+				position: relative;
+				display: flex;
+				justify-content: center;
+				flex: 1;
+				width: 100%;
+				overflow: visible;
+			}
+
+			.box {
+				font-size: 28px;
+				font-weight: 700;
+				background-color: blue;
+				color: white;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 100px;
+				width: 15%;
+				margin: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<p>Add a <code>data-speed</code> attribute to any element. 1 = normal scroll speed, 0 = no movement, 0.5 = half-speed, etc.</p>
+
+		<div class="box-container">
+			<div class="box" data-speed="0.25">0.25</div>
+			<div class="box" data-speed="0.4">0.4</div>
+			<div class="box" data-speed="0">0</div>
+			<div class="box" data-speed="1">1</div>
+			<div class="box" data-speed="0.75">0.75</div>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+		<script src="https://assets.codepen.io/16327/ScrollTrigger.min.js"></script>
+
+		<script>
+			gsap.registerPlugin(ScrollTrigger);
+
+			// make the boxes random colors
+			gsap.set('.box', { backgroundColor: 'rgb(random(0,190), random(0,190), random(0,190))' });
+
+			// apply parallax effect to any element with a data-speed attribute
+			gsap.to('[data-speed]', {
+				y: (i, el) => (1 - parseFloat(el.getAttribute('data-speed'))) * ScrollTrigger.maxScroll(window),
+				ease: 'none',
+				scrollTrigger: {
+					start: 0,
+					end: 'max',
+					invalidateOnRefresh: true,
+					scrub: 0,
+				},
+			});
+		</script>
+	</body>
+</html>
+<!--
+  y: (i, el) => (1 - parseFloat(el.getAttribute('data-speed'))) * ScrollTrigger.maxScroll(window),
+y는 애니메이션의 대상 속성으로, 해당 요소의 세로 위치를 조정합니다. el.getAttribute('data-speed')는 HTML 요소의 data-speed 속성 값을 가져와서 파싱하고, 이 값을 1에서 빼서 반전시킨 후, ScrollTrigger.maxScroll(window)와 곱하여 최종적인 y 값으로 사용하게 됩니다. ScrollTrigger.maxScroll(window)는 스크롤 가능한 최대 범위를 반환합니다.
+ease: 'none',
+ease는 애니메이션의 가속도를 설정합니다. 'none'은 애니메이션 속도가 일정하게 유지되도록 합니다.
+scrollTrigger: {start: 0, end: 'max', invalidateOnRefresh: true, scrub: 0,}
+scrollTrigger는 ScrollTrigger 플러그인의 설정을 정의합니다.
+start: 0은 스크롤 트리거가 시작되는 위치를 설정합니다. 여기서는 스크롤이 시작될 때 애니메이션을 시작하도록 합니다.
+end: 'max'는 스크롤 트리거가 끝나는 위치를 설정합니다. 'max'는 가능한 최대 스크롤 위치에서 애니메이션을 끝내도록 합니다.
+invalidateOnRefresh: true는 ScrollTrigger가 새로 고침될 때 애니메이션을 무효화하도록 설정합니다.
+scrub: 0은 ScrollTrigger가 스크롤 위치에 따라 애니메이션을 "스크럽"하도록 설정합니다. 여기서 '스크럽'은 스크롤 위치에 따라 애니메이션의 진행률을 조절하는 것을 의미합니다. 이 값이 0이면 애니메이션이 스크롤과 완벽하게 동기화되어, 스크롤 위치에 따라 애니메이션이 즉시 업데이트됩니다.
+ -->
