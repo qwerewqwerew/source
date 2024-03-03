@@ -49,7 +49,6 @@ $(function () {
 
 	function pagerMove(i) {
 		if (current == i) return; // 현재 보이는 이미지가 i랑 같으면 종료
-
 		var currentEl = visual.eq(current);
 		var nextEl = visual.eq(i);
 		currentEl.css({ left: 0 }).stop().animate({ left: '-100%' }, 500); // 현재 보이는 이미지 이동, %가 붙어서 ''안에 작성

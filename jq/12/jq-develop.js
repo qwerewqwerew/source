@@ -1,4 +1,4 @@
-$(()=> {
+$(() => {
 	const visual = $('#brandVisual>ul>li');
 	const button = $('#buttonList>li');
 	const leftBtn = $('.btnImg .prev');
@@ -27,12 +27,17 @@ $(()=> {
 		changeSlide(i);
 	});
 
-	function changeSlide(i) {
+	function changeSlide(i, direction = 'right') {
 		if (current == i) return;
 		const currentEl = visual.eq(current);
 		const nextEl = visual.eq(i);
-		move(currentEl, 0, '-100%');
-		move(nextEl, '100%', 0);
+		if (direction === 'right') {
+			move(currentEl, 0, '-100%');
+			move(nextEl, '100%', 0);
+		} else {
+			move(currentEl, 0, '100%');
+			move(nextEl, '-100%', 0);
+		}
 		button.eq(current).removeClass('on');
 		button.eq(i).addClass('on');
 		cnt(i);
@@ -52,7 +57,7 @@ $(()=> {
 	});
 
 	leftBtn.click(function () {
-		changeSlide((current - 1 + visual.length) % visual.length);
+		changeSlide((current - 1 + visual.length) % visual.length, 'left');
 		return false;
 	});
 
