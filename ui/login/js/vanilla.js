@@ -56,17 +56,65 @@ tabBtn.forEach((el, idx) => {
 	});
 });
 
-
 // popup
 
-document.querySelector('#panel1 .row.open').addEventListener('click',function(e){
+document.querySelector('#panel1 .row.open').addEventListener('click', function (e) {
 	e.preventDefault();
-	document.querySelector('.popup').style.display='block';
+	document.querySelector('.popup').style.display = 'block';
 	document.querySelector('.overlay').classList.add('open');
-})
-document.querySelector('.close').addEventListener('click',function(e){
+});
+document.querySelector('.close').addEventListener('click', function (e) {
 	e.preventDefault();
 
-	document.querySelector('.popup').style.display='none';
+	document.querySelector('.popup').style.display = 'none';
 	document.querySelector('.overlay').classList.remove('open');
-})
+});
+
+//로그인
+
+const loginButton = document.querySelector('#login');
+const logoutButton = document.querySelector('#logout');
+
+const init = () => {
+	// 로그인 정보가 localStorage에 없으면 초기값 설정
+	if (!localStorage.getItem('user')) {
+		localStorage.setItem('user', JSON.stringify({ id: 'test', password: '5246', isLoggedIn: false }));
+	}
+};
+
+const login = () => {
+	const user = JSON.parse(localStorage.getItem('user'));
+	const uid = document.querySelector('#uid').value;
+	const upw = document.querySelector('#upw').value;
+	if (uid === user.id && upw === user.password) {
+		alert('로그인 성공!');
+		user.isLoggedIn = true;
+		localStorage.setItem('user', JSON.stringify(user));
+	} else {
+		alert('아이디 또는 비밀번호가 틀렸습니다.');
+	}
+};
+
+const logout = () => {
+	const user = JSON.parse(localStorage.getItem('user'));
+
+	if (user.isLoggedIn) {
+		alert('로그아웃 성공!');
+		user.isLoggedIn = false;
+		localStorage.setItem('user', JSON.stringify(user));
+	} else {
+		alert('로그인 상태가 아닙니다.');
+	}
+};
+
+init();
+
+loginButton.addEventListener('click', function (e) {
+	e.preventDefault();
+	login();
+});
+
+logoutButton.addEventListener('click', function (e) {
+	e.preventDefault();
+	logout();
+});

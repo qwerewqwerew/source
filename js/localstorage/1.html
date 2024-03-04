@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<section class="localStorage">
+			<h2>localStorage</h2>
+			<input type="text" />
+			<button class="btnSave">저장하기</button>
+			<button class="btnRead">불러오기</button>
+		</section>
+		<script>
+			const section = document.querySelector('.localStorage'); // 부모 요소 취득
+			const btnRead = section.querySelector('.btnRead'); // 버튼 요소 취득
+			const btnSave = section.querySelector('.btnSave'); // 버튼 요소 취득
+			const input = section.querySelector('input'); // 텍스트 입력 박스 취득
+			btnSave.addEventListener('click', () => {
+				const data = input.value; //input 의 입력값 취득
+				localStorage.setItem('myKey', data); // localStorage 저장
+			});
+			btnRead.addEventListener('click', () => {
+				const data = localStorage.getItem('myKey'); // localStorage에서 불러오기
+				input.value = data; //저장값 출력
+			});
+		</script>
+	</body>
+</html>
