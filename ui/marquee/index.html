@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			#main {
+				border: 1px solid;
+				background: yellow;
+				width: 100%;
+				overflow: hidden;
+			}
+
+			.para {
+				color: black;
+				font-weight: bold;
+				white-space: nowrap;
+				clear: both;
+				float: left;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="main">
+			<p class="para" id="para1">Geeksforgeeks | A computer science portal for geeks</p>
+			<p class="para" id="para2">This is another text</p>
+			<p class="para" id="para3">This is the third line of the example line of the example.</p>
+		</div>
+		<script>
+			const para1 = document.getElementById("para1");
+			const para2 = document.getElementById("para2");
+			const para3 = document.getElementById("para3");
+
+			animate(para1);
+			animate(para2);
+			animate(para3);
+
+			function animate(element) {
+				/* 일반적으로 엘리먼트의 전체 크기를 알고 싶다면, `offsetWidth`와 `offsetHeight` 속성을 가져오면 된다.
+이 속성은 엘리먼트의 패딩과 보더, 스크롤바의 사이즈를 포함한 값을 리턴한다 */
+				let elementWidth = element.offsetWidth;
+				let parentWidth = element.parentElement.offsetWidth;
+				let flag = 0;
+
+				setInterval(() => {
+					element.style.marginLeft = --flag + "px";
+
+					if (elementWidth == -flag) {
+						flag = parentWidth;
+					}
+				}, 10);
+			}
+		</script>
+	</body>
+</html>

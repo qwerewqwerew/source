@@ -1,0 +1,53 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+ul li {
+	list-style: none;
+}
+.clearfix:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+body {
+	background: green;
+	overflow-y: scroll;
+}
+header {
+	position: relative;
+	margin-top: 20px;
+	background: linear-gradient(white 50px, rgb(255, 136, 136) 50px, rgba(255, 136, 136, 1));
+	height: 50px;
+	overflow: hidden;
+}
+
+nav {
+	width: 960px;
+	margin: 0 auto;
+}
+nav > ul > li {
+	float: left;
+	line-height: 50px;
+	margin-right: 40px;
+	position: relative;
+}
+nav > ul > li ul {
+	width: 100%;
+	position: absolute;
+	top: 100%;
+}
+nav > ul > li ul li {
+	white-space: nowrap;
+}
+.overlay {
+	transition:opacity 1s cubic-bezier(0.76, 0.31, 0, 1.1);
+	opacity: 0;
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.5);
+}
+.overlay.show {
+	opacity: 1;
+}

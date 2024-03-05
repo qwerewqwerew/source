@@ -1,38 +1,33 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PC</title>
-</head>
-<body>
-    <h1>PC전용페이지</h1>
-    <div class="pc">PC</div>
-    <div class="mobile">Mobile</div>
-    
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>PC</title>
+	</head>
+	<body>
+		<h1>PC전용페이지</h1>
+		<div class="pc">PC</div>
+		<div class="mobile">Mobile</div>
+	</body>
 
-<script>
-    if(window.devicePixelRatio>1){
-        location.href="./mobile/"
-    }
+	<script>
+		var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent); // 안드로이드 아이폰을 검사해 체크
 
-</script>
+		// 또는
 
-<!-- 제이쿼리 -->
-<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="detectmobilebrowser.js"></script>
-<script>
+		var isMobile = /Mobi/i.test(window.navigator.userAgent); // "Mobi" 가 User agent에 포함되어 있으면 모바일
+		if (window.devicePixelRatio > 1) {
+			location.href = './mobile/';
+		}
+	</script>
 
-  if(jQuery.browser.mobile == true){
-		location.href="./mobile/";
-  } 
-
-</script>
-
- 
- 
- 
- 
- 
- </html>
+	<!-- 제이쿼리 -->
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="detectmobilebrowser.js"></script>
+	<script>
+		if (jQuery.browser.mobile == true) {
+			location.href = './mobile/';
+		}
+	</script>
+</html>

@@ -1,0 +1,14 @@
+* {margin: 0;padding: 0; }
+ul li {list-style: none; }
+.df {display: flex; }
+body {background: green;overflow-y: scroll; }
+header {margin-top: 20px;background: linear-gradient(white 50px, rgba(255, 255, 255, 0.5) 50px, rgba(255, 255, 255, 0.5));height: 50px;overflow: hidden;transition: all 1s; }
+header.active {margin-top: 20px;background: linear-gradient(black 50px, rgba(0, 0, 0, 0.5) 50px, rgba(0, 0, 0, 0.5));height: 50px;overflow: hidden; }
+header.active a,
+header.active li {color: #fff; }
+
+nav {width: 960px;margin: 0 auto; }
+nav > ul > li {line-height: 50px;padding: 0 40px;position: relative; }
+nav > ul > li:hover {background-color: red; }
+nav > ul > li ul {width: 100%;display: block;position: absolute; }
+nav > ul > li ul li {white-space: nowrap; }
