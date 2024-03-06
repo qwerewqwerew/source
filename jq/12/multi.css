@@ -1,9 +1,9 @@
-.wrap {
+#wrap {
 	width: 100%;
 	height: auto;
 	position: relative;
 }
-.brandVisual ul {
+#brandVisual ul {
 	overflow: hidden;
 	position: relative;
 	width: 100%;
@@ -11,30 +11,30 @@
 	display: flex;
 }
 
-.brandVisual ul li {
+#brandVisual ul li {
 	position: absolute;
 	width: 100%;
 	height: 100%;
 }
 
-.brandVisual ul li a {
+#brandVisual ul li a {
 	display: block;
 	text-indent: -9999px;
 }
 
 /* 글씨 제거 */
 /* visual_0, visual_1, visual_2 위치정렬 */
-.brandVisual .visual_0 {
+#brandVisual .visual_0 {
 	left: 0;
 	background: url(img/0.png) 50% 0 no-repeat;
 }
 
-.brandVisual .visual_1 {
+#brandVisual .visual_1 {
 	left: 100%;
 	background: url(img/1.png) 50% 0 no-repeat;
 }
 
-.brandVisual .visual_2 {
+#brandVisual .visual_2 {
 	left: 200%;
 	background: url(img/2.png) 50% 0 no-repeat;
 }
