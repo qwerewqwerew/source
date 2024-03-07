@@ -1,8 +1,8 @@
 $(function(){
-	var $firstMenu = $('nav > ul > li '),			
+	var $firstMenu = $('nav > ul > li '),
 			$header = $('header'),
 			$headerHeight = $header.height();
-	
+
 	$firstMenu.mouseenter(function(){
 		$firstMenu.find('ul').hide();
 		$('.overlay').addClass('show');
@@ -16,7 +16,7 @@ $(function(){
 		$header.stop().animate({height:$headerHeight});
 		$firstMenu.find('ul').hide();
 	});
-	
-	
-	
+
+
+
 });

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      overflow: hidden;
+    }
+
+    div {
+      width: 100px;
+      height: 100px;
+    }
+
+    .one {
+      background: red;
+    }
+
+    .two {
+      background: green;
+    }
+
+    .three {
+      background: blue;
+    }
+
+    .four {
+      background: pink;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="one"></div>
+  <div class="two"></div>
+  <div class="three"></div>
+  <div class="four"></div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js'></script>
+  <script>
+    let tl = gsap.timeline();
+    //total duration:
+    tl.to(".one", { duration: 2, x: 500 })
+      //2초 동안 x축으로 500px
+
+      .to(".two", { duration: 3, x: 500 }, 1)
+      // 1초 후 3초동안 x축으로 500px(1은 absolute값)
+
+      .to(".three", { duration: 1, x: 500 }, "<")
+      //1초 후 1초동안 x축으로 500px(<은 이전 target의 timeline을 따라감)
+
+      .to(".four", { duration: 1, x: 500 }, "<0.5")
+  //1.5초후 1초동은 x축으로 500px(<0.5를 추가하면 이전 target보다 0.5초 뒤 실행
+  </script>
+</body>
+
+</html>

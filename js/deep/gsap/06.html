@@ -1,78 +1,98 @@
 <!DOCTYPE html>
 <html lang="ko">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
-		<style>
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-			}
 
-			body {
-				overflow: hidden;
-			}
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
 
-			#title {
-				width: 700px;
-				margin: 100px auto 0;
-			}
+		body {
+			overflow: hidden;
+		}
 
-			.container {
-				padding: 20px;
-			}
+		#title {
+			width: 700px;
+			margin: 100px auto 0;
+		}
 
-			h1 {
-				margin-bottom: 20px;
-			}
+		.container {
+			padding: 20px;
+		}
 
-			p {
-				margin-bottom: 15px;
-			}
+		h1 {
+			margin-bottom: 20px;
+		}
 
-			a {
-				display: block;
-				width: 100px;
-				padding: 10px;
-				background-color: blueviolet;
-				text-decoration: none;
-				color: white;
-				text-align: center;
-				border-radius: 10px;
-			}
+		p {
+			margin-bottom: 15px;
+		}
 
-			#thumbnail {
-				width: 700px;
-				height: 300px;
-				margin: 0 auto;
-				padding: 20px;
-			}
-		</style>
-	</head>
+		a {
+			display: block;
+			width: 100px;
+			padding: 10px;
+			background-color: blueviolet;
+			text-decoration: none;
+			color: white;
+			text-align: center;
+			border-radius: 10px;
+		}
 
-	<body>
-		<section id="title">
-			<div class="container">
-				<h1 class="animation1">JavaScript GSAP Library Animation</h1>
-				<p class="animation1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, dolore.</p>
-				<a id="cta" class="animation1" href="#">Button</a>
-			</div>
-		</section>
-		<section id="thumbnail">
-			<img src="http://placekitten.com/200/300" />
-		</section>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
-		<script>
-			let t1 = gsap.timeline({ defaults: { duration: 1 } });
+		#thumbnail {
+			width: 700px;
+			height: 300px;
+			margin: 0 auto;
+			padding: 20px;
+		}
 
-			t1.from('h1', { y: -50, opacity: 0 }).from('p', { y: -50, opacity: 0 }, '-=0.5').from('a', { y: -50, opacity: 0 }, '-=0.5').from('img', { y: 200, opacity: 0 }, '-=0.5');
+		.box {
+			width: 100px;
+			height: 100px;
+		}
 
-			document.getElementById('cta').addEventListener('click', () => {
-				t1.reversed() ? t1.play() : t1.reverse();
-			});
-		</script>
-	</body>
+		.box1 {
+			background-color: red;
+		}
+
+		.box2 {
+			background-color: blue;
+		}
+	</style>
+</head>
+
+<body>
+	<section id="title">
+		<div class="container">
+			<h1 class="animation1">JavaScript GSAP Library Animation</h1>
+			<p class="animation1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, dolore.</p>
+			<a id="cta" class="animation1" href="#">Button</a>
+		</div>
+	</section>
+	<section>
+		<div class="box box1"></div>
+		<div class="box box2"></div>
+	</section>
+	<section id="thumbnail">
+		<img src="http://placekitten.com/200/300" />
+	</section>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+	<script>
+		let t1 = gsap.timeline({ defaults: { duration: 1 } });
+
+		t1.from('h1', { y: -50, opacity: 0 }).from('p', { y: -50, opacity: 0 }, '-=0.5').from('a', { y: -50, opacity: 0 }, '-=0.5').from('img', { y: 200, opacity: 0 }, '-=0.5').from('.box1', { x: 200, opacity: 0 }, "<")
+			.to('.box2', { rotate: 360, x: 800, opacity: 1 }, ">");
+
+		document.getElementById('cta').addEventListener('click', () => {
+			t1.reversed() ? t1.play() : t1.reverse();
+		});
+	</script>
+</body>
+
 </html>
