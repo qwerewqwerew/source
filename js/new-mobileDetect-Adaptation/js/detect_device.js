@@ -1,28 +1,28 @@
 const mobile = document.querySelector('.mobile');
 const pc = document.querySelector('.pc');
-let ratioEvent = 1;
+let ratioEvent = window.devicePixelRatio > 1 ? 2 : 1;
 let host = location.hostname;
 let path = location.pathname;
 
 let pcUrl = `//${host}/index.html`;
 let mUrl = `//${host}/mobile/index.html`;
-console.log(pcUrl);
 
-function pageChage(ratio, uri = pcUrl) {
-	if (window.devicePixelRatio > 1 || ratio > 1) {
-		location.href = uri;
-	} else if (window.devicePixelRatio <= 1 || ratio <= 1) {
-		location.href = uri;
-	}
+if (ratioEvent > 1) {
+	location.href = mUrl;
+} else {
+	location.href = pcUrl;
 }
-mobile.onclick = function (e) {
-	e.preventDefault();
-	ratioEvent = 2;
-	pageChage(ratioEvent, murl);
-};
 
-pc.onclick = function (e) {
+function pageChage(uri) {
+	location.href = uri;
+}
+
+mobile.addEventListener('click', function (e) {
 	e.preventDefault();
-	ratioEvent = 1;
-	pageChage(ratioEvent, pcUrl);
-};
+	pageChage(mUrl);
+});
+
+pc.addEventListener('click', function (e) {
+	e.preventDefault();
+	pageChage(pcUrl);
+});
