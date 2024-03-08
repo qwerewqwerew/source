@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>mobile</title>
+</head>
+
+<body>
+	<h1>모바일전용페이지</h1>
+	<button class="pc">PC</button>
+</body>
+<script>
+	const pc = document.querySelector('.pc');
+	let path = location.pathname.split('/').includes('mobile');
+	const page = location.href;
+	pc.onclick = function (e) {
+		e.preventDefault();
+		if (path && location.href === page) {
+			location.href = '../';
+		}
+	};
+
+</script>
+
+</html>

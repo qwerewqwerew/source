@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>PC</title>
+</head>
+
+<body>
+	<h1>PC전용페이지</h1>
+	<button class="mobile">Mobile</button>
+</body>
+<script>
+	const mobile = document.querySelector('.mobile');
+	let ratio;
+	let path = location.pathname.split('/').includes('mobile');
+	const page = location.href;
+
+	if (!path && location.href === page) {
+		ratio = window.devicePixelRatio;
+		if (ratio >= 2) {
+			location.href = './mobile/';
+		} else if (ratio <= 1) {
+			location.href = page;
+		}
+	}
+	mobile.onclick = function (e) {
+		e.preventDefault();
+		location.href = './mobile/';
+	};
+
+</script>
+
+</html>
