@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        .vertical {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        main {
+            overflow-x: hidden;
+            display: flex;
+            position: sticky;
+            top: 0;
+        }
+
+        h1 {
+            margin: 0;
+            padding: 0;
+        }
+
+        section {
+            min-width: 50vw;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 4ch;
+        }
+
+        section:nth-child(even) {
+            background-color: teal;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vertical"> HELLO </div>
+    <div class="sticky">
+        <main>
+            <section>
+                <h1>Beep</h1>
+            </section>
+            <section>
+                <h1>Boop</h1>
+            </section>
+            <section>
+                <h1>Boooom</h1>
+            </section>
+            <section>
+                <h1>The End</h1>
+            </section>
+        </main>
+    </div>
+    <div class="vertical"> DEVELOPER </div>
+    <div class="sticky">
+        <main>
+            <section>
+                <h1>Beep</h1>
+            </section>
+            <section>
+                <h1>Boop</h1>
+            </section>
+            <section>
+                <h1>Boooom</h1>
+            </section>
+            <section>
+                <h1>The End</h1>
+            </section>
+        </main>
+    </div>
+    <!-- <script src="03.js"></script> -->
+    <script src="04.js"></script>
+</body>
+
+</html>

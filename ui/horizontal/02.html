@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    main {
+      overflow-x: hidden;
+      display: flex;
+    }
+
+    section {
+      min-width: 100vw;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 4em;
+    }
+
+    section:nth-child(even) {
+      background-color: teal;
+      color: white;
+    }
+  </style>
+  <!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script> -->
+</head>
+
+<body>
+  <main>
+    <section>
+      <h1>Boop</h1>
+    </section>
+    <section>
+      <h1>Boooom</h1>
+    </section>
+    <section>
+      <h1>Boooom</h1>
+    </section>
+    <section>
+      <h1>The End</h1>
+    </section>
+  </main>
+  <script>
+    const scrollContainer = document.querySelector("main");
+
+    let target = 0;
+    let ease = 0.1; // 부드러운 이동을 위한 변화 정도
+
+    // 부드럽게 이동하는 함수
+    function smoothScroll() {
+      scrollContainer.scrollLeft += (target - scrollContainer.scrollLeft) * ease;
+      requestAnimationFrame(smoothScroll); // 부드럽게 이동하도록 애니메이션 추가
+    }
+
+    scrollContainer.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      target += e.deltaY; // 스크롤 목표 위치 변경
+    });
+
+    smoothScroll(); // 함수 실행
+  </script>
+</body>
+
+</html>
