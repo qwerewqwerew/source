@@ -30,4 +30,3 @@ scroll_tl.to(facts, {
     end: () => `+=${factW}`
   }
 });
-gsap.config({ trialWarn: true });

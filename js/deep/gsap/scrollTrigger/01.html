@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      background: pink;
+    }
+
+    section {
+      height: 100vh;
+    }
+  </style>
+</head>
+
+<body>
+  <section></section>
+  <section>
+    <div class="box"></div>
+  </section>
+  <section></section>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script>
+    const bg = document.querySelectorAll('section');
+    const colors = {
+      r: 255,
+      g: 255,
+      b: 255,
+    };
+
+    bg.forEach((o, i) => {
+      o.style.backgroundColor = `rgb(${colors.r - i * 100},${colors.g - (i * 50)},${colors.b - (i * 50)})`;
+    });
+
+  </script>
+  <script src="01.js"></script>
+</body>
+
+</html>
