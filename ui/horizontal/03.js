@@ -1,11 +1,9 @@
 (function () {
+	let g_canScroll;
 	init();
-	let g_containerInViewport;
-	let target = 0;
-	let ease = 0.1;
 	//초기화
 	function init() {
-		setStickyContainersSize();
+		setSticky();
 		bindEvents();
 	}
 
@@ -13,7 +11,7 @@
 		window.addEventListener('wheel', wheelHandler);
 	}
 
-	function setStickyContainersSize() {
+	function setSticky() {
 		document.querySelectorAll('.sticky').forEach(function (container) {
 			// scrollWidth=전체 스크롤바를 사용하게 되어 숨겨진 영역까지 포함한 크기를 리턴
 			const stikyContainerHeight = container.querySelector('main').scrollWidth;
@@ -22,7 +20,7 @@
 		});
 	}
 	//요소가 화면에 들어왔는지를 확인하는 함수
-	function isElementInViewport(el) {
+	function isInView(el) {
 		const rect = el.getBoundingClientRect();
 		//요소가 화면에 있을경운
 		console.log('document.documentElement', document.documentElement);
@@ -32,25 +30,17 @@
 	function wheelHandler(e) {
 		// https://ko.javascript.info/iterable
 
-		const containerInViewPort = Array.from(document.querySelectorAll('.sticky')).filter(function (container) {
-			return isElementInViewport(container);
+		const elInView = Array.from(document.querySelectorAll('.sticky')).filter(function (el) {
+			return isInView(el);
 		})[0];
-		if (!containerInViewPort) {
+		if (!elInView) {
 			return;
 		}
-		console.log('containerInViewPort', containerInViewPort);
-		let isPlaceHolderBelowTop = containerInViewPort.offsetTop < document.documentElement.scrollTop; //.sticky-container의 상단좌표를 스크롤보다 작은지 비교
-		let isPlaceHolderBelowBottom = containerInViewPort.offsetTop + containerInViewPort.offsetHeight > document.documentElement.scrollTop; //.sticky-container 탑과 높이를 합하고(길이) 스크롤양보다 큰지비교
-		let g_canScrollHorizontally = isPlaceHolderBelowTop && isPlaceHolderBelowBottom; //true 는 보이는 상태
-
-		console.log(containerInViewPort, containerInViewPort.offsetTop, isPlaceHolderBelowBottom);
-
-		if (g_canScrollHorizontally) {
-			const smoothScroll = () => {
-				containerInViewPort.querySelector('main').scrollLeft += (target - containerInViewPort.querySelector('main').scrollLeft) * ease;
-				requestAnimationFrame(smoothScroll); // 부드럽게 이동하도록 애니메이션 추가
-			};
-			//containerInViewPort.querySelector('main').scrollLeft += e.deltaY;
-		}
+		console.log('elInView', elInView);
+		let isPlaceHolderBelowTop = elInView.offsetTop < document.documentElement.scrollTop; //.sticky-container의 상단좌표를 스크롤보다 작은지 비교
+		let isPlaceHolderBelowBottom = elInView.offsetTop + elInView.offsetHeight > document.documentElement.scrollTop; //.sticky-container 탑과 높이를 합하고(길이) 스크롤양보다 큰지비교
+		g_canScroll = isPlaceHolderBelowTop && isPlaceHolderBelowBottom; //true 는 보이는 상태
+		console.log(elInView, elInView.offsetTop, isPlaceHolderBelowBottom);
+		elInView.querySelector('main').scrollLeft += e.deltaY;
 	}
 })();

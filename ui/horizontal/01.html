@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
@@ -32,7 +32,6 @@
             color: white;
         }
     </style>
-    <!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script> -->
 </head>
 
 <body>
@@ -51,7 +50,6 @@
         </section>
     </main>
     <script>
-
         const scrollContainer = document.querySelector("main");
         scrollContainer.addEventListener("wheel", (e) => {
             e.preventDefault();
@@ -59,7 +57,6 @@
             //scrollContainer의 수평 스크롤 바 위치에 스크롤 방향을 합하여 가로스크롤양이 가산되며 이동한다.
             let amt = scrollContainer.scrollLeft += e.deltaY;
         });
-
     </script>
 </body>
 

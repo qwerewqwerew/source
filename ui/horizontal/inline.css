@@ -1,0 +1,9 @@
+::-webkit-scrollbar { width: 1px; height: 1px; }
+::-webkit-scrollbar-button { width: 1px; height: 1px; }
+body { background: #111; color: #fff; }
+div { box-sizing: border-box; }
+.horizontal-scroll-wrapper { position: absolute; display: block; top: 200px; left: 0; width: calc(250px + 1px); max-height: 750px; margin: 0; padding-top: 1px; background: #abc; overflow-y: auto; overflow-x: hidden; transform: rotate(-90deg) translateY(-250px); transform-origin: right top; }
+.horizontal-scroll-wrapper>div { display: block; padding: 5px; background: #cab; transform: rotate(90deg); transform-origin: right top; }
+.squares { padding: 250px 0 0 0; }
+.squares>div { width: 250px; height: 250px; margin: 10px 0; }
+/* 이 코드 조각은 CSS를 사용하여 웹 페이지의 스크롤바와 몇 가지 요소들을 스타일링하는 방법을 보여줍니다. 각 부분을 하나씩 살펴보겠습니다. 1. **::-webkit-scrollbar**: 이 선택자는 웹킷 기반 브라우저(예: 크롬, 사파리)에서 스크롤바의 스타일을 정의합니다. 여기서 스크롤바의 너비와 높이를 1px로 설정하고 있습니다. 이는 매우 얇은 스크롤바를 만듭니다. 2. **::-webkit-scrollbar-button**: 스크롤바 버튼(위/아래 화살표)의 스타일을 정의합니다. 여기서도 너비와 높이를 1px로 설정하여 실제로는 보이지 않게 만들고 있습니다. 3. **body**: 웹 페이지의 배경을 검정색(#111)으로, 글자 색을 흰색(#fff)으로 설정합니다. 4. **div**: 모든 div 요소에 대해 `box-sizing: border-box;`를 적용합니다. 이 설정은 요소의 너비와 높이가 패딩과 테두리를 포함하도록 합니다. 5. **.horizontal-scroll-wrapper**: 수평 스크롤을 구현하기 위한 설정입니다. 절대 위치를 사용하여 특정 위치에 배치하고, 회전(transform: rotate(-90deg))을 사용하여 원래의 세로 스크롤을 수평 스크롤로 변경합니다. `overflow-y: auto;`로 세로 스크롤을 활성화하고, `overflow-x: hidden;`으로 가로 스크롤은 숨깁니다. 6. **.horizontal-scroll-wrapper>div**: 수평 스크롤 내부의 div 요소들을 위한 스타일입니다. 이 요소들은 다시 90도 회전하여 원래의 방향으로 돌아오도록 설정됩니다. 따라서, 사용자는 내용을 정상적인 방향으로 볼 수 있습니다. 7. **.squares**: 여백을 위해 상단에 250px의 패딩을 추가합니다. 8. **.squares>div**: 각 div 요소를 정사각형 모양(너비와 높이가 250px)으로 만들고, 수직으로 배치할 때 10px의 여백을 두도록 설정합니다. 이 코드는 기본적으로 수평 스크롤 영역 내에서 수직으로 배치된 내용을 수평으로 스크롤하여 볼 수 있게 하는 특별한 레이아웃 기법을 구현합니다. 사용자는 웹 페이지에서 이러한 요소들을 마주하면, 전통적인 세로 스크롤이 아닌 수평 스크롤을 경험하게 됩니다. */

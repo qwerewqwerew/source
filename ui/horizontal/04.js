@@ -4,12 +4,12 @@
 	let ease = 0.2;
 	const stickyEls = document.querySelectorAll('.sticky');
 	const mainEl = document.querySelector('main');
-	console.log(stickyEls);
+
 	//초기화
 	init();
 	function init() {
 		setSticky();
-		bindEvents;
+		bindEvents();
 	}
 	//이벤트연결
 	function bindEvents() {
@@ -29,7 +29,7 @@
 		/* https://developer.mozilla.org/ko/docs/Web/API/Element/getBoundingClientRect */
 		const rect = el.getBoundingClientRect();
 		//요소가 화면에 있을경우
-		console.log('document.documentElement', document.documentElement);
+		//console.log('document.documentElement', document.documentElement);
 		//https://id.javascript.info/size-and-scroll-window
 		return rect.top <= 0 && rect.bottom > document.documentElement.clientHeight;
 	}
@@ -38,7 +38,8 @@
 	//이벤트핸들러
 	function wheelHandler(e) {
 		const inViewPort = Array.from(stickyEls).filter((el) => {
-			return isElInView(el);
+			console.log(el);
+			return isView(el);
 		})[0];
 		if (!inViewPort) {
 			return;

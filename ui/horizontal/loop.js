@@ -27,6 +27,5 @@ resize();
 function resize() {
     var w = page.scrollWidth - window.innerWidth + window.innerHeight;
     document.body.style.height = w + "px";
-
     dummy_x = last_pane.getBoundingClientRect().left + window.scrollY;
 }
