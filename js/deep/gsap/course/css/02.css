@@ -5,7 +5,7 @@
 .text {
   font-size: 10rem;
 }
-.sec5.item ,.sec8.item {
+.sec5.item, .sec8.item {
   flex-direction: column;
 }
 .sec7 .text {
@@ -13,4 +13,8 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  background-color: #fff;
+  width:100%;
+  padding:2rem;
+  text-align: center;
 }

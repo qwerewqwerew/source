@@ -1,6 +1,7 @@
 //01 : 이미지 애니메이션 주기
 const ani1 = gsap.timeline();
-ani1.to('.sec1 .box', { rotation: 450, scale: 0, borderRadius: 200 }).to('.sec1 .box', { rotation: 360 * 5, scale: 1, borderRadius: 20 });
+ani1.to('.sec1 .box', { rotation: 450, scale: 0, borderRadius: 200 })
+.to('.sec1 .box', { rotation: 360 * 5, scale: 1, borderRadius: 20 });
 //타임라인에 스크롤트리거생성
 ScrollTrigger.create({
 	animation: ani1,
@@ -16,7 +17,9 @@ ScrollTrigger.create({
 
 //02 : 순차 나타나기
 const ani2 = gsap.timeline();
-ani2.from('.sec2 .i1', { y: 200, autoAlpha: 0 }).from('.sec2 .i2', { y: 100, autoAlpha: 0 }).from('.sec2 .i3', { y: -100, autoAlpha: 0 });
+ani2.from('.sec2 .i1', { y: 200, autoAlpha: 0 })
+.from('.sec2 .i2', { y: 100, autoAlpha: 0 })
+.from('.sec2 .i3', { y: -100, autoAlpha: 0 });
 
 //타임라인에 스크롤트리거생성
 ScrollTrigger.create({
@@ -80,7 +83,7 @@ ScrollTrigger.create({
 const ani5 = gsap.timeline();
 
 //"-=1" 1초전 시작
-ani5.to('.sec5 .t1', { xPercent: 300 }).to('.sec5 .t2', { xPercent: -300 },"-=1").to('.sec5 .t3', { xPercent: 300 }).to('.sec5 .t4', { xPercent: -300 });
+ani5.to('.sec5 .t1', { xPercent: 300 }).to('.sec5 .t2', { xPercent: -300 }, '-=1').to('.sec5 .t3', { xPercent: 300 }).to('.sec5 .t4', { xPercent: -300 });
 
 //'text' 그룹핑기능 함께 동시실행
 
@@ -99,7 +102,8 @@ ScrollTrigger.create({
 
 //06 : 텍스트 확대하기
 const ani6 = gsap.timeline();
-ani6.to('.sec6 .text', { scale: 60, duration: 2 }).to('.sec6 .text', { autoAlpha: 0 });
+ani6.to('.sec6 .text', { scale: 60, duration: 2 })
+.to('.sec6 .text', { autoAlpha: 0 });
 
 ScrollTrigger.create({
 	animation: ani6,
@@ -114,7 +118,13 @@ ScrollTrigger.create({
 
 //07 : 텍스트 제자리 애니메이션
 const ani7 = gsap.timeline();
-ani7.from('.sec7 .t1', { autoAlpha: 0, duration: 1, y: 50 }, '+=1').from('.sec7 .t2', { autoAlpha: 0, duration: 1, y: 50 }, '+=1').from('.sec7 .t3', { autoAlpha: 0, duration: 1, y: 50 }, '+=1').from('.sec7 .t4', { autoAlpha: 0, duration: 1, y: 50 }, '+=1').from('.sec7 .t5', { autoAlpha: 0, duration: 1, y: 50 }, '+=1').from('.sec7 .t6', { autoAlpha: 0, duration: 1, y: 50 }, '+=1').from('.sec7 .t7', { autoAlpha: 0, duration: 1, y: 50 }, '+=1');
+ani7.from('.sec7 .t1', { autoAlpha: 0, duration: 1, y: 50 }, '+=1')
+.from('.sec7 .t2', { autoAlpha: 0, duration: 1, y: 50 }, '+=1')
+.from('.sec7 .t3', { autoAlpha: 0, duration: 1, y: 50 }, '+=1')
+.from('.sec7 .t4', { autoAlpha: 0, duration: 1, y: 50 }, '+=1')
+.from('.sec7 .t5', { autoAlpha: 0, duration: 1, y: 50 }, '+=1')
+.from('.sec7 .t6', { autoAlpha: 0, duration: 1, y: 50 }, '+=1')
+.from('.sec7 .t7', { autoAlpha: 0, duration: 1, y: 50 }, '+=1');
 
 ScrollTrigger.create({
 	animation: ani7,
