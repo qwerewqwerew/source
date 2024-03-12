@@ -1,4 +1,3 @@
-
 const box1 = document.querySelector('.sec1 .img');
 const box2 = document.querySelector('.sec2 .img');
 const box3 = document.querySelector('.sec3 .img');
@@ -102,7 +101,7 @@ gsap.to(box7, {
 		scrub: true,
 		toggleClass: 'active',
 		markers: false,
-		class: 'box7',
+		id: 'box7',
 	},
 });
 
