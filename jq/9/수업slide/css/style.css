@@ -1,0 +1,65 @@
+#slide_wrap {
+	width: 100%;
+	height: 500px;
+	position: relative;
+}
+#brand_visual ul {
+	position: relative;
+	margin: auto;
+	width: 100%;
+	height: 500px;
+	overflow: hidden;
+}
+#brand_visual ul li {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+#brand_visual ul li a {
+	display: block;
+	text-indent: -999999px;
+}
+#brand_visual .visual_0 {
+	left: 0;
+	background: url(../img/0.png) 0 0 no-repeat;
+}
+#brand_visual .visual_1 {
+	left: 100%;
+	background: url(../img/1.png) 0 0 no-repeat;
+}
+#brand_visual .visual_2 {
+	left: 200%;
+	background: url(../img/2.png) 0 0 no-repeat;
+}
+.btnImg img {
+	width: 50px;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.btnImg img[alt='left'] {
+	left: 10%;
+}
+.btnImg img[alt='right'] {
+	right: 10%;
+}
+.pager {
+	display: flex;
+	position: absolute;
+	bottom: 10%;
+	left: 50%;
+	gap: 10px;
+	transform: translateX(-50%);
+}
+.pager li {
+	width: 14px;
+	height: 15px;
+	background: url(../img/btnVisual.png) 0 -16px no-repeat;
+}
+.pager li.on {
+	background-position: 0 0;
+}
+.pager li a {
+	display: block;
+	text-indent: -98999px;
+}

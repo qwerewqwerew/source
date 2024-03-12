@@ -1,0 +1,16 @@
+.sec4 .box,
+.sec9 .box {
+  background: url(http://qwerew.cafe24.com/images/1.jpg) no-repeat center center/100%;
+}
+.text {
+  font-size: 10rem;
+}
+.sec5.item ,.sec8.item {
+  flex-direction: column;
+}
+.sec7 .text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -46,7 +46,7 @@
             display: inline;
         }
         #parallax__title li a {
-            width: 20px; 
+            width: 20px;
             height: 20px;
             border-radius: 50%;
             border: 1px dashed #fff;
@@ -72,9 +72,9 @@
             align-items: center;
             justify-content: center;
         }
-        #section2, 
-        #section4, 
-        #section6, 
+        #section2,
+        #section4,
+        #section6,
         #section8 {
             background-color: #222;
         }
@@ -279,14 +279,14 @@
             animation: ani1,
             trigger: "#section1",
             start: "top top",
-            end: "+=2000",
+            end: "+=2000",  ////시작 부분부터 2000px까지 스크롤 한 후종료
             scrub: true,
-            pin: true, 
+            pin: true,
             anticipatePin: 1,
             markers: true
         });
 
-        //02 : 이미지를 순차적으로 나오기 
+        //02 : 이미지를 순차적으로 나오기
         const ani2 = gsap.timeline();
         ani2.from("#section2 .i1", {y: -100, autoAlpha:0, borderRadius: 200})
             .from("#section2 .i2", {y: 100, autoAlpha:0, borderRadius: 200})
@@ -298,7 +298,7 @@
             start: "top top",
             end: "+=2000",
             scrub: true,
-            pin: true, 
+            pin: true,
             anticipatePin: 1,
             markers: true
         });
@@ -306,6 +306,7 @@
         //03 : 이미지를 랜덤으로 나오기
         const ani3 = gsap.timeline();
         ani3.from("#section3 .parallax__item__img", {
+
             autoAlpha: 0,
             y: -100,
             ease: "back.out(4)",
@@ -322,7 +323,7 @@
             start: "top top",
             end: "+=3000",
             scrub: true,
-            pin: true, 
+            pin: true,
             anticipatePin: 1,
             markers: true
         });
@@ -342,7 +343,7 @@
             start: "top top",
             end: "+=3000",
             scrub: true,
-            pin: true, 
+            pin: true,
             anticipatePin: 1,
             markers: true
         });
@@ -360,7 +361,7 @@
             start: "top top",
             end: "+=3000",
             scrub: true,
-            pin: true, 
+            pin: true,
             anticipatePin: 1,
             markers: true
         });
@@ -376,7 +377,7 @@
             start: "top top",
             end: "+=4000",
             scrub: true,
-            pin: true, 
+            pin: true,
             anticipatePin: 1,
             markers: true
         });
@@ -397,12 +398,12 @@
             start: "top top",
             end: "+=6000",
             scrub: true,
-            pin: true, 
+            pin: true,
             anticipatePin: 1,
             markers: true
         });
 
-        //08 : 텍스트 애니메이션 
+        //08 : 텍스트 애니메이션
         const ani8 = gsap.timeline();
         ani8.from("#section8 .t1", {x: innerWidth * 1})
             .from("#section8 .t2", {x: innerWidth * -1})
@@ -415,12 +416,12 @@
             start: "top top",
             end: "+=4000",
             scrub: true,
-            pin: true, 
+            pin: true,
             anticipatePin: 1,
             markers: true
         });
 
-        //09 : 이미지 확대하기 
+        //09 : 이미지 확대하기
         const ani9 = gsap.timeline();
         ani9.to("#section9 .parallax__item__img", {scale: 13})
             .to("#section9 .parallax__item__img", {autoAlpha: 0})
