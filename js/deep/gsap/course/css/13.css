@@ -1,11 +1,11 @@
-        main {
-          overflow: hidden;
-        }
-        .horizontal {
-          display: flex;
-          flex-wrap: nowrap;
-          width: 500%;
-        }
-        .horizontal>section {
-          width: 100%;
-        }
+main {
+  overflow: hidden;
+}
+.horizontal {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 500%;
+}
+.horizontal>section {
+  width: 100%;
+}
