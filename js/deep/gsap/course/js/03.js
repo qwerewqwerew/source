@@ -29,17 +29,21 @@ function fn3() {
 	panels.forEach((panel, i) => {
 		ScrollTrigger.create({
 			trigger: panel,
-			start: () => (panel.offsetHeight < window.innerHeight ? 'top top' : 'bottom bottom'),
+			//start: () => (panel.offsetHeight < window.innerHeight ? 'top top' : 'bottom bottom'),
+			start: 'top top',
+			//end: 'bottom bottom',
 			pin: true,
-			pinSpacing: false,
+			//pinSpacing: false,
 		});
 	});
 
 	ScrollTrigger.create({
 		snap: {
 			snapTo: (progress, self) => {
+				console.log(self);
 				let panelStarts = tops.map((st) => st.start),
-					snapScroll = gsap.utils.snap(panelStarts, self.scroll());
+				snapScroll = gsap.utils.snap(panelStarts, self.scroll());
+				console.log(panelStarts);
 				return gsap.utils.normalize(0, ScrollTrigger.maxScroll(window), snapScroll);
 			},
 			duration: 0.5,

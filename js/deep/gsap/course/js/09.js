@@ -28,6 +28,7 @@ function setActive(link) {
 ScrollTrigger.create({
 	start: 'top -80',
 	end: 99999,
+	markers:true,
 	toggleClass: {
 		className: 'active',
 		targets: 'nav',
