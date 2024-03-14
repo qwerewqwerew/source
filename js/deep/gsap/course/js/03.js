@@ -1,5 +1,5 @@
 // 01. 한개 섹션 고정시키기
-fn2();
+
 function fn1() {
 	const panel = document.querySelector('.sec5');
 
@@ -25,7 +25,7 @@ function fn2() {
 function fn3() {
 	let panels = gsap.utils.toArray('.box');
 	let tops = panels.map((panel) => ScrollTrigger.create({ trigger: panel, start: 'top top' }));
-
+	console.log(tops);
 	panels.forEach((panel, i) => {
 		ScrollTrigger.create({
 			trigger: panel,
@@ -46,3 +46,4 @@ function fn3() {
 		},
 	});
 }
+fn3();
