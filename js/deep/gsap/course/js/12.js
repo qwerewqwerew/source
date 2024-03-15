@@ -3,7 +3,7 @@ const section = document.querySelectorAll('section');
 let sections = gsap.utils.toArray('section');
 wrap.style.width = 100 * sections.length + '%';
 console.log(window.innerHeight);
-section.forEach((el) => (el.style.height = window.innerHeight+"px"));
+section.forEach((el) => (el.style.height = window.innerHeight + 'px'));
 
 gsap.to(sections, {
 	xPercent: -100 * (sections.length - 1),

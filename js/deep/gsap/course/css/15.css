@@ -1,9 +1,6 @@
-body {
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
 html {
   overflow-y: scroll;
+  overflow-x: hidden;
   height: 100%;
   -webkit-overflow-scrolling: touch;
   overflow-scrolling: touch;
@@ -40,4 +37,23 @@ html {
   display: flex;
   height: 100vh;
   background: yellow;
+}
+.box {
+  font-size:5vw;
+
+  text-align: center;
+  line-height: 80px;
+  background-color: white;
+  border-radius: 8px;
+  color: #222;
+  font-weight: 700;
+  margin-left: -200px;
+  margin-top: -200px;
+  will-change: transform;
+  display: flex;
+  z-index: 2;
+}
+.box.active {
+  background-color: orange;
+  border: 2px solid white;
 }

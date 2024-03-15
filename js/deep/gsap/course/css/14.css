@@ -1,19 +1,40 @@
- /* parallax__cont */
- .item { width: 100%; height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; }
- .num { font-size: 5vw; position: absolute; right: 20px; bottom: 20px; font-family: "Lato"; font-weight: 100; z-index: 100; }
- .img_wrap { width: 30%; padding-bottom: 18%; position: relative; overflow: hidden; border-radius: 10px; }
- .img { position: absolute; left: -5%; top: -5%; width: 110%; height: 110%; background-repeat: no-repeat; background-position: center center; background-size: cover; filter: saturate(0%); transition: all 1s; }
- .img:hover { filter: saturate(100%); transform: scale(1.025); }
- .sec1 .img { background-image: url(http://qwerew.cafe24.com/images/1.jpg); }
- .sec2 .img { background-image: url(http://qwerew.cafe24.com/images/2.jpg); }
- .sec3 .img { background-image: url(http://qwerew.cafe24.com/images/3.jpg); }
- .sec4 .img { background-image: url(http://qwerew.cafe24.com/images/4.jpg); }
- .sec5 .img { background-image: url(http://qwerew.cafe24.com/images/5.jpg); }
- .sec6 .img { background-image: url(http://qwerew.cafe24.com/images/6.jpg); }
- .sec7 .img { background-image: url(http://qwerew.cafe24.com/images/7.jpg); }
- .sec8 .img { background-image: url(http://qwerew.cafe24.com/images/8.jpg); }
- .sec9 .img { background-image: url(http://qwerew.cafe24.com/images/9.jpg); }
- /* option */
- main { overflow: hidden; }
- .fix { display: flex; flex-wrap: nowrap; width: 500%; }
- .fix>section { width: 100%; }
+html {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+}
+.section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 10vw;
+  text-align: center;
+  color: rgb(66, 8, 8);
+  position: relative;
+  box-sizing: border-box;
+  padding: 10px;
+}
+.horizontal {
+  width: 400%;
+  height: 100vh;
+  display: flex;
+  flex-wrap: nowrap;
+}
+.first {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: yellow;
+}
+.last {
+  display: flex;
+  height: 100vh;
+  background: yellow;
+}
