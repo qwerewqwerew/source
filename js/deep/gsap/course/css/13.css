@@ -4,7 +4,7 @@ main {
 .horizontal {
   display: flex;
   flex-wrap: nowrap;
-  width: 500%;
+  width: 300%;
 }
 .horizontal>section {
   width: 100%;

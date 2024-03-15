@@ -9,7 +9,7 @@ let scrollTween = gsap.to(sections, {
 		start: 'top top',
 		end: () => '+=' + (fix.offsetWidth - innerWidth),
 		pin: true,
-		ainicipatePin: 1,
+		anticipatePin: 1,
 		scrub: 1,
 		invalidateOnRefresh: true,
 	},

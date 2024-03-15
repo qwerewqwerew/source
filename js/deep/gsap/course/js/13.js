@@ -16,6 +16,6 @@ gsap.to(sections, {
 			duration: { min: 0.1, max: 0.1 },
 		},
 		invalidateOnRefresh: true,
-		anticipatePin: 1,
+		anticipatePin: 1, //핀 효과를 조금 더 자연스럽게 연출하기 위한 속성
 	},
 });
