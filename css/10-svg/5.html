@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SVG</title>
+
+</head>
+
+<body>
+  <svg class="the-svg">
+    <style>
+      .the-svg {
+        width: 300px;
+        height: 100px;
+        background: #c348e9;
+        border-radius: 30px;
+      }
+
+      .the-svg text {
+        font-size: 5rem;
+      }
+
+      .text1 {
+        animation: left 5s infinite linear;
+      }
+
+      @keyframes left {
+        0% {
+          transform: translateX(0);
+        }
+
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+
+      #mask-circle rect {
+        fill: #fff;
+      }
+    </style>
+    <mask id="mask-circle">
+      <rect width="300" height="80" />
+    </mask>
+    <g mask="url(#mask-circle)">
+      <text class="text1" x="10" y="100">Hello SVG! Hello SVG! Hello SVG! Hello SVG! Hello SVG!</text>
+    </g>
+  </svg>
+
+<object data="./marquee.svg" type="image/svg+xml"></object>
+</body>
+
+</html>

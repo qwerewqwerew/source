@@ -1,0 +1,4 @@
+.circular-pbar {
+  --p: 0;
+  background: conic-gradient(grey var(--p, 0), 0, darkred)
+}

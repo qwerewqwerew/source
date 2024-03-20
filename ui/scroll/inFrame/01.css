@@ -1,0 +1,23 @@
+@import url(https://qwerewqwerew.github.io/source/style/reset.css);section { height: 90vh; }
+h2 { text-align: center; font-size: 5vw; position: absolute; right: 10%; }
+.sec3 .left { padding-top: 10vh; }
+.sec3 .item { width: 50%; height: 100%; }
+.sec3 .item.left {width: 50%; height: 100%; background: skyblue; }
+.mockup.pc { width: 100%; height: min(30rem, 100%); z-index: 3; top: 1rem; left: 1rem; }
+.mockup.pc .mask { background: red; width: calc(100% - 80px); height: 50rem; overflow: hidden; top: 2rem; left: 4rem; z-index: 9999; }
+.mockup.pc .screen { width: 100%; }
+.mockup.pc .device { width: 100%; }
+.mockup.mobile { width: 100%; height: min(30rem, 100%);z-index: 4; top: -3%; left: 65%; }
+.mockup.mobile .mask { background: red; width: 23.5rem; height: 38.5rem; overflow: hidden; top: 8rem; left: 1.8rem; z-index: 9999; border-radius: .8rem; }
+.mockup.mobile .screen { width: 100%; }
+.mockup.mobile .device { /* 기본값은 100% 이지만 30rem보다 작아질수 없고 50rem 보다 커질수 없다 */
+ width: clamp(10rem, 30%, 30rem); }
+
+@media screen and (max-width:1200px){
+ .mockup.pc { width: 80%; }
+ .mockup.pc .mask { width: calc(100% - 40px); left: 20px; height: 22rem; }
+ .mockup.mobile { width: 30%; top: -8%; }
+ .mockup.mobile .mask { width: 100%;  left:1rem; top:4rem; width: 87%; height:20rem;}
+ .mockup.mobile .device {width: 100%;}
+
+ }

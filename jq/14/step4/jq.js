@@ -1,45 +1,43 @@
-addEventListener('load', () => {
-	const sections = document.querySelectorAll('section');
-	let speed = Math.floor(document.body.scrollHeight * 0.5);
+$(() => {
+	const sections = $('section');
+	const totalH = $('body').prop('scrollHeight');
+	let speed = Math.floor(totalH * 0.5);
+	console.log($('body').prop('scrollHeight'));
+	console.log(document.body.scrollHeight);
 	let topArr = [];
 	let winSCT;
-
-	sections.forEach((section, idx) => {
-		section.classList.add(`bg${idx + 1}`);
-		const sectionTop = section.offsetTop;
+	sections.each((idx, section) => {
+		$(section).addClass(`bg${idx + 1}`);
+		const sectionTop = $(section).offset().top;
 		topArr.push(sectionTop);
 	});
-
 	console.log(topArr);
 	const scrollAni = (a) => {
 		if (a > topArr[0] - speed) {
-			sections[0].querySelectorAll('.box').forEach((el) => {
-				el.style.transform = 'translateX(0%)';
-			});
+			sections.eq(0).find('.box').css('transform', 'translateX(0%)');
 		}
 		if (a > topArr[1] - speed) {
-			sections[1].querySelector('.bg3').animate([{ top: '5vw', opacity: 1 }], { duration: 500, delay: 0 });
-			sections[1].querySelector('.bg4').animate([{ top: '0vw', opacity: 1 }], { duration: 800, delay: 300 });
-			sections[1].querySelector('.bg5').animate([{ top: '-5vw', opacity: 1 }], { duration: 1100, delay: 600 });
+			sections.eq(1).find('.bg3').stop().delay(0).animate({ top: '5vw', opacity: 1 }, 500, 'swing');
+			sections.eq(1).find('.bg4').stop().delay(200).animate({ top: '0vw', opacity: 1 }, 800, 'swing');
+			sections.eq(1).find('.bg5').stop().delay(300).animate({ top: '-5vw', opacity: 1 }, 1100, 'swing');
 		}
 		if (a > topArr[2] - speed) {
 			console.log(a > topArr[2] && a < topArr[3]);
-			sections.eq(2).classList.add('is-animated');
+			sections.eq(2).addClass('is-animated');
 		}
 		if (a > topArr[3] - speed) {
-			sections.forEach((el) => {
-				el.removeClass('is-animated');
-			});
-			sections[3].addClass('is-animated');
+			sections.removeClass('is-animated');
+			sections.eq(3).addClass('is-animated');
+			pipScroll();
 		}
 	};
 	/* 스크롤함수 */
-	window.addEventListener('scroll', () => {
-		winSCT = this.scrollY;
+	$(window).on('scroll', () => {
+		winSCT = $(window).scrollTop();
 		scrollAni(winSCT);
 	});
 	function pipScroll() {
-		const section = sections[3];
+		const section = sections.eq(3);
 		const devices = ['.mockup.pc', '.mockup.mobile'];
 		$.each(devices, function (i, deviceEl) {
 			let device = section.find(deviceEl);
@@ -68,4 +66,4 @@ addEventListener('load', () => {
 	$(window).on('resize', function () {
 		pipScroll();
 	});
-});
+}); //jQuery
