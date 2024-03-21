@@ -2,12 +2,12 @@
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background: conic-gradient(darkred 33%, 0, black);
+  background: conic-gradient(darkred 33%, black 33%);
   position: relative;
 }
 .circular-pbar {
   --p: 0;
-  background: conic-gradient(grey var(--p, 0), 0, #cacaca)
+  background: conic-gradient(grey var(--p, 0), #cacaca var(--p, 0))
 }
 .circular-pbar:after {
   content: '';
