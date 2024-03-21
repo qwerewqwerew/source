@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="reset.css" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+		<link rel="stylesheet" href="3.css" />
+		<link rel="stylesheet" href="4.css" />
+		<style>
+			.btns_toggle-btn {
+				position: absolute;
+				top: 10px;
+				right: 32px;
+				color: #193f40;
+				transition: 0.3s;
+				display: none;
+			}
+			.btns_toggle-btn span {
+				font-size: 24px;
+			}
+			@media screen and (max-width: 700px) {
+				body .btns .container.bgshow {
+					backdrop-filter: blur(10px);
+					background-color: #9ad7d955;
+					/* filter: blur(10px); */
+				}
+				.btns.container {
+					background-color: #9accd9;
+					border-radius: 0;
+					padding: 24px;
+				}
+				.btns_toggle-btn {
+					display: block;
+				}
+				.btns_menu {
+					flex-direction: column;
+					width: 100%;
+					align-items: center;
+					justify-content: center;
+					padding-top: 20px;
+					display: none;
+				}
+				.btns_menu.open {
+					display: flex;
+				}
+				.btns_menu button {
+					display: block;
+					margin: 10px auto;
+					width: 80%;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="bg_img"></div>
+		<div class="btns">
+			<div class="container">
+				<div class="btns_menu">
+					<button class="btn home" data-link="#home">home</button>
+					<button class="btn about" data-link="#about">about</button>
+					<button class="btn skills" data-link="#skills">skills</button>
+					<button class="btn skills" data-link="#works">works</button>
+					<button class="btn contact" data-link="#contact">contact</button>
+				</div>
+				<button class="btns_toggle-btn">
+					<span class="material-symbols-outlined"> menu </span>
+				</button>
+			</div>
+		</div>
+		<section id="home">
+			<div class="wrapper">
+				<h2>Home</h2>
+				<h3>quisquam.</h3>
+				<p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit, inte, quisquam. Eus necessitatibus sit impediteu culpa sed, corporis voluptate commodi office similique Poslanec impedit sequi ab compt Home Lorem ipsum dolor sit amet. Lower door met connectetur adipisicing this piquam fan recetas sit erectum culpa sed corpore voluptate commodi officia sinique Possimus ullam nesciunt impede sequ, ab compt</p>
+			</div>
+		</section>
+		<section id="about">
+			<div class="wrapper">
+				<h2>about</h2>
+				<h3>quisquam.</h3>
+				<p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit, inte, quisquam. Eus necessitatibus sit impediteu culpa sed, corporis voluptate commodi office similique Poslanec impedit sequi ab compt Home Lorem ipsum dolor sit amet. Lower door met connectetur adipisicing this piquam fan recetas sit erectum culpa sed corpore voluptate commodi officia sinique Possimus ullam nesciunt impede sequ, ab compt</p>
+			</div>
+		</section>
+		<section id="skills">
+			<div class="wrapper">
+				<h2>skills</h2>
+				<h3>quisquam.</h3>
+				<p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit, inte, quisquam. Eus necessitatibus sit impediteu culpa sed, corporis voluptate commodi office similique Poslanec impedit sequi ab compt Home Lorem ipsum dolor sit amet. Lower door met connectetur adipisicing this piquam fan recetas sit erectum culpa sed corpore voluptate commodi officia sinique Possimus ullam nesciunt impede sequ, ab compt</p>
+			</div>
+		</section>
+		<section id="works">
+			<div class="wrapper">
+				<h2>works</h2>
+				<h3>quisquam.</h3>
+				<p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit, inte, quisquam. Eus necessitatibus sit impediteu culpa sed, corporis voluptate commodi office similique Poslanec impedit sequi ab compt Home Lorem ipsum dolor sit amet. Lower door met connectetur adipisicing this piquam fan recetas sit erectum culpa sed corpore voluptate commodi officia sinique Possimus ullam nesciunt impede sequ, ab compt</p>
+			</div>
+		</section>
+		<section id="contact">
+			<div class="wrapper">
+				<h2>contact</h2>
+				<h3>quisquam.</h3>
+				<p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit, inte, quisquam. Eus necessitatibus sit impediteu culpa sed, corporis voluptate commodi office similique Poslanec impedit sequi ab compt Home Lorem ipsum dolor sit amet. Lower door met connectetur adipisicing this piquam fan recetas sit erectum culpa sed corpore voluptate commodi officia sinique Possimus ullam nesciunt impede sequ, ab compt</p>
+			</div>
+		</section>
+
+		<button class="arrow-up"><span class="material-symbols-outlined"> arrow_upward </span></button>
+		<script src="4.js"></script>
+		<script>
+			const btnsToggleBtn = document.querySelector('.btns_toggle-btn');
+			btnsToggleBtn.addEventListener('click', function (e) {
+				e.preventDefault();
+				btnsMenu.classList.toggle('open');
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,7 @@
+.circular-pbar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: conic-gradient(darkred 33%, 0, black);
+  position: relative;
+}

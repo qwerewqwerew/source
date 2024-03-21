@@ -1,0 +1,17 @@
+body {
+	background-color: lightyellow;
+	transition: all 1s;
+}
+.bgcolor--blue {
+	background-color: lightblue;
+}
+.bgcolor--gray {
+	background-color: lightgray;
+}
+.btns {
+	position: relative;
+	top: 60px;
+	width: 600px;
+	margin: auto;
+	text-align: center;
+}

@@ -1,0 +1,42 @@
+.btns_toggle-btn {
+	position: absolute;
+	top: 10px;
+	right: 32px;
+	color: #193f40;
+	transition: 0.3s;
+	display: none;
+}
+.btns_toggle-btn span {
+	font-size: 24px;
+}
+@media screen and (max-width: 700px) {
+	body .btns .container.bgshow {
+		backdrop-filter: blur(10px);
+		background-color: #9ad7d955;
+		/* filter: blur(10px); */
+	}
+	.btns.container {
+		background-color: #9accd9;
+		border-radius: 0;
+		padding: 24px;
+	}
+	.btns_toggle-btn {
+		display: block;
+	}
+	.btns_menu {
+		flex-direction: column;
+		width: 100%;
+		align-items: center;
+		justify-content: center;
+		padding-top: 20px;
+		display: none;
+	}
+	.btns_menu.open {
+		display: flex;
+	}
+	.btns_menu button {
+		display: block;
+		margin: 10px auto;
+		width: 80%;
+	}
+}

@@ -1,0 +1,30 @@
+<svg width="300px" height="100px" version="1.0" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <clipPath id="clip">
+      <rect width="300px" height="100px"/>
+    </clipPath>
+    <style type="text/css">
+        text {
+          font-size: 5rem;
+          fill: #000;
+        }
+        .text1 {
+          animation: left 10s linear infinite;
+        }
+        @keyframes left {
+          from {
+            transform: translateX(100%);
+          }
+          to {
+            transform: translateX(-100%);
+          }
+        }
+    </style>
+  </defs>
+  <rect class="bg" width="300px" height="100px" fill="red"/>
+  <g class="text" clip-path="url(#clip)">
+    <text class="text1" x="0" y="70">Hello SVG! Hello SVG! Hello SVG! Hello SVG! Hello SVG!</text>
+  </g>
+
+</svg>
