@@ -1,0 +1,13 @@
+@import url(https://qwerewqwerew.github.io/source/style/reset.css);
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+.followAnimation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  will-change: transform;
+  font-size: 5rem;
+}
