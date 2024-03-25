@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../step0/3.css">
+  <!-- <link rel="stylesheet" href="../step1/3.css"> -->
+  <!-- <link rel="stylesheet" href="../step4/index.css"> -->
+  <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+  <!-- .btns>.container>.btns_menu>button.btn*5 -->
+  <div class="btns">
+    <div class="container">
+      <div class="btns_menu"><button class="btn home" data-link="#home">home</button><button class="btn about" data-link="#about">about</button><button class="btn skills" data-link="#skills">skills</button><button class="btn works" data-link="#works">works</button><button class="btn contact" data-link="#contact">contact</button></div> <!-- //.btns_menu -->
+      <!-- btn.btns_toggle-btn>sapn.material-symbols-outlined -->
+      <button class="btns_toggle-btn">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div> <!-- //.container -->
+  </div> <!-- //.btns -->
+  <!-- section#home>.wrapper>h2+h3+p -->
+  <div class="cursor"></div>
+  <section id="home">
+    <div class="wrapper">
+      <h2>HOME</h2>
+      <h3>Lorem ipsum dolor sit</h3>
+      <p class="style1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, doloremque quae illum provident ipsum maxime recusandae consectetur, explicabo eaque voluptatibus amet eos sapiente architecto pariatur sed ad ratione commodi sequi.</p>
+    </div>
+  </section> <!-- //#home -->
+  <section id="about">
+    <div class="wrapper">
+      <h2>about</h2>
+      <h3>Lorem ipsum dolor sit</h3>
+      <p class="style2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, doloremque quae illum provident ipsum maxime recusandae consectetur, explicabo eaque voluptatibus amet eos sapiente architecto pariatur sed ad ratione commodi sequi.</p>
+    </div>
+  </section> <!-- //#about -->
+  <section id="skills">
+    <div class="wrapper">
+      <h2>skills</h2>
+      <h3>Lorem ipsum dolor sit</h3>
+      <p class="style3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, doloremque quae illum provident ipsum maxime recusandae consectetur, explicabo eaque voluptatibus amet eos sapiente architecto pariatur sed ad ratione commodi sequi.</p>
+    </div>
+  </section> <!-- //#skills -->
+  <section id="works">
+    <div class="wrapper">
+      <h2>works</h2>
+      <h3>Lorem ipsum dolor sit</h3>
+      <p class="style4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, doloremque quae illum provident ipsum maxime recusandae consectetur, explicabo eaque voluptatibus amet eos sapiente architecto pariatur sed ad ratione commodi sequi.</p>
+    </div>
+  </section> <!-- //#works -->
+  <section id="contact">
+    <div class="wrapper">
+      <h2>contact</h2>
+      <h3>Lorem ipsum dolor sit</h3>
+      <p class="style5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, doloremque quae illum provident ipsum maxime recusandae consectetur, explicabo eaque voluptatibus amet eos sapiente architecto pariatur sed ad ratione commodi sequi.</p>
+    </div>
+  </section> <!-- //#contact -->
+  <!-- button.arrow-up>span.material-symbols-outlined -->
+  <button class="arrow-up"><i class="fa-solid fa-circle-up"></i></button>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+  <script src="../step0/common.js"></script>
+  <script>
+    const target = document.querySelector('.cursor');
+    let mouseX = 0;
+    let mouseY = 0;
+
+    window.addEventListener('mousemove', function (e) {
+      console.log(e.clientX);
+      console.log(e.clientY);
+      mouseX = e.clientX - 25 + "px";
+      mouseY = e.clientY - 25 + "px";;
+      gsap.to(target, 0.5, { left: mouseX, top: mouseY });
+    });
+
+    document.querySelectorAll("section p").forEach((element) => {
+      let style = element.getAttribute("class");
+
+      element.addEventListener("mouseover", () => {
+        document.querySelector(".cursor").classList.add(style);
+      });
+      element.addEventListener("mouseout", () => {
+        document.querySelector(".cursor").classList.remove(style);
+      });
+    });
+
+  </script>
+</body>
+
+</html>

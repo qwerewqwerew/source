@@ -1,5 +1,5 @@
-body{overflow-x: hidden; }
-.mouse { position: fixed; height: 100%; width: 100%; z-index: 999999; }
+body { overflow-x: hidden; }
+.mouse { position: fixed; height: 100%; width: 100%; z-index: 99; }
 .line { position: absolute; background-color: #9ad7d9; }
 .horizontal { width: 100%; height: 1px; top: 50%; }
 .vertical { width: 1px; height: 100%; left: 50%; }
