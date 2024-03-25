@@ -94,11 +94,11 @@
 	</div>
 	<script>
 		document.addEventListener("mousemove", parallax);
-		function parallax(event) {
+		function parallax(e) {
 			this.querySelectorAll(".wrap span").forEach((el) => {
 				const position = el.getAttribute("data-value");
-				const x = (window.innerWidth - event.pageX * position) / 90;
-				const y = (window.innerHeight - event.pageY * position) / 90;
+				const x = (window.innerWidth - e.pageX * position) / 90;
+				const y = (window.innerHeight - e.pageY * position) / 90;
 
 				el.style.transform = `translateX(${x}px) translateY(${y}px)`;
 			});
