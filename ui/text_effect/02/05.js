@@ -4,7 +4,6 @@ let textsplit = [...text];
 const sp = '<span>';
 const an = '</span>';
 let textArr = textsplit.map((char) => sp + char + an).join('');
-TweenMax.set('.sec1', { perspective: 400 });
 
 document.querySelector('.txt1').innerHTML = textArr;
 let tl = gsap.timeline({
@@ -22,8 +21,6 @@ let tl = gsap.timeline({
 tl.to('.txt1 span', {
 	opacity: 0,
 	y: 50,
-	rotateX: 0,
-	rotateZ: 0,
 	rotateY: 180,
 	duration: 0.5,
 	stagger: 0.1,
