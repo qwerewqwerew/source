@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const 오늘할일 = [
+      {
+        장소: '집',
+        할일: '밥 먹기',
+      },
+      {
+        장소: '집',
+        할일: '김치 먹기',
+      },
+      {
+        장소: '회사',
+        할일: '삼겹살 먹기',
+      },
+      {
+        장소: '회사',
+        할일: '갈비 먹기',
+      },
+      {
+        장소: '헬스장',
+        할일: '운동 하기',
+      },
+    ];
+
+    const 집선택하는콜백함수 = (오늘할일) => 오늘할일.장소 === '집'; // 집 검색하는 함수 작성
+
+    const 집에서할일 = 오늘할일.filter(집선택하는콜백함수); // filter에 콜백 함수로 사용
+
+    console.log(집에서할일)
+  </script>
+</body>
+
+</html>
