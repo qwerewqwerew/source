@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CLASS선택자</title>
+  <style>
+    .happy {
+      color: red;
+      background: gray;
+    }
+
+    .health {
+      color: blue;
+    }
+
+    .brain {
+      color: green;
+    }
+
+    .t_center {
+      text-align: center;
+    }
+
+    .t_color {
+      color: yellow;
+    }
+
+    .bg_black {
+      background-color: black;
+    }
+  </style>
+</head>
+
+<body>
+  <!--
+          반드시 영문으로 시작
+          특수문자는-,_만 허용
+          영문,-,_,숫자
+          아이디는 중복불가
+          클래스는 중복가능
+          대소문자
+       -->
+  <p class="happy">우리를 기쁘게 하는 것들</p>
+  <p class="health t_center bg_black">건강에 좋은 차</p>
+  <p class="brain bg_black t_center">머리가 <span class="t_color">좋아지는</span> 음식</p>
+</body>
+
+</html>
