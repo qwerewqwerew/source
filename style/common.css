@@ -550,7 +550,6 @@ kbd {
 }
 .border{
   border:1px solid #dfdfdf;
-  padding:2rem;
   border-radius:16px;
 }
 .my-list li li{
