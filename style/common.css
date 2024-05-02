@@ -554,4 +554,9 @@ kbd {
   padding:2rem;
   border-radius:16px;
 }
-.my-list{}
+.my-list li li{
+  margin-top:.7rem !important;
+}
+.my-list li p{
+  margin-bottom:0 !important;
+}
