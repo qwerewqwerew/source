@@ -281,6 +281,11 @@ aside {
 	margin: auto;
 	text-align: center;
 }
+.c   {
+	margin: auto;
+	text-align: center;
+	display:table;
+}
 
 .comment_box li {
 	margin-bottom: 0.8rem !important;
