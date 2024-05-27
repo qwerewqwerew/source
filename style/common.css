@@ -397,8 +397,7 @@ kbd {
 
 .red,
 .red * {
-	color: #d21aaa !important;
-	font-size: 1.1rem !important;
+	color: var(--acc-0) !important;
 }
 
 .blue,
