@@ -6,8 +6,10 @@
     <title>Swiper demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
     <!-- Link Swiper's CSS -->
+    <style>
+        @import url(https://qwerewqwerew.github.io/source/style/reset.css);
+    </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-
     <!-- Demo styles -->
     <style>
         html,
@@ -16,20 +18,7 @@
             height: 100%;
         }
 
-        body {
-            background: #eee;
-            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-            font-size: 14px;
-            color: #000;
-            margin: 0;
-            padding: 0;
-        }
-
-        .vertical {
-            /*  background: #000; */
-        }
-
-        .a {
+        section.vh100 {
             width: 100%;
             height: 100vh;
             background: #ccc;
@@ -59,19 +48,13 @@
 </head>
 
 <body>
- <!--  .swiper.vertical>swiper-wrapper>(a.swiper-slide)*3+section.swiper.section_All.swiper+a.swiper-slide -->
-    <div class="swiper vertical">
+    <!--  .swiper.vertical>swiper-wrapper>(a.swiper-slide)*3+section.swiper.section_All.swiper+a.swiper-slide -->
+    <div class="swiper verticals">
         <div class="swiper-wrapper">
-            <div class="a swiper-slide">
-                1
-            </div>
-            <div class="a swiper-slide">
-                2
-            </div>
-            <div class="a swiper-slide">
-                3
-            </div>
-            <section class="swiper section_All swiper-slide">
+            <section class="vh100 swiper-slide"> 1 </section>
+            <section class="vh100 swiper-slide"> 2 </section>
+            <section class="vh100 swiper-slide"> 3 </section>
+            <section class="swiper horizontals swiper-slide">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" data-hash="slide1">Slide 1</div>
                     <div class="swiper-slide" data-hash="slide2">Slide 2</div>
@@ -85,17 +68,14 @@
                 </div>
                 <div class="swiper-pagination"></div>
             </section>
-            <div class="a swiper-slide">
-                5
-            </div>
+            <section class="vh100 swiper-slide"> 5 </section>
         </div>
     </div>
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-
     <!-- Initialize Swiper -->
     <script>
-        var swiper = new Swiper(".section_All", {
+        var swiper = new Swiper(".horizontals", {
             direction: "horizontal",
             slidesPerView: 1,
             spaceBetween: 30,
@@ -108,7 +88,7 @@
                 watchState: true,
             },
         });
-        var swiper2 = new Swiper(".vertical", {
+        var swiper2 = new Swiper(".verticals", {
             direction: "vertical",
             slidesPerView: 1,
             mousewheel: true,

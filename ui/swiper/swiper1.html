@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swiper</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+  <style>
+    @import url(https://qwerewqwerew.github.io/source/style/reset.css);
+  </style>
+  <!-- 필수 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <style>
+    /* 필수 */
+    html,
+    body {
+      position: relative;
+      height: 100%;
+    }
+
+    main {
+      position: relative;
+      height: 100%;
+    }
+
+    section.vh100 {
+      width: 100%;
+      height: 100vh;
+      background: #ccc;
+    }
+
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+     <!-- .swiper>.swiper-wrapper>.swiper-slide 필수 -->
+    <div class="swiper verticals">
+      <div class="swiper-wrapper">
+        <section class="vh100 swiper-slide"> 1 </section>
+        <section class="vh100 swiper-slide"> 2 </section>
+        <section class="vh100 swiper-slide"> 3 </section>
+        <section class="vh100 swiper-slide"> 4 </section>
+      </div>
+    </div>
+  </main>
+  <!-- 아랫줄 필수 -->
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".verticals", {
+      direction: "vertical",
+      slidesPerView: 1,
+      mousewheel: true,
+    });
+  </script>
+</body>
+
+</html>
