@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @import url(https://qwerewqwerew.github.io/source/style/reset.css);
+
+    :root {
+      --text-color: #111;
+      --bg-color: #b9b3a9;
+    }
+
+    html {
+      max-width: 100vw;
+    }
+
+    body {
+      color: var(--text-color);
+      background: var(--bg-color);
+      transition: 0.3s ease-out;
+      overflow-x: hidden;
+      max-width: 100vw;
+      width: 100%;
+      overscroll-behavior: none;
+    }
+
+    /* ====================================
+        ============== layout ===============
+    ==================================== */
+    .container section {
+      min-height: 100vh;
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /*auto-fit과 auto-fill의 차이:
+      auto-fit: 컨테이너가 커졌을 때 빈 열을 추가하지 않고 열이 가능한 한 많이 확장됩니다. 즉, 그리드 트랙이 부족할 경우 자동으로 늘려서 빈 공간을 채웁니다.
+      auto-fill: 열이 채워질 수 있도록 가능한 한 많이 반복하지만, 실제로 콘텐츠가 없는 경우에도 열을 남겨둘 수 있습니다. 하지만 auto-fit은 비어 있는 열을 제거하고 다른 열이 확장될 수 있도록 합니다.  */
+    section:not(#sectionPin, .pin-wrap-sticky) {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      /*  그리드 컨테이너의 너비에 맞춰 열을 배치하며, 각 열은 최소 300px의 너비를 가지게 됩니다.
+유연한 확장: 열의 개수는 화면 크기에 따라 자동으로 조정되며, 남은 공간은 1fr로 설정된 열이 균등하게 차지합니다 */
+      grid-gap: 2rem;
+      padding: 50px 10vw;
+      margin: auto;
+      place-items: center;
+      /* 아이템 수직중앙 */
+    }
+
+    .container img {
+      height: 80vh;
+      width: auto;
+      max-width: 100%;
+      object-fit: cover;
+    }
+
+    .container h1 {
+      font-size: clamp(1.5rem, 8vw + 1rem, 6rem);
+      line-height: 1;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      position: absolute;
+      top: 10vw;
+      left: 10vw;
+      z-index: 4;
+      overflow-wrap: break-word;
+      hyphens: auto;
+    }
+
+    .container h1 span {
+      display: block;
+    }
+
+    .container h2 {
+      font-size: 2rem;
+      max-width: 400px;
+    }
+
+    .credit a {
+      color: var(--text-color);
+    }
+
+    .container * {
+      box-sizing: border-box;
+    }
+
+    #sectionPin {
+      height: 100vh;
+      display: flex;
+      background: var(--text-color);
+      color: var(--bg-color);
+      overflow: scroll;
+    }
+
+    .pin-wrap {
+      height: 100vh;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 50px 10vw;
+    }
+
+    .pin-wrap>* {
+      min-width: 60vmax;
+      padding: 0 5vmax;
+    }
+
+    .container>p {
+      position: absolute;
+      bottom: 10vw;
+      right: 10vw;
+      width: 200px;
+      line-height: 1.5;
+    }
+  </style>
+  <style>
+    #sectionPin {
+      height: 500vh;
+      overflow: visible;
+    }
+
+    .pin-wrap-sticky {
+      height: 100vh;
+      width: 100vw;
+      position: sticky;
+      top: 0;
+      width: 100vw;
+      overflow-x: hidden;
+    }
+
+    .pin-wrap {
+      height: 100vh;
+      width: 250vmax;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- .container>section+section#sectionPin+section -->
+  <div class="container">
+    <section>
+      <!-- div>(h1>span*3)+p -->
+      <div>
+        <h1><span>가로</span><span>스크롤</span><span>페이지</span></h1>
+        <p>css만으로 구현해보자</p>
+      </div>
+    </section>
+    <section id="sectionPin">
+      <!-- .pin-wrap-sticky>figure>figcaption+img*3 -->
+      <div class="pin-wrap-sticky">
+        <figure class="pin-wrap">
+          <figcaption>
+            <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, quod, minus adipisci cupiditate quo dolor veniam molestiae nobis quia saepe ea explicabo tempore sed deserunt in quos vero consequatur laudantium?</h2>
+          </figcaption>
+          <img src="1.png" alt="">
+          <img src="2.png" alt="">
+          <img src="3.png" alt="">
+        </figure>
+      </div>
+    </section>
+    <section>
+      <figure class="credit">
+        <img src="3.png" alt="">
+        <figcaption>
+          <h2>Created by Mango</h2>
+        </figcaption>
+      </figure>
+    </section>
+  </div>
+</body>
+
+</html>
