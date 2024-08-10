@@ -139,6 +139,43 @@
       width: 250vmax;
     }
   </style>
+  <style>
+    @keyframes move {
+      to {
+        /* 우측끝이 뷰포트에 맞도록 수평이동  */
+        transform: translateX(calc(-100% + 100vw));
+      }
+    }
+
+    #sectionPin {
+      /* 스크롤영역을 확보하기 위해 높이 확장 */
+      height: 500vh;
+      overflow: visible;
+      /* 스크롤 애니메이션의 대상 지정 */
+      view-timeline-name: --section-pin-tl;
+      view-timeline-axis: block;
+    }
+
+    .pin-wrap-sticky {
+      /* 스티키할 대상 요소 스타일링 */
+      height: 100vh;
+      width: 100vw;
+      position: sticky;
+      top: 0;
+      width: 100vw;
+      overflow-x: hidden;
+    }
+
+    .pin-wrap {
+      height: 100vh;
+      width: 250vmax;
+      will-change: transform;
+      animation: linear move forwards;
+      /* 스크롤 애니메이션의 이름과 범위 설정 */
+      animation-timeline: --section-pin-tl;
+      animation-range: contain 0% contain 100%;
+    }
+  </style>
 </head>
 
 <body>
