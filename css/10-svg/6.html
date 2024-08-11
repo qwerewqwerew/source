@@ -15,7 +15,7 @@
     .flex {
       display: flex;
       width: 80%;
-      margin:10rem auto;
+      margin: 10rem auto;
       column-gap: 5%;
     }
 
@@ -41,9 +41,10 @@
       left: 0;
       width: 100%;
       height: 100%;
-      -webkit-mask-image: url('./images/card.svg');
-      -webkit-mask-repeat: no-repeat;
-      -webkit-mask-size: 100%;
+      mask-image: url('./images/card.svg');
+      mask-repeat: no-repeat;
+      mask-size: 100%;
+      /* mask: url('./images/card.svg#card') no-repeat / 100%; */
       background: rgba(255, 255, 255, 1);
       transition: all 0.4s ease;
     }
@@ -65,6 +66,22 @@
       top: 0;
     }
   </style>
+  <style>
+    .video_box {
+      position: relative;
+      padding-bottom: 56.85%;
+      height: 0;
+      overflow: hidden;
+    }
+
+    video {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      mask: url('./images/card.svg') no-repeat 50px 0, url('./images/card.svg') no-repeat 550px 300px;
+      mask-size: 260px, 150px;
+    }
+  </style>
 </head>
 
 <body>
@@ -81,6 +98,9 @@
         <img src="http://qwerew.cafe24.com/images/1.jpg" alt="">
         <figcaption>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae debitis minima veniam vel mollitia reprehenderit velit explicabo impedit officiis iusto, in ducimus eius esse! Quia aliquid harum dicta id natus.</figcaption>
       </a></figure>
+  </div>
+  <div class="video_box">
+    <video src="./images/video.mp4" autoplay muted></video>
   </div>
 </body>
 
