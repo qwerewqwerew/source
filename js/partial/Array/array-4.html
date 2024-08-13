@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Array 객체의 메서드</title>
+</head>
+
+<body>
+  <p>splice 메서드 사용하기</p>
+  <script>
+    // 인수가 1개일 경우
+    const numbers = [1, 2, 3, 4, 5];
+    const newNumbers = numbers.splice(2);
+    document.write(`반환된 배열 : ${newNumbers} <br> 변경된 배열 : ${numbers} <hr>`);
+
+
+    // 인수가 2개일 경우
+    const study = ["html", "css", "web", "jquery"];
+    const newStudy = study.splice(2, 1);
+    document.write(`반환된 배열 : ${newStudy} <br> 변경된 배열 : ${study} <hr>`);
+
+    // 인수가 3개 이상일 경우
+    const newStudy2 = study.splice(2, 1, "js");
+    document.write(`반환된 배열 : ${newStudy2} <br> 변경된 배열 : ${study} <hr>`);
+
+  </script>
+</body>
+
+</html>
