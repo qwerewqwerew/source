@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>while 계산하기</title>
+  <style>
+    body {
+      padding-top: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>while문</h1>
+  <script>
+    let number;
+    let sum = 0;
+
+    do {
+      number = prompt("숫자를 입력하세요:");
+    } while (isNaN(number));
+
+    for (let i = 1; i <= parseInt(number); i++) {
+      sum += i;
+    }
+
+    document.write("입력한 숫자들의 합은 " + sum + "입니다.");
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>while 계산하기</title>
+  <style>
+    body {
+      padding-top: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>while문</h1>
+  <script>
+    let x = 0
+    let total = 0
+    while (x < 10) {
+      x++
+      total = total + x //total+=x
+      document.write(x)
+      if (x != 10)
+        document.write("+")
+    }
+    document.write("=" + total)
+  </script>
+</body>
+
+</html>

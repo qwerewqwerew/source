@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>안녕하세요</h1>
+  <script>
+    var your_sex = '남자';
+    document.write('당신은' + your_sex + '이므로');
+    if (your_sex == '남자') document.write('치마를 입으세요.');
+    if (your_sex == '여자') document.write('바지를 입으세요.');
+  </script>
+  <script>
+    const date = new Date();
+    const hour = date.getHours();
+    console.log(hour);
+    if (hour < 12) {
+      document.querySelector('body').style.backgroundColor = 'ivory';
+      document.querySelector('body').style.color = 'red';
+    }
+    if (hour > 12) {
+      document.querySelector('body').style.backgroundColor = 'black';
+      document.querySelector('body').style.color = 'white';
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+
+	<body>
+		<h1>반복문</h1>
+
+		<h2>for</h2>
+		<ul class="menu1">
+			<li>list item 1</li>
+			<li>list item 2</li>
+			<li>list item 3</li>
+			<li>list item 4</li>
+		</ul>
+		<hr />
+		<h2>foreach</h2>
+		<ul class="menu2">
+			<li>list item 1</li>
+			<li>list item 2</li>
+			<li>list item 3</li>
+			<li>list item 4</li>
+		</ul>
+		<hr />
+		<h2>for in</h2>
+		<ul class="menu3">
+			<li>list item 1</li>
+			<li>list item 2</li>
+			<li>list item 3</li>
+			<li>list item 4</li>
+		</ul>
+		<hr />
+		<h2>do / while</h2>
+		<ul class="menu4">
+			<li>list item 1</li>
+			<li>list item 2</li>
+			<li>list item 3</li>
+			<li>list item 4</li>
+		</ul>
+		<hr />
+
+		<script>
+			var menu1 = document.querySelectorAll(".menu1 li");
+			var menu2 = document.querySelectorAll(".menu2 li");
+			var menu3 = document.querySelectorAll(".menu3 li");
+			var menu4 = document.querySelectorAll(".menu4 li");
+			//반복문을 이용하여 리스트의 색상을 blue로 변경한다.
+
+			// for
+			for (i = 0; i < menu1.length; i++) {
+				menu1[i].style.color = "blue";
+			}
+			// forEach
+			menu2.forEach((element) => {
+				element.style.color = "blue";
+			});
+			//for of
+			for (var k of menu3) {
+				console.log(menu3, k);
+				k.style.color = "blue";
+			}
+			//do / while
+			let y = 0;
+			do {
+				menu4[y].style.color = "blue";
+				y++;
+			} while (y < menu4.length);
+
+			//이벤트연결
+			//menu1[0].addEventListener('click',()=>{})
+			//menu1[1].addEventListener('click',()=>{})
+			// for
+			for (i = 0; i < menu1.length; i++) {
+				menu1[i].addEventListener("mouseover", function () {
+					this.style.color = "red";
+				});
+				menu1[i].addEventListener("mouseout", function () {
+					this.style.color = "blue";
+				});
+			}
+			//for of
+			for (var a of menu3) {
+				a.addEventListener("mouseover", function () {
+					this.style.color = "red";
+				});
+				a.addEventListener("mouseout", function () {
+					this.style.color = "blue";
+				});
+			}
+
+			// forEach
+			menu2.forEach((element, index) => {
+				menu2[index].addEventListener("mouseover", function () {
+					this.style.color = "red";
+				});
+				menu2[index].addEventListener("mouseout", function () {
+					this.style.color = "blue";
+				});
+			});
+
+			//do / while
+			let z = 0;
+			do {
+				menu4[z].addEventListener("mouseover", function () {
+					this.style.color = "red";
+				});
+				menu4[z].addEventListener("mouseout", function () {
+					this.style.color = "blue";
+				});
+				z++;
+			} while (z < menu4.length);
+		</script>
+	</body>
+</html>
+
+
+</html>
