@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>조건문</title>
+</head>
+
+<body>
+  <script>
+    function elseSyntax() {
+      var userNumber = prompt("숫자를 입력하세요.");
+      if(userNumber !== null)
+        (userNumber % 3 === 0) ? alert("3의 배수입니다.") : alert("3의 배수가 아닙니다.");
+      else
+        alert("입력이 취소됐습니다.");
+    }
+    function elseifSyntax() {
+      var userNumber = prompt("숫자를 입력하세요.");
+      let ele = document.createElement("div");
+      if(userNumber === null) {
+        alert("입력이 취소됐습니다.");
+      } else if(userNumber % 3 === 0) {
+        ele.append('3의 배수입니다.');
+        document.body.append(ele);
+      } else if(userNumber % 3 !== 0) {
+        ele.append('3의 배수가 아닙니다.');
+        document.body.append(ele);
+      }
+    }
+    elseifSyntax()
+  </script>
+</body>
+
+</html>
