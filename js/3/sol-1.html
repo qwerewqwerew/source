@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>연습문제 1</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>연습문제 1</title>
 </head>
+
 <body>
-	<script>
+  <script>
     function sumMulti(x, y) {
-      if (x === y) 
+      if(x === y)
         return x * y;
-      else 
+      else
         return x + y;
     }
+    document.body.innerHTML += `<h1>${sumMulti(5, 10)}</h1>`;
+    document.body.innerHTML += `<h1>${sumMulti(10, 10)}</h1>`;
 
-    console.log(sumMulti(5, 10));
-    console.log(sumMulti(10, 10));
   </script>
 </body>
+
 </html>
