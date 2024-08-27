@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div class="loader_wrap">
+    <div class="loader"></div>
+  </div>
+  <h1>HOME</h1>
+</body>
+<script>
+  window.onload = () => {
+    const loader = document.querySelector('.loader_wrap');
+    setTimeout(() => {
+      loader.classList.add('hidden');
+    }, 5000);
+  }
+</script>
+
+</html>

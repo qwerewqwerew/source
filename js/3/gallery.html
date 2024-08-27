@@ -9,6 +9,11 @@
     #galleryWrap {
       width: 50%;
       margin: auto;
+
+      a {
+        text-decoration: none;
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
@@ -18,24 +23,35 @@
     <h1>이미지 넘기기</h1>
     <p>
       <a href="#prev" onclick="prevGallery();">⏪</a>
-      <img src="./img/img1.jpg" alt="갤러리" id="gallery" width="300" height="200" />
+      <img src="./img/1.jpg" alt="갤러리" id="gallery" width="300" height="200" />
       <a href="#next" onclick="nextGallery();">⏩</a>
     </p>
   </div>
   <script>
-    var num = 1;
+    let num = 1;
     function nextGallery() {
       num++;
-      if (num > 7) { num = 1 }
-      document.getElementById("gallery").src = "img/img" + num + ".jpg";
+      if(num > 7) { num = 1; }
+      document.querySelector('#gallery').src = "img/" + num + ".jpg";
       return false;
     }
     function prevGallery() {
       num--;
-      if (num < 1) { num = 7 }
-      document.getElementById("gallery").src = "img/img" + num + ".jpg";
+      if(num < 1) { num = 7; }
+      document.querySelector('#gallery').src = "img/" + num + ".jpg";
       return false;
     }
+    const stop = setInterval(() => {
+      nextGallery();
+    }, 500);
+    document.querySelector('#galleryWrap').addEventListener('mouseenter', () => {
+      clearInterval(stop);
+    });
+    document.querySelector('#galleryWrap').addEventListener('mouseleave', () => {
+      setInterval(() => {
+        nextGallery();
+      }, 500);
+    })
   </script>
 </body>
 
