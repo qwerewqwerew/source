@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #galleryWrap {
+      width: 50%;
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="galleryWrap">
+    <h1>이미지 넘기기</h1>
+    <p>
+      <a href="#prev" onclick="prevGallery();">⏪</a>
+      <img src="./img/img1.jpg" alt="갤러리" id="gallery" width="300" height="200" />
+      <a href="#next" onclick="nextGallery();">⏩</a>
+    </p>
+  </div>
+  <script>
+    var num = 1;
+    function nextGallery() {
+      num++;
+      if (num > 7) { num = 1 }
+      document.getElementById("gallery").src = "img/img" + num + ".jpg";
+      return false;
+    }
+    function prevGallery() {
+      num--;
+      if (num < 1) { num = 7 }
+      document.getElementById("gallery").src = "img/img" + num + ".jpg";
+      return false;
+    }
+  </script>
+</body>
+
+</html>

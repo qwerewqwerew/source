@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <!--
+      setTimeout: 시간이 지나면
+      setTimeout(시간되면 할일, 측정할시간)
+      setInterval: 시간마다
+      setInterval(시간마다 할일, 측정할시간)
+     -->
+
+    <script>
+      setTimeout(function(){
+        document.write('1초 후에 실행됩니다')
+      },1000)
+
+/*
+   const stop1= setTimeout(() => {
+        document.write(`1초 후에 두번째 실행됩니다.`)
+      }, 1000)
+      clearTimeout(stop1)
+
+ */
+
+  setInterval(function(){
+        document.write('1초마다 실행됩니다.')
+      },1000)
+
+      const stop2= setInterval(()=>{
+        document.write('1초마다 두번째 실행됩니다.')
+      },1000)
+      clearInterval(stop2)
+
+/*
+    let count = 0
+      setInterval(() => {
+        document.write(`1초마다 실행됩니다.(${count}번째)`)
+        count++
+      }, 1000)
+ */
+    </script>
+
+
+
+
+</head>
+  <body></body>
+</html>
