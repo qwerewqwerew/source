@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow Fuctions</title>
+</head>
+
+<body>
+    <script>
+        // const hi = function() {
+        //     return "안녕하세요?";
+        // }
+        // const hi = () => {return "안녕하세요?"};
+
+        //실행문 한줄일때 중괄호, 리턴 생략
+        const hi = () => "안녕하세요?";
+
+        alert(hi());
+    </script>
+    <!-- 매개변수1개 -->
+    <script>
+        // let hihi = function(user) {
+        //      document.write (`${user}님, 안녕하세요?`);
+        // }
+
+        // let hihi = (user) => { document.write (`${user}님, 안녕하세요?`); }
+
+        let hihi = user => { document.write(`${user}님, 안녕하세요?`); }
+
+        hihi("망고");
+
+    </script>
+    <!-- 매개변수2개 -->
+    <script>
+        // let sum = function(a, b) {
+        //     return a + b;
+        // }
+
+        // let sum = (a, b) => { return a + b }
+
+        /* 실행문 한줄일때 function,중괄호,소괄호생략 */
+        let sum = (a, b) => a + b;
+
+        document.write(`두 수의 합 :${sum(10, 20)}`);
+    </script>
+</body>
+
+</html>

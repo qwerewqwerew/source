@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // menu 라는 함수를 만듭니다.
+    function menu() {
+      console.log("떡볶이");  //콘솔로그에 떡볶이를 출력합니다.
+    }
+
+    //lunch 함수는 callback 파라미터를 전달받습니다.
+    function lunch(callback) {
+      callback(); //callback 파라미터는 함수로 실행할수 있습니다.
+    }
+
+    //lunch 함수를 호출하면서 인자로 menu 함수를 전달합니다. 이때 menu는 인자로 전달되므로 소괄호를 하지 않습니다.
+    lunch(menu)
+  </script>
+  <script>
+    const test = function (cb1) {
+      //function(10){
+      // document.write(`${10}번째 안녕망고`)
+      for (i = 0; i < 10; i++) {
+        cb1(i)
+      }
+    }
+    const fn = function (cb2) {
+      document.write(`${cb2}번째 안녕망고`)
+    }
+    test(fn)
+  </script>
+</body>
+
+</html>
