@@ -37,20 +37,20 @@
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-12 col-md-10 col-lg-8 col-xl-6 mt-5">
-        <p class="lead"> This demo requires an API key. <a target="_blank" href="https://platform.openai.com/">Get yours here</a>
+        <p class="lead"> API 키가 필요합니다. <a target="_blank" href="https://platform.openai.com/">여기에서 받으세요</a>
         </p>
       </div>
     </div>
   </div>
   <div class="position-absolute top-0 end-0 mt-2 me-3">
-    <button id="api" type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#KeyModal"> ADD API KEY </button>
+    <button id="api" type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#KeyModal"> API키 입력 </button>
   </div>
   <div class="container mt-5">
     <div class="modal fade" id="KeyModal" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel"> Your API Key remains stored locally in your browser </h5>
+            <h5 class="modal-title" id="exampleModalLabel"> 당신의 API키는 웹브라우저의 로컬 스토리지에 저장되며 브라우저 창을 닫는 즉시 삭제됩니다. </h5>
           </div>
           <div class="modal-body">
             <div class="form-group">
@@ -59,8 +59,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Close </button>
-            <button type="button" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> 창닫기 </button>
+            <button type="button" class="btn btn-primary">저장</button>
           </div>
         </div>
       </div>
@@ -76,8 +76,8 @@
     </div>
     <!-- Header -->
     <header class="mt-5">
-      <h1 class="text-center">AI Image Generator</h1>
-      <p class="lead text-center"> Bring your vision to life with Generative AI. Simply describe what you want to see! </p>
+      <h1 class="text-center">AI 이미지 생성기</h1>
+      <p class="lead text-center">Generative AI로 당신의 비전을 현실로 만들어 보세요. 보고 싶은 것을 간단히 설명하세요!</p>
     </header>
     <!-- Form -->
     <section class="mt-5">
@@ -85,12 +85,12 @@
         <div class="row">
           <div class="col-md-9">
             <div class="form-group">
-              <input type="text" class="form-control py-2 pb-2" id="prompt" placeholder="A cartoon of a cat catching a mouse" />
+              <input type="text" class="form-control py-2 pb-2" id="prompt" placeholder="귀족이지만 개구장이 성격의 말티즈 그림" />
             </div>
           </div>
           <div class="col-md-3">
             <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-lg" id="generate"> Generate Image </button>
+              <button type="submit" class="btn btn-primary btn-lg" id="generate">이미지를 만들어라 이얍!</button>
             </div>
           </div>
         </div>
@@ -119,14 +119,10 @@
     } );
 
     const images = [
-      "https://essykings.github.io/JavaScript/cat-mouse.png",
-      "https://essykings.github.io/JavaScript/image1.png",
-      "https://essykings.github.io/JavaScript/image2.png",
-      "https://essykings.github.io/JavaScript/image3.png",
-      "https://essykings.github.io/JavaScript/image9.png",
-      "https://essykings.github.io/JavaScript/image5.png",
-      "https://essykings.github.io/JavaScript/image6.png",
-      "https://essykings.github.io/JavaScript/cat.png",
+      "https://qwerewqwerew.github.io/source/js/dall-E/ai/dog-1.png",
+      "https://qwerewqwerew.github.io/source/js/dall-E/ai/dog-2.png",
+      "https://qwerewqwerew.github.io/source/js/dall-E/ai/dog-3.png",
+      "https://qwerewqwerew.github.io/source/js/dall-E/ai/dog-4.png",
     ];
     const imageGallery = document.getElementById( "gallery" );
     const promptInp = document.getElementById( "prompt" );
@@ -144,13 +140,13 @@
       const key = localStorage.getItem( "API_KEY" );
 
       if( !prompt ) {
-        displayMessage( "Please enter a prompt" );
+        displayMessage( "값을 입력해주세요" );
         return;
       }
 
       if( !key ) {
         displayMessage(
-          "Please add your API KEY. The key will be stored locally in your browser."
+          "API 키 를 입력해 주세요."
         );
         return;
       }
