@@ -2,15 +2,12 @@ const images = ['https://qwerewqwerew.github.io/source/js/dall-E/ai/dog1.png', '
 
 const imageGallery = document.querySelector('#gallery');
 
-
 function displayImage() {
 	const imageMarkUp = images
 		.map((image) => {
-			return `
-       <div class="col-12 col-sm-6 col-md-3 mb-4 position-relative" id ="image-container ">
+			return `<div class="col-12 col-sm-6 col-md-3 mb-4 position-relative" id ="image-container ">
           <img src="${image}" class="img-fluid" alt="Placeholder Image">
-        </div>
-        `;
+        </div>`;
 		})
 		.join('');
 	imageGallery.innerHTML = imageMarkUp;
