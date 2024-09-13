@@ -8,7 +8,7 @@ keyModalEl.addEventListener('shown.bs.modal', () => {
 	const keyInput = document.querySelector('#apikey');
 	saveBtn.addEventListener('click', () => {
 		const keyVal = keyInput.value;
-		localStorage.setItem('API_Key', keyVal);
+		localStorage.setItem('API_KEY', keyVal);
 		keyModal.hide();
 	});
 });
