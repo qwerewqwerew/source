@@ -2,12 +2,7 @@ const images = ['https://qwerewqwerew.github.io/source/js/dall-E/ai/dog1.png', '
 
 const imageGallery = document.querySelector('#gallery');
 
-function displayImage(x) {
-	const imageMarkUp = `<div class="row justify-content-center">
-  <div class="col d-flex justify-content-center"><img src="${x}" alt="" class="img-fluid"></div>
-</div>`;
-	imageGallery.innerHTML = imageMarkUp;
-}
+
 function displayImage() {
 	const imageMarkUp = images
 		.map((image) => {
