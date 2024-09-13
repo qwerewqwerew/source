@@ -24,8 +24,7 @@ const generateForm = document.querySelector('#generate-form');
 generateForm.addEventListener('submit', async (e) => {
 	e.preventDefault();
 	const prompt = document.querySelector('#prompt').value;
-	// const key = localStorage.getItem('API_KEY');
-	const key = 'sk-_fo5pxNKFOzdES4yhQU3hBMgRY0jTevqqESwgv__6FT3BlbkFJCjQ1fryzwlxoEegvs4sVUARA5XeUP5h0cUmoVYzDAA';
+	const key = localStorage.getItem('API_KEY');
 	await fetchImage(prompt, key);
 });
 
