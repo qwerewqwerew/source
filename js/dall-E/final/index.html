@@ -1,236 +1,102 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script src="https://kit.fontawesome.com/72404af0e3.js" crossorigin="anonymous"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap");
+    @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
 
     body {
-      font-family: "DM Mono", monospace;
-    }
+      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 
-    h1 {
-      font-weight: 900;
-    }
+      a {
+        font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+      }
 
-    p {
-      font-weight: 500;
-    }
+      h1 {
+        font-weight: 900;
+      }
 
-    .message,
-    #spinner {
-      display: none;
+      p {
+        font-weight: 500;
+      }
+
+      .message,
+      #spinner {
+        display: none;
+      }
     }
   </style>
 </head>
 
 <body>
+  <!-- .container-fluid>.row.justify-content-center>.col-12.col-md.10.col-lg-8.col-xl-6.mt-5>p.lead>a:blank -->
   <div class="container-fluid">
     <div class="row justify-content-center">
-      <div class="col-12 col-md-10 col-lg-8 col-xl-6 mt-5">
-        <p class="lead"> API 키가 필요합니다. <a target="_blank" href="https://platform.openai.com/">여기에서 받으세요</a>
-        </p>
+      <div class="col-12 col-md 10 col-lg-8 col-xl-6 mt-5">
+        <p class="lead">API 키가 필요 합니다.<a href="http://platform.openai.com" target="_blank" rel="noopener noreferrer">여기서 발급 받으실수 있습니다.</a></p>
       </div>
     </div>
-  </div>
-  <div class="position-absolute top-0 end-0 mt-2 me-3">
-    <button id="api" type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#KeyModal"> API키 입력 </button>
-  </div>
+  </div> <!-- //.container-fluid -->
+  <!-- .position-absolute.top-0.end-0.mt-2.me-3>button:button#api.btn.btn-info -->
+  <div class="position-absolute top-0 end-0 mt-2 me-3"><button type="button" id="api" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#Keymodal">API키 입력하기</button></div> <!-- //.position-absolute -->
+  <!-- .container.mt-5>.modal.fade#Keymodal>.modal.dialog>.modal-content>(.modal-header>h5.modal-title#ModalLabel)+(.modal-body>.form-group>label+input.form-control#apikey)+(.modal-footer>button:button.btn.btn-*2) -->
   <div class="container mt-5">
-    <div class="modal fade" id="KeyModal" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="Keymodal" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel"> 당신의 API키는 웹브라우저의 로컬 스토리지에 저장되며 브라우저 창을 닫는 즉시 삭제됩니다. </h5>
+            <h5 class="modal-title" id="ModalLabel">입력하신 API키는 웹브라우저의 로컬 스토리지에 저장되며 창을 닫는 즉시 삭제됩니다.</h5>
           </div>
           <div class="modal-body">
-            <div class="form-group">
-              <label for="apikey">API KEY</label>
-              <input type="text" class="form-control" id="apikey" />
-            </div>
+            <div class="form-group"><label for="apikey">API KEY 입력창</label><input type="text" class="form-control" id="apikey" placeholder="GPT에서 발급받은 API키를 입력해주세요."></div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> 창닫기 </button>
-            <button type="button" class="btn btn-primary">저장</button>
-          </div>
+          <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">창닫기</button><button type="button" class="btn btn-primary">저장하기</button></div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- main -->
+  </div> <!-- //.container mt-5 -->
+  <!-- .container.mt-5>.row.justify-content-center -->
   <div class="container mt-5">
-    <!-- alert -->
     <div class="row justify-content-center">
+      <!-- .col-md-8>.message.alert.alert-danger.text-center#message -->
       <div class="col-md-8">
-        <div class="message alert alert-danger text-center" role="alert" id="message"></div>
+        <div class="message alert alert-danger text-center" id="message"></div>
       </div>
-    </div>
-    <!-- Header -->
+    </div> <!-- //.row justify-content-center -->
+    <!-- header.mt-5>(h1.text-center+p.lead.text-center) -->
     <header class="mt-5">
       <h1 class="text-center">AI 이미지 생성기</h1>
-      <p class="lead text-center">Generative AI로 당신의 비전을 현실로 만들어 보세요. 보고 싶은 것을 간단히 설명하세요!</p>
+      <p class="lead text-center">Generative AI로 생각을 그림으로 그려 보세요. 머릿속의 생각을 간단히 설명하세요!</p>
     </header>
-    <!-- Form -->
+    <!-- section.mt-5>(form#generate-form>(.row>(.col-md-9>(.form-group>input:text.form-control.py-2.pb-2#prompt))+.col-md-3>(.form-group>button:submit.btn.btn-primary.btn-lg#generate))) -->
     <section class="mt-5">
       <form id="generate-form">
         <div class="row">
           <div class="col-md-9">
-            <div class="form-group">
-              <input type="text" class="form-control py-2 pb-2" id="prompt" placeholder="귀족이지만 개구장이 성격의 말티즈 그림" />
-            </div>
+            <div class="form-group"><input type="text" id="prompt" class="form-control py-2 pb-2" placeholder="신분이 공주인데 성격은 개구쟁이인 몰티즈 강아지를 그려줘"></div>
           </div>
           <div class="col-md-3">
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-lg" id="generate">이미지를 만들어라 이얍!</button>
-            </div>
+            <div class="form-group"><button type="submit" class="btn btn-primary btn-lg" id="generate">나와라 뿅!</button></div>
           </div>
         </div>
       </form>
     </section>
-    <!-- spinner -->
-    <div class="spinner-border text-danger" role="status" id="spinner">
-    </div>
-    <!-- Generated Images -->
+    <!-- .spinner-border.text-danger#spinner -->
+    <div class="spinner-border text-danger" id="spinner"></div>
+    <!-- section.container.mt-5>(.row.justify-content-center#gallery) -->
     <section class="container mt-5">
       <div class="row justify-content-center" id="gallery">
-        <!-- images will be displayed here -->
+        <!-- 여기에 이미지가 생겨요 -->
       </div>
     </section>
-  </div>
-  <script>
-    $( "#KeyModal" ).on( "shown.bs.modal", function () {
-      const saveButton = document.querySelector( "#KeyModal .btn-primary" );
-      const apiKeyInput = document.querySelector( "#apikey" );
-
-      saveButton.addEventListener( "click", function () {
-        const apiKeyValue = apiKeyInput.value;
-        localStorage.setItem( "API_KEY", apiKeyValue );
-        $( "#KeyModal" ).modal( "hide" );
-      } );
-    } );
-
-    const images = [
-      "https://qwerewqwerew.github.io/source/js/dall-E/ai/dog1.png",
-      "https://qwerewqwerew.github.io/source/js/dall-E/ai/dog2.png",
-      "https://qwerewqwerew.github.io/source/js/dall-E/ai/dog3.png",
-      "https://qwerewqwerew.github.io/source/js/dall-E/ai/dog4.png",
-    ];
-    const imageGallery = document.getElementById( "gallery" );
-    const promptInp = document.getElementById( "prompt" );
-    promptInp.addEventListener( "input", function () {
-      imageGallery.innerHTML = "";
-    } );
-    const message = document.getElementById( "message" );
-
-    const generateForm = document.getElementById( "generate-form" );
-    const spinner = document.getElementById( "spinner" );
-
-    generateForm.addEventListener( "submit", async function ( e ) {
-      e.preventDefault();
-      const prompt = document.getElementById( "prompt" ).value;
-      const key = localStorage.getItem( "API_KEY" );
-
-      if( !prompt ) {
-        displayMessage( "값을 입력해주세요" );
-        return;
-      }
-
-      if( !key ) {
-        displayMessage(
-          "API 키 를 입력해 주세요."
-        );
-        return;
-      }
-
-      fetchImage( prompt, key );
-    } );
-
-
-    function displayMessage( msg ) {
-      message.textContent = msg;
-      message.style.display = "block";
-      setTimeout( function () {
-        message.style.display = "none";
-      }, 3000 );
-    }
-
-    const fetchImage = async ( prompt, API_KEY ) => {
-      const url = "https://api.openai.com/v1/images/generations";
-      const options = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${API_KEY}`,
-        },
-        body: JSON.stringify( {
-          model: "dall-e-3",
-          prompt,
-          n: 1,
-          size: "1024x1024",
-        } ),
-      };
-
-      try {
-        spinner.style.display = "block";
-        const response = await fetch( url, options );
-
-        if( !response.ok ) {
-          const error = await response.json();
-          const message = error.error.message ? error.error.message : "Failed to fetch image";
-          displayMessage( message );
-          return;
-        }
-
-        const result = await response.json();
-        const imageUrl = result.data[ 0 ].url;
-
-        displayImage( imageUrl );
-      } catch( error ) {
-        displayMessage( "There was an error, please try again" );
-      } finally {
-        spinner.style.display = "none";
-      }
-    };
-
-
-    function displayImage( image ) {
-
-      const imageMarkup = `
-  <div class="row justify-content-center">
-      <div class="col d-flex justify-content-center">
-          <img src="${image}" class="img-fluid" alt="Placeholder Image">
-      </div>
-  </div>`;
-
-      imageGallery.innerHTML = imageMarkup;
-
-    }
-    function displayImages() {
-      const imageMarkup = images
-        .map( ( image ) => {
-          return `
-        <div class="col-12 col-sm-6 col-md-3 mb-4 position-relative" id ="image-container ">
-          <img src="${image}" class="img-fluid" alt="Placeholder Image">
-        </div>
-        `;
-        } )
-        .join( "" );
-
-      imageGallery.innerHTML = imageMarkup;
-    }
-
-    displayImages();
-
-  </script>
+  </div> <!-- //.container mt-5 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="final.js"></script>
 </body>
 
 </html>
