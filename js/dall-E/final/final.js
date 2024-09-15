@@ -17,7 +17,7 @@ const imageGallery = document.querySelector('#gallery');
 const promptInp = document.querySelector('#prompt');
 
 const spinner = document.querySelector('#spinner');
-const message = document.querySelector('#message');
+let message = document.querySelector('#message');
 const generateForm = document.querySelector('#generate-form');
 const msgOpt = promptInp.addEventListener('input', () => {
 	imageGallery.innerHTML = '';
