@@ -39,7 +39,7 @@ generateForm.addEventListener('submit', async (e) => {
 	await fetchImage(prompt, key);
 });
 function displayMsg(msg) {
-	message.textContext = msg;
+	message.textContent = msg;
 	message.style.display = 'block';
 	setTimeout(() => {
 		message.style.display = 'none';
