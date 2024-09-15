@@ -68,6 +68,7 @@ const fetchImage = async (prompt, API_KEY) => {
 		console.log(response);
 		if (!response.ok) {
 			const error = await response.json();
+			console.log(error);
 			const errormsg = error.error.message ? error.error.message : '이미지 생성에 실패했습니다.';
 			displayMsg(errormsg);
 			return;
