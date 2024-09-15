@@ -36,7 +36,6 @@ generateForm.addEventListener('submit', async (e) => {
 		displayMsg('APIKEY를 입력하고 저장버튼을 클릭해주세요.');
 		return;
 	}
-
 	await fetchImage(prompt, key);
 });
 function displayMsg(msg) {
@@ -69,7 +68,7 @@ const fetchImage = async (prompt, API_KEY) => {
 		console.log(response);
 		if (!response.ok) {
 			const error = await response.json();
-			const message = error.error.message ? error.error.message : '이미지 생성에 실패했습니다.';
+			message = error.error.message ? error.error.message : '이미지 생성에 실패했습니다.';
 			displayMsg(message);
 			return;
 		}
