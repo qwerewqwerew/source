@@ -17,14 +17,14 @@ const imageGallery = document.querySelector('#gallery');
 const promptInp = document.querySelector('#prompt');
 
 const spinner = document.querySelector('#spinner');
-let message = document.querySelector('#message');
+const message = document.querySelector('#message');
 const generateForm = document.querySelector('#generate-form');
 const msgOpt = promptInp.addEventListener('input', () => {
 	imageGallery.innerHTML = '';
 });
 generateForm.addEventListener('submit', async (e) => {
 	e.preventDefault();
-	const prompt = document.querySelector('#prompt').value;
+	const prompt = promptInp.value;
 	const key = localStorage.getItem('API_KEY');
 	//프롬프트 값이 false
 	if (!prompt) {
@@ -43,7 +43,7 @@ function displayMsg(msg) {
 	message.style.display = 'block';
 	setTimeout(() => {
 		message.style.display = 'none';
-	}, 3000);
+	}, 5000);
 }
 const fetchImage = async (prompt, API_KEY) => {
 	const url = 'https://api.openai.com/v1/images/generations';
@@ -68,8 +68,8 @@ const fetchImage = async (prompt, API_KEY) => {
 		console.log(response);
 		if (!response.ok) {
 			const error = await response.json();
-			message = error.error.message ? error.error.message : '이미지 생성에 실패했습니다.';
-			displayMsg(message);
+			const errormsg = error.error.message ? error.error.message : '이미지 생성에 실패했습니다.';
+			displayMsg(errormsg);
 			return;
 		}
 		const result = await response.json();
