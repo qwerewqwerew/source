@@ -1,5 +1,6 @@
 # reset.css
 [cdn](https://qwerewqwerew.github.io/source/style/reset.css)
+[cdn](https://qwerewqwerew.github.io/source/notion/style.css)
 
 # 웹디자인 기능사 문제풀이
 
