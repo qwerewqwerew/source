@@ -1,3 +1,9 @@
 .notion-text.notion-text__content.notion-semantic-string {
-	padding-top: 3rem;
+	padding-top: 2rem;
+}
+
+blockquote > .notion-text.notion-text__content.notion-semantic-string,
+.notion-column-list > .notion-text.notion-text__content.notion-semantic-string,
+.notion-callout > .notion-text.notion-text__content.notion-semantic-string {
+	padding-top: initial;
 }
