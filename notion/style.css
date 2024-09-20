@@ -1,12 +1,15 @@
-.notion-text.notion-text__content.notion-semantic-string {
+.notion-text.notion-text__content.notion-semantic-string:not(blockquote .notion-text.notion-text__content.notion-semantic-string, .notion-column-list .notion-text.notion-text__content.notion-semantic-string, .notion-callout .notion-text.notion-text__content.notion-semantic-string) {
 	padding-top: 2rem;
-	&+&{
+	& + & {
 		padding-top: 4px;
 	}
 }
 
-blockquote > .notion-text.notion-text__content.notion-semantic-string,
-.notion-column-list > .notion-text.notion-text__content.notion-semantic-string,
-.notion-callout > .notion-text.notion-text__content.notion-semantic-string {
+blockquote .notion-text.notion-text__content.notion-semantic-string,
+.notion-column-list .notion-text.notion-text__content.notion-semantic-string,
+.notion-callout .notion-text.notion-text__content.notion-semantic-string {
 	padding-top: initial;
+	& + & {
+		padding-top: initial !important;
+	}
 }
