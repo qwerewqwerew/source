@@ -1,6 +1,6 @@
 :root {
 	--light_shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-	--dark_shadow: rgba(255, 255, 255, 0.16) 0px 1px 4px;
+	--dark_shadow : rgba(255, 255, 255, 0.16) 0px 1px 4px;
 }
 
 .notion-text.notion-text__content.notion-semantic-string:not(blockquote .notion-text.notion-text__content.notion-semantic-string, .notion-column-list .notion-text.notion-text__content.notion-semantic-string, .notion-callout .notion-text.notion-text__content.notion-semantic-string) {
@@ -30,5 +30,8 @@ blockquote .notion-text.notion-text__content.notion-semantic-string,
 .theme-dark {
 	.notion-image.align-start {
 		box-shadow: var(--dark_shadow);
+	}
+	pre code:not([class="*"]){
+		color:#f7f7f7;
 	}
 }
