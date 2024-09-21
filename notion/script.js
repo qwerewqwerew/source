@@ -3,8 +3,7 @@ const urlString = ['documentation',[html-css[html,css],javascript]]
 let id = new URL('https://coalacoding.com/documentation/') */
 
 function editUrl() {
-	const url = 'https://coalacoding.com/documentation/react/react/notion%ea%b3%bcnextjs%eb%a1%9c-%ea%b7%b8%ea%b2%83%ec%9d%84-%eb%a7%8c%eb%93%a4%ea%b8%b0';
-	//const url=window.location.pathname;
+	const url = window.location.pathname;
 	const path = url.split(/[\\/]+/);
 	if (path.length > 5) {
 		document.querySelector('main').classList.add('coala-toc-added');
