@@ -1,0 +1,1 @@
+document.querySelector('.page-index').classList.add('mainPage');
