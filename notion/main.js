@@ -1,7 +1,9 @@
 const url = window.location.pathname;
 const path = url.split(/[\\/]+/);
 const lastParam = path[path.length - 1];
-console.log(`url:${url}//path:${path}//lastParam:${lastParam}//`);
+console.log('url',url);
+console.log('path',path);
+console.log('lastParam',lastParam);
 
 if (path.length > 5) {
 	const element = document.querySelector(`main[id="${lastParam}"]`);
