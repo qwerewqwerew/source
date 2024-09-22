@@ -1,5 +1,4 @@
 const date = new Date();
-
 const renderCalendar = () => {
 	date.setDate(1);
 
@@ -12,14 +11,13 @@ const renderCalendar = () => {
 	const firstDayIndex = date.getDay();
 
 	const lastDayIndex = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDay();
-	//console.log(lastDayIndex);
 	const nextDays = 7 - lastDayIndex - 1;
 
 	const months = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
-
+	const options = { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric' }
 	document.querySelector('.date h1').innerHTML = months[date.getMonth()];
-
-	document.querySelector('.date p').innerHTML = new Date().toDateString();
+	document.querySelector('.date p').innerHTML = new Date().toLocaleDateString('ko-KR', options);
+	console.log(new Date().toLocaleDateString('ko-KR', options));
 
 	let days = '';
 
