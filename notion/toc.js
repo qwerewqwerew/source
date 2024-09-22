@@ -1,12 +1,14 @@
+console.log("오바");
 function editUrl() {
 	const url = window.location.pathname;
+	// const url = -'https://coalacoding.com/documentation/react/react/notion%ea%b3%bcnextjs%eb%a1%9c-%ea%b7%b8%ea%b2%83%ec%9d%84-%eb%a7%8c%eb%93%a4%ea%b8%b0';
 	const path = url.split(/[\\/]+/);
-/* 	const page = {
-    old:document.querySelector('main[id^="page-index"]'),
-    new:page.old.querySelector([path.lenght])}
+
+  console.log(path);
+  console.log();
 	if (path.length > 5) {
-		.classList.add('coala-toc-added');
-	} */
+
+	}
 	const tocLink = {
 		headings: [],
 		h1: document.querySelectorAll('h1'),
