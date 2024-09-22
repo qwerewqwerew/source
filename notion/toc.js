@@ -1,9 +1,12 @@
 function editUrl() {
 	const url = window.location.pathname;
 	const path = url.split(/[\\/]+/);
+/* 	const page = {
+    old:document.querySelector('main[id^="page-index"]'),
+    new:page.old.querySelector([path.lenght])}
 	if (path.length > 5) {
-		document.querySelector('main[id^="page-index"]:not([class*="parent-page__documentation"])').classList.add('coala-toc-added');
-	}
+		.classList.add('coala-toc-added');
+	} */
 	const tocLink = {
 		headings: [],
 		h1: document.querySelectorAll('h1'),
