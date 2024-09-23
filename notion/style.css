@@ -129,6 +129,9 @@ blockquote .notion-text.notion-text__content.notion-semantic-string,
 	.notion-image.align-start {
 		box-shadow: var(--light_shadow);
 	}
+	pre {
+		box-shadow: var(--light_shadow);
+	}
 }
 
 
@@ -136,9 +139,12 @@ blockquote .notion-text.notion-text__content.notion-semantic-string,
 	.notion-image.align-start {
 		box-shadow: var(--dark_shadow);
 	}
-	pre code[class=''] {
+	pre 	{
+		box-shadow: var(--light_shadow);
+		code[class=''] {
 		color: #f7f7f7;
 	}
+}
 }
 
 @media screen and (min-width: 901px) {
