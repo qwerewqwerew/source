@@ -131,15 +131,21 @@ blockquote .notion-text.notion-text__content.notion-semantic-string,
 	}
 }
 
+
 .theme-dark {
 	.notion-image.align-start {
 		box-shadow: var(--dark_shadow);
 	}
-	pre code:not([class='*']) {
+	pre code[class=''] {
 		color: #f7f7f7;
 	}
 }
 
+@media screen and (min-width: 901px) {
+	img.notion-header__cover-image {
+		object-fit: contain !important;
+	}
+}
 @media screen and (max-width: 900px) {
 	img.notion-header__cover-image {
 		object-fit: cover !important;
