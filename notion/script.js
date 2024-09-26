@@ -1,3 +1,16 @@
-/* console.log("코알라오바");
-const urlString = ['documentation',[html-css[html,css],javascript]]
-let id = new URL('https://coalacoding.com/documentation/') */
+const main = document.querySelector("main");
+main.appendChild(
+  Object.assign(document.createElement("div"), {
+    innerText: "🐨",
+    className: "coalaTop",
+  })
+);
+
+const topBt = document.querySelector(".coalaTop");
+
+const handleScroll = () => {
+  topBt.classList.toggle("on", window.scrollY <= document.documentElement.scrollHeight - window.innerHeight - 100);
+};
+
+topBt.addEventListener("click", () => window.scroll({ top: 100, behavior: "smooth" }));
+window.addEventListener("scroll", handleScroll);
