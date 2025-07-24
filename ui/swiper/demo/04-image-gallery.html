@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04. 이미지 갤러리 - Swiper Demo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .swiper {
+            width: 100%;
+            height: 500px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .image-placeholder .icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+        .back-link {
+            display: inline-block;
+            background: #007aff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .back-link:hover {
+            background: #0056cc;
+        }
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .effect-selector {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .effect-btn {
+            background: #007aff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .effect-btn:hover {
+            background: #0056cc;
+        }
+        .effect-btn.active {
+            background: #ff6b6b;
+        }
+        .code-section {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .code-section h3 {
+            margin-top: 0;
+            color: #495057;
+        }
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .swiper-pagination-bullet {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        .swiper-pagination-bullet-active {
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← 목록으로 돌아가기</a>
+        
+        <h1>🖼️ 04. 이미지 갤러리</h1>
+        
+        <div class="info-box">
+            <strong>💡 특징:</strong> 페이드 효과와 다양한 전환 효과를 적용한 이미지 갤러리입니다.
+        </div>
+
+        <div class="effect-selector">
+            <button class="effect-btn active" onclick="changeEffect('fade')">페이드</button>
+            <button class="effect-btn" onclick="changeEffect('slide')">슬라이드</button>
+            <button class="effect-btn" onclick="changeEffect('cube')">큐브</button>
+            <button class="effect-btn" onclick="changeEffect('flip')">플립</button>
+            <button class="effect-btn" onclick="changeEffect('coverflow')">커버플로우</button>
+        </div>
+        
+        <div class="swiper gallery">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="image-placeholder">
+                        <div class="icon">🌄</div>
+                        <div>산 풍경</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="image-placeholder" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <div class="icon">🏖️</div>
+                        <div>바다 풍경</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="image-placeholder" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                        <div class="icon">🌲</div>
+                        <div>숲 풍경</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="image-placeholder" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        <div class="icon">🌆</div>
+                        <div>도시 야경</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="image-placeholder" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                        <div class="icon">🌸</div>
+                        <div>벚꽃 풍경</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="image-placeholder" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+                        <div class="icon">🏜️</div>
+                        <div>사막 풍경</div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+
+        <div class="code-section">
+            <h3>📝 구현 코드</h3>
+            <h4>JavaScript (페이드 효과)</h4>
+            <pre><code>var gallerySwiper = new Swiper(".gallery", {
+    effect: "fade",           // 페이드 효과
+    fadeEffect: {
+        crossFade: true
+    },
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    autoplay: {
+        delay: 4000,          // 4초마다 자동 전환
+        disableOnInteraction: false,
+    },
+    loop: true,               // 무한 루프
+});</code></pre>
+
+            <h4>다른 효과들</h4>
+            <pre><code>// 큐브 효과
+effect: "cube",
+cubeEffect: {
+    shadow: true,
+    slideShadows: true,
+    shadowOffset: 20,
+    shadowScale: 0.94,
+},
+
+// 플립 효과
+effect: "flip",
+flipEffect: {
+    slideShadows: false,
+},
+
+// 커버플로우 효과
+effect: "coverflow",
+coverflowEffect: {
+    rotate: 50,
+    stretch: 0,
+    depth: 100,
+    modifier: 1,
+    slideShadows: true,
+},</code></pre>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        var gallerySwiper = new Swiper(".gallery", {
+            effect: "fade",
+            fadeEffect: {
+                crossFade: true
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            loop: true,
+        });
+
+        function changeEffect(effectType) {
+            // 모든 버튼에서 active 클래스 제거
+            document.querySelectorAll('.effect-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // 클릭된 버튼에 active 클래스 추가
+            event.target.classList.add('active');
+
+            // Swiper 파괴 후 새로운 효과로 재생성
+            gallerySwiper.destroy(true, true);
+            
+            let effectConfig = {
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                autoplay: {
+                    delay: 4000,
+                    disableOnInteraction: false,
+                },
+                loop: true,
+            };
+
+            switch(effectType) {
+                case 'fade':
+                    effectConfig.effect = "fade";
+                    effectConfig.fadeEffect = { crossFade: true };
+                    break;
+                case 'slide':
+                    effectConfig.effect = "slide";
+                    break;
+                case 'cube':
+                    effectConfig.effect = "cube";
+                    effectConfig.cubeEffect = {
+                        shadow: true,
+                        slideShadows: true,
+                        shadowOffset: 20,
+                        shadowScale: 0.94,
+                    };
+                    break;
+                case 'flip':
+                    effectConfig.effect = "flip";
+                    effectConfig.flipEffect = {
+                        slideShadows: false,
+                    };
+                    break;
+                case 'coverflow':
+                    effectConfig.effect = "coverflow";
+                    effectConfig.coverflowEffect = {
+                        rotate: 50,
+                        stretch: 0,
+                        depth: 100,
+                        modifier: 1,
+                        slideShadows: true,
+                    };
+                    effectConfig.centeredSlides = true;
+                    effectConfig.slidesPerView = "auto";
+                    break;
+            }
+
+            gallerySwiper = new Swiper(".gallery", effectConfig);
+        }
+    </script>
+</body>
+</html>

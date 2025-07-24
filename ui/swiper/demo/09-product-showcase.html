@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09. 제품 쇼케이스 - Swiper Demo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .swiper {
+            width: 100%;
+            height: 500px;
+        }
+        .swiper-slide {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .product-image {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .product-price {
+            font-size: 1.2rem;
+            color: #007aff;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .product-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .buy-btn {
+            background: #007aff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .buy-btn:hover {
+            background: #0056cc;
+            transform: translateY(-2px);
+        }
+        .back-link {
+            display: inline-block;
+            background: #007aff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        /* 제품별 색상 */
+        .product-1 { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .product-2 { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .product-3 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .product-4 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .product-5 { background: linear-gradient(135deg, #fa709a, #fee140); }
+        .product-6 { background: linear-gradient(135deg, #a8edea, #fed6e3); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← 목록으로 돌아가기</a>
+        
+        <h1>🛍️ 09. 제품 쇼케이스</h1>
+        
+        <div class="swiper product-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="product-image product-1">📱</div>
+                    <div class="product-title">스마트폰 Pro</div>
+                    <div class="product-price">₩1,200,000</div>
+                    <div class="product-description">
+                        최신 기술이 적용된 프리미엄 스마트폰입니다. 
+                        뛰어난 카메라 성능과 긴 배터리 수명을 자랑합니다.
+                    </div>
+                    <button class="buy-btn">구매하기</button>
+                </div>
+                
+                <div class="swiper-slide">
+                    <div class="product-image product-2">💻</div>
+                    <div class="product-title">노트북 Ultra</div>
+                    <div class="product-price">₩1,800,000</div>
+                    <div class="product-description">
+                        가볍고 강력한 성능의 울트라북입니다. 
+                        어디서나 편리하게 작업할 수 있습니다.
+                    </div>
+                    <button class="buy-btn">구매하기</button>
+                </div>
+                
+                <div class="swiper-slide">
+                    <div class="product-image product-3">⌚</div>
+                    <div class="product-title">스마트워치</div>
+                    <div class="product-price">₩450,000</div>
+                    <div class="product-description">
+                        건강 관리와 스마트 기능이 결합된 차세대 웨어러블 기기입니다.
+                        방수 기능과 긴 배터리 수명을 제공합니다.
+                    </div>
+                    <button class="buy-btn">구매하기</button>
+                </div>
+                
+                <div class="swiper-slide">
+                    <div class="product-image product-4">🎧</div>
+                    <div class="product-title">무선 헤드폰</div>
+                    <div class="product-price">₩320,000</div>
+                    <div class="product-description">
+                        노이즈 캔슬링 기능이 탑재된 프리미엄 무선 헤드폰입니다.
+                        최고의 음질과 편안한 착용감을 경험하세요.
+                    </div>
+                    <button class="buy-btn">구매하기</button>
+                </div>
+                
+                <div class="swiper-slide">
+                    <div class="product-image product-5">📷</div>
+                    <div class="product-title">디지털 카메라</div>
+                    <div class="product-price">₩950,000</div>
+                    <div class="product-description">
+                        전문가용 미러리스 카메라입니다. 
+                        뛰어난 화질과 다양한 촬영 모드를 지원합니다.
+                    </div>
+                    <button class="buy-btn">구매하기</button>
+                </div>
+                
+                <div class="swiper-slide">
+                    <div class="product-image product-6">🎮</div>
+                    <div class="product-title">게임 콘솔</div>
+                    <div class="product-price">₩650,000</div>
+                    <div class="product-description">
+                        차세대 게임 콘솔로 4K 게임을 즐길 수 있습니다.
+                        다양한 독점 게임과 멀티미디어 기능을 제공합니다.
+                    </div>
+                    <button class="buy-btn">구매하기</button>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        var productSwiper = new Swiper(".product-swiper", {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+        });
+
+        // 구매 버튼 클릭 이벤트
+        document.querySelectorAll('.buy-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('구매 페이지로 이동합니다!');
+            });
+        });
+    </script>
+</body>
+</html>

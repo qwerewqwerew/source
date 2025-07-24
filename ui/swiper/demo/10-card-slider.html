@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10. 카드형 슬라이더 - Swiper Demo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .swiper {
+            width: 100%;
+            height: 600px;
+            padding: 50px 0;
+        }
+        .swiper-slide {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            padding: 30px;
+            width: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease;
+        }
+        .swiper-slide:hover {
+            transform: translateY(-10px);
+        }
+        .card-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .card-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .card-subtitle {
+            color: #666;
+            font-size: 1rem;
+        }
+        .card-content {
+            flex: 1;
+            margin: 20px 0;
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        .feature-list li {
+            padding: 8px 0;
+            color: #555;
+            position: relative;
+            padding-left: 20px;
+        }
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+        }
+        .card-footer {
+            text-align: center;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #007aff;
+            margin-bottom: 15px;
+        }
+        .card-btn {
+            background: linear-gradient(45deg, #007aff, #0056cc);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .card-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,122,255,0.4);
+        }
+        .back-link {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .swiper-pagination-bullet {
+            background: rgba(255,255,255,0.5);
+        }
+        .swiper-pagination-bullet-active {
+            background: white;
+        }
+        
+        /* 카드별 테마 색상 */
+        .card-basic .card-icon { color: #4caf50; }
+        .card-premium .card-icon { color: #ff9800; }
+        .card-enterprise .card-icon { color: #9c27b0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← 목록으로 돌아가기</a>
+        
+        <h1>💳 10. 카드형 슬라이더</h1>
+        
+        <div class="swiper card-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide card-basic">
+                    <div class="card-header">
+                        <div class="card-icon">🌱</div>
+                        <div class="card-title">Basic Plan</div>
+                        <div class="card-subtitle">개인 사용자에게 최적</div>
+                    </div>
+                    <div class="card-content">
+                        <ul class="feature-list">
+                            <li>월 100GB 저장공간</li>
+                            <li>5개 프로젝트</li>
+                            <li>기본 지원</li>
+                            <li>모바일 앱 사용</li>
+                            <li>기본 분석 도구</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <div class="price">₩9,900/월</div>
+                        <button class="card-btn">시작하기</button>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide card-premium">
+                    <div class="card-header">
+                        <div class="card-icon">🚀</div>
+                        <div class="card-title">Premium Plan</div>
+                        <div class="card-subtitle">소규모 팀에게 추천</div>
+                    </div>
+                    <div class="card-content">
+                        <ul class="feature-list">
+                            <li>월 1TB 저장공간</li>
+                            <li>무제한 프로젝트</li>
+                            <li>우선 지원</li>
+                            <li>모든 플랫폼 지원</li>
+                            <li>고급 분석 도구</li>
+                            <li>팀 협업 기능</li>
+                            <li>API 접근</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <div class="price">₩29,900/월</div>
+                        <button class="card-btn">시작하기</button>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide card-enterprise">
+                    <div class="card-header">
+                        <div class="card-icon">🏢</div>
+                        <div class="card-title">Enterprise Plan</div>
+                        <div class="card-subtitle">대기업을 위한 솔루션</div>
+                    </div>
+                    <div class="card-content">
+                        <ul class="feature-list">
+                            <li>무제한 저장공간</li>
+                            <li>무제한 프로젝트</li>
+                            <li>24/7 전담 지원</li>
+                            <li>온프레미스 배포</li>
+                            <li>커스텀 분석</li>
+                            <li>고급 보안 기능</li>
+                            <li>전용 API</li>
+                            <li>맞춤형 교육</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <div class="price">문의하기</div>
+                        <button class="card-btn">상담 신청</button>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide card-basic">
+                    <div class="card-header">
+                        <div class="card-icon">🎓</div>
+                        <div class="card-title">Student Plan</div>
+                        <div class="card-subtitle">학생을 위한 특별 혜택</div>
+                    </div>
+                    <div class="card-content">
+                        <ul class="feature-list">
+                            <li>월 500GB 저장공간</li>
+                            <li>10개 프로젝트</li>
+                            <li>학생 지원</li>
+                            <li>모든 기본 기능</li>
+                            <li>교육용 템플릿</li>
+                            <li>학습 자료 제공</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <div class="price">₩4,900/월</div>
+                        <button class="card-btn">학생 인증</button>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide card-premium">
+                    <div class="card-header">
+                        <div class="card-icon">💎</div>
+                        <div class="card-title">Pro Plan</div>
+                        <div class="card-subtitle">전문가를 위한 고급 기능</div>
+                    </div>
+                    <div class="card-content">
+                        <ul class="feature-list">
+                            <li>월 5TB 저장공간</li>
+                            <li>무제한 프로젝트</li>
+                            <li>전문가 지원</li>
+                            <li>고급 보안</li>
+                            <li>AI 기반 분석</li>
+                            <li>워크플로우 자동화</li>
+                            <li>통합 개발 도구</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <div class="price">₩59,900/월</div>
+                        <button class="card-btn">무료 체험</button>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        var cardSwiper = new Swiper(".card-swiper", {
+            slidesPerView: "auto",
+            spaceBetween: 30,
+            centeredSlides: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            grabCursor: true,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                    centeredSlides: false,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    centeredSlides: false,
+                },
+            },
+        });
+
+        // 카드 버튼 클릭 이벤트
+        document.querySelectorAll('.card-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const card = this.closest('.swiper-slide');
+                const title = card.querySelector('.card-title').textContent;
+                alert(`${title} 선택하셨습니다!`);
+            });
+        });
+    </script>
+</body>
+</html>

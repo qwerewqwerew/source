@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02. 자동재생 슬라이더 - Swiper Demo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .swiper {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 30px;
+        }
+        .swiper-slide {
+            text-align: center;
+            font-size: 24px;
+            background: linear-gradient(45deg, #ff6b6b 0%, #ffa726 100%);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        .swiper-slide:nth-child(2) {
+            background: linear-gradient(45deg, #4ecdc4 0%, #26a69a 100%);
+        }
+        .swiper-slide:nth-child(3) {
+            background: linear-gradient(45deg, #ab47bc 0%, #8e24aa 100%);
+        }
+        .swiper-slide:nth-child(4) {
+            background: linear-gradient(45deg, #42a5f5 0%, #1976d2 100%);
+        }
+        .swiper-slide:nth-child(5) {
+            background: linear-gradient(45deg, #66bb6a 0%, #388e3c 100%);
+        }
+        .back-link {
+            display: inline-block;
+            background: #007aff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .back-link:hover {
+            background: #0056cc;
+        }
+        .controls {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .btn {
+            background: #007aff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #0056cc;
+        }
+        .code-section {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .code-section h3 {
+            margin-top: 0;
+            color: #495057;
+        }
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← 목록으로 돌아가기</a>
+        
+        <h1>⏰ 02. 자동재생 슬라이더</h1>
+        
+        <div class="info-box">
+            <strong>💡 특징:</strong> 3초마다 자동으로 슬라이드가 넘어갑니다. 사용자가 조작하면 자동재생이 멈춥니다.
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="toggleAutoplay()">자동재생 시작/정지</button>
+            <button class="btn" onclick="restartAutoplay()">자동재생 재시작</button>
+        </div>
+        
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">🌅 아침</div>
+                <div class="swiper-slide">🌞 낮</div>
+                <div class="swiper-slide">🌆 저녁</div>
+                <div class="swiper-slide">🌙 밤</div>
+                <div class="swiper-slide">⭐ 새벽</div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+
+        <div class="code-section">
+            <h3>📝 구현 코드</h3>
+            <h4>JavaScript</h4>
+            <pre><code>var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    loop: true,
+    autoplay: {
+        delay: 3000,                    // 3초마다 넘어감
+        disableOnInteraction: false,    // 사용자 조작 후에도 자동재생 유지
+    },
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+});
+
+// 자동재생 제어 함수들
+function toggleAutoplay() {
+    if (swiper.autoplay.running) {
+        swiper.autoplay.stop();
+    } else {
+        swiper.autoplay.start();
+    }
+}
+
+function restartAutoplay() {
+    swiper.autoplay.start();
+}</code></pre>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
+        function toggleAutoplay() {
+            if (swiper.autoplay.running) {
+                swiper.autoplay.stop();
+            } else {
+                swiper.autoplay.start();
+            }
+        }
+
+        function restartAutoplay() {
+            swiper.autoplay.start();
+        }
+    </script>
+</body>
+</html>

@@ -213,3 +213,11 @@ a {
 		font-size: 22px !important;
 	}
 }
+
+html {
+	font-size: min(max(1rem, 4vw), 22px);
+}
+
+body {
+	font-size: clamp(100%, 1rem + 2vw, 24px);
+}

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05. 썸네일 갤러리 - Swiper Demo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        /* 메인 슬라이더 */
+        .main-slider {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .main-slider .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .main-slider .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .main-slider .image-placeholder .icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+        
+        /* 썸네일 슬라이더 */
+        .thumb-slider {
+            height: 100px;
+            box-sizing: border-box;
+            padding: 10px 0;
+        }
+        .thumb-slider .swiper-slide {
+            width: 25%;
+            height: 100%;
+            opacity: 0.4;
+            cursor: pointer;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .thumb-slider .swiper-slide-thumb-active {
+            opacity: 1;
+        }
+        .thumb-slider .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .thumb-slider .image-placeholder .icon {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            background: #007aff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .back-link:hover {
+            background: #0056cc;
+        }
+        .info-box {
+            background: #e8f5e8;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .code-section {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .code-section h3 {
+            margin-top: 0;
+            color: #495057;
+        }
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← 목록으로 돌아가기</a>
+        
+        <h1>🖼️ 05. 썸네일 갤러리</h1>
+        
+        <div class="info-box">
+            <strong>💡 특징:</strong> 메인 이미지와 썸네일이 연동되는 갤러리입니다. 썸네일을 클릭하면 해당 이미지가 메인에 표시됩니다.
+        </div>
+        
+        <!-- 메인 슬라이더 -->
+        <div class="swiper main-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="image-placeholder" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div class="icon">🌄</div>
+                        <div>장엄한 산맥</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="image-placeholder" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <div class="icon">🏖️</div>
+                        <div>푸른 바다</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="image-placeholder" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                        <div class="icon">🌲</div>
+                        <div>울창한 숲</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="image-placeholder" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        <div class="icon">🌆</div>
+                        <div>화려한 도시</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="image-placeholder" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                        <div class="icon">🌸</div>
+                        <div>봄의 벚꽃</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="image-placeholder" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+                        <div class="icon">🏜️</div>
+                        <div>광활한 사막</div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+
+        <!-- 썸네일 슬라이더 -->
+        <div class="swiper thumb-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="image-placeholder" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div class="icon">🌄</div>
+                        <div>산맥</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="image-placeholder" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <div class="icon">🏖️</div>
+                        <div>바다</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="image-placeholder" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                        <div class="icon">🌲</div>
+                        <div>숲</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="image-placeholder" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        <div class="icon">🌆</div>
+                        <div>도시</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="image-placeholder" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                        <div class="icon">🌸</div>
+                        <div>벚꽃</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="image-placeholder" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+                        <div class="icon">🏜️</div>
+                        <div>사막</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="code-section">
+            <h3>📝 구현 코드</h3>
+            <h4>HTML 구조</h4>
+            <pre><code>&lt;!-- 메인 슬라이더 --&gt;
+&lt;div class="swiper main-slider"&gt;
+    &lt;div class="swiper-wrapper"&gt;
+        &lt;div class="swiper-slide"&gt;&lt;img src="main1.jpg"&gt;&lt;/div&gt;
+        &lt;div class="swiper-slide"&gt;&lt;img src="main2.jpg"&gt;&lt;/div&gt;
+        &lt;div class="swiper-slide"&gt;&lt;img src="main3.jpg"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 썸네일 슬라이더 --&gt;
+&lt;div class="swiper thumb-slider"&gt;
+    &lt;div class="swiper-wrapper"&gt;
+        &lt;div class="swiper-slide"&gt;&lt;img src="thumb1.jpg"&gt;&lt;/div&gt;
+        &lt;div class="swiper-slide"&gt;&lt;img src="thumb2.jpg"&gt;&lt;/div&gt;
+        &lt;div class="swiper-slide"&gt;&lt;img src="thumb3.jpg"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+            <h4>JavaScript</h4>
+            <pre><code>// 썸네일 슬라이더 먼저 초기화
+var thumbSwiper = new Swiper(".thumb-slider", {
+    spaceBetween: 10,
+    slidesPerView: 4,
+    freeMode: true,
+    watchSlidesProgress: true,
+});
+
+// 메인 슬라이더 초기화 (썸네일과 연동)
+var mainSwiper = new Swiper(".main-slider", {
+    spaceBetween: 10,
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    thumbs: {
+        swiper: thumbSwiper,    // 썸네일 슬라이더와 연동
+    },
+});</code></pre>
+
+            <h4>CSS 스타일링</h4>
+            <pre><code>/* 썸네일 기본 투명도 */
+.thumb-slider .swiper-slide {
+    opacity: 0.4;
+    cursor: pointer;
+}
+
+/* 활성 썸네일 스타일 */
+.thumb-slider .swiper-slide-thumb-active {
+    opacity: 1;
+}</code></pre>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        var thumbSwiper = new Swiper(".thumb-slider", {
+            spaceBetween: 10,
+            slidesPerView: 4,
+            freeMode: true,
+            watchSlidesProgress: true,
+        });
+
+        var mainSwiper = new Swiper(".main-slider", {
+            spaceBetween: 10,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            thumbs: {
+                swiper: thumbSwiper,
+            },
+        });
+    </script>
+</body>
+</html>

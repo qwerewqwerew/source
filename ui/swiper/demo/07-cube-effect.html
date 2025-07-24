@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07. 큐브 효과 - Swiper Demo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0;
+            padding: 20px;
+            background: #222;
+            color: white;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1 {
+            color: white;
+            margin-bottom: 30px;
+        }
+        .swiper {
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+        }
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+        .swiper-slide:nth-child(1) { background: linear-gradient(45deg, #ff6b6b, #ee5a24); }
+        .swiper-slide:nth-child(2) { background: linear-gradient(45deg, #4834d4, #686de0); }
+        .swiper-slide:nth-child(3) { background: linear-gradient(45deg, #00d2d3, #54a0ff); }
+        .swiper-slide:nth-child(4) { background: linear-gradient(45deg, #5f27cd, #a55eea); }
+        .swiper-slide:nth-child(5) { background: linear-gradient(45deg, #00d84a, #05c46b); }
+        
+        .back-link {
+            display: inline-block;
+            background: #007aff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .info {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← 목록으로 돌아가기</a>
+        
+        <h1>🎲 07. 큐브 효과</h1>
+        
+        <div class="info">
+            <p>3D 큐브 회전 효과를 적용한 슬라이더입니다. 드래그하거나 버튼을 클릭해보세요!</p>
+        </div>
+        
+        <div class="swiper cube-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">큐브 1</div>
+                <div class="swiper-slide">큐브 2</div>
+                <div class="swiper-slide">큐브 3</div>
+                <div class="swiper-slide">큐브 4</div>
+                <div class="swiper-slide">큐브 5</div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        var cubeSwiper = new Swiper(".cube-swiper", {
+            effect: "cube",
+            grabCursor: true,
+            cubeEffect: {
+                shadow: true,
+                slideShadows: true,
+                shadowOffset: 20,
+                shadowScale: 0.94,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+            },
+            autoplay: {
+                delay: 3000,
+            },
+        });
+    </script>
+</body>
+</html>

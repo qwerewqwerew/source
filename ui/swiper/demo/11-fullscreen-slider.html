@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11. 풀스크린 슬라이더 - Swiper Demo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: Arial, sans-serif; 
+            overflow: hidden;
+        }
+        
+        .swiper {
+            width: 100%;
+            height: 100vh;
+        }
+        
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide-content {
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .slide-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .slide-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 2px solid white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+        
+        .cta-button:hover {
+            background: white;
+            color: #333;
+            transform: translateY(-2px);
+        }
+        
+        .slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 1;
+        }
+        
+        /* 각 슬라이드별 배경 */
+        .slide1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .slide2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .slide3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .slide4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .slide5 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        
+        /* 네비게이션 스타일 */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: white;
+            background: rgba(255,255,255,0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            backdrop-filter: blur(10px);
+        }
+        
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            font-size: 20px;
+        }
+        
+        .swiper-pagination-bullet {
+            background: rgba(255,255,255,0.5);
+            width: 12px;
+            height: 12px;
+        }
+        
+        .swiper-pagination-bullet-active {
+            background: white;
+        }
+        
+        /* 애니메이션 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 모바일 대응 */
+        @media (max-width: 768px) {
+            .slide-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .slide-content p {
+                font-size: 1.2rem;
+            }
+            
+            .cta-button {
+                font-size: 1rem;
+                padding: 12px 24px;
+            }
+        }
+        
+        /* 코드 보기 버튼 */
+        .code-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            text-decoration: none;
+        }
+        
+        /* 코드 모달 */
+        .code-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+            overflow-y: auto;
+        }
+        
+        .code-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 80%;
+            max-height: 80%;
+            overflow-y: auto;
+        }
+        
+        .close-btn {
+            float: right;
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <button class="code-btn" onclick="showCode()">📝 코드</button>
+    <a href="index.html" class="back-btn">← 목록</a>
+    
+    <div class="swiper fullscreen-swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide slide1">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>혁신적인 솔루션</h1>
+                    <p>미래를 바꾸는 기술로 새로운 가능성을 열어갑니다</p>
+                    <a href="#" class="cta-button">자세히 보기</a>
+                </div>
+            </div>
+            
+            <div class="swiper-slide slide2">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>창의적인 디자인</h1>
+                    <p>사용자 경험을 중심으로 한 직관적이고 아름다운 디자인</p>
+                    <a href="#" class="cta-button">포트폴리오 보기</a>
+                </div>
+            </div>
+            
+            <div class="swiper-slide slide3">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>글로벌 서비스</h1>
+                    <p>전 세계 어디서나 이용할 수 있는 안정적이고 빠른 서비스</p>
+                    <a href="#" class="cta-button">서비스 시작</a>
+                </div>
+            </div>
+            
+            <div class="swiper-slide slide4">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>지속가능한 성장</h1>
+                    <p>환경을 생각하는 친환경 기술로 지속가능한 미래를 만듭니다</p>
+                    <a href="#" class="cta-button">친환경 정책</a>
+                </div>
+            </div>
+            
+            <div class="swiper-slide slide5">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>함께하는 여정</h1>
+                    <p>고객과 함께 성장하는 파트너가 되겠습니다</p>
+                    <a href="#" class="cta-button">연락하기</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <!-- 코드 모달 -->
+    <div class="code-modal" id="codeModal">
+        <div class="code-content">
+            <button class="close-btn" onclick="hideCode()">✕ 닫기</button>
+            <h3>🌟 풀스크린 슬라이더 구현 코드</h3>
+            
+            <h4>HTML 구조</h4>
+            <pre><code>&lt;div class="swiper fullscreen-swiper"&gt;
+    &lt;div class="swiper-wrapper"&gt;
+        &lt;div class="swiper-slide"&gt;
+            &lt;div class="slide-overlay"&gt;&lt;/div&gt;
+            &lt;div class="slide-content"&gt;
+                &lt;h1&gt;제목&lt;/h1&gt;
+                &lt;p&gt;설명&lt;/p&gt;
+                &lt;a href="#" class="cta-button"&gt;버튼&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="swiper-pagination"&gt;&lt;/div&gt;
+    &lt;div class="swiper-button-next"&gt;&lt;/div&gt;
+    &lt;div class="swiper-button-prev"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+            <h4>JavaScript</h4>
+            <pre><code>var fullscreenSwiper = new Swiper(".fullscreen-swiper", {
+    direction: "horizontal",
+    loop: true,
+    autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+    },
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    keyboard: {
+        enabled: true,
+    },
+    mousewheel: true,
+    speed: 1000,
+    effect: "slide",
+});</code></pre>
+
+            <h4>CSS 핵심 스타일</h4>
+            <pre><code>/* 풀스크린 설정 */
+.swiper {
+    width: 100%;
+    height: 100vh;
+}
+
+/* 슬라이드 오버레이 */
+.slide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+}
+
+/* 애니메이션 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}</code></pre>
+
+            <h4>활용 분야</h4>
+            <ul>
+                <li><strong>랜딩 페이지:</strong> 제품이나 서비스를 소개하는 메인 페이지</li>
+                <li><strong>포트폴리오:</strong> 작품이나 프로젝트를 시각적으로 표현</li>
+                <li><strong>기업 홈페이지:</strong> 회사 소개 및 비전 전달</li>
+                <li><strong>이벤트 페이지:</strong> 특별한 이벤트나 프로모션 소개</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        var fullscreenSwiper = new Swiper(".fullscreen-swiper", {
+            direction: "horizontal",
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            keyboard: {
+                enabled: true,
+            },
+            mousewheel: true,
+            speed: 1000,
+            effect: "slide",
+        });
+
+        function showCode() {
+            document.getElementById('codeModal').style.display = 'flex';
+        }
+
+        function hideCode() {
+            document.getElementById('codeModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

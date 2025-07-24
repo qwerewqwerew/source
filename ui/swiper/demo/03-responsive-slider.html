@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03. 반응형 슬라이더 - Swiper Demo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .swiper {
+            width: 100%;
+            height: 300px;
+            margin-bottom: 30px;
+        }
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            font-weight: bold;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .swiper-slide .icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        .swiper-slide:nth-child(2n) {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .swiper-slide:nth-child(3n) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        .swiper-slide:nth-child(4n) {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .back-link {
+            display: inline-block;
+            background: #007aff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .back-link:hover {
+            background: #0056cc;
+        }
+        .info-box {
+            background: #e8f5e8;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .breakpoint-info {
+            background: #fff3e0;
+            border: 1px solid #ffb74d;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .breakpoint-info h4 {
+            margin-top: 0;
+            color: #ef6c00;
+        }
+        .breakpoint-info ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .code-section {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .code-section h3 {
+            margin-top: 0;
+            color: #495057;
+        }
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← 목록으로 돌아가기</a>
+        
+        <h1>📱 03. 반응형 슬라이더</h1>
+        
+        <div class="info-box">
+            <strong>💡 특징:</strong> 화면 크기에 따라 보여지는 슬라이드 개수가 자동으로 조정됩니다.
+        </div>
+
+        <div class="breakpoint-info">
+            <h4>📐 반응형 브레이크포인트</h4>
+            <ul>
+                <li><strong>모바일 (320px~639px):</strong> 1개 슬라이드</li>
+                <li><strong>태블릿 (640px~767px):</strong> 2개 슬라이드</li>
+                <li><strong>작은 데스크톱 (768px~1023px):</strong> 3개 슬라이드</li>
+                <li><strong>큰 데스크톱 (1024px 이상):</strong> 4개 슬라이드</li>
+            </ul>
+            <p><em>💡 브라우저 창 크기를 조절해보세요!</em></p>
+        </div>
+        
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="icon">📱</div>
+                    <div>모바일</div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="icon">💻</div>
+                    <div>태블릿</div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="icon">🖥️</div>
+                    <div>데스크톱</div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="icon">⌚</div>
+                    <div>스마트워치</div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="icon">🎮</div>
+                    <div>게임기</div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="icon">📺</div>
+                    <div>스마트TV</div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="icon">🎧</div>
+                    <div>헤드폰</div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="icon">📷</div>
+                    <div>카메라</div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+
+        <div class="code-section">
+            <h3>📝 구현 코드</h3>
+            <h4>JavaScript</h4>
+            <pre><code>var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,      // 기본값 (모바일)
+    spaceBetween: 10,      // 기본 간격
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    // 반응형 브레이크포인트 설정
+    breakpoints: {
+        640: {
+            slidesPerView: 2,    // 640px 이상에서 2개
+            spaceBetween: 20,
+        },
+        768: {
+            slidesPerView: 3,    // 768px 이상에서 3개
+            spaceBetween: 30,
+        },
+        1024: {
+            slidesPerView: 4,    // 1024px 이상에서 4개
+            spaceBetween: 40,
+        },
+    },
+});</code></pre>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+                1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 40,
+                },
+            },
+        });
+    </script>
+</body>
+</html>

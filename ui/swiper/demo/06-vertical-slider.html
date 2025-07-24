@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06. 수직 슬라이더 - Swiper Demo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: calc(100vh - 40px);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .swiper {
+            width: 100%;
+            flex: 1;
+        }
+        .swiper-slide {
+            text-align: center;
+            font-size: 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .swiper-slide .icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+        .swiper-slide:nth-child(2) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        .swiper-slide:nth-child(3) {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .swiper-slide:nth-child(4) {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .swiper-slide:nth-child(5) {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+        .swiper-slide:nth-child(6) {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+        .back-link {
+            display: inline-block;
+            background: #007aff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .back-link:hover {
+            background: #0056cc;
+        }
+        .info-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        .swiper-pagination {
+            right: 20px !important;
+            left: auto !important;
+            width: auto !important;
+        }
+        .swiper-pagination-bullet {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        .swiper-pagination-bullet-active {
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← 목록으로 돌아가기</a>
+        
+        <h1>⬆️ 06. 수직 슬라이더</h1>
+        
+        <div class="info-box">
+            <strong>💡 사용법:</strong> 마우스휠이나 터치로 위아래로 스크롤하세요. 풀스크린 웹사이트에서 자주 사용됩니다.
+        </div>
+        
+        <div class="swiper vertical-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="icon">🏠</div>
+                    <div>홈</div>
+                    <div style="font-size: 14px; margin-top: 10px;">첫 번째 섹션</div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="icon">👨‍💼</div>
+                    <div>회사소개</div>
+                    <div style="font-size: 14px; margin-top: 10px;">두 번째 섹션</div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="icon">💼</div>
+                    <div>서비스</div>
+                    <div style="font-size: 14px; margin-top: 10px;">세 번째 섹션</div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="icon">📂</div>
+                    <div>포트폴리오</div>
+                    <div style="font-size: 14px; margin-top: 10px;">네 번째 섹션</div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="icon">📞</div>
+                    <div>연락처</div>
+                    <div style="font-size: 14px; margin-top: 10px;">다섯 번째 섹션</div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="icon">📍</div>
+                    <div>오시는 길</div>
+                    <div style="font-size: 14px; margin-top: 10px;">여섯 번째 섹션</div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        var verticalSwiper = new Swiper(".vertical-swiper", {
+            direction: "vertical",
+            slidesPerView: 1,
+            spaceBetween: 30,
+            mousewheel: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            keyboard: {
+                enabled: true,
+            },
+            // 부드러운 전환을 위한 설정
+            speed: 1000,
+            
+            // 각 슬라이드 변경 시 이벤트
+            on: {
+                slideChange: function () {
+                    console.log('현재 슬라이드:', this.activeIndex + 1);
+                }
+            }
+        });
+
+        // 키보드 이벤트 추가 (방향키 사용)
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowUp') {
+                verticalSwiper.slidePrev();
+            } else if (event.key === 'ArrowDown') {
+                verticalSwiper.slideNext();
+            }
+        });
+    </script>
+
+    <!-- 하단에 코드 설명을 위한 모달 스타일 -->
+    <style>
+        .code-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .code-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 80%;
+            max-height: 80%;
+            overflow-y: auto;
+        }
+        .close-btn {
+            float: right;
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .code-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #007aff;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+
+    <button class="code-btn" onclick="showCode()">📝 코드 보기</button>
+
+    <div class="code-modal" id="codeModal">
+        <div class="code-content">
+            <button class="close-btn" onclick="hideCode()">✕ 닫기</button>
+            <h3>📝 수직 슬라이더 구현 코드</h3>
+            
+            <h4>JavaScript</h4>
+            <pre><code>var verticalSwiper = new Swiper(".vertical-swiper", {
+    direction: "vertical",        // 수직 방향
+    slidesPerView: 1,
+    spaceBetween: 30,
+    mousewheel: true,             // 마우스휠 활성화
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    keyboard: {
+        enabled: true,            // 키보드 네비게이션
+    },
+    speed: 1000,                  // 전환 속도 (1초)
+    
+    on: {
+        slideChange: function () {
+            console.log('현재 슬라이드:', this.activeIndex + 1);
+        }
+    }
+});
+
+// 방향키로 조작
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'ArrowUp') {
+        verticalSwiper.slidePrev();
+    } else if (event.key === 'ArrowDown') {
+        verticalSwiper.slideNext();
+    }
+});</code></pre>
+
+            <h4>CSS 설정</h4>
+            <pre><code>.swiper {
+    width: 100%;
+    height: 100vh;              /* 전체 화면 높이 */
+}
+
+.swiper-slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 페이지네이션을 오른쪽에 배치 */
+.swiper-pagination {
+    right: 20px !important;
+    left: auto !important;
+    width: auto !important;
+}</code></pre>
+
+            <h4>활용 예시</h4>
+            <p><strong>풀스크린 웹사이트:</strong> 각 섹션이 화면 전체를 차지하는 원페이지 웹사이트</p>
+            <p><strong>프레젠테이션:</strong> 슬라이드쇼 형태의 콘텐츠 표시</p>
+            <p><strong>스토리텔링:</strong> 순차적으로 이야기를 전개하는 웹사이트</p>
+        </div>
+    </div>
+
+    <script>
+        function showCode() {
+            document.getElementById('codeModal').style.display = 'flex';
+        }
+
+        function hideCode() {
+            document.getElementById('codeModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

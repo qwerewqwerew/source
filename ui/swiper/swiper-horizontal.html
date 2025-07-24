@@ -75,7 +75,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <!-- Initialize Swiper -->
     <script>
-        var swiper = new Swiper(".horizontals", {
+        const horizontalSwiper = new Swiper(".horizontals", {
             direction: "horizontal",
             slidesPerView: 1,
             spaceBetween: 30,
@@ -87,11 +87,47 @@
             hashNavigation: {
                 watchState: true,
             },
+            on: {
+                reachEnd: function () {
+                    // 수평 스크롤이 끝에 도달했을 때 수직 스크롤 활성화하고 다음 슬라이드로 이동
+                    verticalSwiper.allowTouchMove = true;
+                    verticalSwiper.mousewheel.enable();
+                    setTimeout(() => {
+                        verticalSwiper.slideNext();
+                    }, 100);
+                },
+                reachBeginning: function () {
+                    // 수평 스크롤이 처음에 도달했을 때 수직 스크롤 활성화하고 이전 슬라이드로 이동
+                    verticalSwiper.allowTouchMove = true;
+                    verticalSwiper.mousewheel.enable();
+                    setTimeout(() => {
+                        verticalSwiper.slidePrev();
+                    }, 100);
+                }
+            }
         });
-        var swiper2 = new Swiper(".verticals", {
+
+        const verticalSwiper = new Swiper(".verticals", {
             direction: "vertical",
             slidesPerView: 1,
             mousewheel: true,
+            on: {
+                slideChange: function () {
+                    // 수평 슬라이드 섹션(인덱스 3)에 있을 때
+                    if (this.activeIndex === 3) {
+                        // 수직 스크롤 비활성화
+                        this.allowTouchMove = false;
+                        this.mousewheel.disable();
+
+                        // 수평 스크롤을 처음으로 리셋
+                        horizontalSwiper.slideTo(0, 0);
+                    } else {
+                        // 다른 섹션에서는 수직 스크롤 활성화
+                        this.allowTouchMove = true;
+                        this.mousewheel.enable();
+                    }
+                }
+            }
         });
     </script>
 </body>

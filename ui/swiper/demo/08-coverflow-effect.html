@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08. 커버플로우 효과 - Swiper Demo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1 {
+            color: white;
+            margin-bottom: 30px;
+        }
+        .swiper {
+            width: 100%;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 300px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        .swiper-slide:nth-child(1) { background: linear-gradient(45deg, #667eea, #764ba2); }
+        .swiper-slide:nth-child(2) { background: linear-gradient(45deg, #f093fb, #f5576c); }
+        .swiper-slide:nth-child(3) { background: linear-gradient(45deg, #4facfe, #00f2fe); }
+        .swiper-slide:nth-child(4) { background: linear-gradient(45deg, #43e97b, #38f9d7); }
+        .swiper-slide:nth-child(5) { background: linear-gradient(45deg, #fa709a, #fee140); }
+        .swiper-slide:nth-child(6) { background: linear-gradient(45deg, #a8edea, #fed6e3); }
+        .swiper-slide:nth-child(7) { background: linear-gradient(45deg, #ffecd2, #fcb69f); }
+        
+        .back-link {
+            display: inline-block;
+            background: #007aff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .info {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        .swiper-pagination {
+            position: static !important;
+            margin-top: 30px;
+        }
+        .swiper-pagination-bullet {
+            background: rgba(255,255,255,0.5);
+        }
+        .swiper-pagination-bullet-active {
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← 목록으로 돌아가기</a>
+        
+        <h1>🎵 08. 커버플로우 효과</h1>
+        
+        <div class="info">
+            <p>애플의 iTunes처럼 앨범 커버 스타일의 3D 효과입니다. 드래그해보세요!</p>
+        </div>
+        
+        <div class="swiper coverflow-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">앨범 1</div>
+                <div class="swiper-slide">앨범 2</div>
+                <div class="swiper-slide">앨범 3</div>
+                <div class="swiper-slide">앨범 4</div>
+                <div class="swiper-slide">앨범 5</div>
+                <div class="swiper-slide">앨범 6</div>
+                <div class="swiper-slide">앨범 7</div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        var coverflowSwiper = new Swiper(".coverflow-swiper", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+        });
+    </script>
+</body>
+</html>
