@@ -202,6 +202,7 @@ a {
 	text-decoration: none;
 }
 
+<<<<<<< HEAD
 @media screen and (min-width: 320px) {
 	html {
 		font-size: calc(16px + 6 * ((100vw - 320px) / 680)) !important;
@@ -221,3 +222,5 @@ html {
 body {
 	font-size: clamp(100%, 1rem + 2vw, 24px);
 }
+=======
+>>>>>>> d611815a2589158ebb2fc21d4ca56d5a758397bc
