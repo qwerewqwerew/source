@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📜 JavaScript 스크롤 값 얻어오기 완전 가이드</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border-left: 5px solid #667eea;
+        }
+
+        .toc h2 {
+            color: #495057;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .toc li {
+            margin: 8px 0;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .toc a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 2em;
+            margin: 50px 0 20px 0;
+            border-left: 5px solid #667eea;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 3px;
+        }
+
+        h3 {
+            color: #34495e;
+            font-size: 1.5em;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+        }
+
+        h4 {
+            color: #7f8c8d;
+            font-size: 1.3em;
+            margin: 25px 0 15px 0;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: #2c3e50;
+            line-height: 1.8;
+        }
+
+        code {
+            background: #f1f2f6;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+            color: #e74c3c;
+            border: 1px solid #ddd;
+        }
+
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 25px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 25px 0;
+            border-left: 4px solid #667eea;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            border: none;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        pre::before {
+            content: 'JavaScript';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: #667eea;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tr:hover {
+            background-color: #f8f9fa;
+            transform: scale(1.01);
+            transition: all 0.3s ease;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        ul, ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin: 10px 0;
+            color: #2c3e50;
+        }
+
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #ff6b6b;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.2);
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #48cae4;
+            box-shadow: 0 4px 12px rgba(72, 202, 228, 0.2);
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #e17055;
+            box-shadow: 0 4px 12px rgba(225, 112, 85, 0.2);
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #55efc4 0%, #81ecec 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #00b894;
+            box-shadow: 0 4px 12px rgba(0, 184, 148, 0.2);
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 60px;
+            background: #48cae4;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: #0077b6;
+            transform: scale(1.05);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(100px);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: #764ba2;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .toc {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 1.6em;
+                margin: 30px 0 15px 0;
+            }
+
+            pre {
+                padding: 20px;
+                font-size: 12px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+        }
+
+        /* 스크롤 애니메이션 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 코드 하이라이팅 */
+        .keyword { color: #c792ea; }
+        .string { color: #c3e88d; }
+        .number { color: #f78c6c; }
+        .comment { color: #546e7a; font-style: italic; }
+        .function { color: #82aaff; }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>📜 JavaScript 스크롤 값 얻어오기 완전 가이드</h1>
+            <p>웹 개발에서 필수적인 스크롤 제어 기술을 마스터하세요!</p>
+        </div>
+
+        <div class="content">
+            <div class="toc fade-in">
+                <h2>🎯 목차</h2>
+                <ul>
+                    <li><a href="#basic-scroll">기본 스크롤 값 얻기</a></li>
+                    <li><a href="#element-scroll">요소별 스크롤 값</a></li>
+                    <li><a href="#scroll-size">스크롤 위치 및 크기 정보</a></li>
+                    <li><a href="#practical-examples">실전 예제</a></li>
+                    <li><a href="#scroll-events">스크롤 이벤트 활용</a></li>
+                    <li><a href="#mobile-support">모바일 대응</a></li>
+                    <li><a href="#utilities">유용한 유틸리티 함수들</a></li>
+                    <li><a href="#css-integration">CSS와의 연동</a></li>
+                    <li><a href="#performance-tips">성능 팁</a></li>
+                </ul>
+            </div>
+
+            <section id="basic-scroll" class="fade-in">
+                <h2>🔧 기본 스크롤 값 얻기</h2>
+
+                <h3>1. 현재 스크롤 위치 (Y축)</h3>
+                <pre><code><span class="comment">// 방법 1: window.scrollY (가장 일반적)</span>
+<span class="keyword">const</span> scrollTop = <span class="keyword">window</span>.<span class="function">scrollY</span>;
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'현재 Y축 스크롤:'</span>, scrollTop);
+
+<span class="comment">// 방법 2: window.pageYOffset (구버전 호환)</span>
+<span class="keyword">const</span> scrollTop2 = <span class="keyword">window</span>.<span class="function">pageYOffset</span>;
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'현재 Y축 스크롤:'</span>, scrollTop2);
+
+<span class="comment">// 방법 3: document.documentElement.scrollTop</span>
+<span class="keyword">const</span> scrollTop3 = <span class="keyword">document</span>.<span class="function">documentElement</span>.<span class="function">scrollTop</span>;
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'현재 Y축 스크롤:'</span>, scrollTop3);
+
+<span class="comment">// 방법 4: document.body.scrollTop (IE 호환)</span>
+<span class="keyword">const</span> scrollTop4 = <span class="keyword">document</span>.<span class="function">body</span>.<span class="function">scrollTop</span>;
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'현재 Y축 스크롤:'</span>, scrollTop4);</code></pre>
+
+                <h3>📊 Y축 스크롤 속성 비교표</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>속성</th>
+                            <th>호환성</th>
+                            <th>특징</th>
+                            <th>권장도</th>
+                            <th>주의사항</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>window.scrollY</code></td>
+                            <td>✅ 최신 브라우저</td>
+                            <td>가장 직관적이고 명확</td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                            <td>IE 지원 안함</td>
+                        </tr>
+                        <tr>
+                            <td><code>window.pageYOffset</code></td>
+                            <td>✅ 구버전 포함</td>
+                            <td>오래된 표준, 널리 지원</td>
+                            <td>⭐⭐⭐⭐</td>
+                            <td>scrollY와 동일한 값</td>
+                        </tr>
+                        <tr>
+                            <td><code>document.documentElement.scrollTop</code></td>
+                            <td>✅ 모든 브라우저</td>
+                            <td>HTML 요소의 스크롤</td>
+                            <td>⭐⭐⭐</td>
+                            <td>Strict 모드에서 권장</td>
+                        </tr>
+                        <tr>
+                            <td><code>document.body.scrollTop</code></td>
+                            <td>⚠️ 구버전 IE</td>
+                            <td>body 요소의 스크롤</td>
+                            <td>⭐⭐</td>
+                            <td>Quirks 모드에서만 동작</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-box">
+                    <h4>🔍 상세 차이점 분석</h4>
+                    <h4>1. 브라우저 호환성</h4>
+                    <pre><code><span class="comment">// 브라우저별 지원 현황</span>
+<span class="keyword">const</span> scrollMethods = {
+    <span class="string">'window.scrollY'</span>: <span class="string">'Chrome 1+, Firefox 1+, Safari 1+, IE ❌'</span>,
+    <span class="string">'window.pageYOffset'</span>: <span class="string">'Chrome 1+, Firefox 1+, Safari 1+, IE 9+'</span>,
+    <span class="string">'documentElement.scrollTop'</span>: <span class="string">'모든 브라우저 (IE 포함)'</span>,
+    <span class="string">'body.scrollTop'</span>: <span class="string">'IE Quirks 모드, 일부 구버전 브라우저'</span>
+};</code></pre>
+
+                    <h4>2. 동작 방식의 차이</h4>
+                    <pre><code><span class="comment">// DOCTYPE에 따른 동작 차이</span>
+<span class="keyword">function</span> <span class="function">checkScrollBehavior</span>() {
+    <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'=== 현재 문서 모드별 스크롤 값 ==='</span>);
+    <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'window.scrollY:'</span>, <span class="keyword">window</span>.<span class="function">scrollY</span>);
+    <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'pageYOffset:'</span>, <span class="keyword">window</span>.<span class="function">pageYOffset</span>);
+    <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'documentElement.scrollTop:'</span>, <span class="keyword">document</span>.<span class="function">documentElement</span>.<span class="function">scrollTop</span>);
+    <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'body.scrollTop:'</span>, <span class="keyword">document</span>.<span class="function">body</span>.<span class="function">scrollTop</span>);
+
+    <span class="comment">// Strict 모드 (DOCTYPE html)에서는:</span>
+    <span class="comment">// - documentElement.scrollTop이 올바른 값</span>
+    <span class="comment">// - body.scrollTop은 0</span>
+
+    <span class="comment">// Quirks 모드 (DOCTYPE 없음)에서는:</span>
+    <span class="comment">// - body.scrollTop이 올바른 값</span>
+    <span class="comment">// - documentElement.scrollTop은 0</span>
+}</code></pre>
+
+                    <h4>3. 성능 비교</h4>
+                    <pre><code><span class="comment">// 성능 테스트 함수</span>
+<span class="keyword">function</span> <span class="function">performanceTest</span>() {
+    <span class="keyword">const</span> iterations = <span class="number">100000</span>;
+
+    <span class="comment">// window.scrollY 테스트</span>
+    <span class="keyword">console</span>.<span class="function">time</span>(<span class="string">'window.scrollY'</span>);
+    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i < iterations; i++) {
+        <span class="keyword">const</span> scroll = <span class="keyword">window</span>.<span class="function">scrollY</span>;
+    }
+    <span class="keyword">console</span>.<span class="function">timeEnd</span>(<span class="string">'window.scrollY'</span>);
+
+    <span class="comment">// pageYOffset 테스트</span>
+    <span class="keyword">console</span>.<span class="function">time</span>(<span class="string">'pageYOffset'</span>);
+    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i < iterations; i++) {
+        <span class="keyword">const</span> scroll = <span class="keyword">window</span>.<span class="function">pageYOffset</span>;
+    }
+    <span class="keyword">console</span>.<span class="function">timeEnd</span>(<span class="string">'pageYOffset'</span>);
+
+    <span class="comment">// documentElement.scrollTop 테스트</span>
+    <span class="keyword">console</span>.<span class="function">time</span>(<span class="string">'documentElement.scrollTop'</span>);
+    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i < iterations; i++) {
+        <span class="keyword">const</span> scroll = <span class="keyword">document</span>.<span class="function">documentElement</span>.<span class="function">scrollTop</span>;
+    }
+    <span class="keyword">console</span>.<span class="function">timeEnd</span>(<span class="string">'documentElement.scrollTop'</span>);
+}</code></pre>
+                </div>
+
+                <h3>2. 현재 스크롤 위치 (X축)</h3>
+                <pre><code><span class="comment">// 방법 1: window.scrollX (가장 일반적)</span>
+<span class="keyword">const</span> scrollLeft = <span class="keyword">window</span>.<span class="function">scrollX</span>;
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'현재 X축 스크롤:'</span>, scrollLeft);
+
+<span class="comment">// 방법 2: window.pageXOffset (구버전 호환)</span>
+<span class="keyword">const</span> scrollLeft2 = <span class="keyword">window</span>.<span class="function">pageXOffset</span>;
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'현재 X축 스크롤:'</span>, scrollLeft2);
+
+<span class="comment">// 방법 3: document.documentElement.scrollLeft</span>
+<span class="keyword">const</span> scrollLeft3 = <span class="keyword">document</span>.<span class="function">documentElement</span>.<span class="function">scrollLeft</span>;
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'현재 X축 스크롤:'</span>, scrollLeft3);</code></pre>
+
+                <h3>📊 X축 스크롤 속성 비교표</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>속성</th>
+                            <th>호환성</th>
+                            <th>특징</th>
+                            <th>권장도</th>
+                            <th>주의사항</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>window.scrollX</code></td>
+                            <td>✅ 최신 브라우저</td>
+                            <td>가장 직관적이고 명확</td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                            <td>IE 지원 안함</td>
+                        </tr>
+                        <tr>
+                            <td><code>window.pageXOffset</code></td>
+                            <td>✅ 구버전 포함</td>
+                            <td>오래된 표준, 널리 지원</td>
+                            <td>⭐⭐⭐⭐</td>
+                            <td>scrollX와 동일한 값</td>
+                        </tr>
+                        <tr>
+                            <td><code>document.documentElement.scrollLeft</code></td>
+                            <td>✅ 모든 브라우저</td>
+                            <td>HTML 요소의 가로 스크롤</td>
+                            <td>⭐⭐⭐</td>
+                            <td>Y축과 동일한 원리</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight-box">
+                    <h4>🎯 실무에서의 선택 기준</h4>
+
+                    <h4>최신 프로젝트 (IE 지원 불필요)</h4>
+                    <pre><code><span class="comment">// 권장: window.scrollY/scrollX 사용</span>
+<span class="keyword">const</span> scrollY = <span class="keyword">window</span>.<span class="function">scrollY</span>;
+<span class="keyword">const</span> scrollX = <span class="keyword">window</span>.<span class="function">scrollX</span>;</code></pre>
+
+                    <h4>구버전 브라우저 지원 필요</h4>
+                    <pre><code><span class="comment">// 권장: pageYOffset/pageXOffset 사용</span>
+<span class="keyword">const</span> scrollY = <span class="keyword">window</span>.<span class="function">pageYOffset</span>;
+<span class="keyword">const</span> scrollX = <span class="keyword">window</span>.<span class="function">pageXOffset</span>;</code></pre>
+
+                    <h4>최대 호환성 필요 (IE 포함)</h4>
+                    <pre><code><span class="comment">// 권장: 크로스 브라우저 함수 사용</span>
+<span class="keyword">function</span> <span class="function">getScrollPosition</span>() {
+    <span class="keyword">return</span> {
+        x: <span class="keyword">window</span>.<span class="function">pageXOffset</span> || <span class="keyword">document</span>.<span class="function">documentElement</span>.<span class="function">scrollLeft</span> || <span class="keyword">document</span>.<span class="function">body</span>.<span class="function">scrollLeft</span> || <span class="number">0</span>,
+        y: <span class="keyword">window</span>.<span class="function">pageYOffset</span> || <span class="keyword">document</span>.<span class="function">documentElement</span>.<span class="function">scrollTop</span> || <span class="keyword">document</span>.<span class="function">body</span>.<span class="function">scrollTop</span> || <span class="number">0</span>
+    };
+}</code></pre>
+                </div>
+
+                <h3>3. 크로스 브라우저 호환 함수</h3>
+                <pre><code><span class="comment">// 안전한 스크롤 Y값 얻기</span>
+<span class="keyword">function</span> <span class="function">getScrollTop</span>() {
+    <span class="keyword">return</span> <span class="keyword">window</span>.<span class="function">pageYOffset</span> ||
+           <span class="keyword">document</span>.<span class="function">documentElement</span>.<span class="function">scrollTop</span> ||
+           <span class="keyword">document</span>.<span class="function">body</span>.<span class="function">scrollTop</span> || <span class="number">0</span>;
+}
+
+<span class="comment">// 안전한 스크롤 X값 얻기</span>
+<span class="keyword">function</span> <span class="function">getScrollLeft</span>() {
+    <span class="keyword">return</span> <span class="keyword">window</span>.<span class="function">pageXOffset</span> ||
+           <span class="keyword">document</span>.<span class="function">documentElement</span>.<span class="function">scrollLeft</span> ||
+           <span class="keyword">document</span>.<span class="function">body</span>.<span class="function">scrollLeft</span> || <span class="number">0</span>;
+}
+
+<span class="comment">// 사용 예시</span>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'현재 스크롤 Y:'</span>, <span class="function">getScrollTop</span>());
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'현재 스크롤 X:'</span>, <span class="function">getScrollLeft</span>());</code></pre>
+
+                <div class="info-box">
+                    <h4>📋 기타 스크롤 관련 속성들 비교</h4>
+
+                    <h4>크기 관련 속성 비교표</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>속성</th>
+                                <th>대상</th>
+                                <th>의미</th>
+                                <th>스크롤바 포함</th>
+                                <th>사용 예시</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>scrollHeight</code></td>
+                                <td>요소</td>
+                                <td>스크롤 가능한 전체 높이</td>
+                                <td>❌</td>
+                                <td><code>element.scrollHeight</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>offsetHeight</code></td>
+                                <td>요소</td>
+                                <td>테두리 포함 전체 높이</td>
+                                <td>✅</td>
+                                <td><code>element.offsetHeight</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>clientHeight</code></td>
+                                <td>요소</td>
+                                <td>패딩 포함, 테두리/스크롤바 제외</td>
+                                <td>❌</td>
+                                <td><code>element.clientHeight</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>innerHeight</code></td>
+                                <td>윈도우</td>
+                                <td>뷰포트 높이 (스크롤바 포함)</td>
+                                <td>✅</td>
+                                <td><code>window.innerHeight</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>outerHeight</code></td>
+                                <td>윈도우</td>
+                                <td>브라우저 창 전체 높이</td>
+                                <td>✅</td>
+                                <td><code>window.outerHeight</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="success-box">
+                    <h4>💡 속성 선택 가이드라인</h4>
+
+                    <h4>스크롤 위치를 얻을 때</h4>
+                    <ul>
+                        <li>🥇 <strong>최우선</strong>: <code>window.scrollY</code> / <code>window.scrollX</code> (현대적)</li>
+                        <li>🥈 <strong>차선</strong>: <code>window.pageYOffset</code> / <code>window.pageXOffset</code> (호환성)</li>
+                        <li>🥉 <strong>최후</strong>: <code>document.documentElement.scrollTop</code> (IE 대응)</li>
+                    </ul>
+
+                    <h4>요소 크기를 확인할 때</h4>
+                    <ul>
+                        <li>📐 <strong>전체 콘텐츠 크기</strong>: <code>scrollHeight</code> / <code>scrollWidth</code></li>
+                        <li>📏 <strong>보이는 영역 크기</strong>: <code>clientHeight</code> / <code>clientWidth</code></li>
+                        <li>📊 <strong>테두리 포함 크기</strong>: <code>offsetHeight</code> / <code>offsetWidth</code></li>
+                    </ul>
+
+                    <h4>성능을 고려할 때</h4>
+                    <pre><code><span class="comment">// ✅ 좋음: 한 번만 접근</span>
+<span class="keyword">const</span> scrollY = <span class="keyword">window</span>.<span class="function">scrollY</span>;
+<span class="keyword">const</span> progress = (scrollY / maxScroll) * <span class="number">100</span>;
+
+<span class="comment">// ❌ 나쁨: 반복 접근</span>
+<span class="keyword">const</span> progress = (<span class="keyword">window</span>.<span class="function">scrollY</span> / maxScroll) * <span class="number">100</span>;
+<span class="keyword">if</span> (<span class="keyword">window</span>.<span class="function">scrollY</span> > <span class="number">100</span>) { <span class="comment">/* ... */</span> }</code></pre>
+                </div>
+            </section>
+
+            <section id="element-scroll" class="fade-in">
+                <h2>📏 요소별 스크롤 값</h2>
+
+                <h3>1. 특정 요소의 스크롤 위치</h3>
+                <pre><code><span class="keyword">const</span> element = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">'.scrollable-element'</span>);
+
+<span class="comment">// 요소 내부의 스크롤 위치</span>
+<span class="keyword">const</span> elementScrollTop = element.<span class="function">scrollTop</span>;
+<span class="keyword">const</span> elementScrollLeft = element.<span class="function">scrollLeft</span>;
+
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'요소 스크롤 Y:'</span>, elementScrollTop);
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'요소 스크롤 X:'</span>, elementScrollLeft);</code></pre>
+
+                <h3>2. 요소의 스크롤 가능한 크기</h3>
+                <pre><code><span class="keyword">const</span> element = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">'.scrollable-element'</span>);
+
+<span class="comment">// 스크롤 가능한 전체 높이/너비</span>
+<span class="keyword">const</span> scrollHeight = element.<span class="function">scrollHeight</span>;
+<span class="keyword">const</span> scrollWidth = element.<span class="function">scrollWidth</span>;
+
+<span class="comment">// 실제 보이는 영역의 높이/너비</span>
+<span class="keyword">const</span> clientHeight = element.<span class="function">clientHeight</span>;
+<span class="keyword">const</span> clientWidth = element.<span class="function">clientWidth</span>;
+
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'스크롤 가능한 높이:'</span>, scrollHeight);
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'보이는 영역 높이:'</span>, clientHeight);
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'스크롤 가능한 범위:'</span>, scrollHeight - clientHeight);</code></pre>
+            </section>
+
+            <section id="practical-examples" class="fade-in">
+                <h2>🎯 실전 예제</h2>
+
+                <h3>1. 스크롤 진행률 계산</h3>
+                <pre><code><span class="keyword">function</span> <span class="function">getScrollProgress</span>() {
+    <span class="keyword">const</span> scrollTop = <span class="keyword">window</span>.<span class="function">pageYOffset</span>;
+    <span class="keyword">const</span> documentHeight = <span class="keyword">document</span>.<span class="function">documentElement</span>.<span class="function">scrollHeight</span>;
+    <span class="keyword">const</span> windowHeight = <span class="keyword">window</span>.<span class="function">innerHeight</span>;
+    <span class="keyword">const</span> scrollableHeight = documentHeight - windowHeight;
+
+    <span class="keyword">const</span> progress = (scrollTop / scrollableHeight) * <span class="number">100</span>;
+    <span class="keyword">return</span> <span class="keyword">Math</span>.<span class="function">min</span>(<span class="number">100</span>, <span class="keyword">Math</span>.<span class="function">max</span>(<span class="number">0</span>, progress));
+}
+
+<span class="comment">// 사용 예시</span>
+<span class="keyword">window</span>.<span class="function">addEventListener</span>(<span class="string">'scroll'</span>, () => {
+    <span class="keyword">const</span> progress = <span class="function">getScrollProgress</span>();
+    <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">`스크롤 진행률: ${progress.toFixed(1)}%`</span>);
+
+    <span class="comment">// 프로그레스 바 업데이트</span>
+    <span class="keyword">const</span> progressBar = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">'.progress-bar'</span>);
+    <span class="keyword">if</span> (progressBar) {
+        progressBar.<span class="function">style</span>.<span class="function">width</span> = <span class="string">`${progress}%`</span>;
+    }
+});</code></pre>
+
+                <h3>2. 스크롤 방향 감지</h3>
+                <pre><code><span class="keyword">let</span> lastScrollTop = <span class="number">0</span>;
+
+<span class="keyword">function</span> <span class="function">detectScrollDirection</span>() {
+    <span class="keyword">const</span> currentScrollTop = <span class="keyword">window</span>.<span class="function">pageYOffset</span>;
+    <span class="keyword">let</span> direction = <span class="string">''</span>;
+
+    <span class="keyword">if</span> (currentScrollTop > lastScrollTop) {
+        direction = <span class="string">'down'</span>;
+    } <span class="keyword">else if</span> (currentScrollTop < lastScrollTop) {
+        direction = <span class="string">'up'</span>;
+    }
+
+    lastScrollTop = currentScrollTop;
+    <span class="keyword">return</span> direction;
+}
+
+<span class="comment">// 사용 예시</span>
+<span class="keyword">window</span>.<span class="function">addEventListener</span>(<span class="string">'scroll'</span>, () => {
+    <span class="keyword">const</span> direction = <span class="function">detectScrollDirection</span>();
+    <span class="keyword">if</span> (direction) {
+        <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">`스크롤 방향: ${direction}`</span>);
+        <span class="keyword">document</span>.<span class="function">body</span>.<span class="function">setAttribute</span>(<span class="string">'data-scroll-direction'</span>, direction);
+    }
+});</code></pre>
+
+                <h3>3. 부드러운 스크롤 이동</h3>
+                <pre><code><span class="comment">// 특정 위치로 부드럽게 스크롤</span>
+<span class="keyword">function</span> <span class="function">smoothScrollTo</span>(targetY, duration = <span class="number">1000</span>) {
+    <span class="keyword">const</span> startY = <span class="keyword">window</span>.<span class="function">pageYOffset</span>;
+    <span class="keyword">const</span> distance = targetY - startY;
+    <span class="keyword">const</span> startTime = <span class="keyword">performance</span>.<span class="function">now</span>();
+
+    <span class="keyword">function</span> <span class="function">scrollAnimation</span>(currentTime) {
+        <span class="keyword">const</span> elapsed = currentTime - startTime;
+        <span class="keyword">const</span> progress = <span class="keyword">Math</span>.<span class="function">min</span>(elapsed / duration, <span class="number">1</span>);
+
+        <span class="comment">// easeInOutCubic 이징 함수</span>
+        <span class="keyword">const</span> easeProgress = progress < <span class="number">0.5</span>
+            ? <span class="number">4</span> * progress * progress * progress
+            : <span class="number">1</span> - <span class="keyword">Math</span>.<span class="function">pow</span>(-<span class="number">2</span> * progress + <span class="number">2</span>, <span class="number">3</span>) / <span class="number">2</span>;
+
+        <span class="keyword">window</span>.<span class="function">scrollTo</span>(<span class="number">0</span>, startY + distance * easeProgress);
+
+        <span class="keyword">if</span> (progress < <span class="number">1</span>) {
+            <span class="keyword">requestAnimationFrame</span>(<span class="function">scrollAnimation</span>);
+        }
+    }
+
+    <span class="keyword">requestAnimationFrame</span>(<span class="function">scrollAnimation</span>);
+}
+
+<span class="comment">// 사용 예시</span>
+<span class="function">smoothScrollTo</span>(<span class="number">1000</span>); <span class="comment">// 1000px 위치로 부드럽게 스크롤</span></code></pre>
+            </section>
+
+            <section id="performance-tips" class="fade-in">
+                <h2>⚡ 성능 팁</h2>
+
+                <div class="warning-box">
+                    <h3>중요한 성능 최적화 사항들</h3>
+                    <ol>
+                        <li><strong>Throttling/Debouncing 사용</strong>: 스크롤 이벤트는 매우 자주 발생하므로 성능 최적화 필수</li>
+                        <li><strong>Passive 이벤트</strong>: <code>{ passive: true }</code> 옵션으로 성능 향상</li>
+                        <li><strong>RequestAnimationFrame 활용</strong>: 부드러운 애니메이션을 위해 사용</li>
+                        <li><strong>CSS Transform 활용</strong>: <code>transform</code> 속성이 <code>top/left</code>보다 성능이 좋음</li>
+                        <li><strong>Will-change 속성</strong>: CSS에서 <code>will-change: transform</code>으로 GPU 가속 활용</li>
+                    </ol>
+                </div>
+
+                <h3>Throttling 예제</h3>
+                <pre><code><span class="keyword">function</span> <span class="function">throttle</span>(func, limit) {
+    <span class="keyword">let</span> inThrottle;
+    <span class="keyword">return function</span>() {
+        <span class="keyword">const</span> args = <span class="keyword">arguments</span>;
+        <span class="keyword">const</span> context = <span class="keyword">this</span>;
+        <span class="keyword">if</span> (!inThrottle) {
+            func.<span class="function">apply</span>(context, args);
+            inThrottle = <span class="keyword">true</span>;
+            <span class="keyword">setTimeout</span>(() => inThrottle = <span class="keyword">false</span>, limit);
+        }
+    }
+}
+
+<span class="comment">// 최적화된 스크롤 이벤트</span>
+<span class="keyword">const</span> optimizedScrollHandler = <span class="function">throttle</span>(() => {
+    <span class="keyword">const</span> scrollY = <span class="keyword">window</span>.<span class="function">pageYOffset</span>;
+    <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'스크롤 위치:'</span>, scrollY);
+}, <span class="number">100</span>); <span class="comment">// 100ms마다 실행</span>
+
+<span class="keyword">window</span>.<span class="function">addEventListener</span>(<span class="string">'scroll'</span>, optimizedScrollHandler);</code></pre>
+            </section>
+        </div>
+    </div>
+
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <script>
+        // 진행률 바 업데이트
+        function updateProgressBar() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        }
+
+        // 백투탑 버튼 표시/숨김
+        function toggleBackToTop() {
+            const backToTopBtn = document.getElementById('backToTop');
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        }
+
+        // 스크롤 애니메이션
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.fade-in');
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // 스크롤 이벤트 (Throttled)
+        let ticking = false;
+        function updateOnScroll() {
+            updateProgressBar();
+            toggleBackToTop();
+            revealOnScroll();
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateOnScroll);
+                ticking = true;
+            }
+        });
+
+        // 백투탑 버튼 클릭
+        document.getElementById('backToTop').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // 코드 복사 기능
+        document.querySelectorAll('pre').forEach(pre => {
+            const button = document.createElement('button');
+            button.textContent = '📋 복사';
+            button.className = 'copy-btn';
+            pre.style.position = 'relative';
+            pre.appendChild(button);
+
+            button.addEventListener('click', () => {
+                const code = pre.querySelector('code').textContent;
+                navigator.clipboard.writeText(code).then(() => {
+                    button.textContent = '✅ 복사됨!';
+                    setTimeout(() => {
+                        button.textContent = '📋 복사';
+                    }, 2000);
+                });
+            });
+        });
+
+        // 부드러운 스크롤 링크
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 초기 애니메이션 실행
+        revealOnScroll();
+    </script>
+</body>
+</html>

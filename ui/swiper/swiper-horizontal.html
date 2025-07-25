@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="utf-8" />
@@ -9,7 +9,7 @@
     <style>
         @import url(https://qwerewqwerew.github.io/source/style/reset.css);
     </style>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <!-- Demo styles -->
     <style>
         html,
@@ -32,23 +32,14 @@
         .swiper-slide {
             text-align: center;
             font-size: 18px;
-            /*     background: #fff; */
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-
-        .swiper-slide img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
     </style>
 </head>
 
 <body>
-    <!--  .swiper.vertical>swiper-wrapper>(a.swiper-slide)*3+section.swiper.section_All.swiper+a.swiper-slide -->
     <div class="swiper verticals">
         <div class="swiper-wrapper">
             <section class="vh100 swiper-slide"> 1 </section>
@@ -59,12 +50,7 @@
                     <div class="swiper-slide" data-hash="slide1">Slide 1</div>
                     <div class="swiper-slide" data-hash="slide2">Slide 2</div>
                     <div class="swiper-slide" data-hash="slide3">Slide 3</div>
-                    <div class="swiper-slide" data-hash="slide1">Slide 4</div>
-                    <div class="swiper-slide" data-hash="slide1">Slide 5</div>
-                    <div class="swiper-slide" data-hash="slide1">Slide 6</div>
-                    <div class="swiper-slide" data-hash="slide1">Slide 7</div>
-                    <div class="swiper-slide" data-hash="slide1">Slide 8</div>
-                    <div class="swiper-slide" data-hash="slide1">Slide 9</div>
+                    <div class="swiper-slide" data-hash="slide4">Slide 4</div>
                 </div>
                 <div class="swiper-pagination"></div>
             </section>
@@ -72,63 +58,149 @@
         </div>
     </div>
     <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <!-- Initialize Swiper -->
     <script>
-        const horizontalSwiper = new Swiper(".horizontals", {
-            direction: "horizontal",
-            slidesPerView: 1,
-            spaceBetween: 30,
-            mousewheel: true,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            hashNavigation: {
-                watchState: true,
-            },
-            on: {
-                reachEnd: function () {
-                    // 수평 스크롤이 끝에 도달했을 때 수직 스크롤 활성화하고 다음 슬라이드로 이동
-                    verticalSwiper.allowTouchMove = true;
-                    verticalSwiper.mousewheel.enable();
-                    setTimeout(() => {
-                        verticalSwiper.slideNext();
-                    }, 100);
+        // 전역 변수
+        let verticalSwiper;
+        let horizontalSwiper;
+
+        // 상수 정의
+        const HORIZONTAL_SECTION_INDEX = 3;
+        const SECTION_5_INDEX = 4;
+        const SECTION_3_INDEX = 2;
+
+        // 수평 스와이퍼 초기화
+        function initHorizontalSwiper() {
+            horizontalSwiper = new Swiper(".horizontals", {
+                direction: "horizontal",
+                slidesPerView: 1,
+                spaceBetween: 30,
+                mousewheel: true,
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
                 },
-                reachBeginning: function () {
-                    // 수평 스크롤이 처음에 도달했을 때 수직 스크롤 활성화하고 이전 슬라이드로 이동
-                    verticalSwiper.allowTouchMove = true;
-                    verticalSwiper.mousewheel.enable();
-                    setTimeout(() => {
-                        verticalSwiper.slidePrev();
-                    }, 100);
+                hashNavigation: {
+                    watchState: true,
+                },
+                on: {
+                    reachEnd: handleHorizontalReachEnd,
+                    reachBeginning: handleHorizontalReachBeginning,
+                    transitionEnd: handleHorizontalTransitionEnd
                 }
+            });
+        }
+
+        // 수직 스와이퍼 초기화
+        function initVerticalSwiper() {
+            verticalSwiper = new Swiper(".verticals", {
+                direction: "vertical",
+                slidesPerView: 1,
+                mousewheel: true,
+                on: {
+                    slideChange: handleVerticalSlideChange,
+                    slideChangeTransitionStart: handleVerticalTransitionStart,
+                    slideChangeTransitionEnd: handleVerticalTransitionEnd
+                }
+            });
+        }
+
+        // 수평 스와이퍼 이벤트 핸들러
+        function handleHorizontalReachEnd() {
+            horizontalSwiper.canMoveToNext = true;
+        }
+
+        function handleHorizontalReachBeginning() {
+            horizontalSwiper.canMoveToPrev = true;
+        }
+
+        function handleHorizontalTransitionEnd() {
+            if (horizontalSwiper.canMoveToNext && horizontalSwiper.isEnd) {
+                enableVerticalScrollAndMove(function () {
+                    verticalSwiper.slideNext();
+                });
+                horizontalSwiper.canMoveToNext = false;
             }
-        });
 
-        const verticalSwiper = new Swiper(".verticals", {
-            direction: "vertical",
-            slidesPerView: 1,
-            mousewheel: true,
-            on: {
-                slideChange: function () {
-                    // 수평 슬라이드 섹션(인덱스 3)에 있을 때
-                    if (this.activeIndex === 3) {
-                        // 수직 스크롤 비활성화
-                        this.allowTouchMove = false;
-                        this.mousewheel.disable();
+            if (horizontalSwiper.canMoveToPrev && horizontalSwiper.isBeginning) {
+                enableVerticalScrollAndMove(function () {
+                    verticalSwiper.slideTo(SECTION_3_INDEX);
+                });
+                horizontalSwiper.canMoveToPrev = false;
+            }
+        }
 
-                        // 수평 스크롤을 처음으로 리셋
-                        horizontalSwiper.slideTo(0, 0);
-                    } else {
-                        // 다른 섹션에서는 수직 스크롤 활성화
-                        this.allowTouchMove = true;
-                        this.mousewheel.enable();
+        // 수직 스와이퍼 이벤트 핸들러
+        function handleVerticalSlideChange() {
+            console.log('Vertical slide changed to:', this.activeIndex);
+
+            if (this.activeIndex === HORIZONTAL_SECTION_INDEX) {
+                disableVerticalScroll();
+                resetHorizontalSlider(this.previousIndex);
+            } else {
+                enableVerticalScroll();
+                console.log('Vertical scroll enabled for section:', this.activeIndex);
+            }
+        }
+
+        function handleVerticalTransitionStart() {
+            console.log('Transition start: from', this.previousIndex, 'to', this.activeIndex);
+
+            if (isMovingFromSection5ToHorizontal(this)) {
+                disableVerticalScroll();
+                setHorizontalToLastSlide();
+            }
+        }
+
+        function handleVerticalTransitionEnd() {
+            if (this.activeIndex === HORIZONTAL_SECTION_INDEX) {
+                setTimeout(function () {
+                    if (verticalSwiper.previousIndex !== SECTION_5_INDEX) {
+                        horizontalSwiper.update();
                     }
-                }
+                }, 100);
             }
-        });
+        }
+
+        // 유틸리티 함수
+        function isMovingFromSection5ToHorizontal(swiper) {
+            return swiper.previousIndex === SECTION_5_INDEX &&
+                swiper.activeIndex === HORIZONTAL_SECTION_INDEX;
+        }
+
+        function disableVerticalScroll() {
+            verticalSwiper.allowTouchMove = false;
+            verticalSwiper.mousewheel.disable();
+        }
+
+        function enableVerticalScroll() {
+            verticalSwiper.allowTouchMove = true;
+            verticalSwiper.mousewheel.enable();
+        }
+
+        function enableVerticalScrollAndMove(moveFunction) {
+            enableVerticalScroll();
+            setTimeout(moveFunction, 300);
+        }
+
+        function resetHorizontalSlider(previousIndex) {
+            if (previousIndex !== SECTION_5_INDEX) {
+                setTimeout(function () {
+                    horizontalSwiper.slideTo(0, 0);
+                }, 50);
+            }
+        }
+
+        function setHorizontalToLastSlide() {
+            setTimeout(function () {
+                horizontalSwiper.slideTo(3, 0); // 마지막 슬라이드로 이동
+            }, 100);
+        }
+
+        // 스와이퍼 초기화 실행
+        initHorizontalSwiper();
+        initVerticalSwiper();
     </script>
 </body>
 

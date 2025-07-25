@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎢 Swiper 수직/수평 연동 슬라이드 완벽 가이드</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding: 20px 0;
+        }
+
+        h2 {
+            color: #34495e;
+            font-size: 1.8em;
+            margin: 30px 0 20px 0;
+            border-left: 5px solid #3498db;
+            padding-left: 15px;
+        }
+
+        h3 {
+            color: #2980b9;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+        }
+
+        h4 {
+            color: #8e44ad;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul,
+        ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        code {
+            background: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+            color: #e74c3c;
+        }
+
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-left: 4px solid #3498db;
+        }
+
+        /* 마우스휠 관련 코드 라인 강조 */
+        pre span[id*="mousewheel"] {
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            color: #ffffff !important;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            font-size: 14px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .emoji {
+            font-size: 1.2em;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .note {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #48cae4;
+        }
+
+        /* 📚 앵커 링크 스타일 */
+        tr[id^="method-"] {
+            position: relative;
+        }
+
+        tr[id^="method-"]:target {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+            animation: highlightMethod 2s ease-in-out;
+        }
+
+        @keyframes highlightMethod {
+            0% {
+                background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+                transform: scale(1.02);
+            }
+
+            50% {
+                background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+                transform: scale(1.02);
+            }
+
+            100% {
+                background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+                transform: scale(1);
+            }
+        }
+
+        span[id^="method-"] {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 2px 4px;
+            border-radius: 4px;
+            border: 1px solid #2196f3;
+            color: #1a1a1a;  /* 글씨색을 진한 검은색으로 변경 */
+            font-weight: 600; /* 글씨를 두껍게 만들어 더 잘 보이게 */
+        }
+
+        span[id^="method-"]:target {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+            animation: highlightCode 2s ease-in-out;
+            color: #2c3e50; /* target 상태에서도 진한 글씨색 */
+            font-weight: 700; /* target 상태에서 더 두껍게 */
+        }
+
+        @keyframes highlightCode {
+
+            0%,
+            100% {
+                background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+            }
+
+            50% {
+                background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            }
+        }
+
+        /* 📖 책갈피 링크 스타일 */
+        .bookmark-link {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 0.85em;
+            font-weight: 500;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid #2196f3;
+            margin-left: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .bookmark-link:hover {
+            background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+            color: white;
+            text-decoration: none;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
+        }
+
+        .warning {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #e17055;
+        }
+
+        .success {
+            background: linear-gradient(135deg, #55efc4 0%, #81ecec 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #00b894;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border: 2px solid #e9ecef;
+        }
+
+        .toc h3 {
+            color: #495057;
+            margin-bottom: 15px;
+        }
+
+        .toc ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .toc li {
+            margin-bottom: 5px;
+        }
+
+        .toc a {
+            color: #007bff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .toc a:hover {
+            background: #007bff;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                margin: 10px;
+                border-radius: 10px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            pre {
+                padding: 15px;
+                font-size: 12px;
+            }
+        }
+
+        .step-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🎢 Swiper 수직/수평 연동 슬라이드 완벽 가이드</h1>
+
+        <div class="toc">
+            <h3>📚 목차</h3>
+            <ul>
+                <li><a href="#learning-goals">이 강의에서 배울 내용</a></li>
+                <li><a href="#project-setup">프로젝트 준비하기</a></li>
+                <li><a href="#step-1">1단계: HTML 구조의 완전한 이해</a></li>
+                <li><a href="#step-2">2단계: CSS 스타일링의 완전한 이해</a></li>
+                <li><a href="#step-3">3단계: JavaScript 기초 설정과 디버깅 준비</a></li>
+                <li><a href="#step-4">4단계: 수평 스와이퍼 초기화의 완전한 이해</a></li>
+                <li><a href="#step-5">5단계: 수직 스와이퍼 초기화</a></li>
+                <li><a href="#step-6">6단계: 수평 스와이퍼 이벤트 핸들러</a></li>
+                <li><a href="#step-7">7단계: 수직 스와이퍼 이벤트 핸들러</a></li>
+                <li><a href="#step-8">8단계: 유틸리티 함수들</a></li>
+                <li><a href="#step-9">9단계: 스와이퍼 초기화 실행</a></li>
+                <li><a href="#complete-code">완성 코드</a></li>
+                <li><a href="#swiper-methods">Swiper 주요 메서드 완전 가이드</a></li>
+                <li><strong>🔗 빠른 메서드 접근:</strong>
+                    <ul style="margin-top: 8px; font-size: 0.9em;">
+                        <li><a href="#method-slideNext" class="bookmark-link">slideNext()</a></li>
+                        <li><a href="#method-slideTo" class="bookmark-link">slideTo()</a></li>
+                        <li><a href="#method-update" class="bookmark-link">update()</a></li>
+                        <li><a href="#method-allowTouchMove" class="bookmark-link">allowTouchMove</a></li>
+                        <li><a href="#method-mousewheelDisable" class="bookmark-link">mousewheel.disable()</a></li>
+                        <li><a href="#method-mousewheelEnable" class="bookmark-link">mousewheel.enable()</a></li>
+                    </ul>
+                </li>
+                <li><strong>🎪 이벤트 빠른 접근:</strong>
+                    <ul style="margin-top: 8px; font-size: 0.9em;">
+                        <li><a href="#event-reachEnd" class="bookmark-link">reachEnd</a></li>
+                        <li><a href="#event-reachBeginning" class="bookmark-link">reachBeginning</a></li>
+                        <li><a href="#event-transitionEnd" class="bookmark-link">transitionEnd</a></li>
+                    </ul>
+                </li>
+                <li><a href="#reference">주요 Swiper 메서드 및 속성</a></li>
+            </ul>
+        </div>
+
+        <section id="learning-goals">
+            <h2>📚 이 강의에서 배울 내용</h2>
+
+            <h3>🎯 핵심 학습 목표</h3>
+            <ol>
+                <li><strong>Swiper 라이브러리 기초 완전 정복</strong>
+                    <ul>
+                        <li>Swiper란 무엇인가?</li>
+                        <li>언제, 왜 사용하는가?</li>
+                        <li>기본 설정부터 고급 옵션까지</li>
+                    </ul>
+                </li>
+                <li><strong>수직/수평 슬라이더 연동의 비밀</strong>
+                    <ul>
+                        <li>두 개의 다른 방향 슬라이더를 하나처럼 동작시키는 방법</li>
+                        <li>자연스러운 전환과 사용자 경험 설계</li>
+                        <li>복잡한 인터랙션을 간단하게 구현하기</li>
+                    </ul>
+                </li>
+                <li><strong>실전 JavaScript 이벤트 처리</strong>
+                    <ul>
+                        <li>이벤트가 발생하는 순간을 정확히 포착하는 방법</li>
+                        <li>여러 이벤트를 조합하여 복잡한 동작 만들기</li>
+                        <li>버그 없는 안정적인 코드 작성법</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>🚀 완성 후 얻게 되는 결과물</h2>
+            <p>우리가 만들 슬라이드는 다음과 같이 동작합니다:</p>
+
+            <h3>📱 기본 동작 시나리오</h3>
+            <pre><code>섹션 1 ↓ (세로 스크롤)
+섹션 2 ↓ (세로 스크롤)
+섹션 3 ↓ (세로 스크롤)
+섹션 4 (수평 슬라이드) ← → (가로 스크롤만 가능)
+섹션 5 ↓ (세로 스크롤)</code></pre>
+
+            <h3>🎭 특별한 동작 (핵심 기능)</h3>
+            <div class="highlight">
+                <p><strong>상황 1: 섹션 5에서 뒤로 이동할 때</strong></p>
+                <pre><code>섹션 5 → 섹션 4의 마지막 슬라이드(slide4)로 진입
+slide4 → slide3 → slide2 → slide1 (순차적으로 가로 이동)
+slide1에서 더 뒤로 가면 → 섹션 3으로 점프!</code></pre>
+            </div>
+
+            <div class="note">
+                <p><strong>상황 2: 일반적인 진입</strong></p>
+                <pre><code>섹션 3 → 섹션 4의 첫 번째 슬라이드(slide1)로 진입
+slide1 → slide2 → slide3 → slide4 (순차적으로 가로 이동)
+slide4에서 더 앞으로 가면 → 섹션 5로 이동</code></pre>
+            </div>
+
+            <h3>💡 왜 이렇게 복잡하게 만드나요?</h3>
+            <ul>
+                <li><strong>사용자 경험</strong>: 자연스러운 네비게이션 흐름 제공</li>
+                <li><strong>스토리텔링</strong>: 콘텐츠를 순서대로 보여주고 싶을 때</li>
+                <li><strong>포트폴리오</strong>: 작품을 효과적으로 전시하고 싶을 때</li>
+                <li><strong>제품 소개</strong>: 단계별로 기능을 설명하고 싶을 때</li>
+            </ul>
+        </section>
+
+        <section id="project-setup">
+            <h2>🔧 프로젝트 준비하기</h2>
+
+            <h3>📋 필요한 사전 지식</h3>
+            <ul>
+                <li><strong>HTML 기초</strong>: <code>&lt;div&gt;</code>, <code>&lt;section&gt;</code> 태그 이해</li>
+                <li><strong>CSS 기초</strong>: 클래스 선택자, 기본 스타일링</li>
+                <li><strong>JavaScript 기초</strong>: 변수, 함수, 이벤트 개념</li>
+                <li><strong>웹 브라우저</strong>: 개발자 도구 사용법</li>
+            </ul>
+
+            <h3>🛠️ 개발 환경 세팅</h3>
+            <ol>
+                <li><strong>텍스트 에디터</strong>: VS Code, Sublime Text 등</li>
+                <li><strong>웹 브라우저</strong>: Chrome, Firefox (개발자 도구 포함)</li>
+                <li><strong>인터넷 연결</strong>: Swiper CDN 사용을 위해 필요</li>
+            </ol>
+
+            <h3>📦 사용할 라이브러리</h3>
+            <ul>
+                <li><strong>Swiper.js v11</strong>: 현대적이고 성능이 뛰어난 슬라이더 라이브러리</li>
+                <li><strong>CDN 방식</strong>: 별도 다운로드 없이 링크만으로 사용 가능</li>
+            </ul>
+        </section>
+
+        <section id="step-1">
+            <h2><span class="step-number">1</span>🏗️ HTML 구조의 완전한 이해</h2>
+
+            <h3>먼저 큰 그림을 보자!</h3>
+            <p>우리가 만들 구조는 <strong>"상자 안의 상자"</strong> 개념입니다:</p>
+
+            <pre><code>큰 세로 상자 (verticals)
+├── 섹션 1 (세로 슬라이드)
+├── 섹션 2 (세로 슬라이드)
+├── 섹션 3 (세로 슬라이드)
+├── 섹션 4 (가로 상자가 들어있는 세로 슬라이드)
+│   └── 작은 가로 상자 (horizontals)
+│       ├── slide1 (가로 슬라이드)
+│       ├── slide2 (가로 슬라이드)
+│       ├── slide3 (가로 슬라이드)
+│       └── slide4 (가로 슬라이드)
+└── 섹션 5 (세로 슬라이드)</code></pre>
+
+            <h3>완전한 HTML 코드와 상세 설명</h3>
+            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;Swiper 수직/수평 연동 데모&lt;/title&gt;
+    &lt;!-- 반응형 웹을 위한 뷰포트 설정 --&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" /&gt;
+    &lt;!-- Swiper CSS 파일 - 슬라이더의 기본 스타일과 애니메이션 포함 --&gt;
+    &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- 🔥 메인 세로 슬라이더 컨테이너 --&gt;
+    &lt;div class="swiper verticals"&gt;
+        &lt;div class="swiper-wrapper"&gt;
+
+            &lt;!-- ✨ 일반 세로 슬라이드들 (섹션 1, 2, 3) --&gt;
+            &lt;section class="vh100 swiper-slide"&gt;
+                &lt;h1&gt;섹션 1&lt;/h1&gt;
+                &lt;p&gt;첫 번째 섹션입니다. 아래로 스크롤해보세요!&lt;/p&gt;
+            &lt;/section&gt;
+
+            &lt;section class="vh100 swiper-slide"&gt;
+                &lt;h1&gt;섹션 2&lt;/h1&gt;
+                &lt;p&gt;두 번째 섹션입니다. 계속 아래로!&lt;/p&gt;
+            &lt;/section&gt;
+
+            &lt;section class="vh100 swiper-slide"&gt;
+                &lt;h1&gt;섹션 3&lt;/h1&gt;
+                &lt;p&gt;세 번째 섹션입니다. 다음은 특별한 가로 슬라이드!&lt;/p&gt;
+            &lt;/section&gt;
+
+            &lt;!-- 🎢 특별한 섹션 4: 가로 슬라이더가 중첩된 세로 슬라이드 --&gt;
+            &lt;section class="swiper horizontals swiper-slide"&gt;
+                &lt;!-- 가로 슬라이더의 래퍼 --&gt;
+                &lt;div class="swiper-wrapper"&gt;
+                    &lt;!-- 각 가로 슬라이드: data-hash로 URL 네비게이션 가능 --&gt;
+                    &lt;div class="swiper-slide" data-hash="slide1"&gt;
+                        &lt;h2&gt;가로 슬라이드 1&lt;/h2&gt;
+                        &lt;p&gt;왼쪽/오른쪽 또는 마우스 휠로 이동하세요!&lt;/p&gt;
+                    &lt;/div&gt;
+                    &lt;div class="swiper-slide" data-hash="slide2"&gt;
+                        &lt;h2&gt;가로 슬라이드 2&lt;/h2&gt;
+                        &lt;p&gt;URL이 변경되는 것을 확인해보세요!&lt;/p&gt;
+                    &lt;/div&gt;
+                    &lt;div class="swiper-slide" data-hash="slide3"&gt;
+                        &lt;h2&gt;가로 슬라이드 3&lt;/h2&gt;
+                        &lt;p&gt;거의 다 왔습니다!&lt;/p&gt;
+                    &lt;/div&gt;
+                    &lt;div class="swiper-slide" data-hash="slide4"&gt;
+                        &lt;h2&gt;가로 슬라이드 4&lt;/h2&gt;
+                        &lt;p&gt;마지막 슬라이드! 더 오른쪽으로 가면 섹션 5로!&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;!-- 가로 슬라이더 전용 페이지네이션 (동그라미 점들) --&gt;
+                &lt;div class="swiper-pagination"&gt;&lt;/div&gt;
+            &lt;/section&gt;
+
+            &lt;!-- ✨ 마지막 세로 슬라이드 (섹션 5) --&gt;
+            &lt;section class="vh100 swiper-slide"&gt;
+                &lt;h1&gt;섹션 5&lt;/h1&gt;
+                &lt;p&gt;마지막 섹션입니다. 위로 올라가면 특별한 동작을 볼 수 있어요!&lt;/p&gt;
+            &lt;/section&gt;
+
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Swiper JavaScript 파일 - 슬라이더 동작을 위한 핵심 코드 --&gt;
+    &lt;script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+            <h3>🔍 HTML 구조 심화 분석</h3>
+
+            <h4>1. DOCTYPE과 기본 설정</h4>
+            <pre><code>&lt;!DOCTYPE html&gt;  &lt;!-- HTML5 문서임을 브라우저에게 알림 --&gt;
+&lt;html lang="ko"&gt;  &lt;!-- 한국어 페이지임을 명시 (접근성, SEO 향상) --&gt;</code></pre>
+
+            <h4>2. Head 섹션의 핵심 요소들</h4>
+            <pre><code>&lt;!-- 문자 인코딩: 한글 깨짐 방지 --&gt;
+&lt;meta charset="utf-8" /&gt;
+
+&lt;!-- 반응형 웹: 모바일에서도 제대로 표시 --&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" /&gt;
+    ↑ 기기 너비에 맞춤    ↑ 기본 확대율    ↑ 최소 확대    ↑ 최대 확대
+
+&lt;!-- Swiper CSS: 슬라이더의 모든 스타일과 애니메이션 포함 --&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" /&gt;</code></pre>
+
+            <h4>3. 클래스명의 의미와 역할</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>클래스명</th>
+                        <th>역할</th>
+                        <th>필수 여부</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>swiper</code></td>
+                        <td>Swiper 라이브러리가 인식하는 메인 컨테이너</td>
+                        <td>✅ 필수</td>
+                    </tr>
+                    <tr>
+                        <td><code>verticals</code></td>
+                        <td>우리가 정한 세로 슬라이더 식별자</td>
+                        <td>✅ 식별용</td>
+                    </tr>
+                    <tr>
+                        <td><code>horizontals</code></td>
+                        <td>우리가 정한 가로 슬라이더 식별자</td>
+                        <td>✅ 식별용</td>
+                    </tr>
+                    <tr>
+                        <td><code>swiper-wrapper</code></td>
+                        <td>슬라이드들을 감싸는 래퍼 (Swiper 내부에서 사용)</td>
+                        <td>✅ 필수</td>
+                    </tr>
+                    <tr>
+                        <td><code>swiper-slide</code></td>
+                        <td>개별 슬라이드임을 표시</td>
+                        <td>✅ 필수</td>
+                    </tr>
+                    <tr>
+                        <td><code>swiper-pagination</code></td>
+                        <td>페이지네이션 (동그라미 점들) 컨테이너</td>
+                        <td>❌ 선택사항</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>4. data-hash 속성의 깊이 있는 이해</h4>
+            <div class="highlight">
+                <p><strong>동작 원리:</strong></p>
+                <ol>
+                    <li><strong>URL 자동 업데이트</strong>: 슬라이드 이동 시 주소창이 <code>#slide1</code>, <code>#slide2</code>로 변경</li>
+                    <li><strong>직접 접근 가능</strong>: <code>example.com/#slide3</code> 입력 시 바로 해당 슬라이드로 이동</li>
+                    <li><strong>브라우저 히스토리</strong>: 뒤로가기/앞으로가기 버튼으로 슬라이드 이동 가능</li>
+                    <li><strong>북마크 지원</strong>: 특정 슬라이드를 북마크하여 나중에 바로 접근 가능</li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="step-2">
+            <h2><span class="step-number">2</span>🎨 CSS 스타일링의 완전한 이해</h2>
+
+            <h3>왜 CSS가 필요한가요?</h3>
+            <p>Swiper 라이브러리는 기본적인 슬라이더 동작만 제공합니다. 우리가 원하는 <strong>전체 화면 슬라이드</strong>, <strong>중앙 정렬</strong>, <strong>반응형 디자인</strong>을 위해서는 추가적인 CSS 스타일이 필요합니다.</p>
+
+            <h3>완전한 CSS 코드와 단계별 설명</h3>
+            <pre><code>/* 🌍 1. 전체 페이지 기본 설정 */
+html, body {
+    position: relative;     /* 자식 요소의 절대 위치 기준점 설정 */
+    height: 100%;          /* 브라우저 전체 높이 사용 */
+    margin: 0;             /* 기본 여백 제거 */
+    padding: 0;            /* 기본 패딩 제거 */
+    overflow: hidden;      /* 스크롤바 숨김 (Swiper가 스크롤 제어) */
+}
+
+/* 🖼️ 2. 세로 섹션 스타일 (전체 화면 높이) */
+section.vh100 {
+    width: 100%;           /* 화면 전체 너비 */
+    height: 100vh;         /* 뷰포트 높이 100% = 브라우저 창 높이와 같음 */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);  /* 예쁜 그라데이션 */
+    position: relative;    /* 내부 요소 위치 기준점 */
+    overflow: hidden;      /* 내용이 넘치면 숨김 */
+}
+
+/* 📱 3. Swiper 컨테이너 기본 설정 */
+.swiper {
+    width: 100%;           /* 부모 요소의 전체 너비 */
+    height: 100%;          /* 부모 요소의 전체 높이 */
+    position: relative;    /* 페이지네이션 등의 위치 기준점 */
+}
+
+/* 🎯 4. 개별 슬라이드 스타일 */
+.swiper-slide {
+    /* 텍스트 정렬 */
+    text-align: center;
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+
+    /* Flexbox로 중앙 정렬 */
+    display: flex;              /* 플렉스 컨테이너로 설정 */
+    justify-content: center;    /* 가로 중앙 정렬 */
+    align-items: center;        /* 세로 중앙 정렬 */
+    flex-direction: column;     /* 세로 방향으로 요소 배치 */
+
+    /* 기본 스타일 */
+    padding: 20px;             /* 내부 여백 */
+    box-sizing: border-box;    /* 패딩 포함한 크기 계산 */
+}</code></pre>
+
+            <div class="note">
+                <h4>💡 CSS 핵심 개념 설명</h4>
+                <p><strong>height: 100% vs height: 100vh의 차이점</strong></p>
+                <ul>
+                    <li><code>100%</code>: 부모 요소가 명확한 높이를 가질 때</li>
+                    <li><code>100vh</code>: 브라우저 창 전체 높이를 원할 때 (더 확실함)</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="step-3">
+            <h2><span class="step-number">3</span>🧩 JavaScript 기초 설정과 디버깅 준비</h2>
+
+            <h3>왜 이 단계가 중요한가요?</h3>
+            <p>복잡한 슬라이더 연동을 구현하기 전에, <strong>변수 관리</strong>와 <strong>디버깅 환경</strong>을 먼저 준비해야 합니다. 이는 마치 요리하기 전에 재료를 준비하는 것과 같습니다!</p>
+
+            <h3>기본 변수와 상수 선언</h3>
+            <pre><code>// 🌐 전역 변수 선언 (두 스와이퍼가 서로 소통하기 위해 필요)
+let verticalSwiper;    // 세로 슬라이더 객체를 저장할 변수
+let horizontalSwiper;  // 가로 슬라이더 객체를 저장할 변수
+
+// 🔢 상수 정의 (매직 넘버 방지 - 숫자의 의미를 명확하게!)
+const HORIZONTAL_SECTION_INDEX = 3;  // 수평 슬라이드 섹션의 위치 (4번째 = 인덱스 3)
+const SECTION_5_INDEX = 4;           // 섹션 5의 위치 (5번째 = 인덱스 4)
+const SECTION_3_INDEX = 2;           // 섹션 3의 위치 (3번째 = 인덱스 2)
+const LAST_HORIZONTAL_SLIDE = 3;     // 마지막 가로 슬라이드 인덱스 (4번째 = 인덱스 3)
+
+// 🎛️ 타이밍 관련 상수 (애니메이션 지연 시간)
+const VERTICAL_ENABLE_DELAY = 300;   // 수직 스크롤 활성화 지연 시간 (ms)
+const HORIZONTAL_RESET_DELAY = 50;   // 수평 슬라이더 리셋 지연 시간 (ms)
+const HORIZONTAL_SET_DELAY = 100;    // 수평 슬라이더 설정 지연 시간 (ms)
+const UPDATE_DELAY = 100;            // 업데이트 지연 시간 (ms)</code></pre>
+
+            <div class="warning">
+                <h4>⚠️ 변수 사용 가이드</h4>
+                <ul>
+                    <li><code>let</code>: 재할당이 가능한 변수 (객체 저장용)</li>
+                    <li><code>const</code>: 재할당이 불가능한 상수 (설정값 등)</li>
+                    <li><code>var</code>: 구식 방법, 사용 금지!</li>
+                </ul>
+            </div>
+
+            <h3>디버깅을 위한 console.log 시스템</h3>
+            <pre><code>// 🔍 디버깅 헬퍼 함수들
+function logSwiperInfo(swiperName, swiper) {
+    console.group(`🔍 ${swiperName} 상태 정보`);
+    console.log('현재 슬라이드 인덱스:', swiper.activeIndex);
+    console.log('이전 슬라이드 인덱스:', swiper.previousIndex);
+    console.log('첫 번째 슬라이드인가?', swiper.isBeginning);
+    console.log('마지막 슬라이드인가?', swiper.isEnd);
+    console.log('터치 이동 가능한가?', swiper.allowTouchMove);
+    console.log('전체 슬라이드 개수:', swiper.slides.length);
+    console.groupEnd();
+}
+
+// 🔄 주기적으로 상태 확인 (개발 중에만 사용)
+const DEBUG_MODE = true; // 개발 완료 후 false로 변경
+if (DEBUG_MODE) {
+    setInterval(monitorSwiperChanges, 2000); // 2초마다 상태 확인
+}</code></pre>
+        </section>
+
+        <section id="step-4">
+            <h2><span class="step-number">4</span>⚙️ 수평 스와이퍼 초기화의 완전한 이해</h2>
+
+            <h3>왜 수평 스와이퍼를 먼저 초기화하나요?</h3>
+            <p>수직과 수평 스와이퍼가 서로 소통해야 하는 상황에서, <strong>수평 스와이퍼를 먼저 만들어야</strong> 나중에 수직 스와이퍼에서 참조할 수 있습니다.</p>
+
+            <h3>완전한 초기화 코드</h3>
+            <pre><code>function initHorizontalSwiper() {
+    // 🔍 초기화 전 요소 존재 확인
+    const container = document.querySelector('.horizontals');
+    if (!container) {
+        console.error('❌ .horizontals 요소를 찾을 수 없습니다!');
+        return;
+    }
+
+    // 🎯 수평 스와이퍼 생성하기
+    // console.log는 개발자 도구(F12)에서 확인할 수 있습니다
+    console.log('🚀 수평 스와이퍼를 만들어보겠습니다!');
+
+    // new Swiper()로 새로운 슬라이더를 만듭니다
+    // ".horizontals"는 HTML에서 찾을 요소의 이름입니다
+    horizontalSwiper = new Swiper(".horizontals", {
+        // 📍 1. 기본 방향 설정
+        direction: "horizontal",        // 수평 방향으로 슬라이드 이동
+
+        // 📱 2. 표시 관련 설정
+        slidesPerView: 1,              // 한 번에 보여줄 슬라이드 개수
+        spaceBetween: 30,              // 슬라이드 사이의 간격 (픽셀)
+
+        // 🖱️ 3. 사용자 인터랙션 설정
+        mousewheel: true,              // 마우스 휠로 슬라이드 조작 가능
+
+        // 📍 4. 페이지네이션 설정
+        pagination: {
+            el: ".swiper-pagination",  // 페이지네이션이 표시될 요소
+            clickable: true,           // 점을 클릭해서 해당 슬라이드로 이동 가능
+        },
+
+        // 🌐 5. URL 해시 네비게이션 설정
+        hashNavigation: {
+            watchState: true,          // URL 해시 변화를 감지하여 슬라이드 이동
+        },
+
+        // 🎯 6. 이벤트 핸들러 등록
+        on: {
+            init: function() {
+                console.log('🎉 수평 스와이퍼 초기화 완료!');
+            },
+            // 📚 reachEnd 이벤트 <a href="#event-reachEnd" class="bookmark-link">📖 가이드 보기</a>
+            reachEnd: handleHorizontalReachEnd,
+            // 📚 reachBeginning 이벤트 <a href="#event-reachBeginning" class="bookmark-link">📖 가이드 보기</a>
+            reachBeginning: handleHorizontalReachBeginning,
+            // 📚 transitionEnd 이벤트 <a href="#event-transitionEnd" class="bookmark-link">📖 가이드 보기</a>
+            transitionEnd: handleHorizontalTransitionEnd
+        }
+    });
+
+    console.log('✅ 수평 스와이퍼가 성공적으로 만들어졌습니다!');
+}</code></pre>
+
+            <div class="success">
+                <h4>✅ 초기화 성공 확인 방법</h4>
+                <p>브라우저 개발자 도구 콘솔에서 다음 명령어를 입력해보세요:</p>
+                <pre><code>console.log(horizontalSwiper); // 객체가 출력되면 성공</code></pre>
+            </div>
+        </section>
+
+        <section id="complete-code">
+            <h2>📂 완성 코드</h2>
+
+            <h3>HTML 전체 코드</h3>
+            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;Swiper demo&lt;/title&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" /&gt;
+    &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" /&gt;
+    &lt;style&gt;
+        html, body {
+            position: relative;
+            height: 100%;
+        }
+        section.vh100 {
+            width: 100%;
+            height: 100vh;
+            background: #ccc;
+        }
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="swiper verticals"&gt;
+        &lt;div class="swiper-wrapper"&gt;
+            &lt;section class="vh100 swiper-slide"&gt; 1 &lt;/section&gt;
+            &lt;section class="vh100 swiper-slide"&gt; 2 &lt;/section&gt;
+            &lt;section class="vh100 swiper-slide"&gt; 3 &lt;/section&gt;
+            &lt;section class="swiper horizontals swiper-slide"&gt;
+                &lt;div class="swiper-wrapper"&gt;
+                    &lt;div class="swiper-slide" data-hash="slide1"&gt;Slide 1&lt;/div&gt;
+                    &lt;div class="swiper-slide" data-hash="slide2"&gt;Slide 2&lt;/div&gt;
+                    &lt;div class="swiper-slide" data-hash="slide3"&gt;Slide 3&lt;/div&gt;
+                    &lt;div class="swiper-slide" data-hash="slide4"&gt;Slide 4&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="swiper-pagination"&gt;&lt;/div&gt;
+            &lt;/section&gt;
+            &lt;section class="vh100 swiper-slide"&gt; 5 &lt;/section&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        // 전역 변수
+        let verticalSwiper;
+        let horizontalSwiper;
+
+        // 상수 정의
+        const HORIZONTAL_SECTION_INDEX = 3;
+        const SECTION_5_INDEX = 4;
+        const SECTION_3_INDEX = 2;
+
+        // 수평 스와이퍼 초기화
+        function initHorizontalSwiper() {
+            horizontalSwiper = new Swiper(".horizontals", {
+                direction: "horizontal",
+                slidesPerView: 1,
+                spaceBetween: 30,
+                mousewheel: true,
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                hashNavigation: {
+                    watchState: true,
+                },
+                on: {
+                    // 📚 reachEnd 이벤트 <a href="#event-reachEnd" class="bookmark-link">📖 가이드 보기</a>
+                    reachEnd: handleHorizontalReachEnd,
+                    // 📚 reachBeginning 이벤트 <a href="#event-reachBeginning" class="bookmark-link">📖 가이드 보기</a>
+                    reachBeginning: handleHorizontalReachBeginning,
+                    // 📚 transitionEnd 이벤트 <a href="#event-transitionEnd" class="bookmark-link">📖 가이드 보기</a>
+                    transitionEnd: handleHorizontalTransitionEnd
+                }
+            });
+        }
+
+        // 수직 스와이퍼 초기화
+        function initVerticalSwiper() {
+            verticalSwiper = new Swiper(".verticals", {
+                direction: "vertical",
+                slidesPerView: 1,
+                mousewheel: true,
+                on: {
+                    slideChange: handleVerticalSlideChange,
+                    slideChangeTransitionStart: handleVerticalTransitionStart,
+                    slideChangeTransitionEnd: handleVerticalTransitionEnd
+                }
+            });
+        }
+
+        // 이벤트 핸들러 함수들
+        function handleHorizontalReachEnd() {
+            horizontalSwiper.canMoveToNext = true;
+        }
+
+        function handleHorizontalReachBeginning() {
+            horizontalSwiper.canMoveToPrev = true;
+        }
+
+        function handleHorizontalTransitionEnd() {
+            if (horizontalSwiper.canMoveToNext && horizontalSwiper.isEnd) {
+                enableVerticalScrollAndMove(function() {
+                    // 📚 slideNext() 메서드 사용 <a href="#method-slideNext" class="bookmark-link">📖 가이드 보기</a>
+                    verticalSwiper.slideNext();
+                });
+                horizontalSwiper.canMoveToNext = false;
+            }
+
+            if (horizontalSwiper.canMoveToPrev && horizontalSwiper.isBeginning) {
+                enableVerticalScrollAndMove(function() {
+                    // 📚 slideTo() 메서드 사용 <a href="#method-slideTo" class="bookmark-link">📖 가이드 보기</a>
+                    verticalSwiper.slideTo(SECTION_3_INDEX);
+                });
+                horizontalSwiper.canMoveToPrev = false;
+            }
+        }
+
+        function handleVerticalSlideChange() {
+            console.log('Vertical slide changed to:', this.activeIndex);
+
+            if (this.activeIndex === HORIZONTAL_SECTION_INDEX) {
+                disableVerticalScroll();
+                resetHorizontalSlider(this.previousIndex);
+            } else {
+                enableVerticalScroll();
+                console.log('Vertical scroll enabled for section:', this.activeIndex);
+            }
+        }
+
+        function handleVerticalTransitionStart() {
+            console.log('Transition start: from', this.previousIndex, 'to', this.activeIndex);
+
+            if (isMovingFromSection5ToHorizontal(this)) {
+                disableVerticalScroll();
+                setHorizontalToLastSlide();
+            }
+        }
+
+        function handleVerticalTransitionEnd() {
+            if (this.activeIndex === HORIZONTAL_SECTION_INDEX) {
+                setTimeout(function() {
+                    if (verticalSwiper.previousIndex !== SECTION_5_INDEX) {
+                        // 📚 update() 메서드 사용 <a href="#method-update" class="bookmark-link">📖 가이드 보기</a>
+                        horizontalSwiper.update();
+                    }
+                }, 100);
+            }
+        }
+
+        // 유틸리티 함수들
+        function isMovingFromSection5ToHorizontal(swiper) {
+            return swiper.previousIndex === SECTION_5_INDEX &&
+                   swiper.activeIndex === HORIZONTAL_SECTION_INDEX;
+        }
+
+        function disableVerticalScroll() {
+            // 📚 allowTouchMove 속성 및 mousewheel.disable() 메서드 사용 <a href="#method-allowTouchMove" class="bookmark-link">📖 allowTouchMove</a> <a href="#method-mousewheelDisable" class="bookmark-link">📖 mousewheel.disable</a>
+            verticalSwiper.allowTouchMove = false;
+            verticalSwiper.mousewheel.disable();
+        }
+
+        function enableVerticalScroll() {
+            // 📚 allowTouchMove 속성 및 mousewheel.enable() 메서드 사용 <a href="#method-allowTouchMove" class="bookmark-link">📖 allowTouchMove</a> <a href="#method-mousewheelEnable" class="bookmark-link">📖 mousewheel.enable</a>
+            verticalSwiper.allowTouchMove = true;
+            verticalSwiper.mousewheel.enable();
+        }
+
+        function enableVerticalScrollAndMove(moveFunction) {
+            enableVerticalScroll();
+            setTimeout(moveFunction, 300);
+        }
+
+        function resetHorizontalSlider(previousIndex) {
+            if (previousIndex !== SECTION_5_INDEX) {
+                setTimeout(function() {
+                    // 📚 slideTo() 메서드 사용 <a href="#method-slideTo" class="bookmark-link">📖 가이드 보기</a>
+                    horizontalSwiper.slideTo(0, 0);
+                }, 50);
+            }
+        }
+
+        function setHorizontalToLastSlide() {
+            setTimeout(function() {
+                // 📚 slideTo() 메서드 사용 <a href="#method-slideTo" class="bookmark-link">📖 가이드 보기</a>
+                horizontalSwiper.slideTo(3, 0);
+            }, 100);
+        }
+
+        // 스와이퍼 초기화 실행
+        initHorizontalSwiper();
+        initVerticalSwiper();
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </section>
+
+        <section id="swiper-methods">
+            <h2>🔧 Swiper 주요 메서드 완전 가이드</h2>
+
+            <h3>📋 메서드 분류</h3>
+            <p>Swiper의 메서드는 크게 다음과 같이 분류됩니다:</p>
+            <ul>
+                <li><strong>슬라이드 이동 메서드</strong>: 특정 슬라이드로 이동하거나 다음/이전 슬라이드로 이동</li>
+                <li><strong>상태 확인 메서드</strong>: 현재 슬라이더의 상태를 확인</li>
+                <li><strong>제어 메서드</strong>: 슬라이더의 동작을 제어 (활성화/비활성화)</li>
+                <li><strong>업데이트 메서드</strong>: 슬라이더를 갱신하거나 재설정</li>
+            </ul>
+
+            <h3>🎯 슬라이드 이동 메서드</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>메서드</th>
+                        <th>문법</th>
+                        <th>설명</th>
+                        <th>예시</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="method-slideNext">
+                        <td><code>slideNext()</code></td>
+                        <td><code>swiper.slideNext(speed, runCallbacks)</code></td>
+                        <td>다음 슬라이드로 이동</td>
+                        <td><code>verticalSwiper.slideNext();</code></td>
+                    </tr>
+                    <tr id="method-slidePrev">
+                        <td><code>slidePrev()</code></td>
+                        <td><code>swiper.slidePrev(speed, runCallbacks)</code></td>
+                        <td>이전 슬라이드로 이동</td>
+                        <td><code>horizontalSwiper.slidePrev(300);</code></td>
+                    </tr>
+                    <tr id="method-slideTo">
+                        <td><code>slideTo()</code></td>
+                        <td><code>swiper.slideTo(index, speed, runCallbacks)</code></td>
+                        <td>특정 인덱스의 슬라이드로 이동</td>
+                        <td><code>swiper.slideTo(2, 500);</code></td>
+                    </tr>
+                    <tr id="method-slideToLoop">
+                        <td><code>slideToLoop()</code></td>
+                        <td><code>swiper.slideToLoop(index, speed, runCallbacks)</code></td>
+                        <td>루프 모드에서 특정 슬라이드로 이동</td>
+                        <td><code>swiper.slideToLoop(0);</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>매개변수 상세 설명</h4>
+            <ul>
+                <li><strong>speed</strong> (선택사항): 애니메이션 속도 (밀리초), 기본값은 스와이퍼 설정의 speed 값</li>
+                <li><strong>runCallbacks</strong> (선택사항): 이벤트 콜백 실행 여부 (boolean), 기본값은 true</li>
+                <li><strong>index</strong>: 이동할 슬라이드의 인덱스 (0부터 시작)</li>
+            </ul>
+
+            <h3>🔍 상태 확인 속성 및 메서드</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>속성/메서드</th>
+                        <th>타입</th>
+                        <th>설명</th>
+                        <th>사용 예시</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="method-activeIndex">
+                        <td><code>activeIndex</code></td>
+                        <td>Number</td>
+                        <td>현재 활성 슬라이드의 인덱스</td>
+                        <td><code>console.log(swiper.activeIndex);</code></td>
+                    </tr>
+                    <tr id="method-previousIndex">
+                        <td><code>previousIndex</code></td>
+                        <td>Number</td>
+                        <td>이전 슬라이드의 인덱스</td>
+                        <td><code>if (swiper.previousIndex === 2) {...}</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>isBeginning</code></td>
+                        <td>Boolean</td>
+                        <td>첫 번째 슬라이드에 있는지 확인</td>
+                        <td><code>if (swiper.isBeginning) {...}</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>isEnd</code></td>
+                        <td>Boolean</td>
+                        <td>마지막 슬라이드에 있는지 확인</td>
+                        <td><code>if (swiper.isEnd) {...}</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>slides</code></td>
+                        <td>Array</td>
+                        <td>모든 슬라이드 요소 배열</td>
+                        <td><code>console.log(swiper.slides.length);</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>⚙️ 제어 메서드</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>메서드</th>
+                        <th>설명</th>
+                        <th>사용 시점</th>
+                        <th>예시</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="method-disable">
+                        <td><code>disable()</code></td>
+                        <td>스와이퍼 완전 비활성화</td>
+                        <td>사용자 상호작용을 완전히 차단하고 싶을 때</td>
+                        <td><code>horizontalSwiper.disable();</code></td>
+                    </tr>
+                    <tr id="method-enable">
+                        <td><code>enable()</code></td>
+                        <td>스와이퍼 활성화</td>
+                        <td>비활성화된 스와이퍼를 다시 활성화할 때</td>
+                        <td><code>horizontalSwiper.enable();</code></td>
+                    </tr>
+                    <tr id="method-allowTouchMove">
+                        <td><code>allowTouchMove</code></td>
+                        <td>터치/드래그 이동 허용 여부 설정</td>
+                        <td>터치만 차단하고 프로그래밍 방식 이동은 허용할 때</td>
+                        <td><code>swiper.allowTouchMove = false;</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>🔄 업데이트 및 제어 메서드</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>메서드</th>
+                        <th>설명</th>
+                        <th>언제 사용하나요?</th>
+                        <th>예시</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="method-update">
+                        <td><code>update()</code></td>
+                        <td>스와이퍼 재계산 및 업데이트</td>
+                        <td>슬라이드 추가/삭제 후, 크기 변경 후</td>
+                        <td><code>horizontalSwiper.update();</code></td>
+                    </tr>
+                    <tr id="method-updateSize">
+                        <td><code>updateSize()</code></td>
+                        <td>스와이퍼 크기만 업데이트</td>
+                        <td>컨테이너 크기가 변경되었을 때</td>
+                        <td><code>swiper.updateSize();</code></td>
+                    </tr>
+                    <tr id="method-updateSlides">
+                        <td><code>updateSlides()</code></td>
+                        <td>슬라이드들만 업데이트</td>
+                        <td>슬라이드 내용이 변경되었을 때</td>
+                        <td><code>swiper.updateSlides();</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>destroy()</code></td>
+                        <td>스와이퍼 완전 제거</td>
+                        <td>메모리 정리, 페이지 이탈 전</td>
+                        <td><code>swiper.destroy(true, true);</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 id="method-mousewheel">🖱️ 마우스휠 제어 메서드</h3>
+            <div class="highlight">
+                <h4>우리 프로젝트에서 사용하는 핵심 메서드들</h4>
+                <pre><code>// 🔒 수직 스크롤 비활성화 (섹션 4 진입 시)
+function disableVerticalScroll() {
+    verticalSwiper.allowTouchMove = false;    // 터치/드래그 차단
+    <span id="method-mousewheelDisable">verticalSwiper.mousewheel.disable();     // 마우스 휠 차단</span>
+}
+
+// 🔓 수직 스크롤 활성화 (섹션 4 이탈 시)
+function enableVerticalScroll() {
+    verticalSwiper.allowTouchMove = true;     // 터치/드래그 허용
+    <span id="method-mousewheelEnable">verticalSwiper.mousewheel.enable();      // 마우스 휠 허용</span>
+}</code></pre>
+            </div>
+
+            <h3>📍 이벤트 메서드 (선택된 코드 관련)</h3>
+            <p>선택하신 코드에서 사용된 이벤트들의 상세 설명:</p>
+
+            <pre><code>on: {
+    <span id="event-reachEnd">reachEnd: handleHorizontalReachEnd,           // 마지막 슬라이드 도달 시</span>
+    <span id="event-reachBeginning">reachBeginning: handleHorizontalReachBeginning, // 첫 번째 슬라이드 도달 시</span>
+    <span id="event-transitionEnd">transitionEnd: handleHorizontalTransitionEnd    // 전환 애니메이션 완료 시</span>
+}</code></pre>
+
+            <h4>이벤트 발생 순서와 활용</h4>
+            <ol>
+                <li><strong>reachEnd/reachBeginning</strong>: 슬라이드 이동 중 경계에 도달한 순간 즉시 발생</li>
+                <li><strong>transitionEnd</strong>: 애니메이션이 완전히 끝난 후 발생</li>
+                <li><strong>실전 활용</strong>: reachEnd에서 플래그 설정 → transitionEnd에서 실제 동작 수행</li>
+            </ol>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>이벤트명</th>
+                        <th>발생 시점</th>
+                        <th>활용 사례</th>
+                        <th>주의사항</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="event-reachEnd-detail">
+                        <td><code>reachEnd</code></td>
+                        <td>마지막 슬라이드에 도달했을 때</td>
+                        <td>다음 섹션으로 이동 준비, 플래그 설정</td>
+                        <td>애니메이션 중에도 발생 가능</td>
+                    </tr>
+                    <tr id="event-reachBeginning-detail">
+                        <td><code>reachBeginning</code></td>
+                        <td>첫 번째 슬라이드에 도달했을 때</td>
+                        <td>이전 섹션으로 이동 준비, 상태 초기화</td>
+                        <td>초기 로드 시에도 발생</td>
+                    </tr>
+                    <tr id="event-transitionEnd-detail">
+                        <td><code>transitionEnd</code></td>
+                        <td>슬라이드 전환 애니메이션 완료 후</td>
+                        <td>실제 동작 수행, UI 업데이트</td>
+                        <td>애니메이션이 없으면 즉시 발생</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="note">
+                <h4>💡 메서드 체이닝</h4>
+                <p>많은 Swiper 메서드들은 체이닝이 가능합니다:</p>
+                <pre><code>swiper.slideTo(2).update().enable();</code></pre>
+            </div>
+
+            <h3>🚨 주의사항 및 베스트 프랙티스</h3>
+            <div class="warning">
+                <ul>
+                    <li><strong>비동기 처리</strong>: DOM 조작 후에는 <code>setTimeout</code>을 사용하여 업데이트</li>
+                    <li><strong>메모리 관리</strong>: 페이지 이탈 시 <code>destroy()</code> 메서드로 정리</li>
+                    <li><strong>상태 확인</strong>: 메서드 실행 전 스와이퍼 객체 존재 여부 확인</li>
+                    <li><strong>이벤트 중복</strong>: 같은 이벤트 핸들러를 여러 번 등록하지 않도록 주의</li>
+                </ul>
+            </div>
+
+            <h3>🎯 실전 디버깅 팁</h3>
+            <div class="success">
+                <h4>콘솔에서 스와이퍼 상태 확인하기</h4>
+                <pre><code>// 현재 활성 슬라이드 확인
+console.log('현재 슬라이드:', horizontalSwiper.activeIndex);
+
+// 스와이퍼가 마지막/첫 번째 슬라이드인지 확인
+console.log('마지막 슬라이드?', horizontalSwiper.isEnd);
+console.log('첫 번째 슬라이드?', horizontalSwiper.isBeginning);
+
+// 전체 슬라이드 개수 확인
+console.log('총 슬라이드 개수:', horizontalSwiper.slides.length);
+
+// 터치 이동 가능 여부 확인
+console.log('터치 이동 가능?', horizontalSwiper.allowTouchMove);</code></pre>
+            </div>
+        </section>
+
+        <section>
+            <h2>🎉 마무리</h2>
+            <p>이 강의를 통해 Swiper 라이브러리의 수직/수평 연동 슬라이더를 완벽히 구현하는 방법을 학습했습니다. 복잡해 보이지만 단계별로 나누어 생각하면 이해하기 쉽습니다!</p>
+
+            <div class="success">
+                <h3>💡 핵심 포인트 정리</h3>
+                <ul>
+                    <li><strong>HTML 구조</strong>: 중첩된 스와이퍼 컨테이너의 올바른 배치</li>
+                    <li><strong>CSS 스타일링</strong>: 전체 화면 슬라이드와 중앙 정렬</li>
+                    <li><strong>JavaScript 초기화</strong>: 순서가 중요한 스와이퍼 생성</li>
+                    <li><strong>이벤트 처리</strong>: 타이밍 제어와 상태 관리</li>
+                    <li><strong>디버깅</strong>: 개발 과정에서의 문제 해결 방법</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // 스무스 스크롤링
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 코드 블록 복사 기능
+        document.querySelectorAll('pre').forEach(pre => {
+            const button = document.createElement('button');
+            button.textContent = '📋 복사';
+            button.style.cssText = `
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background: #3498db;
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 12px;
+            `;
+
+            pre.style.position = 'relative';
+            pre.appendChild(button);
+
+            button.addEventListener('click', () => {
+                const code = pre.querySelector('code').textContent;
+                navigator.clipboard.writeText(code).then(() => {
+                    button.textContent = '✅ 복사됨!';
+                    setTimeout(() => {
+                        button.textContent = '📋 복사';
+                    }, 2000);
+                });
+            });
+        });
+
+        // 📚 책갈피 링크 부드러운 스크롤 기능 (메서드 및 이벤트)
+        document.querySelectorAll('a[href^="#method-"], a[href^="#event-"]').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    // 부드러운 스크롤
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+
+                    // URL 업데이트 (뒤로가기 지원)
+                    setTimeout(() => {
+                        window.history.pushState(null, null, '#' + targetId);
+                    }, 500);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

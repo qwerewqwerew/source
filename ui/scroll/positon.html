@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript 요소 위치값 얻기 완전 가이드</title>
+    <style>
+        /* 🎨 --- CSS 변수 및 기본 설정 --- 🎨 */
+        :root {
+            --bg-color: #f9fafb;
+            --text-color: #374151;
+            --heading-color: #111827;
+            --primary-color: #4f46e5;
+            --border-color: #e5e7eb;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --code-bg: #1f2937;
+            --code-text: #e5e7eb;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 2rem 1rem;
+            line-height: 1.7;
+        }
+
+        /* 📐 --- 레이아웃 --- 📐 */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        section {
+            margin-bottom: 3.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2rem;
+        }
+        section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        /* ✒️ --- 타이포그래피 --- ✒️ */
+        h1, h2, h3 {
+            color: var(--heading-color);
+            font-weight: 700;
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, var(--primary-color), #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+        h3 {
+            font-size: 1.25rem;
+            margin-top: 2rem;
+        }
+
+        /* 💻 --- 코드 블록 스타일 --- 💻 */
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+            font-size: 0.95em;
+            line-height: 1.6;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        code {
+            font-family: inherit;
+        }
+        /* 인라인 코드 스타일 */
+        :not(pre) > code {
+            background-color: #eef2ff;
+            color: var(--primary-color);
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        /* 📊 --- 테이블 스타일 --- 📊 */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 2rem 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 0.8rem 1rem;
+            text-align: left;
+        }
+        th {
+            background-color: #f9fafb;
+            font-weight: 600;
+            color: var(--heading-color);
+        }
+        tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+
+        /* 💡 --- 정보 박스 스타일 --- 💡 */
+        .tip, .warn, .success {
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-left-width: 5px;
+            border-left-style: solid;
+            border-radius: 0 8px 8px 0;
+        }
+        .tip { background-color: #eef2ff; border-color: #6366f1; }
+        .warn { background-color: #fffbeb; border-color: #f59e0b; }
+        .success { background-color: #f0fdf4; border-color: #22c55e; }
+        .tip strong, .warn strong, .success strong {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        /* 🔗 --- 기타 요소 --- 🔗 */
+        ul {
+            list-style-type: '✅ ';
+            padding-left: 1.5rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+            padding-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📍 JavaScript 요소 위치값 얻기 완전 가이드</h1>
+
+        <section>
+            <h2>1. <code>getBoundingClientRect()</code> - 뷰포트 기준 위치</h2>
+            <pre><code>const element = document.querySelector('.target');
+const rect = element.getBoundingClientRect();
+
+console.log('왼쪽:', rect.left);
+console.log('위쪽:', rect.top);
+console.log('너비:', rect.width);
+console.log('높이:', rect.height);</code></pre>
+            <table>
+                <tr><th>속성</th><th>의미</th><th>주의사항</th></tr>
+                <tr><td><code>left</code> / <code>top</code></td><td>뷰포트 기준 X, Y 좌표</td><td>스크롤 시 값이 계속 변경됨</td></tr>
+                <tr><td><code>right</code> / <code>bottom</code></td><td>뷰포트 왼쪽/위쪽 끝에서 요소의 오른쪽/아래쪽 끝까지의 거리</td><td><code>left + width</code> / <code>top + height</code></td></tr>
+                <tr><td><code>width</code> / <code>height</code></td><td>요소의 실제 너비/높이</td><td>padding, border 포함. 소수점 값 가능</td></tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>2. 문서 전체 기준 위치</h2>
+            <pre><code>function getDocumentPosition(element) {
+    const rect = element.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+    return {
+        top: rect.top + scrollTop,
+        left: rect.left + scrollLeft
+    };
+}</code></pre>
+            <div class="tip">
+                <strong>💡 핵심 원리</strong>
+                <code>getBoundingClientRect()</code>로 얻은 뷰포트 기준 위치에 현재 스크롤된 값을 더해주면 문서 전체 기준의 절대 위치를 얻을 수 있습니다.
+            </div>
+        </section>
+
+        <section>
+            <h2>3. <code>offset</code> 계열 속성들 (부모 기준 상대 위치)</h2>
+            <pre><code>const element = document.querySelector('.target');
+console.log('offsetLeft:', element.offsetLeft);
+console.log('offsetTop:', element.offsetTop);
+console.log('offsetWidth:', element.offsetWidth);
+console.log('offsetHeight:', element.offsetHeight);
+console.log('offsetParent:', element.offsetParent);</code></pre>
+            <table>
+                <tr><th>속성</th><th>의미</th><th>포함 요소</th><th>제외 요소</th></tr>
+                <tr><td><code>offsetLeft</code> / <code>offsetTop</code></td><td><code>offsetParent</code> 기준 상대 위치</td><td>-</td><td>margin</td></tr>
+                <tr><td><code>offsetWidth</code> / <code>offsetHeight</code></td><td>요소의 전체 너비/높이</td><td>padding, border, 스크롤바</td><td>margin</td></tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>4. <code>client</code> 계열 속성들 (콘텐츠 영역 정보)</h2>
+            <pre><code>console.log('clientLeft:', element.clientLeft);
+console.log('clientTop:', element.clientTop);
+console.log('clientWidth:', element.clientWidth);
+console.log('clientHeight:', element.clientHeight);</code></pre>
+            <table>
+                <tr><th>속성</th><th>의미</th><th>포함 요소</th><th>제외 요소</th></tr>
+                <tr><td><code>clientLeft</code> / <code>clientTop</code></td><td>왼쪽/위쪽 border 두께</td><td>border-width</td><td>-</td></tr>
+                <tr><td><code>clientWidth</code> / <code>clientHeight</code></td><td>콘텐츠+패딩 너비/높이</td><td>padding</td><td>border, margin, 스크롤바</td></tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>5. <code>scroll</code> 계열 속성들 (스크롤 정보)</h2>
+            <pre><code>console.log('scrollLeft:', element.scrollLeft);
+console.log('scrollTop:', element.scrollTop);
+console.log('scrollWidth:', element.scrollWidth);
+console.log('scrollHeight:', element.scrollHeight);</code></pre>
+            <div class="tip">
+                <strong>활용법:</strong> <code>scrollTop</code>, <code>scrollHeight</code>, <code>clientHeight</code>를 조합하여 요소 내부의 스크롤 진행률을 계산할 수 있습니다.
+            </div>
+        </section>
+
+        <section>
+            <h2>6. 실전 예제: 요소가 화면에 보이는지 확인</h2>
+            <pre><code>function isElementInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+        rect.top < window.innerHeight && rect.bottom > 0 &&
+        rect.left < window.innerWidth && rect.right > 0
+    );
+}</code></pre>
+        </section>
+
+        <section>
+            <h2>7. 성능 최적화 팁</h2>
+            <pre><code>// ✅ 요소 캐싱 + requestAnimationFrame 활용
+const element = document.querySelector('.target');
+let ticking = false;
+
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        requestAnimationFrame(() => {
+            const rect = element.getBoundingClientRect();
+            // ... 처리 로직 ...
+            ticking = false;
+        });
+        ticking = true;
+    }
+}, { passive: true });</code></pre>
+            <div class="warn">
+                <strong>⚠️ 주의!</strong> 스크롤 이벤트 리스너 안에서 매번 DOM을 쿼리(<code>querySelector</code>)하거나 <code>getBoundingClientRect()</code>를 직접 호출하면, 브라우저의 리플로우(reflow)를 유발하여 성능 저하의 원인이 될 수 있습니다.
+            </div>
+        </section>
+
+        <section>
+            <h2>🎉 핵심 정리</h2>
+            <ul>
+                <li><strong>가장 정확하고 일반적인 방법</strong>: <code>getBoundingClientRect()</code>를 사용하세요.</li>
+                <li><strong>문서 전체 기준 위치</strong>: <code>getBoundingClientRect()</code> 결과에 <code>window.scrollY</code>를 더해서 계산하세요.</li>
+                <li><strong>성능이 중요하다면</strong>: 스크롤 이벤트에서는 반드시 <code>requestAnimationFrame</code>을 사용하여 DOM 접근을 조절(throttling)하세요.</li>
+                <li><strong>상황에 맞는 속성 사용</strong>: 각 속성(offset, client, scroll)이 포함하는 영역(padding, border 등)을 정확히 이해하고 사용하세요.</li>
+            </ul>
+        </section>
+    </div>
+</body>
+</html>
