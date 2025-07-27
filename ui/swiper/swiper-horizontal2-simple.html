@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>Swiper demo (Simple)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <style>
+        @import url(https://qwerewqwerew.github.io/source/style/reset.css);
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        html, body { position: relative; height: 100%; }
+        section.vh100 { width: 100%; height: 100vh; background: #ccc; }
+        .swiper { width: 100%; height: 100%; }
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="swiper verticals">
+        <div class="swiper-wrapper">
+            <section class="vh100 swiper-slide"> 1 </section>
+            <section class="vh100 swiper-slide"> 2 </section>
+            <section class="vh100 swiper-slide"> 3 </section>
+            <section class="swiper horizontals swiper-slide">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" data-hash="slide1">Slide 1</div>
+                    <div class="swiper-slide" data-hash="slide2">Slide 2</div>
+                    <div class="swiper-slide" data-hash="slide3">Slide 3</div>
+                    <div class="swiper-slide" data-hash="slide4">Slide 4</div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </section>
+            <section class="vh100 swiper-slide"> 5 </section>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // 📚 변수: 슬라이더 객체들 (짧게)
+        let vSwiper;   // 세로(Vertical) 슬라이더
+        let hSwiper;   // 가로(Horizontal) 슬라이더
+
+        // 📚 숫자: 각 섹션 인덱스 (0부터 시작)
+        const IDX_H = 3;  // 가로 슬라이더가 있는 섹션
+        const IDX_5 = 4;  // 5번째 섹션
+        const IDX_3 = 2;  // 3번째 섹션
+
+        // 🎯 함수1: 가로 슬라이더 만들기 (짧은 이름)
+        function makeH() {
+            console.log('[makeH] 가로 슬라이더 생성');
+
+            // 마지막 슬라이드 도달
+            function onEnd() {
+                console.log('[makeH:onEnd] 마지막 슬라이드!');
+                hSwiper.canNext = true;
+            }
+            // 첫 슬라이드 도달
+            function onStart() {
+                console.log('[makeH:onStart] 첫 슬라이드!');
+                hSwiper.canPrev = true;
+            }
+            // 슬라이드 이동 끝
+            function onDone() {
+                console.log('[makeH:onDone] 슬라이드 이동 끝');
+                // 마지막에서 오른쪽 이동 시
+                if (hSwiper.canNext && hSwiper.isEnd) {
+                    console.log('[makeH:onDone] 다음(아래) 섹션으로 이동');
+                    vSwiper.allowTouchMove = true;
+                    vSwiper.mousewheel.enable();
+                    setTimeout(function() {
+                        vSwiper.slideNext();
+                        console.log('[makeH:onDone] vSwiper.slideNext() 호출');
+                    }, 300);
+                    hSwiper.canNext = false;
+                }
+                // 첫 슬라이드에서 왼쪽 이동 시
+                if (hSwiper.canPrev && hSwiper.isBeginning) {
+                    console.log('[makeH:onDone] 이전(위) 섹션으로 이동');
+                    vSwiper.allowTouchMove = true;
+                    vSwiper.mousewheel.enable();
+                    setTimeout(function() {
+                        vSwiper.slideTo(IDX_3);
+                        console.log('[makeH:onDone] vSwiper.slideTo(IDX_3) 호출');
+                    }, 300);
+                    hSwiper.canPrev = false;
+                }
+            }
+
+            hSwiper = new Swiper('.horizontals', {
+                direction: 'horizontal',
+                slidesPerView: 1,
+                spaceBetween: 30,
+                mousewheel: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                hashNavigation: {
+                    watchState: true,
+                },
+                on: {
+                    reachEnd: onEnd,
+                    reachBeginning: onStart,
+                    transitionEnd: onDone
+                }
+            });
+            console.log('[makeH] 가로 슬라이더 완성');
+        }
+
+        // 🎯 함수2: 세로 슬라이더 만들기 (짧은 이름)
+        function makeV() {
+            console.log('[makeV] 세로 슬라이더 생성');
+
+            // 슬라이드 바뀔 때
+            function onChg() {
+                console.log('[makeV:onChg] 현재 섹션:', this.activeIndex + 1);
+                // 가로 슬라이더 섹션에 왔을 때
+                if (this.activeIndex === IDX_H) {
+                    console.log('[makeV:onChg] 가로 슬라이더 섹션! 세로 스크롤 잠금');
+                    vSwiper.allowTouchMove = false;
+                    vSwiper.mousewheel.disable();
+                    // 5번째에서 온 게 아니면 가로 슬라이더 첫 슬라이드로
+                    if (this.previousIndex !== IDX_5) {
+                        setTimeout(function () {
+                            hSwiper.slideTo(0, 0);
+                            console.log('[makeV:onChg] hSwiper.slideTo(0) 호출');
+                        }, 50);
+                    }
+                } else {
+                    console.log('[makeV:onChg] 일반 섹션, 세로 스크롤 허용');
+                    vSwiper.allowTouchMove = true;
+                    vSwiper.mousewheel.enable();
+                }
+            }
+            // 슬라이드 이동 시작
+            function onVStart() {
+                console.log('[makeV:onVStart] 이동 시작:', this.previousIndex + 1, '→', this.activeIndex + 1);
+                // 5번째에서 4번째(가로)로 이동할 때
+                if (this.previousIndex === IDX_5 && this.activeIndex === IDX_H) {
+                    console.log('[makeV:onVStart] 5→4, 가로 슬라이더 마지막으로');
+                    vSwiper.allowTouchMove = false;
+                    vSwiper.mousewheel.disable();
+                    setTimeout(function () {
+                        hSwiper.slideTo(3, 0);
+                        console.log('[makeV:onVStart] hSwiper.slideTo(3) 호출');
+                    }, 100);
+                }
+            }
+            // 슬라이드 이동 끝
+            function onVEnd() {
+                console.log('[makeV:onVEnd] 이동 끝');
+                if (this.activeIndex === IDX_H) {
+                    setTimeout(function () {
+                        if (vSwiper.previousIndex !== IDX_5) {
+                            hSwiper.update();
+                            console.log('[makeV:onVEnd] hSwiper.update() 호출');
+                        }
+                    }, 100);
+                }
+            }
+
+            vSwiper = new Swiper('.verticals', {
+                direction: 'vertical',
+                slidesPerView: 1,
+                mousewheel: true,
+                on: {
+                    slideChange: onChg,
+                    slideChangeTransitionStart: onVStart,
+                    slideChangeTransitionEnd: onVEnd
+                }
+            });
+            console.log('[makeV] 세로 슬라이더 완성');
+        }
+
+        // 🚀 슬라이더 만들기 시작!
+        console.log('[main] 프로그램 시작');
+        makeH(); // 가로 슬라이더
+        makeV(); // 세로 슬라이더
+        console.log('[main] 모든 슬라이더 완성!');
+    </script>
+</body>
+</html>

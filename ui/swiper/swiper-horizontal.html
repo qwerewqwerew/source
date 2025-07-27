@@ -117,14 +117,14 @@
 
         function handleHorizontalTransitionEnd() {
             if (horizontalSwiper.canMoveToNext && horizontalSwiper.isEnd) {
-                enableVerticalScrollAndMove(function () {
+                enableVerticalScroll(function () {
                     verticalSwiper.slideNext();
                 });
                 horizontalSwiper.canMoveToNext = false;
             }
 
             if (horizontalSwiper.canMoveToPrev && horizontalSwiper.isBeginning) {
-                enableVerticalScrollAndMove(function () {
+                enableVerticalScroll(function () {
                     verticalSwiper.slideTo(SECTION_3_INDEX);
                 });
                 horizontalSwiper.canMoveToPrev = false;
@@ -179,7 +179,7 @@
             verticalSwiper.mousewheel.enable();
         }
 
-        function enableVerticalScrollAndMove(moveFunction) {
+        function enableVerticalScroll(moveFunction) {
             enableVerticalScroll();
             setTimeout(moveFunction, 300);
         }
