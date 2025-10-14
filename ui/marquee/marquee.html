@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+
+    .marquee-container {
+      position: relative;
+      z-index: 20;
+      display: flex;
+      width: 100vw;
+      overflow: hidden;
+    }
+
+    .marquee-content {
+      display: flex;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <div class="marquee-container">
+      <div class=" marquee-content" id="marquee-content">
+      </div>
+    </div>
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script>
+    const init = () => {
+      const marquee = document.querySelector('.marquee-container')
+      if (!marquee) {
+        return;
+      }
+      const marqueeContent = document.querySelector('.marquee-content');
+      if (!marqueeContent) {
+        return;
+      }
+
+      // 이미지 너비와 뷰포트 너비 계산
+      const imageWidth = 361;
+      const viewportWidth = window.innerWidth;
+      const imageCount = Math.ceil(viewportWidth / imageWidth) + 2; // 여유분 +2개
+
+      // 이미지들을 동적으로 생성
+      for (let i = 0; i < imageCount; i++) {
+        const box = document.createElement('div');
+        box.className = 'box';
+        const img = document.createElement('img');
+        img.src = './image/sauce_flow.jpg';
+        img.alt = '';
+        box.appendChild(img);
+        marqueeContent.appendChild(box);
+      }
+
+      // 복제본 생성
+      const marqueeContentClone = marqueeContent.cloneNode(true);
+      marquee.appendChild(marqueeContentClone);
+
+      // 전체 마퀴 너비 계산
+      const totalWidth = imageWidth * imageCount;
+
+      // 초기 위치 설정
+      gsap.set(marqueeContent, { x: 0 });
+      gsap.set(marqueeContentClone, { x: totalWidth });
+
+      // 두 요소를 동시에 왼쪽으로 이동
+      const tl = gsap.timeline({ repeat: -1 });
+
+      tl.to([marqueeContent, marqueeContentClone], {
+        x: `-=${imageWidth}`,
+        duration: 2,
+        ease: "none"
+      })
+        .set(marqueeContent, { x: totalWidth })
+        .set(marqueeContentClone, { x: 0 }, "<");
+
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GSAP Scroll</title>
+  <style>
+    @import url(https://qwerewqwerew.github.io/source/style/reset.css);
+  </style>
+  <link rel="stylesheet" href="css/01.css">
+  <!-- <link rel="stylesheet" href="css/02.css"> -->
+  <!-- <link rel="stylesheet" href="css/03.css"> -->
+  <link rel="stylesheet" href="css/04.css">
+</head>
+
+<body>
+  <main class="cont">
+    <!-- section.item.sec$*9>h2.num+.box -->
+    <section class="item sec1">
+      <h2 class="num">1</h2>
+      <div class="img_wrap">
+        <div class="img"></div>
+      </div>
+      <div class="desc">Lorem ipsum dolor sit, amet</div>
+    </section>
+    <section class="item sec2">
+      <h2 class="num">2</h2>
+      <div class="img_wrap">
+        <div class="img"></div>
+      </div>
+      <div class="desc">Lorem ipsum dolor sit, amet</div>
+    </section>
+    <section class="item sec3">
+      <h2 class="num reveal">3</h2>
+      <div class="img_wrap">
+        <div class="img "></div>
+      </div>
+      <div class="desc reveal ltr" data-delay="0.8">Lorem ipsum dolor sit, amet</div>
+      <div class="desc reveal ttb" data-delay="0.3">Lorem ipsum dolor sit, amet</div>
+    </section>
+    <section class="item sec4">
+      <h2 class="num">4</h2>
+      <div class="img_wrap reveal">
+        <div class="img"></div>
+      </div>
+      <div class="desc reveal btt" data-delay="0.5">Lorem ipsum dolor sit, amet</div>
+    </section>
+  </main>
+  <!-- <script src='https://code.jquery.com/jquery-3.7.1.min.js'></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+  <script src="js/04.js"></script>
+</body>
+
+</html>

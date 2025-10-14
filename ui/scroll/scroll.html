@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +26,7 @@
             margin: 0 auto;
             background: white;
             border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
 
@@ -39,7 +40,7 @@
         .header h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .content {
@@ -143,7 +144,7 @@
             margin: 25px 0;
             border-left: 4px solid #667eea;
             position: relative;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         pre code {
@@ -175,10 +176,11 @@
             background: white;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        th, td {
+        th,
+        td {
             padding: 15px;
             text-align: left;
             border-bottom: 1px solid #ecf0f1;
@@ -202,7 +204,8 @@
             border-bottom: none;
         }
 
-        ul, ol {
+        ul,
+        ol {
             margin: 20px 0;
             padding-left: 30px;
         }
@@ -348,7 +351,8 @@
                 font-size: 14px;
             }
 
-            th, td {
+            th,
+            td {
                 padding: 10px;
             }
         }
@@ -366,13 +370,29 @@
         }
 
         /* 코드 하이라이팅 */
-        .keyword { color: #c792ea; }
-        .string { color: #c3e88d; }
-        .number { color: #f78c6c; }
-        .comment { color: #546e7a; font-style: italic; }
-        .function { color: #82aaff; }
+        .keyword {
+            color: #c792ea;
+        }
+
+        .string {
+            color: #c3e88d;
+        }
+
+        .number {
+            color: #f78c6c;
+        }
+
+        .comment {
+            color: #546e7a;
+            font-style: italic;
+        }
+
+        .function {
+            color: #82aaff;
+        }
     </style>
 </head>
+
 <body>
     <div class="progress-bar" id="progressBar"></div>
 
@@ -816,8 +836,43 @@
                     </ol>
                 </div>
 
-                <h3>Throttling 예제</h3>
-                <pre><code><span class="keyword">function</span> <span class="function">throttle</span>(func, limit) {
+                <h3>🔄 Throttling/Debouncing 완전 가이드</h3>
+
+                <div class="info-box">
+                    <h4>📖 Throttling vs Debouncing 차이점</h4>
+
+                    <h4>🎯 Throttling (스로틀링)</h4>
+                    <p><strong>정의</strong>: 일정한 시간 간격으로만 함수가 실행되도록 제한하는 기법</p>
+                    <ul>
+                        <li>📅 <strong>실행 패턴</strong>: 지정된 시간 간격마다 정기적으로 실행</li>
+                        <li>⏰ <strong>적용 시나리오</strong>: 스크롤, 리사이즈, 마우스 이동 등 연속적인 이벤트</li>
+                        <li>💡 <strong>장점</strong>: 일정한 주기로 업데이트가 필요한 경우 적합</li>
+                    </ul>
+
+                    <h4>⏳ Debouncing (디바운싱)</h4>
+                    <p><strong>정의</strong>: 연속된 이벤트에서 마지막 이벤트만 실행되도록 하는 기법</p>
+                    <ul>
+                        <li>📅 <strong>실행 패턴</strong>: 이벤트가 멈춘 후 지정된 시간이 지나면 실행</li>
+                        <li>⏰ <strong>적용 시나리오</strong>: 검색창 입력, 폼 유효성 검사, API 호출 등</li>
+                        <li>💡 <strong>장점</strong>: 불필요한 중간 실행을 완전히 제거</li>
+                    </ul>
+                </div>
+
+                <h3>📊 시각적 비교</h3>
+                <pre><code><span class="comment">// 🔥 최적화 없음 (매우 위험!)</span>
+<span class="keyword">window</span>.<span class="function">addEventListener</span>(<span class="string">'scroll'</span>, () => {
+    <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'스크롤!'</span>); <span class="comment">// 초당 수십~수백 번 실행!</span>
+});
+
+<span class="comment">// ⚡ Throttling: 100ms마다 실행</span>
+<span class="comment">// 실행: ✅--✅--✅--✅--✅ (일정한 간격)</span>
+
+<span class="comment">// ⏳ Debouncing: 스크롤 멈춘 후 100ms 후 실행</span>
+<span class="comment">// 실행: --------------------✅ (마지막에만)</span></code></pre>
+
+                <h3>🛠️ Throttling 구현</h3>
+                <pre><code><span class="comment">// 🎯 기본 Throttling 함수</span>
+<span class="keyword">function</span> <span class="function">throttle</span>(func, limit) {
     <span class="keyword">let</span> inThrottle;
     <span class="keyword">return function</span>() {
         <span class="keyword">const</span> args = <span class="keyword">arguments</span>;
@@ -830,13 +885,372 @@
     }
 }
 
-<span class="comment">// 최적화된 스크롤 이벤트</span>
-<span class="keyword">const</span> optimizedScrollHandler = <span class="function">throttle</span>(() => {
+<span class="comment">// 🚀 고급 Throttling (첫 번째와 마지막 호출 보장)</span>
+<span class="keyword">function</span> <span class="function">advancedThrottle</span>(func, limit, options = {}) {
+    <span class="keyword">let</span> timeout;
+    <span class="keyword">let</span> previous = <span class="number">0</span>;
+    <span class="keyword">let</span> result;
+
+    <span class="keyword">const</span> { leading = <span class="keyword">true</span>, trailing = <span class="keyword">true</span> } = options;
+
+    <span class="keyword">const</span> throttled = <span class="keyword">function</span>(...args) {
+        <span class="keyword">const</span> now = <span class="keyword">Date</span>.<span class="function">now</span>();
+
+        <span class="keyword">if</span> (!previous && !leading) previous = now;
+
+        <span class="keyword">const</span> remaining = limit - (now - previous);
+
+        <span class="keyword">if</span> (remaining <= <span class="number">0</span> || remaining > limit) {
+            <span class="keyword">if</span> (timeout) {
+                <span class="keyword">clearTimeout</span>(timeout);
+                timeout = <span class="keyword">null</span>;
+            }
+            previous = now;
+            result = func.<span class="function">apply</span>(<span class="keyword">this</span>, args);
+        } <span class="keyword">else if</span> (!timeout && trailing) {
+            timeout = <span class="keyword">setTimeout</span>(() => {
+                previous = leading ? <span class="keyword">Date</span>.<span class="function">now</span>() : <span class="number">0</span>;
+                timeout = <span class="keyword">null</span>;
+                result = func.<span class="function">apply</span>(<span class="keyword">this</span>, args);
+            }, remaining);
+        }
+
+        <span class="keyword">return</span> result;
+    };
+
+    throttled.<span class="function">cancel</span> = () => {
+        <span class="keyword">clearTimeout</span>(timeout);
+        previous = <span class="number">0</span>;
+        timeout = <span class="keyword">null</span>;
+    };
+
+    <span class="keyword">return</span> throttled;
+}</code></pre>
+
+                <h3>⏳ Debouncing 구현</h3>
+                <pre><code><span class="comment">// 🎯 기본 Debouncing 함수</span>
+<span class="keyword">function</span> <span class="function">debounce</span>(func, delay) {
+    <span class="keyword">let</span> timeoutId;
+    <span class="keyword">return function</span>(...args) {
+        <span class="keyword">clearTimeout</span>(timeoutId);
+        timeoutId = <span class="keyword">setTimeout</span>(() => func.<span class="function">apply</span>(<span class="keyword">this</span>, args), delay);
+    };
+}
+
+<span class="comment">// 🚀 고급 Debouncing (즉시 실행 옵션)</span>
+<span class="keyword">function</span> <span class="function">advancedDebounce</span>(func, delay, immediate = <span class="keyword">false</span>) {
+    <span class="keyword">let</span> timeout;
+
+    <span class="keyword">const</span> debounced = <span class="keyword">function</span>(...args) {
+        <span class="keyword">const</span> callNow = immediate && !timeout;
+
+        <span class="keyword">clearTimeout</span>(timeout);
+
+        timeout = <span class="keyword">setTimeout</span>(() => {
+            timeout = <span class="keyword">null</span>;
+            <span class="keyword">if</span> (!immediate) func.<span class="function">apply</span>(<span class="keyword">this</span>, args);
+        }, delay);
+
+        <span class="keyword">if</span> (callNow) func.<span class="function">apply</span>(<span class="keyword">this</span>, args);
+    };
+
+    debounced.<span class="function">cancel</span> = () => {
+        <span class="keyword">clearTimeout</span>(timeout);
+        timeout = <span class="keyword">null</span>;
+    };
+
+    <span class="keyword">return</span> debounced;
+}</code></pre>
+
+                <h3>🎮 실전 활용 예제</h3>
+                <pre><code><span class="comment">// 📊 스크롤 진행률 업데이트 (Throttling 적용)</span>
+<span class="keyword">const</span> updateProgressBar = <span class="function">throttle</span>(() => {
+    <span class="keyword">const</span> scrollPercent = (<span class="keyword">window</span>.<span class="function">scrollY</span> / (<span class="keyword">document</span>.<span class="function">documentElement</span>.<span class="function">scrollHeight</span> - <span class="keyword">window</span>.<span class="function">innerHeight</span>)) * <span class="number">100</span>;
+    <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">'.progress-bar'</span>).<span class="function">style</span>.<span class="function">width</span> = <span class="string">`${scrollPercent}%`</span>;
+}, <span class="number">16</span>); <span class="comment">// 60fps: 1000/60 ≈ 16ms</span>
+
+<span class="comment">// 🔍 검색어 입력 (Debouncing 적용)</span>
+<span class="keyword">const</span> searchHandler = <span class="function">debounce</span>(<span class="keyword">async</span> (query) => {
+    <span class="keyword">if</span> (query.<span class="function">length</span> > <span class="number">2</span>) {
+        <span class="keyword">const</span> results = <span class="keyword">await</span> <span class="function">searchAPI</span>(query);
+        <span class="function">displayResults</span>(results);
+    }
+}, <span class="number">300</span>); <span class="comment">// 300ms 대기</span>
+
+<span class="comment">// 📱 창 크기 변경 (Debouncing 적용)</span>
+<span class="keyword">const</span> resizeHandler = <span class="function">debounce</span>(() => {
+    <span class="function">recalculateLayout</span>();
+    <span class="function">updateResponsiveElements</span>();
+}, <span class="number">250</span>);
+
+<span class="comment">// 💾 자동 저장 (Debouncing 적용)</span>
+<span class="keyword">const</span> autoSave = <span class="function">debounce</span>(<span class="keyword">async</span> (content) => {
+    <span class="keyword">try</span> {
+        <span class="keyword">await</span> <span class="function">saveToServer</span>(content);
+        <span class="function">showSaveStatus</span>(<span class="string">'저장됨'</span>);
+    } <span class="keyword">catch</span> (error) {
+        <span class="function">showSaveStatus</span>(<span class="string">'저장 실패'</span>);
+    }
+}, <span class="number">2000</span>); <span class="comment">// 2초 대기</span></code></pre>
+
+                <h3>📈 성능 비교 측정</h3>
+                <pre><code><span class="comment">// 🧪 성능 테스트 함수</span>
+<span class="keyword">let</span> normalCount = <span class="number">0</span>;
+<span class="keyword">let</span> throttledCount = <span class="number">0</span>;
+<span class="keyword">let</span> debouncedCount = <span class="number">0</span>;
+
+<span class="comment">// 일반 핸들러</span>
+<span class="keyword">const</span> normalHandler = () => normalCount++;
+
+<span class="comment">// 스로틀된 핸들러</span>
+<span class="keyword">const</span> throttledHandler = <span class="function">throttle</span>(() => throttledCount++, <span class="number">100</span>);
+
+<span class="comment">// 디바운스된 핸들러</span>
+<span class="keyword">const</span> debouncedHandler = <span class="function">debounce</span>(() => debouncedCount++, <span class="number">100</span>);
+
+<span class="comment">// 성능 모니터링</span>
+<span class="keyword">function</span> <span class="function">startPerformanceTest</span>() {
+    <span class="keyword">window</span>.<span class="function">addEventListener</span>(<span class="string">'scroll'</span>, normalHandler);
+    <span class="keyword">window</span>.<span class="function">addEventListener</span>(<span class="string">'scroll'</span>, throttledHandler);
+    <span class="keyword">window</span>.<span class="function">addEventListener</span>(<span class="string">'scroll'</span>, debouncedHandler);
+
+    <span class="keyword">setInterval</span>(() => {
+        <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">`
+        📊 5초간 실행 횟수:
+        🔥 일반: ${normalCount}번
+        ⚡ 스로틀: ${throttledCount}번
+        ⏳ 디바운스: ${debouncedCount}번
+
+        💡 메모리 절약률:
+        - 스로틀: ${((normalCount - throttledCount) / normalCount * 100).toFixed(1)}%
+        - 디바운스: ${((normalCount - debouncedCount) / normalCount * 100).toFixed(1)}%
+        `</span>);
+
+        <span class="comment">// 카운터 리셋</span>
+        normalCount = throttledCount = debouncedCount = <span class="number">0</span>;
+    }, <span class="number">5000</span>);
+}</code></pre>
+
+                <h3>🎯 언제 무엇을 사용할까?</h3>
+                <div class="highlight-box">
+                    <h4>⚡ Throttling 사용 시나리오</h4>
+                    <ul>
+                        <li>📊 <strong>스크롤 진행률 업데이트</strong>: 부드러운 프로그레스 바</li>
+                        <li>🎮 <strong>게임 컨트롤</strong>: 연속적인 입력 처리</li>
+                        <li>📡 <strong>API 호출 제한</strong>: 일정 간격으로 데이터 요청</li>
+                        <li>🖱️ <strong>마우스 추적</strong>: 커서 따라다니는 요소</li>
+                        <li>📱 <strong>무한 스크롤</strong>: 새 콘텐츠 로딩 체크</li>
+                    </ul>
+
+                    <h4>⏳ Debouncing 사용 시나리오</h4>
+                    <ul>
+                        <li>🔍 <strong>검색 자동완성</strong>: 타이핑 멈춘 후 검색</li>
+                        <li>💾 <strong>자동 저장</strong>: 편집 멈춘 후 저장</li>
+                        <li>✅ <strong>폼 유효성 검사</strong>: 입력 완료 후 검증</li>
+                        <li>📏 <strong>레이아웃 재계산</strong>: 리사이즈 완료 후 처리</li>
+                        <li>💬 <strong>실시간 채팅</strong>: 타이핑 인디케이터</li>
+                    </ul>
+                </div>
+
+                <h3>🔧 기존 스크롤 이벤트 최적화</h3>
+                <pre><code><span class="comment">// ❌ 최적화 전 (성능 문제 발생)</span>
+<span class="keyword">window</span>.<span class="function">addEventListener</span>(<span class="string">'scroll'</span>, () => {
     <span class="keyword">const</span> scrollY = <span class="keyword">window</span>.<span class="function">pageYOffset</span>;
     <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'스크롤 위치:'</span>, scrollY);
-}, <span class="number">100</span>); <span class="comment">// 100ms마다 실행</span>
 
-<span class="keyword">window</span>.<span class="function">addEventListener</span>(<span class="string">'scroll'</span>, optimizedScrollHandler);</code></pre>
+    <span class="comment">// DOM 조작 (매우 비용이 큰 작업)</span>
+    <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">'.progress-bar'</span>).<span class="function">style</span>.<span class="function">width</span> = <span class="string">`${scrollY}px`</span>;
+
+    <span class="comment">// 복잡한 계산</span>
+    <span class="keyword">document</span>.<span class="function">querySelectorAll</span>(<span class="string">'.fade-element'</span>).<span class="function">forEach</span>(el => {
+        <span class="keyword">const</span> rect = el.<span class="function">getBoundingClientRect</span>();
+        <span class="keyword">if</span> (rect.<span class="function">top</span> < <span class="keyword">window</span>.<span class="function">innerHeight</span>) {
+            el.<span class="function">classList</span>.<span class="function">add</span>(<span class="string">'visible'</span>);
+        }
+    });
+});
+
+<span class="comment">// ✅ 최적화 후 (Throttling + RequestAnimationFrame)</span>
+<span class="keyword">const</span> optimizedScrollHandler = <span class="function">throttle</span>(() => {
+    <span class="comment">// 🤔 왜 pageYOffset을 사용할까?</span>
+    <span class="keyword">const</span> scrollY = <span class="keyword">window</span>.<span class="function">pageYOffset</span>;
+
+    <span class="comment">// RequestAnimationFrame으로 DOM 업데이트 최적화</span>
+    <span class="keyword">requestAnimationFrame</span>(() => {
+        <span class="comment">// 프로그레스 바 업데이트</span>
+        <span class="keyword">const</span> progress = (scrollY / (<span class="keyword">document</span>.<span class="function">documentElement</span>.<span class="function">scrollHeight</span> - <span class="keyword">window</span>.<span class="function">innerHeight</span>)) * <span class="number">100</span>;
+        <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">'.progress-bar'</span>).<span class="function">style</span>.<span class="function">width</span> = <span class="string">`${progress}%`</span>;
+
+        <span class="comment">// Intersection Observer로 대체 가능한 부분</span>
+        <span class="function">checkVisibleElements</span>();
+    });
+}, <span class="number">16</span>); <span class="comment">// 60fps</span>
+
+<span class="keyword">window</span>.<span class="function">addEventListener</span>(<span class="string">'scroll'</span>, optimizedScrollHandler, { <span class="string">passive</span>: <span class="keyword">true</span> });</code></pre>
+
+                <div class="info-box">
+                    <h4>🤔 왜 pageYOffset을 사용하는가?</h4>
+
+                    <h4>📊 성능 및 호환성 비교</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>속성</th>
+                                <th>성능</th>
+                                <th>호환성</th>
+                                <th>권장도</th>
+                                <th>이유</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>window.scrollY</code></td>
+                                <td>⚡ 빠름</td>
+                                <td>⚠️ IE 미지원</td>
+                                <td>🥇 1순위</td>
+                                <td>최신 표준, 직관적</td>
+                            </tr>
+                            <tr>
+                                <td><code>window.pageYOffset</code></td>
+                                <td>⚡ 빠름</td>
+                                <td>✅ 모든 브라우저</td>
+                                <td>🥈 2순위</td>
+                                <td>구형 브라우저 지원</td>
+                            </tr>
+                            <tr>
+                                <td><code>document.documentElement.scrollTop</code></td>
+                                <td>🐌 느림</td>
+                                <td>✅ 모든 브라우저</td>
+                                <td>🥉 3순위</td>
+                                <td>DOM 접근 비용</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>🔍 상세 분석</h4>
+                    <pre><code><span class="comment">// 🧪 성능 테스트</span>
+<span class="keyword">function</span> <span class="function">performanceTest</span>() {
+    <span class="keyword">const</span> iterations = <span class="number">1000000</span>; <span class="comment">// 100만 번 실행</span>
+
+    <span class="comment">// 1. window.scrollY (최신)</span>
+    <span class="keyword">console</span>.<span class="function">time</span>(<span class="string">'window.scrollY'</span>);
+    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i < iterations; i++) {
+        <span class="keyword">const</span> scroll = <span class="keyword">window</span>.<span class="function">scrollY</span>; <span class="comment">// 가장 빠름</span>
+    }
+    <span class="keyword">console</span>.<span class="function">timeEnd</span>(<span class="string">'window.scrollY'</span>);
+
+    <span class="comment">// 2. window.pageYOffset (호환성)</span>
+    <span class="keyword">console</span>.<span class="function">time</span>(<span class="string">'window.pageYOffset'</span>);
+    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i < iterations; i++) {
+        <span class="keyword">const</span> scroll = <span class="keyword">window</span>.<span class="function">pageYOffset</span>; <span class="comment">// scrollY와 거의 동일</span>
+    }
+    <span class="keyword">console</span>.<span class="function">timeEnd</span>(<span class="string">'window.pageYOffset'</span>);
+
+    <span class="comment">// 3. documentElement.scrollTop (DOM 접근)</span>
+    <span class="keyword">console</span>.<span class="function">time</span>(<span class="string">'documentElement.scrollTop'</span>);
+    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i < iterations; i++) {
+        <span class="keyword">const</span> scroll = <span class="keyword">document</span>.<span class="function">documentElement</span>.<span class="function">scrollTop</span>; <span class="comment">// 가장 느림</span>
+    }
+    <span class="keyword">console</span>.<span class="function">timeEnd</span>(<span class="string">'documentElement.scrollTop'</span>);
+}
+
+<span class="comment">// 결과 예상:
+// window.scrollY: ~5ms
+// window.pageYOffset: ~6ms
+// documentElement.scrollTop: ~25ms</span></code></pre>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ pageYOffset을 사용하는 이유</h4>
+                    <ol>
+                        <li><strong>🔒 호환성 보장</strong>: IE9+ 포함 모든 브라우저 지원</li>
+                        <li><strong>⚡ 성능 우수</strong>: DOM 접근 없이 window 객체에서 직접 값 반환</li>
+                        <li><strong>🛡️ 안정성</strong>: DOCTYPE 모드에 관계없이 일관된 동작</li>
+                        <li><strong>📚 레거시 코드</strong>: 기존 코드베이스와의 일관성 유지</li>
+                    </ol>
+                </div>
+
+                <h3>🚀 최신 권장 방식</h3>
+                <pre><code><span class="comment">// 🎯 프로젝트별 권장 방식</span>
+
+<span class="comment">// 1️⃣ 최신 프로젝트 (IE 지원 불필요)</span>
+<span class="keyword">const</span> modernScrollHandler = <span class="function">throttle</span>(() => {
+    <span class="keyword">const</span> scrollY = <span class="keyword">window</span>.<span class="function">scrollY</span>; <span class="comment">// ✅ 가장 직관적</span>
+    <span class="function">updateUI</span>(scrollY);
+}, <span class="number">16</span>);
+
+<span class="comment">// 2️⃣ 호환성 필요 프로젝트</span>
+<span class="keyword">const</span> compatibleScrollHandler = <span class="function">throttle</span>(() => {
+    <span class="keyword">const</span> scrollY = <span class="keyword">window</span>.<span class="function">pageYOffset</span>; <span class="comment">// ✅ 안전한 선택</span>
+    <span class="function">updateUI</span>(scrollY);
+}, <span class="number">16</span>);
+
+<span class="comment">// 3️⃣ 최대 호환성 (IE 포함)</span>
+<span class="keyword">const</span> universalScrollHandler = <span class="function">throttle</span>(() => {
+    <span class="keyword">const</span> scrollY = <span class="keyword">window</span>.<span class="function">pageYOffset</span> ||
+                  <span class="keyword">document</span>.<span class="function">documentElement</span>.<span class="function">scrollTop</span> ||
+                  <span class="keyword">document</span>.<span class="function">body</span>.<span class="function">scrollTop</span> || <span class="number">0</span>; <span class="comment">// ✅ 모든 브라우저</span>
+    <span class="function">updateUI</span>(scrollY);
+}, <span class="number">16</span>);
+
+<span class="comment">// 4️⃣ 함수로 추상화 (권장)</span>
+<span class="keyword">function</span> <span class="function">getScrollY</span>() {
+    <span class="comment">// 브라우저 지원 검사 후 최적의 방법 선택</span>
+    <span class="keyword">if</span> (<span class="string">'scrollY'</span> <span class="keyword">in</span> <span class="keyword">window</span>) {
+        <span class="keyword">return</span> <span class="keyword">window</span>.<span class="function">scrollY</span>; <span class="comment">// 최신 브라우저</span>
+    } <span class="keyword">else if</span> (<span class="string">'pageYOffset'</span> <span class="keyword">in</span> <span class="keyword">window</span>) {
+        <span class="keyword">return</span> <span class="keyword">window</span>.<span class="function">pageYOffset</span>; <span class="comment">// 구형 브라우저</span>
+    } <span class="keyword">else</span> {
+        <span class="keyword">return</span> <span class="keyword">document</span>.<span class="function">documentElement</span>.<span class="function">scrollTop</span> ||
+               <span class="keyword">document</span>.<span class="function">body</span>.<span class="function">scrollTop</span> || <span class="number">0</span>; <span class="comment">// 최후 수단</span>
+    }
+}
+
+<span class="keyword">const</span> smartScrollHandler = <span class="function">throttle</span>(() => {
+    <span class="keyword">const</span> scrollY = <span class="function">getScrollY</span>(); <span class="comment">// 🎯 가장 스마트한 방식</span>
+    <span class="function">updateUI</span>(scrollY);
+}, <span class="number">16</span>);</code></pre>
+
+                <div class="highlight-box">
+                    <h4>💡 실무 결론</h4>
+
+                    <h4>🎯 언제 무엇을 사용할까?</h4>
+                    <ul>
+                        <li><strong>🆕 신규 프로젝트</strong>: <code>window.scrollY</code> (가독성 최우선)</li>
+                        <li><strong>🔄 기존 프로젝트</strong>: <code>window.pageYOffset</code> (안정성 보장)</li>
+                        <li><strong>📚 라이브러리/프레임워크</strong>: 추상화 함수 사용 (최대 호환성)</li>
+                        <li><strong>⚡ 고성능 필요</strong>: <code>window.scrollY</code> (약간의 성능 우위)</li>
+                    </ul>
+
+                    <h4>🔧 최적화 팁</h4>
+                    <pre><code><span class="comment">// ✅ 권장: 값 캐싱으로 중복 접근 방지</span>
+<span class="keyword">const</span> optimizedHandler = <span class="function">throttle</span>(() => {
+    <span class="keyword">const</span> scrollY = <span class="keyword">window</span>.<span class="function">pageYOffset</span>; <span class="comment">// 한 번만 접근</span>
+
+    <span class="comment">// 여러 곳에서 사용</span>
+    <span class="function">updateProgressBar</span>(scrollY);
+    <span class="function">updateParallax</span>(scrollY);
+    <span class="function">checkVisibility</span>(scrollY);
+}, <span class="number">16</span>);
+
+<span class="comment">// ❌ 나쁨: 중복 접근</span>
+<span class="keyword">const</span> badHandler = <span class="function">throttle</span>(() => {
+    <span class="function">updateProgressBar</span>(<span class="keyword">window</span>.<span class="function">pageYOffset</span>); <span class="comment">// 1번째 접근</span>
+    <span class="function">updateParallax</span>(<span class="keyword">window</span>.<span class="function">pageYOffset</span>);   <span class="comment">// 2번째 접근</span>
+    <span class="function">checkVisibility</span>(<span class="keyword">window</span>.<span class="function">pageYOffset</span>); <span class="comment">// 3번째 접근</span>
+}, <span class="number">16</span>);</code></pre>
+                </div>                <div class="success-box">
+                    <h4>🎯 최적화 체크리스트</h4>
+                    <ol>
+                        <li>✅ <strong>Throttling/Debouncing 적용</strong></li>
+                        <li>✅ <strong>RequestAnimationFrame 사용</strong></li>
+                        <li>✅ <strong>Passive 이벤트 옵션</strong></li>
+                        <li>✅ <strong>DOM 쿼리 최소화</strong></li>
+                        <li>✅ <strong>Intersection Observer 활용</strong></li>
+                        <li>✅ <strong>CSS Transform 우선 사용</strong></li>
+                        <li>✅ <strong>Will-change 속성 활용</strong></li>
+                    </ol>
+                </div>
             </section>
         </div>
     </div>
@@ -937,4 +1351,5 @@
         revealOnScroll();
     </script>
 </body>
+
 </html>

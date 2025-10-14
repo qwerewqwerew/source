@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>고급 GSAP 리빌 애니메이션</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #0a0a0a;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* 메인 헤더 */
+        .main-header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at center, #1a1a2e, #16213e, #0f3460);
+            position: relative;
+        }
+
+        .header-content {
+            text-align: center;
+            z-index: 10;
+        }
+
+        .main-title {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientAnimation 4s ease infinite;
+            opacity: 0;
+            transform: scale(0.5) rotate(-10deg);
+        }
+
+        @keyframes gradientAnimation {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        /* 플로팅 파티클 */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* 카드 섹션 */
+        .cards-section {
+            padding: 150px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .cards-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .reveal-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            transform: translateY(100px) rotateX(45deg);
+            perspective: 1000px;
+        }
+
+        .reveal-card h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .reveal-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .reveal-card .icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        .icon-1 { background: linear-gradient(45deg, #ff6b6b, #ee5a52); }
+        .icon-2 { background: linear-gradient(45deg, #4ecdc4, #44a08d); }
+        .icon-3 { background: linear-gradient(45deg, #45b7d1, #96c93d); }
+
+        /* 텍스트 매스킹 섹션 */
+        .text-mask-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #1a1a1a;
+            overflow: hidden;
+        }
+
+        .masked-text {
+            font-size: 8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .masked-text .mask {
+            display: inline-block;
+            overflow: hidden;
+        }
+
+        .masked-text .mask span {
+            display: inline-block;
+            transform: translateY(100%);
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* 리빌 갤러리 섹션 */
+        .gallery-section {
+            height: 100vh;
+            padding: 50px 20px;
+            background: linear-gradient(45deg, #2c3e50, #34495e, #2c3e50);
+            background-size: 300% 300%;
+            background-position: 0% 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .gallery-title {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .gallery-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .gallery-grid {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-reveal-image {
+            width: 100%;
+            height: 400px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .main-reveal-image .image-content {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transform: scale(1.0);
+        }
+
+        /* 좌우 커튼 스타일 */
+        .reveal-curtain-left,
+        .reveal-curtain-right {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: #2c3e50;
+            z-index: 10;
+            transition: transform 0.3s ease;
+        }
+
+        .reveal-curtain-left {
+            left: 0;
+            transform: translateX(0%);
+        }
+
+        .reveal-curtain-right {
+            right: 0;
+            transform: translateX(0%);
+        }
+
+        .image-label {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* 리빌 오버레이 (커튼 효과) */
+        .reveal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        /* 커튼 효과 - 좌우 분할 */
+        .reveal-overlay.curtain-lr {
+            background: #2c3e50;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        }
+
+        /* 커튼 효과 - 상하 분할 */
+        .reveal-overlay.curtain-tb {
+            background: #2c3e50;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        }
+
+        /* 단일 커튼 효과들 */
+        .reveal-overlay.curtain-left {
+            background: #2c3e50;
+            transform: translateX(0%);
+        }
+
+        .reveal-overlay.curtain-right {
+            background: #2c3e50;
+            transform: translateX(0%);
+        }
+
+        .reveal-overlay.curtain-top {
+            background: #2c3e50;
+            transform: translateY(0%);
+        }
+
+        .reveal-overlay.curtain-bottom {
+            background: #2c3e50;
+            transform: translateY(0%);
+        }
+
+        /* 이미지 콘텐츠 스타일 */
+        .image-content-1 { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); }
+        .image-content-2 { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
+        .image-content-3 { background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%); }
+        .image-content-4 { background: linear-gradient(135deg, #fdcbf1 0%, #e6dee9 100%); }
+        .image-content-5 { background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); }
+        .image-content-6 { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
+
+        /* 스탯 섹션 */
+        .stats-section {
+            padding: 150px 20px;
+            background: #34495e;
+        }
+
+        .stats-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            color: #bdc3c7;
+        }
+
+        /* 최종 섹션 */
+        .final-cta {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at center, #2c3e50, #34495e, #2c3e50);
+            text-align: center;
+        }
+
+        .cta-content {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        .cta-title {
+            font-size: 4rem;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #3498db, #e74c3c, #f39c12);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 40px;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.3);
+        }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 3rem;
+            }
+
+            .masked-text {
+                font-size: 4rem;
+            }
+
+            .cta-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 메인 헤더 -->
+    <section class="main-header">
+        <div class="header-content">
+            <h1 class="main-title">고급 리빌 애니메이션</h1>
+            <p class="subtitle">GSAP의 강력한 기능으로 만든 프리미엄 애니메이션</p>
+        </div>
+    </section>
+
+    <!-- 카드 섹션 -->
+    <section class="cards-section">
+        <div class="cards-container">
+            <div class="reveal-card">
+                <div class="icon icon-1"></div>
+                <h3>창의적 디자인</h3>
+                <p>독창적이고 혁신적인 디자인으로 사용자에게 잊을 수 없는 경험을 제공합니다. 모든 요소가 조화롭게 어우러진 완벽한 인터페이스를 만들어냅니다.</p>
+            </div>
+            <div class="reveal-card">
+                <div class="icon icon-2"></div>
+                <h3>부드러운 애니메이션</h3>
+                <p>GSAP의 강력한 기능을 활용하여 부드럽고 자연스러운 애니메이션을 구현합니다. 60fps의 완벽한 성능으로 최고의 사용자 경험을 보장합니다.</p>
+            </div>
+            <div class="reveal-card">
+                <div class="icon icon-3"></div>
+                <h3>반응형 최적화</h3>
+                <p>모든 디바이스에서 완벽하게 작동하는 반응형 애니메이션입니다. 데스크톱부터 모바일까지 일관된 품질의 경험을 제공합니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 텍스트 매스킹 섹션 -->
+    <section class="text-mask-section">
+        <div class="masked-text">
+            <div class="mask"><span>A</span></div>
+            <div class="mask"><span>M</span></div>
+            <div class="mask"><span>A</span></div>
+            <div class="mask"><span>Z</span></div>
+            <div class="mask"><span>I</span></div>
+            <div class="mask"><span>N</span></div>
+            <div class="mask"><span>G</span></div>
+        </div>
+    </section>
+
+    <!-- 리빌 갤러리 섹션 -->
+    <section class="gallery-section">
+        <div class="gallery-header">
+            <h2 class="gallery-title">다양한 리빌 애니메이션</h2>
+            <p class="gallery-subtitle">이미지가 가려져있다가 다양한 방식으로 나타나는 효과</p>
+        </div>
+
+        <div class="gallery-grid">
+            <!-- 메인 리빌 이미지 -->
+            <div class="main-reveal-image">
+                <div class="image-content image-content-1">
+                    <div class="image-label">스크롤 리빌 효과</div>
+                </div>
+                <div class="reveal-curtain-left"></div>
+                <div class="reveal-curtain-right"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 스탯 섹션 -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number" data-count="250">0</div>
+                <div class="stat-label">완성된 프로젝트</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-count="98">0</div>
+                <div class="stat-label">고객 만족도</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-count="15">0</div>
+                <div class="stat-label">수상 경력</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-count="500">0</div>
+                <div class="stat-label">행복한 고객</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 최종 CTA 섹션 -->
+    <section class="final-cta">
+        <div class="cta-content">
+            <h2 class="cta-title">시작해보세요!</h2>
+            <a href="#" class="cta-button">지금 시작하기</a>
+        </div>
+    </section>
+
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="advanced-reveal-new.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+section.item {
+	padding-top: 5vw;
+	margin: 10vw 0;
+	margin-right: 0;
+	text-align: left;
+}
+.img_wrap {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	/* 1080/1920*100 */
+	padding-bottom: 50%;
+}
+.img {
+	position: absolute;
+	filter: grayscale(100%);
+	transition: all 1s;
+	width: 100%;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
+.img_wrap:hover .img {
+	filter: grayscale(0%);
+	transform: scale(1.3);
+}
+.num {
+	position: absolute;
+	font-size: 10vw;
+	z-index: 10;
+	color: #fff;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+.desc {
+	font-size: 5vw;
+	font-weight: 900;
+	margin-left: -50%;
+	margin-top: 50%;
+	z-index: 100;
+	position: relative;
+	-webkit-text-fill-color: #0000802d;
+	-webkit-text-stroke: 1px #000080;
+	text-stroke: 1px 000080;
+}
+.desc:before {
+	content: 'Lorem ipsum dolor sit, amet';
+	position: absolute;
+	filter: drop-shadow(-15px -10px 10px rgba(28, 33, 106, .5)) drop-shadow(10px 10px 10px rgba(13, 16, 65, .8)) drop-shadow(20px 20px 40px rgba(9, 11, 41, .8));
+}
+.ttb {
+	margin-top: 0%;
+}
+.sec1 .img {
+	background-image: url(http://qwerew.cafe24.com/images/1.jpg);
+}
+.sec2 .img {
+	background-image: url(http://qwerew.cafe24.com/images/2.jpg);
+}
+.sec3 .img {
+	background-image: url(http://qwerew.cafe24.com/images/3.jpg);
+}
+.sec4 .img {
+	background-image: url(http://qwerew.cafe24.com/images/4.jpg);
+}

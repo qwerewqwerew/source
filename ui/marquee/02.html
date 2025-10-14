@@ -1,96 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <style>
-            .text-scroller-container {
-                position: relative;
-                width: 200px;
-                height: 20px;
-                border: 1px solid #d0d0d0;
-                border-radius: 3px;
-                background-color: #f0f0f0;
-                overflow: hidden;
-                margin-bottom: 10px;
-            }
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .text-scroller-container {
+            position: relative;
+            width: 200px;
+            height: 20px;
+            border: 1px solid #d0d0d0;
+            border-radius: 3px;
+            background-color: #f0f0f0;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
 
-            .message {
-                display: block;
-                position: absolute;
-                top: 0;
-                right: 0;
-                margin: 0;
-                white-space: nowrap;
-                /* Starting postition */
+        .message {
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            white-space: nowrap;
+            /* Starting postition */
+            transform: translate3d(100%, 0, 0);
+            /* Animation settings */
+            animation-name: marquee-animation;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        @keyframes marquee-animation {
+            from {
+                /* Start right out of view */
                 transform: translate3d(100%, 0, 0);
-                /* Animation settings */
-                animation-name: marquee-animation;
-                animation-iteration-count: infinite;
-                animation-timing-function: linear;
             }
 
-            @keyframes marquee-animation {
-                from {
-                    /* Start right out of view */
-                    transform: translate3d(100%, 0, 0);
-                }
-
-                to {
-                    /* Animate to the left of the container width */
-                    transform: translate3d(-200px, 0, 0);
-                }
+            to {
+                /* Animate to the left of the container width */
+                transform: translate3d(-200px, 0, 0);
             }
+        }
+    </style>
+</head>
 
-        </style>
-    </head>
+<body>
+    <div class='text-scroller-container'>
+        <p class='message'>This is a sentence. I'm a long sentence.</p>
+    </div>
+    <div class='text-scroller-container'>
+        <p class='message'>This is a short sentence.</p>
+    </div>
+    <div class='text-scroller-container'>
+        <p class='message'>This is a very long sentence. This sentence is going to be the longest one of them all.</p>
+    </div>
+    <script>
+        /**
+ * The speed in time (in milliseconds) of a single pixel.
+ * Changing this value will change the speed.
+ * @type {number}
+ */
+        const timePerPixel = 20;
 
-    <body>
-        <div class='text-scroller-container'>
-            <p class='message'>This is a sentence. I'm a long sentence.</p>
-        </div>
-        <div class='text-scroller-container'>
-            <p class='message'>This is a short sentence.</p>
-        </div>
-        <div class='text-scroller-container'>
-            <p class='message'>This is a very long sentence. This sentence is going to be the longest one of them all.</p>
-        </div>
-        <script>
-            /**
-     * The speed in time (in milliseconds) of a single pixel.
-     * Changing this value will change the speed.
-     * @type {number}
-     */
-            const timePerPixel=20;
+        /**
+         * Width of the container.
+         * Hardcoded for simplicity' sake.
+         * @type {number}
+         */
+        const containerWidth = 200;
 
-            /**
-             * Width of the container.
-             * Hardcoded for simplicity' sake.
-             * @type {number}
-             */
-            const containerWidth=200;
+        /**
+         * Select all the messages
+         * @type {NodeList}
+         */
+        const messages = document.querySelectorAll('.message');
 
-            /**
-             * Select all the messages
-             * @type {NodeList}
-             */
-            const messages=document.querySelectorAll('.message');
+        /**
+         * For each message, calculate the duration based on the lenght of the message.
+         * Then set the animation-duration of the animation.
+         */
+        messages.forEach(message => {
+            const messageWidth = message.offsetWidth;
+            const distance = messageWidth + containerWidth;
+            const duration = timePerPixel * distance;
 
-            /**
-             * For each message, calculate the duration based on the lenght of the message.  
-             * Then set the animation-duration of the animation.
-             */
-            messages.forEach(message => {
-                const messageWidth=message.offsetWidth;
-                const distance=messageWidth+containerWidth;
-                const duration=timePerPixel*distance;
-
-                message.style.animationDuration=`${duration}ms`;
-            });
-        </script>
-    </body>
+            message.style.animationDuration = `${duration}ms`;
+        });
+    </script>
+</body>
 
 </html>

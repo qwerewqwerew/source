@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+    }
+
+    .box1 {
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box box1"></div>
+  <div class="nav">
+    <button id="play">시작</button>
+    <button id="pause">정지</button>
+    <button id="resume">재개</button>
+    <button id="reverse">반전</button>
+    <button id="restart">재시작</button>
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js'></script>
+  <script>
+    const tween = gsap.to(".box1", { duration: 8, x: 400, width: 400, paused: true, });
+
+    document.querySelector("#play").onclick = function () { return tween.play(); };
+    document.querySelector("#pause").onclick = function () { return tween.pause(); };
+    document.querySelector("#resume").onclick = function () { return tween.resume(); };
+    document.querySelector("#reverse").onclick = function () { return tween.reverse(); };
+    document.querySelector("#restart").onclick = function () { return tween.restart(); }
+
+    //resume 애니메이션 멈춘곳 부터 재생을 다시 시작
+  </script>
+</body>
+
+</html>

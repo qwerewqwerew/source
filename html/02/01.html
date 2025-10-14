@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS 마스킹</title>
+  <style>
+    .a { width: 100px; height: 100px; background: coral; clip-path: circle(50%); }
+    .b { width: 100px; height: 100px; background: skyblue; clip-path: inset(10px round 20px); }
+    .c { width: 100px; height: 100px; background: gold; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
+    .d { width: 100px; height: 100px; background: tomato; mask-image: linear-gradient(black, transparent); }
+    .e { filter: blur(5px); }
+  </style>
+</head>
+<body>
+  <h1>CSS 마스킹 예제</h1>
+
+  <h2>1. 원형</h2>
+  <div class="a">원형</div>
+
+  <h2>2. 모서리</h2>
+  <div class="b">모서리</div>
+
+  <h2>3. 삼각형</h2>
+  <div class="c">삼각형</div>
+
+  <h2>4. 페이드</h2>
+  <div class="d">페이드</div>
+
+  <h2>5. 블러</h2>
+  <div class="e">비밀번호123</div>
+</body>
+</html>

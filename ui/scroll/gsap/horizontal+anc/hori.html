@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    main {
+      overscroll-behavior: none;
+      width: 900%;
+      height: 100vh;
+      display: flex;
+      flex-wrap: nowrap;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <main class="cont">
+      <h1>가로스크롤</h1>
+      <section class="item" id="sec1">
+        <h2 class="num">1</h2>
+      </section>
+      <section class="item" id="sec2">
+        <h2 class="num">2</h2>
+      </section>
+      <section class="item" id="sec3">
+        <h2 class="num">3</h2>
+        <div class="box"></div>
+      </section>
+      <section class="item" id="sec4">
+        <h2 class="num">4</h2>
+        <div class="box"></div>
+      </section>
+      <section class="item" id="sec5">
+        <h2 class="num">5</h2>
+        <div class="box"></div>
+      </section>
+      <section class="item" id="sec6">
+        <h2 class="num">6</h2>
+        <div class="box"></div>
+      </section>
+      <section class="item" id="sec7">
+        <h2 class="num">7</h2>
+        <div class="box"></div>
+      </section>
+      <section class="item" id="sec8">
+        <h2 class="num">8</h2>
+        <div class="box"></div>
+      </section>
+      <section class="item" id="sec9">
+        <h2 class="num">9</h2>
+        <div class="box"></div>
+      </section>
+    </main>
+  </div>
+  <script src='https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js'></script>
+  <script src='https: //cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js'></script>
+  <script src='https: //unpkg.com/gsap@3/dist/ScrollToPlugin.min.js'></script>
+  <script>
+    let sections = gsap.utils.toArray(".panel");
+
+    gsap.to(sections, {
+      xPercent: -100 * (sections.length - 1),
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".container",
+        pin: true,
+        scrub: 1,
+        snap: 1 / (sections.length - 1),
+        // base vertical scrolling on how wide the container is so it feels more natural.
+        end: "+=3500",
+      }
+    });
+
+
+</body >
+
+</html >;

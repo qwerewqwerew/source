@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✂️ CSS ClipPath 완전 가이드 - 초보자용</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin: 40px 0 20px 0;
+            border-left: 5px solid #667eea;
+            padding-left: 20px;
+        }
+
+        h3 {
+            color: #34495e;
+            font-size: 1.4em;
+            margin: 30px 0 15px 0;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #48cae4;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #e17055;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #55efc4 0%, #81ecec 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #00b894;
+        }
+
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 25px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        code {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .keyword { color: #c792ea; }
+        .string { color: #c3e88d; }
+        .number { color: #f78c6c; }
+        .comment { color: #546e7a; font-style: italic; }
+        .function { color: #82aaff; }
+
+        /* 데모 섹션 스타일 */
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .demo-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            text-align: center;
+        }
+
+        .demo-image {
+            width: 200px;
+            height: 150px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            margin: 20px auto;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+        }
+
+        /* ClipPath 데모들 */
+        .demo-inset {
+            clip-path: inset(20% 30% 20% 30%);
+        }
+
+        .demo-circle {
+            clip-path: circle(40% at 50% 50%);
+        }
+
+        .demo-ellipse {
+            clip-path: ellipse(60% 40% at 50% 50%);
+        }
+
+        .demo-polygon {
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        .demo-triangle {
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+
+        .demo-hexagon {
+            clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+        }
+
+        .demo-star {
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+
+        .demo-arrow {
+            clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
+        }
+
+        /* 인터랙티브 데모 */
+        .interactive-demo {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border: 2px dashed #667eea;
+        }
+
+        .slider-container {
+            margin: 20px 0;
+        }
+
+        .slider {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .interactive-image {
+            width: 300px;
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            margin: 20px auto;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5em;
+            transition: clip-path 0.3s ease;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .animation-demo {
+            width: 200px;
+            height: 150px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            margin: 20px auto;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            animation: clipPathAnimation 3s infinite;
+        }
+
+        @keyframes clipPathAnimation {
+            0% { clip-path: inset(40% 40% 40% 40%); }
+            25% { clip-path: circle(30% at 50% 50%); }
+            50% { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+            75% { clip-path: ellipse(80% 40% at 50% 50%); }
+            100% { clip-path: inset(40% 40% 40% 40%); }
+        }
+
+        .visual-guide {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .coordinate-demo {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background: #e9ecef;
+            border: 2px solid #667eea;
+            margin: 20px auto;
+            border-radius: 5px;
+        }
+
+        .coordinate-point {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .coordinate-label {
+            position: absolute;
+            font-size: 12px;
+            font-weight: bold;
+            color: #667eea;
+            transform: translate(-50%, -150%);
+        }
+
+        @media (max-width: 768px) {
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .demo-image, .interactive-image {
+                width: 250px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✂️ CSS ClipPath 완전 가이드</h1>
+            <p>요소를 자유자재로 잘라내는 마법 같은 CSS 속성을 마스터하세요!</p>
+        </div>
+
+        <div class="content">
+            <section>
+                <h2>🤔 ClipPath란 무엇인가?</h2>
+
+                <div class="info-box">
+                    <h3>📖 기본 개념</h3>
+                    <p><strong>ClipPath</strong>는 HTML 요소의 일부를 잘라내어 보이는 영역을 제어하는 CSS 속성입니다.</p>
+                    <ul>
+                        <li>✂️ <strong>자르기 도구</strong>: 요소의 원하는 부분만 보이게 만듦</li>
+                        <li>🎨 <strong>다양한 모양</strong>: 사각형, 원, 다각형 등 자유자재로</li>
+                        <li>🎬 <strong>애니메이션 가능</strong>: 부드러운 모양 변화 효과</li>
+                        <li>🚀 <strong>성능 최적화</strong>: GPU 가속으로 부드러운 렌더링</li>
+                    </ul>
+                </div>
+
+                <h3>🔍 일상 생활의 비유</h3>
+                <div class="success-box">
+                    <p>ClipPath를 이해하는 가장 쉬운 방법은 <strong>종이 자르기</strong>를 생각하는 것입니다!</p>
+
+                    <ul>
+                        <li>📄 <strong>종이</strong> = HTML 요소 (이미지, div 등)</li>
+                        <li>✂️ <strong>가위</strong> = clip-path 속성</li>
+                        <li>🎯 <strong>자르는 모양</strong> = inset, circle, polygon 등</li>
+                        <li>👀 <strong>보이는 부분</strong> = 자르고 남은 영역</li>
+                    </ul>
+
+                    <p>예를 들어, 직사각형 사진을 원형으로 자르고 싶다면:</p>
+                    <pre><code><span class="comment">/* 📷 사진을 원형으로 자르기 */</span>
+.<span class="function">profile-image</span> {
+  <span class="keyword">clip-path</span>: <span class="function">circle</span>(<span class="number">50%</span>); <span class="comment">/* 반지름 50%인 원형으로 자르기 */</span>
+}</code></pre>
+                </div>
+            </section>
+
+            <section>
+                <h2>📐 ClipPath 함수 완전 분석</h2>
+
+                <h3>1️⃣ inset() - 사각형 자르기</h3>
+                <div class="info-box">
+                    <h4>📝 문법</h4>
+                    <pre><code><span class="keyword">clip-path</span>: <span class="function">inset</span>(<span class="number">top</span> <span class="number">right</span> <span class="number">bottom</span> <span class="number">left</span>);</code></pre>
+
+                    <h4>💡 이해하기 쉬운 설명</h4>
+                    <p><code>inset()</code>는 <strong>"안쪽으로 얼마나 들어가서 자를까?"</strong>를 정합니다.</p>
+
+                    <div class="visual-guide">
+                        <div class="coordinate-demo">
+                            <div class="coordinate-point" style="top: 20%; left: 50%;"></div>
+                            <div class="coordinate-label" style="top: 20%; left: 50%;">상단 20%</div>
+
+                            <div class="coordinate-point" style="top: 50%; right: 30%;"></div>
+                            <div class="coordinate-label" style="top: 50%; right: 30%;">우측 30%</div>
+
+                            <div class="coordinate-point" style="bottom: 20%; left: 50%;"></div>
+                            <div class="coordinate-label" style="bottom: 20%; left: 50%;">하단 20%</div>
+
+                            <div class="coordinate-point" style="top: 50%; left: 30%;"></div>
+                            <div class="coordinate-label" style="top: 50%; left: 30%;">좌측 30%</div>
+                        </div>
+                        <p><code>inset(20% 30% 20% 30%)</code> - 각 면에서 안쪽으로 자르는 크기</p>
+                    </div>
+                </div>
+
+                <h4>🎮 inset() 실전 예제</h4>
+                <div class="demo-grid">
+                    <div class="demo-card">
+                        <h4>기본 상태</h4>
+                        <div class="demo-image">원본</div>
+                        <pre><code><span class="comment">/* 자르지 않음 */</span>
+<span class="keyword">clip-path</span>: <span class="keyword">none</span>;</code></pre>
+                    </div>
+
+                    <div class="demo-card">
+                        <h4>사각형 자르기</h4>
+                        <div class="demo-image demo-inset">자른 모양</div>
+                        <pre><code><span class="comment">/* 상하 20%, 좌우 30% 자르기 */</span>
+<span class="keyword">clip-path</span>: <span class="function">inset</span>(<span class="number">20%</span> <span class="number">30%</span> <span class="number">20%</span> <span class="number">30%</span>);</code></pre>
+                    </div>
+                </div>
+
+                <h3>2️⃣ circle() - 원형 자르기</h3>
+                <div class="info-box">
+                    <h4>📝 문법</h4>
+                    <pre><code><span class="keyword">clip-path</span>: <span class="function">circle</span>(<span class="number">반지름</span> <span class="keyword">at</span> <span class="number">중심X</span> <span class="number">중심Y</span>);</code></pre>
+
+                    <h4>💡 쉽게 이해하기</h4>
+                    <ul>
+                        <li><strong>반지름</strong>: 원의 크기 (50% = 요소 크기의 절반)</li>
+                        <li><strong>중심점</strong>: 원의 중심 위치 (50% 50% = 정가운데)</li>
+                    </ul>
+                </div>
+
+                <div class="demo-grid">
+                    <div class="demo-card">
+                        <h4>작은 원</h4>
+                        <div class="demo-image demo-circle">원형</div>
+                        <pre><code><span class="keyword">clip-path</span>: <span class="function">circle</span>(<span class="number">40%</span> <span class="keyword">at</span> <span class="number">50%</span> <span class="number">50%</span>);</code></pre>
+                    </div>
+
+                    <div class="demo-card">
+                        <h4>타원형</h4>
+                        <div class="demo-image demo-ellipse">타원</div>
+                        <pre><code><span class="keyword">clip-path</span>: <span class="function">ellipse</span>(<span class="number">60%</span> <span class="number">40%</span> <span class="keyword">at</span> <span class="number">50%</span> <span class="number">50%</span>);</code></pre>
+                    </div>
+                </div>
+
+                <h3>3️⃣ polygon() - 다각형 자르기</h3>
+                <div class="info-box">
+                    <h4>📝 문법</h4>
+                    <pre><code><span class="keyword">clip-path</span>: <span class="function">polygon</span>(<span class="number">x1</span> <span class="number">y1</span>, <span class="number">x2</span> <span class="number">y2</span>, <span class="number">x3</span> <span class="number">y3</span>, ...);</code></pre>
+
+                    <h4>💡 좌표 시스템 이해</h4>
+                    <ul>
+                        <li><strong>0% 0%</strong> = 왼쪽 상단</li>
+                        <li><strong>100% 0%</strong> = 오른쪽 상단</li>
+                        <li><strong>100% 100%</strong> = 오른쪽 하단</li>
+                        <li><strong>0% 100%</strong> = 왼쪽 하단</li>
+                        <li><strong>50% 50%</strong> = 정중앙</li>
+                    </ul>
+                </div>
+
+                <div class="demo-grid">
+                    <div class="demo-card">
+                        <h4>다이아몬드</h4>
+                        <div class="demo-image demo-polygon">◆</div>
+                        <pre><code><span class="keyword">clip-path</span>: <span class="function">polygon</span>(
+  <span class="number">50%</span> <span class="number">0%</span>,   <span class="comment">/* 상단 */</span>
+  <span class="number">100%</span> <span class="number">50%</span>, <span class="comment">/* 우측 */</span>
+  <span class="number">50%</span> <span class="number">100%</span>, <span class="comment">/* 하단 */</span>
+  <span class="number">0%</span> <span class="number">50%</span>    <span class="comment">/* 좌측 */</span>
+);</code></pre>
+                    </div>
+
+                    <div class="demo-card">
+                        <h4>삼각형</h4>
+                        <div class="demo-image demo-triangle">▲</div>
+                        <pre><code><span class="keyword">clip-path</span>: <span class="function">polygon</span>(
+  <span class="number">50%</span> <span class="number">0%</span>,    <span class="comment">/* 꼭지점 */</span>
+  <span class="number">0%</span> <span class="number">100%</span>,   <span class="comment">/* 왼쪽 하단 */</span>
+  <span class="number">100%</span> <span class="number">100%</span>  <span class="comment">/* 오른쪽 하단 */</span>
+);</code></pre>
+                    </div>
+
+                    <div class="demo-card">
+                        <h4>육각형</h4>
+                        <div class="demo-image demo-hexagon">⬢</div>
+                        <pre><code><span class="keyword">clip-path</span>: <span class="function">polygon</span>(
+  <span class="number">30%</span> <span class="number">0%</span>, <span class="number">70%</span> <span class="number">0%</span>,     <span class="comment">/* 상단 */</span>
+  <span class="number">100%</span> <span class="number">50%</span>,           <span class="comment">/* 우측 */</span>
+  <span class="number">70%</span> <span class="number">100%</span>, <span class="number">30%</span> <span class="number">100%</span>, <span class="comment">/* 하단 */</span>
+  <span class="number">0%</span> <span class="number">50%</span>             <span class="comment">/* 좌측 */</span>
+);</code></pre>
+                    </div>
+
+                    <div class="demo-card">
+                        <h4>별 모양</h4>
+                        <div class="demo-image demo-star">★</div>
+                        <pre><code><span class="comment">/* 복잡하지만 재미있는 별 모양! */</span>
+<span class="keyword">clip-path</span>: <span class="function">polygon</span>(
+  <span class="number">50%</span> <span class="number">0%</span>, <span class="number">61%</span> <span class="number">35%</span>, <span class="number">98%</span> <span class="number">35%</span>,
+  <span class="number">68%</span> <span class="number">57%</span>, <span class="number">79%</span> <span class="number">91%</span>, <span class="number">50%</span> <span class="number">70%</span>,
+  <span class="number">21%</span> <span class="number">91%</span>, <span class="number">32%</span> <span class="number">57%</span>, <span class="number">2%</span> <span class="number">35%</span>, <span class="number">39%</span> <span class="number">35%</span>
+);</code></pre>
+                    </div>
+
+                    <div class="demo-card">
+                        <h4>화살표</h4>
+                        <div class="demo-image demo-arrow">→</div>
+                        <pre><code><span class="keyword">clip-path</span>: <span class="function">polygon</span>(
+  <span class="number">0%</span> <span class="number">20%</span>, <span class="number">60%</span> <span class="number">20%</span>, <span class="number">60%</span> <span class="number">0%</span>,
+  <span class="number">100%</span> <span class="number">50%</span>, <span class="number">60%</span> <span class="number">100%</span>,
+  <span class="number">60%</span> <span class="number">80%</span>, <span class="number">0%</span> <span class="number">80%</span>
+);</code></pre>
+                    </div>
+
+                    <div class="demo-card">
+                        <h4>애니메이션</h4>
+                        <div class="animation-demo">변화!</div>
+                        <pre><code><span class="comment">/* 계속 변하는 모양! */</span>
+<span class="keyword">animation</span>: clipPathAnimation <span class="number">3s</span> <span class="keyword">infinite</span>;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>🎮 인터랙티브 데모</h2>
+
+                <div class="interactive-demo">
+                    <h3>🕹️ 직접 조작해보세요!</h3>
+                    <p>슬라이더를 움직여서 inset() 함수의 동작을 실시간으로 확인해보세요.</p>
+
+                    <div class="interactive-image" id="interactiveImage">조작해보세요!</div>
+
+                    <div class="slider-container">
+                        <label>상단 (Top): <span id="topValue">20</span>%</label>
+                        <input type="range" class="slider" id="topSlider" min="0" max="50" value="20">
+                    </div>
+
+                    <div class="slider-container">
+                        <label>우측 (Right): <span id="rightValue">30</span>%</label>
+                        <input type="range" class="slider" id="rightSlider" min="0" max="50" value="30">
+                    </div>
+
+                    <div class="slider-container">
+                        <label>하단 (Bottom): <span id="bottomValue">20</span>%</label>
+                        <input type="range" class="slider" id="bottomSlider" min="0" max="50" value="20">
+                    </div>
+
+                    <div class="slider-container">
+                        <label>좌측 (Left): <span id="leftValue">30</span>%</label>
+                        <input type="range" class="slider" id="leftSlider" min="0" max="50" value="30">
+                    </div>
+
+                    <div class="info-box">
+                        <h4>현재 CSS 코드:</h4>
+                        <pre><code id="currentCode"><span class="keyword">clip-path</span>: <span class="function">inset</span>(<span class="number">20%</span> <span class="number">30%</span> <span class="number">20%</span> <span class="number">30%</span>);</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>📊 ClipPath 함수 비교표</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>함수</th>
+                            <th>용도</th>
+                            <th>문법 예시</th>
+                            <th>사용 사례</th>
+                            <th>난이도</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>inset()</code></td>
+                            <td>사각형 자르기</td>
+                            <td><code>inset(10% 20% 10% 20%)</code></td>
+                            <td>이미지 크롭, 테두리 효과</td>
+                            <td>⭐ 쉬움</td>
+                        </tr>
+                        <tr>
+                            <td><code>circle()</code></td>
+                            <td>원형 자르기</td>
+                            <td><code>circle(50% at 50% 50%)</code></td>
+                            <td>프로필 이미지, 버튼</td>
+                            <td>⭐⭐ 보통</td>
+                        </tr>
+                        <tr>
+                            <td><code>ellipse()</code></td>
+                            <td>타원형 자르기</td>
+                            <td><code>ellipse(60% 40% at 50% 50%)</code></td>
+                            <td>배너, 장식 요소</td>
+                            <td>⭐⭐ 보통</td>
+                        </tr>
+                        <tr>
+                            <td><code>polygon()</code></td>
+                            <td>다각형 자르기</td>
+                            <td><code>polygon(50% 0%, 100% 100%, 0% 100%)</code></td>
+                            <td>화살표, 말풍선, 복잡한 모양</td>
+                            <td>⭐⭐⭐ 어려움</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h2>�️ HTML 구조와 실제 사용법</h2>
+
+                <h3>1️⃣ 기본 HTML 구조</h3>
+                <div class="info-box">
+                    <h4>📄 이미지에 ClipPath 적용하기</h4>
+                    <pre><code><span class="comment">&lt;!-- 🖼️ 기본 이미지 구조 --&gt;</span>
+<span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"image-container"</span><span class="keyword">&gt;</span>
+  <span class="keyword">&lt;img</span> <span class="function">src</span>=<span class="string">"profile.jpg"</span> <span class="function">alt</span>=<span class="string">"프로필 이미지"</span> <span class="function">class</span>=<span class="string">"clipped-image"</span><span class="keyword">&gt;</span>
+<span class="keyword">&lt;/div&gt;</span>
+
+<span class="comment">&lt;!-- 🎨 CSS 스타일 --&gt;</span>
+<span class="keyword">&lt;style&gt;</span>
+  .<span class="function">clipped-image</span> {
+    <span class="keyword">width</span>: <span class="number">200px</span>;
+    <span class="keyword">height</span>: <span class="number">200px</span>;
+    <span class="keyword">object-fit</span>: <span class="keyword">cover</span>; <span class="comment">/* 이미지 비율 유지 */</span>
+    <span class="keyword">clip-path</span>: <span class="function">circle</span>(<span class="number">50%</span>); <span class="comment">/* 원형으로 자르기 */</span>
+    <span class="keyword">transition</span>: <span class="keyword">clip-path</span> <span class="number">0.3s</span> <span class="keyword">ease</span>; <span class="comment">/* 부드러운 전환 */</span>
+  }
+  
+  .<span class="function">clipped-image</span>:<span class="function">hover</span> {
+    <span class="keyword">clip-path</span>: <span class="function">circle</span>(<span class="number">70%</span>); <span class="comment">/* 호버시 확장 */</span>
+  }
+<span class="keyword">&lt;/style&gt;</span></code></pre>
+                </div>
+
+                <h3>2️⃣ 다양한 요소에 적용하기</h3>
+                <div class="demo-grid">
+                    <div class="demo-card">
+                        <h4>🔘 버튼 모양</h4>
+                        <pre><code><span class="comment">&lt;!-- HTML --&gt;</span>
+<span class="keyword">&lt;button</span> <span class="function">class</span>=<span class="string">"diamond-btn"</span><span class="keyword">&gt;</span>
+  클릭하세요!
+<span class="keyword">&lt;/button&gt;</span>
+
+<span class="comment">/* CSS */</span>
+.<span class="function">diamond-btn</span> {
+  <span class="keyword">background</span>: <span class="string">#667eea</span>;
+  <span class="keyword">color</span>: <span class="keyword">white</span>;
+  <span class="keyword">border</span>: <span class="keyword">none</span>;
+  <span class="keyword">padding</span>: <span class="number">20px</span> <span class="number">40px</span>;
+  <span class="keyword">clip-path</span>: <span class="function">polygon</span>(
+    <span class="number">50%</span> <span class="number">0%</span>, <span class="number">100%</span> <span class="number">50%</span>, 
+    <span class="number">50%</span> <span class="number">100%</span>, <span class="number">0%</span> <span class="number">50%</span>
+  );
+}</code></pre>
+                    </div>
+
+                    <div class="demo-card">
+                        <h4>💬 말풍선</h4>
+                        <pre><code><span class="comment">&lt;!-- HTML --&gt;</span>
+<span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"speech-bubble"</span><span class="keyword">&gt;</span>
+  안녕하세요! 👋
+<span class="keyword">&lt;/div&gt;</span>
+
+<span class="comment">/* CSS */</span>
+.<span class="function">speech-bubble</span> {
+  <span class="keyword">background</span>: <span class="string">#f0f0f0</span>;
+  <span class="keyword">padding</span>: <span class="number">15px</span> <span class="number">20px</span>;
+  <span class="keyword">clip-path</span>: <span class="function">polygon</span>(
+    <span class="number">0%</span> <span class="number">0%</span>, <span class="number">100%</span> <span class="number">0%</span>, <span class="number">100%</span> <span class="number">75%</span>, 
+    <span class="number">25%</span> <span class="number">75%</span>, <span class="number">15%</span> <span class="number">100%</span>, <span class="number">0%</span> <span class="number">75%</span>
+  );
+}</code></pre>
+                    </div>
+
+                    <div class="demo-card">
+                        <h4>🏷️ 태그 모양</h4>
+                        <pre><code><span class="comment">&lt;!-- HTML --&gt;</span>
+<span class="keyword">&lt;span</span> <span class="function">class</span>=<span class="string">"tag"</span><span class="keyword">&gt;</span>NEW<span class="keyword">&lt;/span&gt;</span>
+
+<span class="comment">/* CSS */</span>
+.<span class="function">tag</span> {
+  <span class="keyword">background</span>: <span class="string">#ff6b6b</span>;
+  <span class="keyword">color</span>: <span class="keyword">white</span>;
+  <span class="keyword">padding</span>: <span class="number">5px</span> <span class="number">15px</span>;
+  <span class="keyword">clip-path</span>: <span class="function">polygon</span>(
+    <span class="number">0%</span> <span class="number">0%</span>, <span class="number">90%</span> <span class="number">0%</span>, <span class="number">100%</span> <span class="number">50%</span>, 
+    <span class="number">90%</span> <span class="number">100%</span>, <span class="number">0%</span> <span class="number">100%</span>
+  );
+}</code></pre>
+                    </div>
+                </div>
+
+                <h3>3️⃣ 반응형 디자인 고려</h3>
+                <div class="warning-box">
+                    <h4>📱 모바일 친화적 ClipPath</h4>
+                    <pre><code><span class="comment">&lt;!-- HTML --&gt;</span>
+<span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"responsive-hero"</span><span class="keyword">&gt;</span>
+  <span class="keyword">&lt;img</span> <span class="function">src</span>=<span class="string">"hero-image.jpg"</span> <span class="function">alt</span>=<span class="string">"히어로 이미지"</span><span class="keyword">&gt;</span>
+  <span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"hero-content"</span><span class="keyword">&gt;</span>
+    <span class="keyword">&lt;h1&gt;</span>웰컴!<span class="keyword">&lt;/h1&gt;</span>
+  <span class="keyword">&lt;/div&gt;</span>
+<span class="keyword">&lt;/div&gt;</span>
+
+<span class="comment">/* CSS - 반응형 ClipPath */</span>
+.<span class="function">responsive-hero</span> {
+  <span class="keyword">position</span>: <span class="keyword">relative</span>;
+  <span class="keyword">width</span>: <span class="number">100%</span>;
+  <span class="keyword">height</span>: <span class="number">400px</span>;
+  <span class="keyword">overflow</span>: <span class="keyword">hidden</span>;
+}
+
+.<span class="function">responsive-hero</span> <span class="function">img</span> {
+  <span class="keyword">width</span>: <span class="number">100%</span>;
+  <span class="keyword">height</span>: <span class="number">100%</span>;
+  <span class="keyword">object-fit</span>: <span class="keyword">cover</span>;
+  <span class="comment">/* 데스크톱: 복잡한 모양 */</span>
+  <span class="keyword">clip-path</span>: <span class="function">polygon</span>(<span class="number">0%</span> <span class="number">0%</span>, <span class="number">100%</span> <span class="number">0%</span>, <span class="number">100%</span> <span class="number">85%</span>, <span class="number">0%</span> <span class="number">100%</span>);
+}
+
+<span class="comment">/* 모바일: 단순한 모양 */</span>
+<span class="keyword">@media</span> (<span class="function">max-width</span>: <span class="number">768px</span>) {
+  .<span class="function">responsive-hero</span> <span class="function">img</span> {
+    <span class="keyword">clip-path</span>: <span class="function">inset</span>(<span class="number">0%</span> <span class="number">0%</span> <span class="number">15%</span> <span class="number">0%</span>); <span class="comment">/* 단순한 하단 컷 */</span>
+  }
+}</code></pre>
+                </div>
+
+                <h3>4️⃣ 카드 레이아웃 예제</h3>
+                <div class="success-box">
+                    <h4>🃏 카드 컴포넌트</h4>
+                    <pre><code><span class="comment">&lt;!-- HTML 구조 --&gt;</span>
+<span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"card-container"</span><span class="keyword">&gt;</span>
+  <span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"card"</span><span class="keyword">&gt;</span>
+    <span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"card-image"</span><span class="keyword">&gt;</span>
+      <span class="keyword">&lt;img</span> <span class="function">src</span>=<span class="string">"card-bg.jpg"</span> <span class="function">alt</span>=<span class="string">"카드 배경"</span><span class="keyword">&gt;</span>
+    <span class="keyword">&lt;/div&gt;</span>
+    <span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"card-content"</span><span class="keyword">&gt;</span>
+      <span class="keyword">&lt;h3&gt;</span>카드 제목<span class="keyword">&lt;/h3&gt;</span>
+      <span class="keyword">&lt;p&gt;</span>카드 설명입니다.<span class="keyword">&lt;/p&gt;</span>
+      <span class="keyword">&lt;button</span> <span class="function">class</span>=<span class="string">"card-btn"</span><span class="keyword">&gt;</span>더 보기<span class="keyword">&lt;/button&gt;</span>
+    <span class="keyword">&lt;/div&gt;</span>
+  <span class="keyword">&lt;/div&gt;</span>
+<span class="keyword">&lt;/div&gt;</span>
+
+<span class="comment">/* CSS 스타일링 */</span>
+.<span class="function">card</span> {
+  <span class="keyword">background</span>: <span class="keyword">white</span>;
+  <span class="keyword">border-radius</span>: <span class="number">15px</span>;
+  <span class="keyword">overflow</span>: <span class="keyword">hidden</span>;
+  <span class="keyword">box-shadow</span>: <span class="number">0</span> <span class="number">10px</span> <span class="number">30px</span> <span class="function">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.1</span>);
+  <span class="keyword">transition</span>: <span class="keyword">transform</span> <span class="number">0.3s</span> <span class="keyword">ease</span>;
+}
+
+.<span class="function">card</span>:<span class="function">hover</span> {
+  <span class="keyword">transform</span>: <span class="function">translateY</span>(<span class="number">-10px</span>);
+}
+
+.<span class="function">card-image</span> {
+  <span class="keyword">height</span>: <span class="number">200px</span>;
+  <span class="keyword">overflow</span>: <span class="keyword">hidden</span>;
+  <span class="keyword">position</span>: <span class="keyword">relative</span>;
+}
+
+.<span class="function">card-image</span> <span class="function">img</span> {
+  <span class="keyword">width</span>: <span class="number">100%</span>;
+  <span class="keyword">height</span>: <span class="number">100%</span>;
+  <span class="keyword">object-fit</span>: <span class="keyword">cover</span>;
+  <span class="comment">/* 하단을 물결 모양으로 */</span>
+  <span class="keyword">clip-path</span>: <span class="function">polygon</span>(
+    <span class="number">0%</span> <span class="number">0%</span>, <span class="number">100%</span> <span class="number">0%</span>, <span class="number">100%</span> <span class="number">85%</span>, 
+    <span class="number">80%</span> <span class="number">90%</span>, <span class="number">60%</span> <span class="number">85%</span>, <span class="number">40%</span> <span class="number">90%</span>, 
+    <span class="number">20%</span> <span class="number">85%</span>, <span class="number">0%</span> <span class="number">90%</span>
+  );
+  <span class="keyword">transition</span>: <span class="keyword">clip-path</span> <span class="number">0.3s</span> <span class="keyword">ease</span>;
+}
+
+.<span class="function">card</span>:<span class="function">hover</span> .<span class="function">card-image</span> <span class="function">img</span> {
+  <span class="comment">/* 호버시 더 극적인 물결 */</span>
+  <span class="keyword">clip-path</span>: <span class="function">polygon</span>(
+    <span class="number">0%</span> <span class="number">0%</span>, <span class="number">100%</span> <span class="number">0%</span>, <span class="number">100%</span> <span class="number">80%</span>, 
+    <span class="number">80%</span> <span class="number">95%</span>, <span class="number">60%</span> <span class="number">80%</span>, <span class="number">40%</span> <span class="number">95%</span>, 
+    <span class="number">20%</span> <span class="number">80%</span>, <span class="number">0%</span> <span class="number">95%</span>
+  );
+}
+
+.<span class="function">card-content</span> {
+  <span class="keyword">padding</span>: <span class="number">20px</span>;
+}
+
+.<span class="function">card-btn</span> {
+  <span class="keyword">background</span>: <span class="string">#667eea</span>;
+  <span class="keyword">color</span>: <span class="keyword">white</span>;
+  <span class="keyword">border</span>: <span class="keyword">none</span>;
+  <span class="keyword">padding</span>: <span class="number">10px</span> <span class="number">20px</span>;
+  <span class="keyword">cursor</span>: <span class="keyword">pointer</span>;
+  <span class="comment">/* 화살표 모양 버튼 */</span>
+  <span class="keyword">clip-path</span>: <span class="function">polygon</span>(
+    <span class="number">0%</span> <span class="number">0%</span>, <span class="number">80%</span> <span class="number">0%</span>, <span class="number">100%</span> <span class="number">50%</span>, 
+    <span class="number">80%</span> <span class="number">100%</span>, <span class="number">0%</span> <span class="number">100%</span>
+  );
+  <span class="keyword">transition</span>: <span class="keyword">all</span> <span class="number">0.3s</span> <span class="keyword">ease</span>;
+}
+
+.<span class="function">card-btn</span>:<span class="function">hover</span> {
+  <span class="keyword">background</span>: <span class="string">#5a6fd8</span>;
+  <span class="keyword">transform</span>: <span class="function">translateX</span>(<span class="number">5px</span>);
+}</code></pre>
+                </div>
+
+                <h3>5️⃣ 로딩 애니메이션</h3>
+                <div class="info-box">
+                    <h4>⏳ ClipPath 로딩 스피너</h4>
+                    <pre><code><span class="comment">&lt;!-- HTML --&gt;</span>
+<span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"loading-container"</span><span class="keyword">&gt;</span>
+  <span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"spinner"</span><span class="keyword">&gt;</span>
+    <span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"spinner-inner"</span><span class="keyword">&gt;&lt;/div&gt;</span>
+  <span class="keyword">&lt;/div&gt;</span>
+  <span class="keyword">&lt;p&gt;</span>로딩 중...<span class="keyword">&lt;/p&gt;</span>
+<span class="keyword">&lt;/div&gt;</span>
+
+<span class="comment">/* CSS 애니메이션 */</span>
+.<span class="function">spinner</span> {
+  <span class="keyword">width</span>: <span class="number">60px</span>;
+  <span class="keyword">height</span>: <span class="number">60px</span>;
+  <span class="keyword">margin</span>: <span class="number">20px</span> <span class="keyword">auto</span>;
+  <span class="keyword">position</span>: <span class="keyword">relative</span>;
+}
+
+.<span class="function">spinner-inner</span> {
+  <span class="keyword">width</span>: <span class="number">100%</span>;
+  <span class="keyword">height</span>: <span class="number">100%</span>;
+  <span class="keyword">background</span>: <span class="function">conic-gradient</span>(
+    <span class="string">#667eea</span> <span class="number">0deg</span>, 
+    <span class="string">#764ba2</span> <span class="number">180deg</span>, 
+    <span class="keyword">transparent</span> <span class="number">180deg</span>
+  );
+  <span class="keyword">border-radius</span>: <span class="number">50%</span>;
+  <span class="keyword">animation</span>: spin <span class="number">1s</span> <span class="keyword">linear</span> <span class="keyword">infinite</span>;
+  <span class="comment">/* 원형 마스크로 스피너 효과 */</span>
+  <span class="keyword">clip-path</span>: <span class="function">circle</span>(<span class="number">50%</span>);
+}
+
+<span class="keyword">@keyframes</span> <span class="function">spin</span> {
+  <span class="keyword">from</span> { <span class="keyword">transform</span>: <span class="function">rotate</span>(<span class="number">0deg</span>); }
+  <span class="keyword">to</span> { <span class="keyword">transform</span>: <span class="function">rotate</span>(<span class="number">360deg</span>); }
+}</code></pre>
+                </div>
+
+                <h3>6️⃣ 접근성과 SEO 고려사항</h3>
+                <div class="warning-box">
+                    <h4>♿ 접근성 친화적 구현</h4>
+                    <pre><code><span class="comment">&lt;!-- 스크린 리더를 위한 대체 텍스트 --&gt;</span>
+<span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"accessible-clippath"</span><span class="keyword">&gt;</span>
+  <span class="keyword">&lt;img</span> 
+    <span class="function">src</span>=<span class="string">"profile.jpg"</span> 
+    <span class="function">alt</span>=<span class="string">"홍길동 프로필 사진 - 원형으로 잘린 이미지"</span>
+    <span class="function">class</span>=<span class="string">"profile-image"</span>
+    <span class="function">aria-describedby</span>=<span class="string">"profile-desc"</span>
+  <span class="keyword">&gt;</span>
+  <span class="keyword">&lt;span</span> <span class="function">id</span>=<span class="string">"profile-desc"</span> <span class="function">class</span>=<span class="string">"sr-only"</span><span class="keyword">&gt;</span>
+    이 이미지는 원형으로 잘려서 표시됩니다.
+  <span class="keyword">&lt;/span&gt;</span>
+<span class="keyword">&lt;/div&gt;</span>
+
+<span class="comment">/* 스크린 리더 전용 텍스트 */</span>
+.<span class="function">sr-only</span> {
+  <span class="keyword">position</span>: <span class="keyword">absolute</span>;
+  <span class="keyword">width</span>: <span class="number">1px</span>;
+  <span class="keyword">height</span>: <span class="number">1px</span>;
+  <span class="keyword">padding</span>: <span class="number">0</span>;
+  <span class="keyword">margin</span>: <span class="number">-1px</span>;
+  <span class="keyword">overflow</span>: <span class="keyword">hidden</span>;
+  <span class="keyword">clip</span>: <span class="function">rect</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);
+  <span class="keyword">white-space</span>: <span class="keyword">nowrap</span>;
+  <span class="keyword">border</span>: <span class="number">0</span>;
+}
+
+<span class="comment">/* 애니메이션 감소 설정 고려 */</span>
+<span class="keyword">@media</span> (<span class="function">prefers-reduced-motion</span>: <span class="function">reduce</span>) {
+  .<span class="function">profile-image</span> {
+    <span class="keyword">transition</span>: <span class="keyword">none</span>; <span class="comment">/* 애니메이션 비활성화 */</span>
+  }
+}</code></pre>
+                </div>
+            </section>
+
+            <section>
+                <h2>�🎬 실전 애니메이션 예제</h2>
+
+                <h3>1️⃣ 이미지 페이드인 효과</h3>
+                <pre><code><span class="comment">/* 🎯 중앙에서 확장되는 효과 */</span>
+<span class="keyword">@keyframes</span> <span class="function">reveal-center</span> {
+  <span class="keyword">from</span> {
+    <span class="keyword">clip-path</span>: <span class="function">inset</span>(<span class="number">50%</span> <span class="number">50%</span> <span class="number">50%</span> <span class="number">50%</span>); <span class="comment">/* 점에서 시작 */</span>
+  }
+  <span class="keyword">to</span> {
+    <span class="keyword">clip-path</span>: <span class="function">inset</span>(<span class="number">0%</span> <span class="number">0%</span> <span class="number">0%</span> <span class="number">0%</span>);   <span class="comment">/* 전체 표시 */</span>
+  }
+}
+
+.<span class="function">reveal-image</span> {
+  <span class="keyword">animation</span>: reveal-center <span class="number">1s</span> <span class="keyword">ease-out</span>;
+}</code></pre>
+
+                <h3>2️⃣ 원형 확장 효과</h3>
+                <pre><code><span class="comment">/* 🌟 원형으로 확장되는 효과 */</span>
+<span class="keyword">@keyframes</span> <span class="function">circle-expand</span> {
+  <span class="keyword">from</span> {
+    <span class="keyword">clip-path</span>: <span class="function">circle</span>(<span class="number">0%</span> <span class="keyword">at</span> <span class="number">50%</span> <span class="number">50%</span>);   <span class="comment">/* 작은 점 */</span>
+  }
+  <span class="keyword">to</span> {
+    <span class="keyword">clip-path</span>: <span class="function">circle</span>(<span class="number">100%</span> <span class="keyword">at</span> <span class="number">50%</span> <span class="number">50%</span>); <span class="comment">/* 전체 원 */</span>
+  }
+}
+
+.<span class="function">circle-reveal</span> {
+  <span class="keyword">animation</span>: circle-expand <span class="number">0.8s</span> <span class="keyword">ease-out</span>;
+}</code></pre>
+
+                <h3>3️⃣ 좌우 슬라이드 효과</h3>
+                <pre><code><span class="comment">/* ➡️ 왼쪽에서 오른쪽으로 나타나는 효과 */</span>
+<span class="keyword">@keyframes</span> <span class="function">slide-right</span> {
+  <span class="keyword">from</span> {
+    <span class="keyword">clip-path</span>: <span class="function">inset</span>(<span class="number">0%</span> <span class="number">100%</span> <span class="number">0%</span> <span class="number">0%</span>); <span class="comment">/* 오른쪽 숨김 */</span>
+  }
+  <span class="keyword">to</span> {
+    <span class="keyword">clip-path</span>: <span class="function">inset</span>(<span class="number">0%</span> <span class="number">0%</span> <span class="number">0%</span> <span class="number">0%</span>);   <span class="comment">/* 전체 표시 */</span>
+  }
+}
+
+.<span class="function">slide-reveal</span> {
+  <span class="keyword">animation</span>: slide-right <span class="number">1.2s</span> <span class="keyword">ease-in-out</span>;
+}</code></pre>
+
+                <h3>4️⃣ 복잡한 모핑 효과</h3>
+                <pre><code><span class="comment">/* 🔄 모양이 계속 변화하는 효과 */</span>
+<span class="keyword">@keyframes</span> <span class="function">shape-morph</span> {
+  <span class="number">0%</span> {
+    <span class="keyword">clip-path</span>: <span class="function">polygon</span>(<span class="number">50%</span> <span class="number">0%</span>, <span class="number">100%</span> <span class="number">50%</span>, <span class="number">50%</span> <span class="number">100%</span>, <span class="number">0%</span> <span class="number">50%</span>); <span class="comment">/* 다이아몬드 */</span>
+  }
+  <span class="number">25%</span> {
+    <span class="keyword">clip-path</span>: <span class="function">polygon</span>(<span class="number">50%</span> <span class="number">0%</span>, <span class="number">100%</span> <span class="number">100%</span>, <span class="number">0%</span> <span class="number">100%</span>); <span class="comment">/* 삼각형 */</span>
+  }
+  <span class="number">50%</span> {
+    <span class="keyword">clip-path</span>: <span class="function">polygon</span>(<span class="number">0%</span> <span class="number">0%</span>, <span class="number">100%</span> <span class="number">0%</span>, <span class="number">100%</span> <span class="number">100%</span>, <span class="number">0%</span> <span class="number">100%</span>); <span class="comment">/* 사각형 */</span>
+  }
+  <span class="number">75%</span> {
+    <span class="keyword">clip-path</span>: <span class="function">circle</span>(<span class="number">50%</span> <span class="keyword">at</span> <span class="number">50%</span> <span class="number">50%</span>); <span class="comment">/* 원형 */</span>
+  }
+  <span class="number">100%</span> {
+    <span class="keyword">clip-path</span>: <span class="function">polygon</span>(<span class="number">50%</span> <span class="number">0%</span>, <span class="number">100%</span> <span class="number">50%</span>, <span class="number">50%</span> <span class="number">100%</span>, <span class="number">0%</span> <span class="number">50%</span>); <span class="comment">/* 다시 다이아몬드 */</span>
+  }
+}
+
+.<span class="function">morphing-shape</span> {
+  <span class="keyword">animation</span>: shape-morph <span class="number">4s</span> <span class="keyword">infinite</span> <span class="keyword">ease-in-out</span>;
+}</code></pre>
+            </section>
+
+            <section>
+                <h2>⚠️ 실무 주의사항</h2>
+
+                <div class="warning-box">
+                    <h3>🚨 브라우저 호환성</h3>
+                    <ul>
+                        <li><strong>✅ 지원</strong>: Chrome 23+, Firefox 3.5+, Safari 7+</li>
+                        <li><strong>⚠️ 부분 지원</strong>: IE/Edge (기본 모양만)</li>
+                        <li><strong>❌ 미지원</strong>: 구버전 브라우저</li>
+                    </ul>
+
+                    <h4>🛡️ 안전한 사용법</h4>
+                    <pre><code><span class="comment">/* 🔒 폴백과 함께 사용 */</span>
+.<span class="function">clipped-element</span> {
+  <span class="comment">/* 기본 스타일 (모든 브라우저) */</span>
+  <span class="keyword">border-radius</span>: <span class="number">50%</span>; <span class="comment">/* 원형 폴백 */</span>
+
+  <span class="comment">/* ClipPath (지원 브라우저) */</span>
+  <span class="keyword">clip-path</span>: <span class="function">circle</span>(<span class="number">50%</span>);
+}</code></pre>
+                </div>
+
+                <div class="info-box">
+                    <h3>🎯 성능 최적화 팁</h3>
+                    <ol>
+                        <li><strong>GPU 가속 활용</strong>: <code>will-change: clip-path</code> 사용</li>
+                        <li><strong>복잡한 polygon 피하기</strong>: 점이 너무 많으면 성능 저하</li>
+                        <li><strong>애니메이션 최적화</strong>: <code>transform</code>과 함께 사용 시 주의</li>
+                        <li><strong>반응형 고려</strong>: 백분율 단위 사용 권장</li>
+                    </ol>
+                </div>
+
+                <div class="success-box">
+                    <h3>💡 실무 활용 팁</h3>
+                    <ul>
+                        <li><strong>🎨 디자인 도구 활용</strong>: Figma, Adobe XD에서 경로 복사</li>
+                        <li><strong>🔧 온라인 도구</strong>: ClipPath Maker, Bennettfeely.com/clippy</li>
+                        <li><strong>🎬 점진적 개선</strong>: 기본 스타일 → ClipPath 추가</li>
+                        <li><strong>📱 접근성 고려</strong>: 중요한 콘텐츠는 ClipPath로 가리지 말기</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2>🚀 마무리</h2>
+
+                <div class="success-box">
+                    <h3>🎯 핵심 요약</h3>
+                    <ol>
+                        <li><strong>inset()</strong>: 사각형 자르기, 가장 기본적이고 유용</li>
+                        <li><strong>circle()</strong>: 원형 자르기, 프로필 이미지에 완벽</li>
+                        <li><strong>polygon()</strong>: 자유로운 모양, 창의적 디자인에 활용</li>
+                        <li><strong>애니메이션</strong>: 부드러운 모양 변화로 멋진 효과</li>
+                        <li><strong>호환성</strong>: 폴백과 함께 안전하게 사용</li>
+                    </ol>
+
+                    <h3>📚 다음 학습 단계</h3>
+                    <ul>
+                        <li>SVG Path와 ClipPath 연동</li>
+                        <li>CSS Mask와의 차이점</li>
+                        <li>복잡한 애니메이션 구현</li>
+                        <li>성능 최적화 고급 기법</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // 인터랙티브 데모 기능
+        function initInteractiveDemo() {
+            const image = document.getElementById('interactiveImage');
+            const topSlider = document.getElementById('topSlider');
+            const rightSlider = document.getElementById('rightSlider');
+            const bottomSlider = document.getElementById('bottomSlider');
+            const leftSlider = document.getElementById('leftSlider');
+
+            const topValue = document.getElementById('topValue');
+            const rightValue = document.getElementById('rightValue');
+            const bottomValue = document.getElementById('bottomValue');
+            const leftValue = document.getElementById('leftValue');
+
+            const currentCode = document.getElementById('currentCode');
+
+            function updateClipPath() {
+                const top = topSlider.value;
+                const right = rightSlider.value;
+                const bottom = bottomSlider.value;
+                const left = leftSlider.value;
+
+                // 값 표시 업데이트
+                topValue.textContent = top;
+                rightValue.textContent = right;
+                bottomValue.textContent = bottom;
+                leftValue.textContent = left;
+
+                // ClipPath 적용
+                const clipPath = `inset(${top}% ${right}% ${bottom}% ${left}%)`;
+                image.style.clipPath = clipPath;
+
+                // 코드 표시 업데이트
+                currentCode.innerHTML = `<span class="keyword">clip-path</span>: <span class="function">inset</span>(<span class="number">${top}%</span> <span class="number">${right}%</span> <span class="number">${bottom}%</span> <span class="number">${left}%</span>);`;
+            }
+
+            // 슬라이더 이벤트 연결
+            topSlider.addEventListener('input', updateClipPath);
+            rightSlider.addEventListener('input', updateClipPath);
+            bottomSlider.addEventListener('input', updateClipPath);
+            leftSlider.addEventListener('input', updateClipPath);
+
+            // 초기값 설정
+            updateClipPath();
+        }
+
+        // 페이지 로드 시 실행
+        document.addEventListener('DOMContentLoaded', initInteractiveDemo);
+
+        // 애니메이션 감소 설정 확인
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            // 애니메이션 비활성화
+            const style = document.createElement('style');
+            style.textContent = `
+                .animation-demo {
+                    animation: none !important;
+                }
+                * {
+                    transition: none !important;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // 코드 복사 기능
+        document.querySelectorAll('pre').forEach(pre => {
+            pre.addEventListener('click', () => {
+                const code = pre.textContent;
+                navigator.clipboard.writeText(code).then(() => {
+                    // 복사 완료 표시
+                    const originalBg = pre.style.background;
+                    pre.style.background = '#4CAF50';
+                    setTimeout(() => {
+                        pre.style.background = originalBg;
+                    }, 200);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

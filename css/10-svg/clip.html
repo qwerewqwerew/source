@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- https://bennettfeely.com/clippy/ -->
+  <style>
+    img {
+      animation: path 5s infinite alternate;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
+
+    @keyframes path {
+      0% {
+        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      }
+
+
+      100% {
+        clip-path: polygon(51% 100%, 0% 100%, 100% 100%);
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+  <img src="./images/1.jpg" alt="">
+</body>
+
+</html>

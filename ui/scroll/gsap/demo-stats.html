@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>숫자 카운팅 애니메이션 데모</title>
+    <link rel="stylesheet" href="demo-style.css">
+</head>
+<body>
+    <!-- 스탯 섹션 -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title">놀라운 성과</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="150">0</div>
+                    <div class="stat-label">완성된 프로젝트</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="500">0</div>
+                    <div class="stat-label">만족한 고객</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="99">0</div>
+                    <div class="stat-label">성공률 (%)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="24">0</div>
+                    <div class="stat-label">지원 시간</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GSAP 라이브러리 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- 필요한 스크립트 -->
+    <script src="01-basic-setup.js"></script>
+    <script src="07-number-counter.js"></script>
+</body>
+</html>

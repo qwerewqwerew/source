@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			body {
+				margin: 10px;
+			}
+      .box{width:100px; height:100px; }
+			.orange {
+				background:orange;
+			}
+			.grey {
+				background:grey;
+			}
+			.green {
+				background:green;
+			}
+		</style>
+	</head>
+	<body>
+		<h2 class="title">gsap.to() Basic Usage</h2>
+		<div class="box orange"></div>
+		<div class="box grey"></div>
+		<div class="box green"></div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+		<script>
+			gsap.to('h2.title', { duration: 1, opacity: 0.3 });
+			gsap.to('.orange', { duration: 2, x: 300 });
+			gsap.to('.grey', { duration: 2, y: 300 });
+			gsap.to('.green', { duration: 3, rotation: 360, scale: 0.5 });
+		</script>
+	</body>
+</html>

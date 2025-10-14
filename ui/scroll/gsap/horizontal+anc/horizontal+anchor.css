@@ -1,0 +1,67 @@
+@import url(https://qwerewqwerew.github.io/source/style/reset.css);
+.full-screen {
+  display: block;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+#intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#masthead {
+  position: fixed;
+  display: flex;
+  z-index: 9999;
+}
+#masthead a {
+  padding: 1rem 2rem;
+}
+#panels #horizontal {
+  width:500%;
+  height: 100vh;
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 0;
+  overflow: hidden;
+  background-color: #ddd;
+}
+#panels #horizontal .panel {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  color: #333;
+  text-align: left;
+  border-right: 1px solid #f00;
+}
+#panels #horizontal .panel img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+#panels #horizontal .panel .panels-navigation {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+#panels #horizontal .panel .anchor-panel,
+#panels #horizontal .panel .nav-panel {
+  color: #000;
+  text-transform: uppercase;
+  margin-right: 2rem;
+}
+#panels #horizontal .panels-navigation {
+  position: absolute;
+  width: 100%;
+  bottom: 2rem;
+  right: 2rem;
+}
+.cards-wrapper {
+  display: flex;
+}
+.card {
+  width: 600px;
+}
