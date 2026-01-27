@@ -1,5 +1,5 @@
 nav {
-  position: absolute;
+  position: fixed;
   display: flex;
   gap: 2rem;
   max-width: 80%;
@@ -8,7 +8,7 @@ nav {
   top: 0;
   transition: all 1s;
   left: 0;
-  background-color: gray;
+  right: 0;
 }
 nav.active {
   position: fixed;
