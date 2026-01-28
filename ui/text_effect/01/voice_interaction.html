@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>보이스 인터랙션</title>
+		<style>
+			body { font-family: Arial, sans-serif; padding: 20px; }
+			.text { margin-bottom: 20px; }
+			button { padding: 10px 20px; font-size: 16px; }
+		</style>
+	</head>
+	<body>
+		<div>
+			<p class="text">안녕하세요! 이 텍스트를 음성으로 읽어보세요. Lorem ipsum dolor sit amet.</p>
+		</div>
+		<button id="speakBtn">음성 읽기</button>
+		<br><br>
+		<textarea id="voiceInput" rows="4" cols="50" placeholder="여기에 음성으로 입력하세요"></textarea>
+		<br>
+		<button id="voiceBtn">음성 입력</button>
+		<script>
+			const text = document.querySelector('.text').innerText;
+			const speakBtn = document.getElementById('speakBtn');
+			speakBtn.addEventListener('click', function() {
+				const utterance = new SpeechSynthesisUtterance(text);
+				window.speechSynthesis.speak(utterance);
+			});
+
+			// 음성 입력 기능
+			const voiceBtn = document.getElementById('voiceBtn');
+			const voiceInput = document.getElementById('voiceInput');
+			voiceBtn.addEventListener('click', function() {
+				const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+				recognition.lang = 'ko-KR'; // 한국어 설정
+				recognition.start();
+				recognition.onresult = function(event) {
+					const transcript = event.results[0][0].transcript;
+					voiceInput.value = transcript;
+				};
+			});
+		</script>
+	</body>
+</html></content>
+<parameter name="filePath">k:\Blogs\source\ui\text_effect\01\voice_interaction.html

@@ -15,3 +15,10 @@ for (let i = 0; i < letters.length; i++) {
 		this.classList.add('active');
 	});
 }
+
+// 음성 읽기 기능 추가
+const speakBtn = document.getElementById('speakBtn');
+speakBtn.addEventListener('click', function() {
+	const utterance = new SpeechSynthesisUtterance(text);
+	window.speechSynthesis.speak(utterance);
+});

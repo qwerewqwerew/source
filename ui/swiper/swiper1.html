@@ -38,7 +38,6 @@
 
 <body>
   <main>
-     <!-- .swiper>.swiper-wrapper>.swiper-slide 필수 -->
     <div class="swiper verticals">
       <div class="swiper-wrapper">
         <section class="vh100 swiper-slide"> 1 </section>
@@ -46,17 +45,20 @@
         <section class="vh100 swiper-slide"> 3 </section>
         <section class="vh100 swiper-slide"> 4 </section>
       </div>
+      <div class="swiper-pagination"></div>
     </div>
   </main>
   <!-- 아랫줄 필수 -->
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-  <!-- Initialize Swiper -->
   <script>
     var swiper = new Swiper(".verticals", {
       direction: "vertical",
       slidesPerView: 1,
       mousewheel: true,
+      pagination: {
+        el: ".swiper-pagination",
+      },
     });
   </script>
 </body>
