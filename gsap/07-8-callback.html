@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>07-8. ScrollTrigger callback</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:sans-serif;background:#1a1a2e;color:#fff}
+section{height:100vh;display:flex;align-items:center;justify-content:center;font-size:24px}
+section:nth-child(odd){background:#16213e}
+section:nth-child(even){background:#0f3460}
+.box{width:150px;height:150px;background:#f0c368;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:bold;color:#222}
+#log{position:fixed;top:10px;right:10px;background:rgba(0,0,0,0.8);padding:15px;border-radius:8px;font-size:13px;max-height:300px;overflow-y:auto;width:280px;z-index:999}
+#log p{margin:2px 0;color:#0ae448}
+</style>
+</head>
+<body>
+<div id="log"><p>콘솔 로그 ↓</p></div>
+<section>callback — 콘솔 로그 확인 ↓</section>
+<section><div class="box">callback</div></section>
+<section>끝</section>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+const log = document.getElementById("log");
+function addLog(msg) {
+  const p = document.createElement("p");
+  p.textContent = msg;
+  log.appendChild(p);
+  log.scrollTop = log.scrollHeight;
+}
+
+gsap.to(".box", {
+  x: 500,
+  scrollTrigger: {
+    trigger: ".box",
+    start: "top center",
+    end: "bottom 20%",
+    scrub: true,
+    markers: true,
+    onEnter: () => addLog("onEnter — 진입"),
+    onLeave: () => addLog("onLeave — 이탈"),
+    onEnterBack: () => addLog("onEnterBack — 재진입"),
+    onLeaveBack: () => addLog("onLeaveBack — 재이탈"),
+    onUpdate: (self) => {
+      addLog("진행률: " + self.progress.toFixed(3));
+    },
+  },
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>12-1. 기본 가로 스크롤</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:sans-serif;background:#1a1a2e;color:#fff}
+main{overscroll-behavior:none;width:500%;height:100vh;display:flex;flex-wrap:nowrap}
+.item{width:100%;height:100vh;display:flex;align-items:center;justify-content:center;font-size:15vw;font-weight:bold}
+#sec1{background:#e94560}
+#sec2{background:#0f3460}
+#sec3{background:#16c79a}
+#sec4{background:#f0c368;color:#222}
+#sec5{background:#533483}
+</style>
+</head>
+<body>
+<main class="cont">
+  <section class="item" id="sec1"><h2>1</h2></section>
+  <section class="item" id="sec2"><h2>2</h2></section>
+  <section class="item" id="sec3"><h2>3</h2></section>
+  <section class="item" id="sec4"><h2>4</h2></section>
+  <section class="item" id="sec5"><h2>5</h2></section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+let sections = gsap.utils.toArray("section");
+
+gsap.to(sections, {
+  xPercent: -100 * (sections.length - 1),
+  ease: "none",
+  scrollTrigger: {
+    trigger: "main",
+    pin: true,
+    scrub: 1,
+    snap: 1 / (sections.length - 1),
+    end: "+=7000",
+  },
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>11. MorphSVG</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:sans-serif;background:#1a1a2e;color:#fff;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+h1{margin-bottom:30px;font-size:22px}
+svg{width:200px;height:200px}
+</style>
+</head>
+<body>
+<h1>11. MorphSVG — SVG 도형 변신</h1>
+<svg viewBox="0 0 200 200">
+  <circle id="shape" cx="100" cy="100" r="50" fill="#0ae448" />
+</svg>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/MorphSVGPlugin.min.js"></script>
+<script>
+gsap.registerPlugin(MorphSVGPlugin);
+
+gsap.to("#shape", {
+  morphSVG: {
+    shape: "M50,10 L90,90 L10,90 Z",
+    type: "rotational",
+  },
+  duration: 2,
+  ease: "power2.inOut",
+  repeat: -1,
+  yoyo: true,
+});
+</script>
+</body>
+</html>

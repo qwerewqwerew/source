@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>07-3. ScrollTrigger 기본</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:sans-serif;background:#1a1a2e;color:#fff}
+section{height:100vh;display:flex;align-items:center;justify-content:center;font-size:24px}
+section:nth-child(odd){background:#16213e}
+section:nth-child(even){background:#0f3460}
+.box{width:150px;height:150px;background:#e94560;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:bold}
+</style>
+</head>
+<body>
+<section>스크롤을 내려보세요 ↓</section>
+<section><div class="box">BOX</div></section>
+<section>끝</section>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.to(".box", {
+  x: 500,
+  rotation: 360,
+  borderRadius: 100,
+  duration: 2,
+  scrollTrigger: {
+    trigger: ".box",
+    start: "top 80%",
+    end: "bottom 20%",
+    toggleActions: "play none reverse none",
+    markers: true,
+  },
+});
+</script>
+</body>
+</html>

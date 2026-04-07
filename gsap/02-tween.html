@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>02. Tween 기본 — to / from / fromTo / set</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{padding:30px;font-family:sans-serif;background:#1a1a2e;color:#fff}
+h1{margin-bottom:30px;font-size:22px}
+h2{margin:20px 0 8px;font-size:16px;color:#0ae448}
+.box{width:100px;height:100px;margin:8px 0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold;border-radius:8px}
+.b1{background:#e94560}
+.b2{background:#0f3460}
+.b3{background:#f0c368;color:#222}
+.b4{background:#16c79a}
+</style>
+</head>
+<body>
+<h1>02. Tween — to / from / fromTo / set</h1>
+
+<h2>gsap.to()</h2>
+<div class="box b1">to()</div>
+
+<h2>gsap.from()</h2>
+<div class="box b2">from()</div>
+
+<h2>gsap.fromTo()</h2>
+<div class="box b3">fromTo()</div>
+
+<h2>gsap.set()</h2>
+<div class="box b4">set()</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script>
+gsap.to(".b1", { x: 300, duration: 1 });
+gsap.from(".b2", { y: -100, opacity: 0, duration: 1 });
+gsap.fromTo(".b3", { x: 0, opacity: 0 }, { x: 300, opacity: 1, duration: 1 });
+gsap.set(".b4", { x: 100, opacity: 0.5 });
+</script>
+</body>
+</html>

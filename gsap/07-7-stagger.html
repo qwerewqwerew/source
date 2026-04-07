@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>07-7. stagger 순차 나타나기</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:sans-serif;background:#1a1a2e;color:#fff}
+.spacer{height:100vh;display:flex;align-items:center;justify-content:center;font-size:24px;background:#16213e}
+.sec3{height:100vh;display:flex;align-items:center;justify-content:center;gap:20px;background:#0f3460}
+.sec3 .box{width:100px;height:100px;background:#e94560;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="spacer">stagger — 순차 나타나기 ↓</div>
+<div class="sec3">
+  <div class="box">1</div>
+  <div class="box">2</div>
+  <div class="box">3</div>
+  <div class="box">4</div>
+  <div class="box">5</div>
+</div>
+<div class="spacer">끝</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+const ani = gsap.timeline();
+ani.from(".sec3 .box", {
+  y: -300,
+  scale: 0.5,
+  autoAlpha: 0,
+  ease: "back.out(4)",
+  stagger: {
+    amount: 3,
+    from: "random",
+  },
+});
+
+ScrollTrigger.create({
+  animation: ani,
+  trigger: ".sec3",
+  start: "top top",
+  end: "+=2000",
+  scrub: true,
+  pin: true,
+  markers: true,
+});
+</script>
+</body>
+</html>
