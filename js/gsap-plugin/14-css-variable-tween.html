@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS 변수 트위닝 — CSSRule 대체</title>
+<style>
+  :root { --accent: #e94560; --bg: #1a1a2e; }
+  * { margin: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; background: var(--bg); gap: 2rem; transition: background 0.3s; }
+  .btn { padding: 1rem 2.5rem; background: var(--accent); color: #fff; border: none; border-radius: 12px; cursor: pointer; font-size: 1.1rem; font-weight: 700; }
+  .box { width: 120px; height: 120px; border-radius: 16px; background: var(--accent); }
+  .controls { display: flex; gap: 1rem; }
+  .theme-btn { padding: 0.5rem 1.2rem; background: #333; color: #ccc; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85rem; }
+  .info { position: fixed; bottom: 1.5rem; color: #555; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+  <div class="box"></div>
+  <button class="btn">버튼 예시</button>
+  <div class="controls">
+    <button class="theme-btn" data-color="#7f77dd">보라</button>
+    <button class="theme-btn" data-color="#00b894">초록</button>
+    <button class="theme-btn" data-color="#fdcb6e">노랑</button>
+    <button class="theme-btn" data-color="#e94560">빨강</button>
+  </div>
+  <p class="info">버튼을 누르면 CSS 변수가 트위닝되어 전체 테마가 변경된다</p>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/gsap.min.js"></script>
+  <script>
+    document.querySelectorAll(".theme-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        gsap.to("html", {
+          "--accent": btn.dataset.color,
+          duration: 0.8,
+          ease: "power2.inOut"
+        });
+      });
+    });
+  </script>
+</body>
+</html>

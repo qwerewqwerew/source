@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SplitText — 글자 분해 등장</title>
+<style>
+  body { margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #1a1a2e; font-family: 'Segoe UI', sans-serif; }
+  .title { color: #e0e0e0; font-size: 3rem; font-weight: 700; cursor: pointer; text-align: center; padding: 0 2rem; }
+  .info { position: fixed; bottom: 1.5rem; color: #666; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+  <h1 class="title">SplitText 글자 분해 등장</h1>
+  <p class="info">클릭하면 다시 재생</p>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/SplitText.min.js"></script>
+  <script>
+    gsap.registerPlugin(SplitText);
+
+    function play() {
+      const split = SplitText.create(".title", {
+        type: "chars,words"
+      });
+      gsap.from(split.chars, {
+        opacity: 0,
+        y: 40,
+        duration: 0.6,
+        stagger: 0.03,
+        ease: "power3.out",
+        onComplete: () => split.revert()
+      });
+    }
+
+    play();
+    document.querySelector(".title").addEventListener("click", play);
+  </script>
+</body>
+</html>

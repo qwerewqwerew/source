@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScrollTo — 부드러운 앵커 이동</title>
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', sans-serif; background: #1a1a2e; color: #e0e0e0; }
+  nav { position: fixed; top: 0; left: 0; right: 0; height: 60px; background: #16213e; display: flex; align-items: center; justify-content: center; gap: 2rem; z-index: 10; }
+  nav a { color: #7f77dd; text-decoration: none; font-size: 0.95rem; }
+  nav a:hover { color: #fff; }
+  .section { height: 100vh; display: flex; justify-content: center; align-items: center; font-size: 2rem; font-weight: 700; padding-top: 60px; }
+  .section:nth-child(2) { background: #16213e; }
+  .section:nth-child(3) { background: #0f3460; }
+  .section:nth-child(4) { background: #533483; }
+  .section:nth-child(5) { background: #e94560; }
+</style>
+</head>
+<body>
+  <nav>
+    <a href="#s1">섹션 1</a>
+    <a href="#s2">섹션 2</a>
+    <a href="#s3">섹션 3</a>
+    <a href="#s4">섹션 4</a>
+  </nav>
+  <div class="section" id="s1">섹션 1 — 내비게이션 링크를 클릭해 보세요</div>
+  <div class="section" id="s2">섹션 2</div>
+  <div class="section" id="s3">섹션 3</div>
+  <div class="section" id="s4">섹션 4</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/ScrollToPlugin.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollToPlugin);
+
+    document.querySelectorAll("a[href^='#']").forEach(a => {
+      a.addEventListener("click", e => {
+        e.preventDefault();
+        gsap.to(window, {
+          duration: 1,
+          scrollTo: {
+            y: a.getAttribute("href"),
+            offsetY: 60
+          },
+          ease: "power2.inOut",
+          autoKill: true
+        });
+      });
+    });
+  </script>
+</body>
+</html>

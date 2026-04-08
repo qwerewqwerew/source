@@ -1,0 +1,2947 @@
+{
+  "metadata": {
+    "exportedAt": "2026-03-13T14:04:54.906Z",
+    "componentName": "home",
+    "totalElements": 146,
+    "nestingDepth": 11,
+    "plugin": "Figma to JSON Exporter"
+  },
+  "designTokens": {
+    "colors": {
+      "color-rgb(255, 255, 255)": "rgb(255, 255, 255)",
+      "color-rgb(0, 0, 0)": "rgb(0, 0, 0)",
+      "color-rgb(245, 245, 245)": "rgb(245, 245, 245)",
+      "color-rgb(30, 30, 30)": "rgb(30, 30, 30)",
+      "color-rgb(12, 12, 13)": "rgb(12, 12, 13)",
+      "color-rgb(89, 89, 89)": "rgb(89, 89, 89)",
+      "color-rgb(227, 227, 227)": "rgb(227, 227, 227)",
+      "color-rgb(44, 44, 44)": "rgb(44, 44, 44)",
+      "color-rgb(133, 133, 133)": "rgb(133, 133, 133)",
+      "color-rgb(67, 67, 67)": "rgb(67, 67, 67)",
+      "color-rgb(58, 58, 58)": "rgb(58, 58, 58)",
+      "color-rgb(116, 116, 116)": "rgb(116, 116, 116)",
+      "color-rgb(115, 115, 115)": "rgb(115, 115, 115)",
+      "color-rgb(242, 100, 64)": "rgb(242, 100, 64)",
+      "color-rgb(200, 200, 200)": "rgb(200, 200, 200)",
+      "color-rgb(85, 85, 85)": "rgb(85, 85, 85)",
+      "color-rgb(117, 117, 117)": "rgb(117, 117, 117)",
+      "color-rgb(179, 179, 179)": "rgb(179, 179, 179)"
+    },
+    "fonts": {
+      "pretendard-variable": {
+        "family": "Pretendard Variable",
+        "sizes": {
+          "size-16": "16px",
+          "size-61": "61px",
+          "size-25": "25px",
+          "size-39": "39px",
+          "size-20": "20px",
+          "size-12": "12px",
+          "size-31": "31px",
+          "size-18": "18px",
+          "size-13": "13px"
+        },
+        "weights": {
+          "weight-400": "400",
+          "weight-700": "700",
+          "weight-600": "600",
+          "weight-500": "500",
+          "weight-900": "900"
+        }
+      },
+      "inter": {
+        "family": "Inter",
+        "sizes": {
+          "size-16": "16px",
+          "size-20": "20px",
+          "size-14": "14px"
+        },
+        "weights": {
+          "weight-400": "400"
+        }
+      }
+    },
+    "spacing": {
+      "padding-top-32": "32px",
+      "padding-right-48": "48px",
+      "padding-bottom-32": "32px",
+      "padding-left-48": "48px",
+      "gap-24": "24px",
+      "gap-8": "8px",
+      "padding-top-8": "8px",
+      "padding-right-8": "8px",
+      "padding-bottom-8": "8px",
+      "padding-left-8": "8px",
+      "padding-top-160": "160px",
+      "padding-right-24": "24px",
+      "padding-bottom-160": "160px",
+      "padding-left-24": "24px",
+      "gap-32": "32px",
+      "gap-16": "16px",
+      "padding-top-12": "12px",
+      "padding-bottom-12": "12px",
+      "padding-top-50": "50px",
+      "gap-100": "100px",
+      "gap-20": "20px",
+      "padding-right-10": "10px",
+      "padding-bottom-20": "20px",
+      "padding-left-10": "10px",
+      "gap-15": "15px",
+      "gap-10": "10px",
+      "padding-right-40": "40px",
+      "padding-left-40": "40px",
+      "gap-4": "4px",
+      "gap-6": "6px",
+      "gap-33": "33px",
+      "padding-bottom-50": "50px",
+      "padding-top-10": "10px",
+      "padding-bottom-10": "10px",
+      "gap-14": "14px",
+      "gap-5": "5px",
+      "padding-right-20": "20px",
+      "padding-left-20": "20px",
+      "padding-right-39": "39px",
+      "padding-left-39": "39px",
+      "padding-top-24": "24px",
+      "padding-bottom-24": "24px",
+      "padding-right-16": "16px",
+      "padding-left-16": "16px",
+      "padding-right-32": "32px",
+      "padding-left-32": "32px"
+    },
+    "effects": {}
+  },
+  "structure": {
+    "name": "home",
+    "type": "FRAME",
+    "size": {
+      "w": 1200,
+      "h": 3190
+    },
+    "styles": {
+      "bg": "rgb(255, 255, 255)",
+      "layout": {
+        "direction": "column",
+        "gap": 0,
+        "align": {
+          "main": "start",
+          "cross": "center"
+        }
+      }
+    },
+    "children": [
+      {
+        "name": "nav",
+        "type": "FRAME",
+        "size": {
+          "w": 1200,
+          "h": 99
+        },
+        "styles": {
+          "bg": "rgb(255, 255, 255)",
+          "border": {
+            "width": 1,
+            "color": "rgb(217, 217, 217)"
+          },
+          "layout": {
+            "direction": "row",
+            "gap": 24,
+            "align": {
+              "main": "start",
+              "cross": "center"
+            },
+            "padding": [
+              32,
+              48,
+              32,
+              48
+            ]
+          }
+        },
+        "children": [
+          {
+            "name": "logo",
+            "type": "FRAME",
+            "size": {
+              "w": 30,
+              "h": 36
+            },
+            "styles": {
+              "layout": {
+                "direction": "row",
+                "gap": 0,
+                "align": {
+                  "main": "start",
+                  "cross": "start"
+                }
+              }
+            },
+            "children": [
+              {
+                "name": "path52",
+                "type": "VECTOR",
+                "size": {
+                  "w": 11,
+                  "h": 36
+                },
+                "styles": {
+                  "bg": "rgb(0, 0, 0)"
+                }
+              },
+              {
+                "name": "path54",
+                "type": "VECTOR",
+                "size": {
+                  "w": 19,
+                  "h": 36
+                },
+                "styles": {
+                  "bg": "rgb(0, 0, 0)"
+                }
+              }
+            ]
+          },
+          {
+            "name": "menu",
+            "type": "FRAME",
+            "size": {
+              "w": 1050,
+              "h": 44
+            },
+            "styles": {
+              "layout": {
+                "direction": "row",
+                "gap": 8,
+                "align": {
+                  "main": "end",
+                  "cross": "start"
+                }
+              }
+            },
+            "children": [
+              {
+                "name": "home",
+                "type": "FRAME",
+                "size": {
+                  "w": 58,
+                  "h": 44
+                },
+                "styles": {
+                  "bg": "rgb(245, 245, 245)",
+                  "radius": 8,
+                  "layout": {
+                    "direction": "row",
+                    "gap": 8,
+                    "align": {
+                      "main": "center",
+                      "cross": "center"
+                    },
+                    "padding": [
+                      8,
+                      8,
+                      8,
+                      8
+                    ]
+                  }
+                },
+                "children": [
+                  {
+                    "name": "title",
+                    "type": "TEXT",
+                    "size": {
+                      "w": 42,
+                      "h": 28
+                    },
+                    "content": "Home",
+                    "styles": {
+                      "bg": "rgb(30, 30, 30)",
+                      "text": {
+                        "family": "Pretendard Variable",
+                        "size": 16,
+                        "weight": "400",
+                        "align": "left"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "aboutme",
+                "type": "FRAME",
+                "size": {
+                  "w": 79,
+                  "h": 44
+                },
+                "styles": {
+                  "radius": 8,
+                  "layout": {
+                    "direction": "row",
+                    "gap": 8,
+                    "align": {
+                      "main": "center",
+                      "cross": "center"
+                    },
+                    "padding": [
+                      8,
+                      8,
+                      8,
+                      8
+                    ]
+                  }
+                },
+                "children": [
+                  {
+                    "name": "title",
+                    "type": "TEXT",
+                    "size": {
+                      "w": 63,
+                      "h": 28
+                    },
+                    "content": "AboutMe",
+                    "styles": {
+                      "bg": "rgb(30, 30, 30)",
+                      "text": {
+                        "family": "Pretendard Variable",
+                        "size": 16,
+                        "weight": "400",
+                        "align": "left"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "projects",
+                "type": "FRAME",
+                "size": {
+                  "w": 71,
+                  "h": 44
+                },
+                "styles": {
+                  "radius": 8,
+                  "layout": {
+                    "direction": "row",
+                    "gap": 8,
+                    "align": {
+                      "main": "center",
+                      "cross": "center"
+                    },
+                    "padding": [
+                      8,
+                      8,
+                      8,
+                      8
+                    ]
+                  }
+                },
+                "children": [
+                  {
+                    "name": "title",
+                    "type": "TEXT",
+                    "size": {
+                      "w": 55,
+                      "h": 28
+                    },
+                    "content": "Projects",
+                    "styles": {
+                      "bg": "rgb(30, 30, 30)",
+                      "text": {
+                        "family": "Pretendard Variable",
+                        "size": 16,
+                        "weight": "400",
+                        "align": "left"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "hero",
+        "type": "FRAME",
+        "size": {
+          "w": 1200,
+          "h": 511
+        },
+        "styles": {
+          "layout": {
+            "direction": "column",
+            "gap": 32,
+            "align": {
+              "main": "center",
+              "cross": "center"
+            },
+            "padding": [
+              160,
+              24,
+              160,
+              24
+            ]
+          }
+        },
+        "children": [
+          {
+            "name": "headline",
+            "type": "FRAME",
+            "size": {
+              "w": 127,
+              "h": 107
+            },
+            "styles": {
+              "layout": {
+                "direction": "column",
+                "gap": 8,
+                "align": {
+                  "main": "start",
+                  "cross": "center"
+                }
+              }
+            },
+            "children": [
+              {
+                "name": "title",
+                "type": "TEXT",
+                "size": {
+                  "w": 127,
+                  "h": 70
+                },
+                "content": "Title",
+                "styles": {
+                  "bg": "rgb(12, 12, 13)",
+                  "text": {
+                    "family": "Pretendard Variable",
+                    "size": 61,
+                    "weight": "700",
+                    "align": "center"
+                  }
+                }
+              },
+              {
+                "name": "subtitle",
+                "type": "TEXT",
+                "size": {
+                  "w": 127,
+                  "h": 29
+                },
+                "content": "Subtitle",
+                "styles": {
+                  "bg": "rgb(89, 89, 89)",
+                  "text": {
+                    "family": "Pretendard Variable",
+                    "size": 25,
+                    "weight": "700",
+                    "align": "center"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "button-group",
+            "type": "FRAME",
+            "size": {
+              "w": 261,
+              "h": 52
+            },
+            "styles": {
+              "layout": {
+                "direction": "row",
+                "gap": 16,
+                "align": {
+                  "main": "center",
+                  "cross": "center"
+                }
+              }
+            },
+            "children": [
+              {
+                "name": "button",
+                "type": "FRAME",
+                "size": {
+                  "w": 118,
+                  "h": 52
+                },
+                "styles": {
+                  "bg": "rgb(227, 227, 227)",
+                  "border": {
+                    "width": 1,
+                    "color": "rgb(118, 118, 118)"
+                  },
+                  "radius": 8,
+                  "layout": {
+                    "direction": "row",
+                    "gap": 8,
+                    "align": {
+                      "main": "center",
+                      "cross": "center"
+                    },
+                    "padding": [
+                      12,
+                      24,
+                      12,
+                      24
+                    ]
+                  }
+                },
+                "children": [
+                  {
+                    "name": "star",
+                    "type": "INSTANCE",
+                    "size": {
+                      "w": 0,
+                      "h": 0
+                    }
+                  },
+                  {
+                    "name": "button-text",
+                    "type": "TEXT",
+                    "size": {
+                      "w": 46,
+                      "h": 28
+                    },
+                    "content": "Github",
+                    "styles": {
+                      "bg": "rgb(30, 30, 30)",
+                      "text": {
+                        "family": "Pretendard Variable",
+                        "size": 16,
+                        "weight": "400",
+                        "align": "left"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "button",
+                "type": "FRAME",
+                "size": {
+                  "w": 127,
+                  "h": 52
+                },
+                "styles": {
+                  "bg": "rgb(44, 44, 44)",
+                  "border": {
+                    "width": 1,
+                    "color": "rgb(44, 44, 44)"
+                  },
+                  "radius": 8,
+                  "layout": {
+                    "direction": "row",
+                    "gap": 8,
+                    "align": {
+                      "main": "center",
+                      "cross": "center"
+                    },
+                    "padding": [
+                      12,
+                      24,
+                      12,
+                      24
+                    ]
+                  }
+                },
+                "children": [
+                  {
+                    "name": "star",
+                    "type": "INSTANCE",
+                    "size": {
+                      "w": 0,
+                      "h": 0
+                    }
+                  },
+                  {
+                    "name": "button-text",
+                    "type": "TEXT",
+                    "size": {
+                      "w": 55,
+                      "h": 28
+                    },
+                    "content": "Resume",
+                    "styles": {
+                      "bg": "rgb(245, 245, 245)",
+                      "text": {
+                        "family": "Pretendard Variable",
+                        "size": 16,
+                        "weight": "400",
+                        "align": "left"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "main",
+        "type": "FRAME",
+        "size": {
+          "w": 1200,
+          "h": 2580
+        },
+        "styles": {
+          "layout": {
+            "direction": "column",
+            "gap": 100,
+            "align": {
+              "main": "start",
+              "cross": "center"
+            },
+            "padding": [
+              50,
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "children": [
+          {
+            "name": "aboutme",
+            "type": "FRAME",
+            "size": {
+              "w": 949,
+              "h": 471
+            },
+            "styles": {
+              "layout": {
+                "direction": "column",
+                "gap": 20,
+                "align": {
+                  "main": "start",
+                  "cross": "center"
+                }
+              }
+            },
+            "children": [
+              {
+                "name": "title",
+                "type": "COMPONENT",
+                "size": {
+                  "w": 262,
+                  "h": 143
+                },
+                "component": {
+                  "type": "main",
+                  "name": null
+                },
+                "styles": {
+                  "layout": {
+                    "direction": "column",
+                    "gap": 0,
+                    "align": {
+                      "main": "start",
+                      "cross": "center"
+                    },
+                    "padding": [
+                      50,
+                      10,
+                      20,
+                      10
+                    ]
+                  }
+                },
+                "children": [
+                  {
+                    "name": "--",
+                    "type": "FRAME",
+                    "size": {
+                      "w": 242,
+                      "h": 73
+                    },
+                    "styles": {
+                      "layout": {
+                        "direction": "column",
+                        "gap": 0,
+                        "align": {
+                          "main": "start",
+                          "cross": "center"
+                        }
+                      }
+                    },
+                    "children": [
+                      {
+                        "name": "row",
+                        "type": "FRAME",
+                        "size": {
+                          "w": 211,
+                          "h": 45
+                        },
+                        "styles": {
+                          "layout": {
+                            "direction": "row",
+                            "gap": 15,
+                            "align": {
+                              "main": "start",
+                              "cross": "center"
+                            }
+                          }
+                        },
+                        "children": [
+                          {
+                            "name": "line-1",
+                            "type": "LINE",
+                            "size": {
+                              "w": 21,
+                              "h": 0
+                            },
+                            "styles": {
+                              "border": {
+                                "width": 2,
+                                "color": "rgb(135, 135, 135)"
+                              }
+                            }
+                          },
+                          {
+                            "name": "about-me",
+                            "type": "TEXT",
+                            "size": {
+                              "w": 196,
+                              "h": 45
+                            },
+                            "content": "ABOUT ME",
+                            "styles": {
+                              "bg": "rgb(0, 0, 0)",
+                              "text": {
+                                "family": "Pretendard Variable",
+                                "size": 39,
+                                "weight": "600",
+                                "align": "left"
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "name": "row",
+                        "type": "FRAME",
+                        "size": {
+                          "w": 242,
+                          "h": 28
+                        },
+                        "styles": {
+                          "layout": {
+                            "direction": "row",
+                            "gap": 10,
+                            "align": {
+                              "main": "start",
+                              "cross": "center"
+                            }
+                          }
+                        },
+                        "children": [
+                          {
+                            "name": "description",
+                            "type": "TEXT",
+                            "size": {
+                              "w": 242,
+                              "h": 28
+                            },
+                            "content": "끈기와 열정으로 성장하는 오성의입니다.",
+                            "styles": {
+                              "bg": "rgb(133, 133, 133)",
+                              "text": {
+                                "family": "Pretendard Variable",
+                                "size": 16,
+                                "weight": "400",
+                                "align": "left"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "about",
+                "type": "FRAME",
+                "size": {
+                  "w": 949,
+                  "h": 308
+                },
+                "styles": {
+                  "layout": {
+                    "direction": "row",
+                    "gap": 32,
+                    "align": {
+                      "main": "start",
+                      "cross": "start"
+                    },
+                    "padding": [
+                      0,
+                      40,
+                      0,
+                      40
+                    ]
+                  }
+                },
+                "children": [
+                  {
+                    "name": "----",
+                    "type": "FRAME",
+                    "size": {
+                      "w": 418,
+                      "h": 151
+                    },
+                    "styles": {
+                      "layout": {
+                        "direction": "column",
+                        "gap": 10,
+                        "align": {
+                          "main": "start",
+                          "cross": "start"
+                        }
+                      }
+                    },
+                    "children": [
+                      {
+                        "name": "title",
+                        "type": "FRAME",
+                        "size": {
+                          "w": 418,
+                          "h": 23
+                        },
+                        "styles": {
+                          "layout": {
+                            "direction": "column",
+                            "gap": 10,
+                            "align": {
+                              "main": "start",
+                              "cross": "start"
+                            }
+                          }
+                        },
+                        "children": [
+                          {
+                            "name": "title",
+                            "type": "TEXT",
+                            "size": {
+                              "w": 161,
+                              "h": 23
+                            },
+                            "content": "학력 및 교육사항",
+                            "styles": {
+                              "bg": "rgb(67, 67, 67)",
+                              "text": {
+                                "family": "Pretendard Variable",
+                                "size": 20,
+                                "weight": "700",
+                                "align": "left"
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "name": "content",
+                        "type": "COMPONENT",
+                        "size": {
+                          "w": 418,
+                          "h": 54
+                        },
+                        "component": {
+                          "type": "main",
+                          "name": null
+                        },
+                        "styles": {
+                          "layout": {
+                            "direction": "column",
+                            "gap": 4,
+                            "align": {
+                              "main": "center",
+                              "cross": "start"
+                            }
+                          }
+                        },
+                        "children": [
+                          {
+                            "name": "row",
+                            "type": "FRAME",
+                            "size": {
+                              "w": 418,
+                              "h": 54
+                            },
+                            "styles": {
+                              "layout": {
+                                "direction": "row",
+                                "gap": 6,
+                                "align": {
+                                  "main": "start",
+                                  "cross": "center"
+                                }
+                              }
+                            },
+                            "children": [
+                              {
+                                "name": "container",
+                                "type": "FRAME",
+                                "size": {
+                                  "w": 418,
+                                  "h": 54
+                                },
+                                "styles": {
+                                  "layout": {
+                                    "direction": "column",
+                                    "gap": 6,
+                                    "align": {
+                                      "main": "start",
+                                      "cross": "start"
+                                    }
+                                  }
+                                },
+                                "children": [
+                                  {
+                                    "name": "left",
+                                    "type": "FRAME",
+                                    "size": {
+                                      "w": 87,
+                                      "h": 24
+                                    },
+                                    "styles": {
+                                      "layout": {
+                                        "direction": "row",
+                                        "gap": 0,
+                                        "align": {
+                                          "main": "start",
+                                          "cross": "center"
+                                        }
+                                      }
+                                    },
+                                    "children": [
+                                      {
+                                        "name": "date",
+                                        "type": "TEXT",
+                                        "size": {
+                                          "w": 39,
+                                          "h": 24
+                                        },
+                                        "content": "22.10",
+                                        "styles": {
+                                          "bg": "rgb(44, 44, 44)",
+                                          "text": {
+                                            "family": "Pretendard Variable",
+                                            "size": 16,
+                                            "weight": "400",
+                                            "align": "left"
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "name": "hyphen",
+                                        "type": "TEXT",
+                                        "size": {
+                                          "w": 9,
+                                          "h": 24
+                                        },
+                                        "content": "-",
+                                        "styles": {
+                                          "bg": "rgb(58, 58, 58)",
+                                          "text": {
+                                            "family": "Pretendard Variable",
+                                            "size": 16,
+                                            "weight": "400",
+                                            "align": "center"
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "name": "22-10",
+                                        "type": "TEXT",
+                                        "size": {
+                                          "w": 39,
+                                          "h": 24
+                                        },
+                                        "content": "22.10",
+                                        "styles": {
+                                          "bg": "rgb(44, 44, 44)",
+                                          "text": {
+                                            "family": "Pretendard Variable",
+                                            "size": 16,
+                                            "weight": "400",
+                                            "align": "left"
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "description",
+                                    "type": "TEXT",
+                                    "size": {
+                                      "w": 325,
+                                      "h": 24
+                                    },
+                                    "content": "UI/UX 반응형 웹디자인 & 웹퍼블리셔 양성과정 수료",
+                                    "styles": {
+                                      "bg": "rgb(116, 116, 116)",
+                                      "text": {
+                                        "family": "Pretendard Variable",
+                                        "size": 16,
+                                        "weight": "400",
+                                        "align": "left"
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "content",
+                        "type": "INSTANCE",
+                        "size": {
+                          "w": 0,
+                          "h": 0
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "container",
+                    "type": "FRAME",
+                    "size": {
+                      "w": 418,
+                      "h": 87
+                    },
+                    "styles": {
+                      "layout": {
+                        "direction": "column",
+                        "gap": 33,
+                        "align": {
+                          "main": "start",
+                          "cross": "start"
+                        }
+                      }
+                    },
+                    "children": [
+                      {
+                        "name": "----",
+                        "type": "FRAME",
+                        "size": {
+                          "w": 418,
+                          "h": 87
+                        },
+                        "styles": {
+                          "layout": {
+                            "direction": "column",
+                            "gap": 10,
+                            "align": {
+                              "main": "start",
+                              "cross": "start"
+                            }
+                          }
+                        },
+                        "children": [
+                          {
+                            "name": "title",
+                            "type": "FRAME",
+                            "size": {
+                              "w": 418,
+                              "h": 23
+                            },
+                            "styles": {
+                              "layout": {
+                                "direction": "column",
+                                "gap": 10,
+                                "align": {
+                                  "main": "start",
+                                  "cross": "start"
+                                }
+                              }
+                            },
+                            "children": [
+                              {
+                                "name": "title",
+                                "type": "TEXT",
+                                "size": {
+                                  "w": 161,
+                                  "h": 23
+                                },
+                                "content": "자격사항",
+                                "styles": {
+                                  "bg": "rgb(67, 67, 67)",
+                                  "text": {
+                                    "family": "Pretendard Variable",
+                                    "size": 20,
+                                    "weight": "700",
+                                    "align": "left"
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "name": "container",
+                            "type": "FRAME",
+                            "size": {
+                              "w": 418,
+                              "h": 54
+                            },
+                            "styles": {
+                              "layout": {
+                                "direction": "row",
+                                "gap": 0,
+                                "align": {
+                                  "main": "start",
+                                  "cross": "start"
+                                }
+                              }
+                            },
+                            "children": [
+                              {
+                                "name": "content",
+                                "type": "FRAME",
+                                "size": {
+                                  "w": 418,
+                                  "h": 54
+                                },
+                                "styles": {
+                                  "layout": {
+                                    "direction": "column",
+                                    "gap": 4,
+                                    "align": {
+                                      "main": "center",
+                                      "cross": "start"
+                                    }
+                                  }
+                                },
+                                "children": [
+                                  {
+                                    "name": "row",
+                                    "type": "FRAME",
+                                    "size": {
+                                      "w": 418,
+                                      "h": 54
+                                    },
+                                    "styles": {
+                                      "layout": {
+                                        "direction": "row",
+                                        "gap": 6,
+                                        "align": {
+                                          "main": "start",
+                                          "cross": "center"
+                                        }
+                                      }
+                                    },
+                                    "children": [
+                                      {
+                                        "name": "container",
+                                        "type": "FRAME",
+                                        "size": {
+                                          "w": 418,
+                                          "h": 54
+                                        },
+                                        "styles": {
+                                          "layout": {
+                                            "direction": "column",
+                                            "gap": 6,
+                                            "align": {
+                                              "main": "start",
+                                              "cross": "start"
+                                            }
+                                          }
+                                        },
+                                        "children": [
+                                          {
+                                            "name": "left",
+                                            "type": "FRAME",
+                                            "size": {
+                                              "w": 38,
+                                              "h": 24
+                                            },
+                                            "styles": {
+                                              "layout": {
+                                                "direction": "row",
+                                                "gap": 0,
+                                                "align": {
+                                                  "main": "start",
+                                                  "cross": "center"
+                                                }
+                                              }
+                                            }
+                                          },
+                                          {
+                                            "name": "description",
+                                            "type": "TEXT",
+                                            "size": {
+                                              "w": 129,
+                                              "h": 24
+                                            },
+                                            "content": "컴퓨터 활용능력 2급",
+                                            "styles": {
+                                              "bg": "rgb(116, 116, 116)",
+                                              "text": {
+                                                "family": "Pretendard Variable",
+                                                "size": 16,
+                                                "weight": "400",
+                                                "align": "left"
+                                              }
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "----",
+                    "type": "FRAME",
+                    "size": {
+                      "w": 419,
+                      "h": 189
+                    },
+                    "styles": {
+                      "layout": {
+                        "direction": "column",
+                        "gap": 10,
+                        "align": {
+                          "main": "start",
+                          "cross": "start"
+                        }
+                      }
+                    },
+                    "children": [
+                      {
+                        "name": "title",
+                        "type": "FRAME",
+                        "size": {
+                          "w": 419,
+                          "h": 23
+                        },
+                        "styles": {
+                          "layout": {
+                            "direction": "column",
+                            "gap": 10,
+                            "align": {
+                              "main": "start",
+                              "cross": "start"
+                            }
+                          }
+                        },
+                        "children": [
+                          {
+                            "name": "title",
+                            "type": "TEXT",
+                            "size": {
+                              "w": 161,
+                              "h": 23
+                            },
+                            "content": "인적사항",
+                            "styles": {
+                              "bg": "rgb(67, 67, 67)",
+                              "text": {
+                                "family": "Pretendard Variable",
+                                "size": 20,
+                                "weight": "700",
+                                "align": "left"
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "name": "content",
+                        "type": "FRAME",
+                        "size": {
+                          "w": 217,
+                          "h": 156
+                        },
+                        "styles": {
+                          "layout": {
+                            "direction": "column",
+                            "gap": 4,
+                            "align": {
+                              "main": "center",
+                              "cross": "start"
+                            }
+                          }
+                        },
+                        "children": [
+                          {
+                            "name": "row",
+                            "type": "COMPONENT",
+                            "size": {
+                              "w": 106,
+                              "h": 28
+                            },
+                            "component": {
+                              "type": "main",
+                              "name": null
+                            },
+                            "styles": {
+                              "layout": {
+                                "direction": "row",
+                                "gap": 6,
+                                "align": {
+                                  "main": "start",
+                                  "cross": "center"
+                                }
+                              }
+                            },
+                            "children": [
+                              {
+                                "name": "left",
+                                "type": "FRAME",
+                                "size": {
+                                  "w": 59,
+                                  "h": 28
+                                },
+                                "styles": {
+                                  "layout": {
+                                    "direction": "row",
+                                    "gap": 6,
+                                    "align": {
+                                      "main": "start",
+                                      "cross": "center"
+                                    }
+                                  }
+                                },
+                                "children": [
+                                  {
+                                    "name": "label",
+                                    "type": "TEXT",
+                                    "size": {
+                                      "w": 44,
+                                      "h": 28
+                                    },
+                                    "content": "이    름",
+                                    "styles": {
+                                      "bg": "rgb(44, 44, 44)",
+                                      "text": {
+                                        "family": "Pretendard Variable",
+                                        "size": 16,
+                                        "weight": "500",
+                                        "align": "left"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "name": "colon",
+                                    "type": "TEXT",
+                                    "size": {
+                                      "w": 9,
+                                      "h": 24
+                                    },
+                                    "content": ":",
+                                    "styles": {
+                                      "bg": "rgb(58, 58, 58)",
+                                      "text": {
+                                        "family": "Pretendard Variable",
+                                        "size": 16,
+                                        "weight": "400",
+                                        "align": "left"
+                                      }
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "value",
+                                "type": "TEXT",
+                                "size": {
+                                  "w": 41,
+                                  "h": 28
+                                },
+                                "content": "오성의",
+                                "styles": {
+                                  "bg": "rgb(115, 115, 115)",
+                                  "text": {
+                                    "family": "Pretendard Variable",
+                                    "size": 16,
+                                    "weight": "400",
+                                    "align": "left"
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "name": "row",
+                            "type": "INSTANCE",
+                            "size": {
+                              "w": 0,
+                              "h": 0
+                            }
+                          },
+                          {
+                            "name": "row",
+                            "type": "INSTANCE",
+                            "size": {
+                              "w": 0,
+                              "h": 0
+                            }
+                          },
+                          {
+                            "name": "row",
+                            "type": "INSTANCE",
+                            "size": {
+                              "w": 0,
+                              "h": 0
+                            }
+                          },
+                          {
+                            "name": "row",
+                            "type": "INSTANCE",
+                            "size": {
+                              "w": 0,
+                              "h": 0
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "projects",
+            "type": "FRAME",
+            "size": {
+              "w": 1200,
+              "h": 690
+            },
+            "styles": {
+              "layout": {
+                "direction": "column",
+                "gap": 0,
+                "align": {
+                  "main": "start",
+                  "cross": "center"
+                }
+              }
+            },
+            "children": [
+              {
+                "name": "section-title",
+                "type": "INSTANCE",
+                "size": {
+                  "w": 0,
+                  "h": 0
+                }
+              },
+              {
+                "name": "item",
+                "type": "FRAME",
+                "size": {
+                  "w": 1166,
+                  "h": 547
+                },
+                "styles": {
+                  "layout": {
+                    "direction": "row",
+                    "gap": 24,
+                    "align": {
+                      "main": "start",
+                      "cross": "start"
+                    },
+                    "padding": [
+                      50,
+                      0,
+                      50,
+                      0
+                    ]
+                  }
+                },
+                "children": [
+                  {
+                    "name": "img",
+                    "type": "FRAME",
+                    "size": {
+                      "w": 571,
+                      "h": 447
+                    },
+                    "styles": {
+                      "bg": "rgb(255, 255, 255)",
+                      "layout": {
+                        "direction": "row",
+                        "gap": 0,
+                        "align": {
+                          "main": "start",
+                          "cross": "start"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "name": "desc",
+                    "type": "FRAME",
+                    "size": {
+                      "w": 571,
+                      "h": 447
+                    },
+                    "styles": {
+                      "bg": "rgb(255, 255, 255)",
+                      "layout": {
+                        "direction": "column",
+                        "gap": 10,
+                        "align": {
+                          "main": "space-between",
+                          "cross": "start"
+                        }
+                      }
+                    },
+                    "children": [
+                      {
+                        "name": "top",
+                        "type": "FRAME",
+                        "size": {
+                          "w": 571,
+                          "h": 365
+                        },
+                        "styles": {
+                          "bg": "rgb(255, 255, 255)",
+                          "layout": {
+                            "direction": "column",
+                            "gap": 14,
+                            "align": {
+                              "main": "start",
+                              "cross": "start"
+                            },
+                            "padding": [
+                              10,
+                              0,
+                              10,
+                              0
+                            ]
+                          }
+                        },
+                        "children": [
+                          {
+                            "name": "row",
+                            "type": "FRAME",
+                            "size": {
+                              "w": 103,
+                              "h": 21
+                            },
+                            "styles": {
+                              "layout": {
+                                "direction": "row",
+                                "gap": 5,
+                                "align": {
+                                  "main": "center",
+                                  "cross": "center"
+                                },
+                                "padding": [
+                                  10,
+                                  10,
+                                  10,
+                                  8
+                                ]
+                              }
+                            },
+                            "children": [
+                              {
+                                "name": "ellipse-1",
+                                "type": "ELLIPSE",
+                                "size": {
+                                  "w": 7,
+                                  "h": 7
+                                },
+                                "styles": {
+                                  "bg": "rgb(242, 100, 64)"
+                                }
+                              },
+                              {
+                                "name": "project-name",
+                                "type": "TEXT",
+                                "size": {
+                                  "w": 73,
+                                  "h": 14
+                                },
+                                "content": "Project 01",
+                                "styles": {
+                                  "bg": "rgb(200, 200, 200)",
+                                  "text": {
+                                    "family": "Pretendard Variable",
+                                    "size": 12,
+                                    "weight": "900",
+                                    "align": "right"
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "name": "container",
+                            "type": "FRAME",
+                            "size": {
+                              "w": 365,
+                              "h": 266
+                            },
+                            "styles": {
+                              "layout": {
+                                "direction": "column",
+                                "gap": 10,
+                                "align": {
+                                  "main": "start",
+                                  "cross": "start"
+                                },
+                                "padding": [
+                                  0,
+                                  8,
+                                  20,
+                                  8
+                                ]
+                              }
+                            },
+                            "children": [
+                              {
+                                "name": "client-name",
+                                "type": "TEXT",
+                                "size": {
+                                  "w": 132,
+                                  "h": 36
+                                },
+                                "content": "동대문구청",
+                                "styles": {
+                                  "bg": "rgb(0, 0, 0)",
+                                  "text": {
+                                    "family": "Pretendard Variable",
+                                    "size": 31,
+                                    "weight": "600",
+                                    "align": "left"
+                                  }
+                                }
+                              },
+                              {
+                                "name": "row",
+                                "type": "FRAME",
+                                "size": {
+                                  "w": 349,
+                                  "h": 32
+                                },
+                                "styles": {
+                                  "layout": {
+                                    "direction": "row",
+                                    "gap": 10,
+                                    "align": {
+                                      "main": "start",
+                                      "cross": "start"
+                                    }
+                                  }
+                                },
+                                "children": [
+                                  {
+                                    "name": "label",
+                                    "type": "TEXT",
+                                    "size": {
+                                      "w": 130,
+                                      "h": 30
+                                    },
+                                    "content": "기  술  스  택  :",
+                                    "styles": {
+                                      "bg": "rgb(67, 67, 67)",
+                                      "text": {
+                                        "family": "Pretendard Variable",
+                                        "size": 18,
+                                        "weight": "500",
+                                        "align": "left"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "name": "value",
+                                    "type": "TEXT",
+                                    "size": {
+                                      "w": 209,
+                                      "h": 32
+                                    },
+                                    "content": "html,css,photoshop,figma",
+                                    "styles": {
+                                      "bg": "rgb(85, 85, 85)",
+                                      "text": {
+                                        "family": "Pretendard Variable",
+                                        "size": 18,
+                                        "weight": "400",
+                                        "align": "left"
+                                      }
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "row",
+                                "type": "FRAME",
+                                "size": {
+                                  "w": 269,
+                                  "h": 32
+                                },
+                                "styles": {
+                                  "layout": {
+                                    "direction": "row",
+                                    "gap": 10,
+                                    "align": {
+                                      "main": "start",
+                                      "cross": "start"
+                                    }
+                                  }
+                                },
+                                "children": [
+                                  {
+                                    "name": "label",
+                                    "type": "TEXT",
+                                    "size": {
+                                      "w": 130,
+                                      "h": 30
+                                    },
+                                    "content": "배  포  매  체  :",
+                                    "styles": {
+                                      "bg": "rgb(67, 67, 67)",
+                                      "text": {
+                                        "family": "Pretendard Variable",
+                                        "size": 18,
+                                        "weight": "500",
+                                        "align": "left"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "name": "value",
+                                    "type": "TEXT",
+                                    "size": {
+                                      "w": 129,
+                                      "h": 32
+                                    },
+                                    "content": "desktop, mobile",
+                                    "styles": {
+                                      "bg": "rgb(85, 85, 85)",
+                                      "text": {
+                                        "family": "Pretendard Variable",
+                                        "size": 18,
+                                        "weight": "400",
+                                        "align": "left"
+                                      }
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "row",
+                                "type": "FRAME",
+                                "size": {
+                                  "w": 167,
+                                  "h": 32
+                                },
+                                "styles": {
+                                  "layout": {
+                                    "direction": "row",
+                                    "gap": 10,
+                                    "align": {
+                                      "main": "start",
+                                      "cross": "start"
+                                    }
+                                  }
+                                },
+                                "children": [
+                                  {
+                                    "name": "label",
+                                    "type": "TEXT",
+                                    "size": {
+                                      "w": 130,
+                                      "h": 30
+                                    },
+                                    "content": "작  업  기  간  :",
+                                    "styles": {
+                                      "bg": "rgb(67, 67, 67)",
+                                      "text": {
+                                        "family": "Pretendard Variable",
+                                        "size": 18,
+                                        "weight": "500",
+                                        "align": "left"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "name": "value",
+                                    "type": "TEXT",
+                                    "size": {
+                                      "w": 27,
+                                      "h": 32
+                                    },
+                                    "content": "2주",
+                                    "styles": {
+                                      "bg": "rgb(85, 85, 85)",
+                                      "text": {
+                                        "family": "Pretendard Variable",
+                                        "size": 18,
+                                        "weight": "400",
+                                        "align": "left"
+                                      }
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "row",
+                                "type": "FRAME",
+                                "size": {
+                                  "w": 185,
+                                  "h": 32
+                                },
+                                "styles": {
+                                  "layout": {
+                                    "direction": "row",
+                                    "gap": 10,
+                                    "align": {
+                                      "main": "start",
+                                      "cross": "start"
+                                    }
+                                  }
+                                },
+                                "children": [
+                                  {
+                                    "name": "label",
+                                    "type": "TEXT",
+                                    "size": {
+                                      "w": 130,
+                                      "h": 30
+                                    },
+                                    "content": "본인 기여도   :",
+                                    "styles": {
+                                      "bg": "rgb(67, 67, 67)",
+                                      "text": {
+                                        "family": "Pretendard Variable",
+                                        "size": 18,
+                                        "weight": "500",
+                                        "align": "left"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "name": "value",
+                                    "type": "TEXT",
+                                    "size": {
+                                      "w": 45,
+                                      "h": 32
+                                    },
+                                    "content": "100%",
+                                    "styles": {
+                                      "bg": "rgb(85, 85, 85)",
+                                      "text": {
+                                        "family": "Pretendard Variable",
+                                        "size": 18,
+                                        "weight": "400",
+                                        "align": "left"
+                                      }
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "row",
+                                "type": "FRAME",
+                                "size": {
+                                  "w": 316,
+                                  "h": 32
+                                },
+                                "styles": {
+                                  "layout": {
+                                    "direction": "row",
+                                    "gap": 10,
+                                    "align": {
+                                      "main": "start",
+                                      "cross": "start"
+                                    }
+                                  }
+                                },
+                                "children": [
+                                  {
+                                    "name": "label",
+                                    "type": "TEXT",
+                                    "size": {
+                                      "w": 130,
+                                      "h": 30
+                                    },
+                                    "content": "특             징  :",
+                                    "styles": {
+                                      "bg": "rgb(67, 67, 67)",
+                                      "text": {
+                                        "family": "Pretendard Variable",
+                                        "size": 18,
+                                        "weight": "500",
+                                        "align": "left"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "name": "value",
+                                    "type": "TEXT",
+                                    "size": {
+                                      "w": 176,
+                                      "h": 32
+                                    },
+                                    "content": "메인페이지 / 접근성 준수",
+                                    "styles": {
+                                      "bg": "rgb(85, 85, 85)",
+                                      "text": {
+                                        "family": "Pretendard Variable",
+                                        "size": 18,
+                                        "weight": "400",
+                                        "align": "left"
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "bottom",
+                        "type": "FRAME",
+                        "size": {
+                          "w": 571,
+                          "h": 50
+                        },
+                        "styles": {
+                          "layout": {
+                            "direction": "row",
+                            "gap": 15,
+                            "align": {
+                              "main": "start",
+                              "cross": "center"
+                            },
+                            "padding": [
+                              0,
+                              20,
+                              0,
+                              20
+                            ]
+                          }
+                        },
+                        "children": [
+                          {
+                            "name": "button",
+                            "type": "FRAME",
+                            "size": {
+                              "w": 158,
+                              "h": 50
+                            },
+                            "styles": {
+                              "bg": "rgb(0, 0, 0)",
+                              "radius": 80,
+                              "layout": {
+                                "direction": "row",
+                                "gap": 10,
+                                "align": {
+                                  "main": "center",
+                                  "cross": "center"
+                                },
+                                "padding": [
+                                  10,
+                                  39,
+                                  10,
+                                  39
+                                ]
+                              }
+                            },
+                            "children": [
+                              {
+                                "name": "button-text",
+                                "type": "TEXT",
+                                "size": {
+                                  "w": 80,
+                                  "h": 30
+                                },
+                                "content": "기획서 보기",
+                                "styles": {
+                                  "bg": "rgb(255, 255, 255)",
+                                  "text": {
+                                    "family": "Pretendard Variable",
+                                    "size": 18,
+                                    "weight": "500",
+                                    "align": "left"
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "name": "button",
+                            "type": "FRAME",
+                            "size": {
+                              "w": 158,
+                              "h": 50
+                            },
+                            "styles": {
+                              "bg": "rgb(0, 0, 0)",
+                              "radius": 80,
+                              "layout": {
+                                "direction": "row",
+                                "gap": 10,
+                                "align": {
+                                  "main": "center",
+                                  "cross": "center"
+                                },
+                                "padding": [
+                                  10,
+                                  39,
+                                  10,
+                                  39
+                                ]
+                              }
+                            },
+                            "children": [
+                              {
+                                "name": "button-text",
+                                "type": "TEXT",
+                                "size": {
+                                  "w": 80,
+                                  "h": 30
+                                },
+                                "content": "깃허브 보기",
+                                "styles": {
+                                  "bg": "rgb(255, 255, 255)",
+                                  "text": {
+                                    "family": "Pretendard Variable",
+                                    "size": 18,
+                                    "weight": "500",
+                                    "align": "left"
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "name": "button",
+                            "type": "FRAME",
+                            "size": {
+                              "w": 158,
+                              "h": 50
+                            },
+                            "styles": {
+                              "bg": "rgb(0, 0, 0)",
+                              "radius": 80,
+                              "layout": {
+                                "direction": "row",
+                                "gap": 10,
+                                "align": {
+                                  "main": "center",
+                                  "cross": "center"
+                                },
+                                "padding": [
+                                  10,
+                                  39,
+                                  10,
+                                  39
+                                ]
+                              }
+                            },
+                            "children": [
+                              {
+                                "name": "button-text",
+                                "type": "TEXT",
+                                "size": {
+                                  "w": 80,
+                                  "h": 30
+                                },
+                                "content": "페이지 보기",
+                                "styles": {
+                                  "bg": "rgb(255, 255, 255)",
+                                  "text": {
+                                    "family": "Pretendard Variable",
+                                    "size": 18,
+                                    "weight": "500",
+                                    "align": "left"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "contact",
+            "type": "FRAME",
+            "size": {
+              "w": 320,
+              "h": 745
+            },
+            "styles": {
+              "bg": "rgb(255, 255, 255)",
+              "border": {
+                "width": 1,
+                "color": "rgb(217, 217, 217)"
+              },
+              "radius": 8,
+              "layout": {
+                "direction": "column",
+                "gap": 24,
+                "align": {
+                  "main": "start",
+                  "cross": "center"
+                },
+                "padding": [
+                  24,
+                  24,
+                  24,
+                  24
+                ]
+              }
+            },
+            "children": [
+              {
+                "name": "section-title",
+                "type": "INSTANCE",
+                "size": {
+                  "w": 0,
+                  "h": 0
+                }
+              },
+              {
+                "name": "input-field",
+                "type": "FRAME",
+                "size": {
+                  "w": 272,
+                  "h": 88
+                },
+                "styles": {
+                  "layout": {
+                    "direction": "column",
+                    "gap": 8,
+                    "align": {
+                      "main": "start",
+                      "cross": "start"
+                    }
+                  }
+                },
+                "children": [
+                  {
+                    "name": "name",
+                    "type": "TEXT",
+                    "size": {
+                      "w": 272,
+                      "h": 28
+                    },
+                    "content": "Name",
+                    "styles": {
+                      "bg": "rgb(30, 30, 30)",
+                      "text": {
+                        "family": "Pretendard Variable",
+                        "size": 16,
+                        "weight": "400",
+                        "align": "left"
+                      }
+                    }
+                  },
+                  {
+                    "name": "description",
+                    "type": "TEXT",
+                    "size": {
+                      "w": 240,
+                      "h": 22
+                    },
+                    "content": "Description",
+                    "styles": {
+                      "bg": "rgb(117, 117, 117)",
+                      "text": {
+                        "family": "Inter",
+                        "size": 16,
+                        "weight": "400",
+                        "align": "left"
+                      }
+                    }
+                  },
+                  {
+                    "name": "input",
+                    "type": "FRAME",
+                    "size": {
+                      "w": 272,
+                      "h": 52
+                    },
+                    "styles": {
+                      "bg": "rgb(255, 255, 255)",
+                      "border": {
+                        "width": 1,
+                        "color": "rgb(217, 217, 217)"
+                      },
+                      "radius": 8,
+                      "layout": {
+                        "direction": "row",
+                        "gap": 0,
+                        "align": {
+                          "main": "start",
+                          "cross": "center"
+                        },
+                        "padding": [
+                          12,
+                          16,
+                          12,
+                          16
+                        ]
+                      }
+                    },
+                    "children": [
+                      {
+                        "name": "input",
+                        "type": "TEXT",
+                        "size": {
+                          "w": 240,
+                          "h": 28
+                        },
+                        "content": "Value",
+                        "styles": {
+                          "bg": "rgb(179, 179, 179)",
+                          "text": {
+                            "family": "Pretendard Variable",
+                            "size": 13,
+                            "weight": "500",
+                            "align": "left"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "error",
+                    "type": "TEXT",
+                    "size": {
+                      "w": 37,
+                      "h": 22
+                    },
+                    "content": "Error",
+                    "styles": {
+                      "bg": "rgb(30, 30, 30)",
+                      "text": {
+                        "family": "Inter",
+                        "size": 16,
+                        "weight": "400",
+                        "align": "left"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "input-field",
+                "type": "FRAME",
+                "size": {
+                  "w": 272,
+                  "h": 88
+                },
+                "styles": {
+                  "layout": {
+                    "direction": "column",
+                    "gap": 8,
+                    "align": {
+                      "main": "start",
+                      "cross": "start"
+                    }
+                  }
+                },
+                "children": [
+                  {
+                    "name": "surname",
+                    "type": "TEXT",
+                    "size": {
+                      "w": 272,
+                      "h": 28
+                    },
+                    "content": "Surname",
+                    "styles": {
+                      "bg": "rgb(30, 30, 30)",
+                      "text": {
+                        "family": "Pretendard Variable",
+                        "size": 16,
+                        "weight": "400",
+                        "align": "left"
+                      }
+                    }
+                  },
+                  {
+                    "name": "description",
+                    "type": "TEXT",
+                    "size": {
+                      "w": 240,
+                      "h": 22
+                    },
+                    "content": "Description",
+                    "styles": {
+                      "bg": "rgb(117, 117, 117)",
+                      "text": {
+                        "family": "Inter",
+                        "size": 16,
+                        "weight": "400",
+                        "align": "left"
+                      }
+                    }
+                  },
+                  {
+                    "name": "input",
+                    "type": "FRAME",
+                    "size": {
+                      "w": 272,
+                      "h": 52
+                    },
+                    "styles": {
+                      "bg": "rgb(255, 255, 255)",
+                      "border": {
+                        "width": 1,
+                        "color": "rgb(217, 217, 217)"
+                      },
+                      "radius": 8,
+                      "layout": {
+                        "direction": "row",
+                        "gap": 0,
+                        "align": {
+                          "main": "start",
+                          "cross": "center"
+                        },
+                        "padding": [
+                          12,
+                          16,
+                          12,
+                          16
+                        ]
+                      }
+                    },
+                    "children": [
+                      {
+                        "name": "input",
+                        "type": "TEXT",
+                        "size": {
+                          "w": 240,
+                          "h": 28
+                        },
+                        "content": "Value",
+                        "styles": {
+                          "bg": "rgb(179, 179, 179)",
+                          "text": {
+                            "family": "Pretendard Variable",
+                            "size": 13,
+                            "weight": "500",
+                            "align": "left"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "error",
+                    "type": "TEXT",
+                    "size": {
+                      "w": 37,
+                      "h": 22
+                    },
+                    "content": "Error",
+                    "styles": {
+                      "bg": "rgb(30, 30, 30)",
+                      "text": {
+                        "family": "Inter",
+                        "size": 16,
+                        "weight": "400",
+                        "align": "left"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "input-field",
+                "type": "FRAME",
+                "size": {
+                  "w": 272,
+                  "h": 88
+                },
+                "styles": {
+                  "layout": {
+                    "direction": "column",
+                    "gap": 8,
+                    "align": {
+                      "main": "start",
+                      "cross": "start"
+                    }
+                  }
+                },
+                "children": [
+                  {
+                    "name": "email",
+                    "type": "TEXT",
+                    "size": {
+                      "w": 272,
+                      "h": 28
+                    },
+                    "content": "Email",
+                    "styles": {
+                      "bg": "rgb(30, 30, 30)",
+                      "text": {
+                        "family": "Pretendard Variable",
+                        "size": 16,
+                        "weight": "400",
+                        "align": "left"
+                      }
+                    }
+                  },
+                  {
+                    "name": "description",
+                    "type": "TEXT",
+                    "size": {
+                      "w": 240,
+                      "h": 22
+                    },
+                    "content": "Description",
+                    "styles": {
+                      "bg": "rgb(117, 117, 117)",
+                      "text": {
+                        "family": "Inter",
+                        "size": 16,
+                        "weight": "400",
+                        "align": "left"
+                      }
+                    }
+                  },
+                  {
+                    "name": "input",
+                    "type": "FRAME",
+                    "size": {
+                      "w": 272,
+                      "h": 52
+                    },
+                    "styles": {
+                      "bg": "rgb(255, 255, 255)",
+                      "border": {
+                        "width": 1,
+                        "color": "rgb(217, 217, 217)"
+                      },
+                      "radius": 8,
+                      "layout": {
+                        "direction": "row",
+                        "gap": 0,
+                        "align": {
+                          "main": "start",
+                          "cross": "center"
+                        },
+                        "padding": [
+                          12,
+                          16,
+                          12,
+                          16
+                        ]
+                      }
+                    },
+                    "children": [
+                      {
+                        "name": "input",
+                        "type": "TEXT",
+                        "size": {
+                          "w": 240,
+                          "h": 28
+                        },
+                        "content": "Value",
+                        "styles": {
+                          "bg": "rgb(179, 179, 179)",
+                          "text": {
+                            "family": "Pretendard Variable",
+                            "size": 13,
+                            "weight": "500",
+                            "align": "left"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "error",
+                    "type": "TEXT",
+                    "size": {
+                      "w": 37,
+                      "h": 22
+                    },
+                    "content": "Error",
+                    "styles": {
+                      "bg": "rgb(30, 30, 30)",
+                      "text": {
+                        "family": "Inter",
+                        "size": 16,
+                        "weight": "400",
+                        "align": "left"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "textarea-field",
+                "type": "FRAME",
+                "size": {
+                  "w": 272,
+                  "h": 116
+                },
+                "styles": {
+                  "layout": {
+                    "direction": "column",
+                    "gap": 8,
+                    "align": {
+                      "main": "start",
+                      "cross": "start"
+                    }
+                  }
+                },
+                "children": [
+                  {
+                    "name": "message",
+                    "type": "TEXT",
+                    "size": {
+                      "w": 272,
+                      "h": 28
+                    },
+                    "content": "Message",
+                    "styles": {
+                      "bg": "rgb(30, 30, 30)",
+                      "text": {
+                        "family": "Pretendard Variable",
+                        "size": 16,
+                        "weight": "400",
+                        "align": "left"
+                      }
+                    }
+                  },
+                  {
+                    "name": "description",
+                    "type": "TEXT",
+                    "size": {
+                      "w": 240,
+                      "h": 22
+                    },
+                    "content": "Description",
+                    "styles": {
+                      "bg": "rgb(117, 117, 117)",
+                      "text": {
+                        "family": "Inter",
+                        "size": 16,
+                        "weight": "400",
+                        "align": "left"
+                      }
+                    }
+                  },
+                  {
+                    "name": "textarea",
+                    "type": "FRAME",
+                    "size": {
+                      "w": 272,
+                      "h": 80
+                    },
+                    "styles": {
+                      "bg": "rgb(255, 255, 255)",
+                      "border": {
+                        "width": 1,
+                        "color": "rgb(217, 217, 217)"
+                      },
+                      "radius": 8,
+                      "layout": {
+                        "direction": "row",
+                        "gap": 0,
+                        "align": {
+                          "main": "start",
+                          "cross": "start"
+                        },
+                        "padding": [
+                          12,
+                          16,
+                          12,
+                          16
+                        ]
+                      }
+                    },
+                    "children": [
+                      {
+                        "name": "textarea",
+                        "type": "TEXT",
+                        "size": {
+                          "w": 240,
+                          "h": 28
+                        },
+                        "content": "Value",
+                        "styles": {
+                          "bg": "rgb(179, 179, 179)",
+                          "text": {
+                            "family": "Pretendard Variable",
+                            "size": 13,
+                            "weight": "500",
+                            "align": "left"
+                          }
+                        }
+                      },
+                      {
+                        "name": "drag",
+                        "type": "VECTOR",
+                        "size": {
+                          "w": 7,
+                          "h": 7
+                        },
+                        "styles": {
+                          "border": {
+                            "width": 1,
+                            "color": "rgb(179, 179, 179)"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "hint",
+                    "type": "TEXT",
+                    "size": {
+                      "w": 240,
+                      "h": 22
+                    },
+                    "content": "Hint",
+                    "styles": {
+                      "bg": "rgb(117, 117, 117)",
+                      "text": {
+                        "family": "Inter",
+                        "size": 16,
+                        "weight": "400",
+                        "align": "left"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "button-group",
+                "type": "FRAME",
+                "size": {
+                  "w": 272,
+                  "h": 54
+                },
+                "styles": {
+                  "layout": {
+                    "direction": "row",
+                    "gap": 16,
+                    "align": {
+                      "main": "start",
+                      "cross": "center"
+                    }
+                  }
+                },
+                "children": [
+                  {
+                    "name": "button",
+                    "type": "INSTANCE",
+                    "size": {
+                      "w": 0,
+                      "h": 0
+                    }
+                  },
+                  {
+                    "name": "button",
+                    "type": "INSTANCE",
+                    "size": {
+                      "w": 0,
+                      "h": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "footer",
+            "type": "FRAME",
+            "size": {
+              "w": 1200,
+              "h": 324
+            },
+            "styles": {
+              "bg": "rgb(255, 255, 255)",
+              "border": {
+                "width": 1,
+                "color": "rgb(217, 217, 217)"
+              },
+              "layout": {
+                "direction": "column",
+                "gap": 32,
+                "align": {
+                  "main": "start",
+                  "cross": "center"
+                },
+                "padding": [
+                  32,
+                  32,
+                  160,
+                  32
+                ]
+              }
+            },
+            "children": [
+              {
+                "name": "text-subheading",
+                "type": "FRAME",
+                "size": {
+                  "w": 69,
+                  "h": 24
+                },
+                "styles": {
+                  "layout": {
+                    "direction": "row",
+                    "gap": 0,
+                    "align": {
+                      "main": "center",
+                      "cross": "start"
+                    }
+                  }
+                },
+                "children": [
+                  {
+                    "name": "thanks",
+                    "type": "TEXT",
+                    "size": {
+                      "w": 69,
+                      "h": 24
+                    },
+                    "content": "Thanks",
+                    "styles": {
+                      "bg": "rgb(30, 30, 30)",
+                      "text": {
+                        "family": "Inter",
+                        "size": 20,
+                        "weight": "400",
+                        "align": "center"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "title",
+                "type": "FRAME",
+                "size": {
+                  "w": 262,
+                  "h": 24
+                },
+                "styles": {
+                  "layout": {
+                    "direction": "row",
+                    "gap": 24,
+                    "align": {
+                      "main": "space-between",
+                      "cross": "start"
+                    }
+                  }
+                },
+                "children": [
+                  {
+                    "name": "button-list",
+                    "type": "FRAME",
+                    "size": {
+                      "w": 144,
+                      "h": 24
+                    },
+                    "styles": {
+                      "layout": {
+                        "direction": "row",
+                        "gap": 16,
+                        "align": {
+                          "main": "start",
+                          "cross": "center"
+                        }
+                      }
+                    },
+                    "children": [
+                      {
+                        "name": "x-logo",
+                        "type": "FRAME",
+                        "size": {
+                          "w": 24,
+                          "h": 24
+                        },
+                        "styles": {
+                          "layout": {
+                            "direction": "row",
+                            "gap": 0,
+                            "align": {
+                              "main": "start",
+                              "cross": "start"
+                            }
+                          }
+                        },
+                        "children": [
+                          {
+                            "name": "icon",
+                            "type": "VECTOR",
+                            "size": {
+                              "w": 24,
+                              "h": 24
+                            },
+                            "styles": {
+                              "bg": "rgb(30, 30, 30)"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "name": "logo-instagram",
+                        "type": "FRAME",
+                        "size": {
+                          "w": 24,
+                          "h": 24
+                        },
+                        "styles": {
+                          "layout": {
+                            "direction": "row",
+                            "gap": 0,
+                            "align": {
+                              "main": "start",
+                              "cross": "start"
+                            }
+                          }
+                        },
+                        "children": [
+                          {
+                            "name": "icon",
+                            "type": "VECTOR",
+                            "size": {
+                              "w": 24,
+                              "h": 24
+                            },
+                            "styles": {
+                              "bg": "rgb(30, 30, 30)"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "name": "logo-youtube",
+                        "type": "FRAME",
+                        "size": {
+                          "w": 24,
+                          "h": 24
+                        },
+                        "styles": {
+                          "layout": {
+                            "direction": "row",
+                            "gap": 0,
+                            "align": {
+                              "main": "start",
+                              "cross": "start"
+                            }
+                          }
+                        },
+                        "children": [
+                          {
+                            "name": "icon",
+                            "type": "VECTOR",
+                            "size": {
+                              "w": 24,
+                              "h": 18
+                            },
+                            "styles": {
+                              "bg": "rgb(30, 30, 30)"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "name": "linkedin",
+                        "type": "FRAME",
+                        "size": {
+                          "w": 24,
+                          "h": 24
+                        },
+                        "styles": {
+                          "layout": {
+                            "direction": "row",
+                            "gap": 0,
+                            "align": {
+                              "main": "start",
+                              "cross": "start"
+                            }
+                          }
+                        },
+                        "children": [
+                          {
+                            "name": "icon",
+                            "type": "VECTOR",
+                            "size": {
+                              "w": 24,
+                              "h": 24
+                            },
+                            "styles": {
+                              "bg": "rgb(30, 30, 30)"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "text-small",
+                "type": "FRAME",
+                "size": {
+                  "w": 118,
+                  "h": 20
+                },
+                "styles": {
+                  "layout": {
+                    "direction": "row",
+                    "gap": 0,
+                    "align": {
+                      "main": "start",
+                      "cross": "start"
+                    }
+                  }
+                },
+                "children": [
+                  {
+                    "name": "copyright",
+                    "type": "TEXT",
+                    "size": {
+                      "w": 118,
+                      "h": 20
+                    },
+                    "content": "copyright All right",
+                    "styles": {
+                      "bg": "rgb(30, 30, 30)",
+                      "text": {
+                        "family": "Inter",
+                        "size": 14,
+                        "weight": "400",
+                        "align": "left"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "summary": {
+    "components": 3,
+    "instances": 11,
+    "frames": 70,
+    "texts": 53,
+    "hasAutoLayout": true,
+    "hasEffects": false
+  }
+}

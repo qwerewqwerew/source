@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScrambleText — 타이핑 해독 효과</title>
+<style>
+  body { margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #0a0a0a; font-family: 'Courier New', monospace; }
+  .code-display { color: #00ff41; font-size: 2.5rem; font-weight: 700; letter-spacing: 0.15em; cursor: pointer; }
+  .info { position: fixed; bottom: 1.5rem; color: #444; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+  <div class="code-display">INITIALIZING...</div>
+  <p class="info">클릭하면 다시 재생</p>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/ScrambleTextPlugin.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrambleTextPlugin);
+
+    function play() {
+      gsap.to(".code-display", {
+        duration: 2,
+        scrambleText: {
+          text: "ACCESS GRANTED",
+          chars: "01",
+          speed: 0.4,
+          revealDelay: 0.5
+        }
+      });
+    }
+
+    play();
+    document.querySelector(".code-display").addEventListener("click", () => {
+      document.querySelector(".code-display").textContent = "INITIALIZING...";
+      setTimeout(play, 300);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PhysicsProps — 속도 기반 속성 애니메이션</title>
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; background: #1a1a2e; gap: 1.5rem; }
+  .card { width: 200px; height: 280px; border-radius: 16px; background: linear-gradient(135deg, #7f77dd, #e94560); display: flex; justify-content: center; align-items: center; color: #fff; font-size: 1.2rem; font-weight: 700; cursor: pointer; user-select: none; }
+  .reset-btn { padding: 0.6rem 1.5rem; background: #333; color: #ccc; border: none; border-radius: 8px; cursor: pointer; font-size: 0.9rem; }
+  .info { position: fixed; bottom: 1.5rem; color: #555; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+  <div class="card">클릭하면 날아감</div>
+  <button class="reset-btn">리셋</button>
+  <p class="info">카드를 클릭하면 물리 기반으로 날아간다</p>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/PhysicsPropsPlugin.min.js"></script>
+  <script>
+    gsap.registerPlugin(PhysicsPropsPlugin);
+
+    const card = document.querySelector(".card");
+
+    card.addEventListener("click", () => {
+      gsap.to(card, {
+        duration: 1.5,
+        physicsProps: {
+          x: { velocity: 600, friction: 0.15 },
+          rotation: { velocity: 180, friction: 0.1 }
+        },
+        opacity: 0
+      });
+    });
+
+    document.querySelector(".reset-btn").addEventListener("click", () => {
+      gsap.set(card, { x: 0, rotation: 0, opacity: 1 });
+    });
+  </script>
+</body>
+</html>

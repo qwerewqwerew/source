@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics2D — 중력 파티클 효과</title>
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { min-height: 100vh; background: #1a1a2e; overflow: hidden; cursor: crosshair; }
+  .dot { position: absolute; width: 10px; height: 10px; border-radius: 50%; pointer-events: none; }
+  .info { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #444; font-size: 1.2rem; font-family: 'Segoe UI', sans-serif; pointer-events: none; }
+</style>
+</head>
+<body>
+  <p class="info">화면 아무 곳이나 클릭!</p>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/Physics2DPlugin.min.js"></script>
+  <script>
+    gsap.registerPlugin(Physics2DPlugin);
+
+    const colors = ["#7f77dd", "#e94560", "#00ff41", "#fdcb6e", "#00b894", "#ff9f43", "#a29bfe"];
+
+    function burst(x, y) {
+      for (let i = 0; i < 30; i++) {
+        const dot = document.createElement("div");
+        dot.className = "dot";
+        dot.style.background = colors[Math.floor(Math.random() * colors.length)];
+        dot.style.width = dot.style.height = gsap.utils.random(6, 14) + "px";
+        document.body.appendChild(dot);
+        gsap.set(dot, { x, y });
+
+        gsap.to(dot, {
+          duration: 1.5,
+          physics2D: {
+            velocity: gsap.utils.random(400, 900),
+            angle: gsap.utils.random(-130, -50),
+            gravity: 1200,
+            friction: 0.05
+          },
+          opacity: 0,
+          onComplete: () => dot.remove()
+        });
+      }
+    }
+
+    document.addEventListener("click", e => {
+      document.querySelector(".info").style.display = "none";
+      burst(e.clientX, e.clientY);
+    });
+  </script>
+</body>
+</html>

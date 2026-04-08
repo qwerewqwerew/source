@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MorphSVG — 도형 변형 트랜지션</title>
+<style>
+  body { margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #1a1a2e; }
+  svg { width: 300px; height: 300px; cursor: pointer; }
+  .info { position: fixed; bottom: 1.5rem; color: #555; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+  <svg viewBox="0 0 200 200">
+    <path id="shape" d="M100,30 A70,70 0 1,1 99.9,30 Z" fill="#7f77dd"/>
+    <path id="star" d="M100,20 L117,75 L175,75 L128,110 L145,165 L100,135 L55,165 L72,110 L25,75 L83,75 Z" fill="none" style="visibility:hidden"/>
+    <path id="heart" d="M100,180 C60,140 10,110 10,70 A45,45 0 0,1 100,50 A45,45 0 0,1 190,70 C190,110 140,140 100,180 Z" fill="none" style="visibility:hidden"/>
+    <path id="circle" d="M100,30 A70,70 0 1,1 99.9,30 Z" fill="none" style="visibility:hidden"/>
+  </svg>
+  <p class="info">자동 순환 — 클릭하면 다음 도형</p>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/MorphSVGPlugin.min.js"></script>
+  <script>
+    gsap.registerPlugin(MorphSVGPlugin);
+
+    const colors = ["#7f77dd", "#00ff41", "#ff6b6b"];
+    const shapes = ["#circle", "#star", "#heart"];
+    let idx = 0;
+
+    function morph() {
+      idx = (idx + 1) % shapes.length;
+      gsap.to("#shape", {
+        morphSVG: {
+          shape: shapes[idx],
+          type: "rotational"
+        },
+        fill: colors[idx],
+        duration: 1,
+        ease: "power2.inOut",
+        onComplete: () => setTimeout(morph, 800)
+      });
+    }
+
+    setTimeout(morph, 1000);
+    document.querySelector("svg").addEventListener("click", morph);
+  </script>
+</body>
+</html>

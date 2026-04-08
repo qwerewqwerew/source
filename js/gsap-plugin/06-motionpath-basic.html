@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MotionPath — SVG 경로 따라 이동</title>
+<style>
+  body { margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #1a1a2e; }
+  svg { width: 500px; height: 500px; }
+  .info { position: fixed; bottom: 1.5rem; color: #555; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+  <svg viewBox="0 0 400 400">
+    <ellipse id="orbit-path" cx="200" cy="200" rx="150" ry="100" fill="none" stroke="#333" stroke-width="1" stroke-dasharray="4 4"/>
+    <text class="rocket" font-size="28" text-anchor="middle" dominant-baseline="central">🚀</text>
+  </svg>
+  <p class="info">로켓이 타원 궤도를 무한 반복</p>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/MotionPathPlugin.min.js"></script>
+  <script>
+    gsap.registerPlugin(MotionPathPlugin);
+
+    MotionPathPlugin.convertToPath("#orbit-path");
+
+    gsap.to(".rocket", {
+      motionPath: {
+        path: "#orbit-path",
+        align: "#orbit-path",
+        autoRotate: true,
+        alignOrigin: [0.5, 0.5],
+        start: 0,
+        end: 1
+      },
+      duration: 4,
+      repeat: -1,
+      ease: "none"
+    });
+  </script>
+</body>
+</html>
