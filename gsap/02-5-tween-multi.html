@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>02-5. Tween 실전 — 이동+회전+색상</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{padding:30px;font-family:sans-serif;background:#1a1a2e;color:#fff}
+h1{margin-bottom:30px;font-size:22px}
+.box{width:100px;height:100px;margin:15px 0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold;border-radius:8px}
+.box1{background:orange}
+.box2{background:greenyellow;color:#222}
+.box3{background:tomato}
+</style>
+</head>
+<body>
+<h1>02-5. Tween 실전 — 이동 + 회전 + 색상</h1>
+<div class="box box1">steps</div>
+<div class="box box2">rotate</div>
+<div class="box box3">elastic</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script>
+gsap.to(".box1", { duration: 3, x: 200, opacity: 0.2, ease: "steps(10)", delay: 2 });
+gsap.to(".box2", { duration: 3, x: 200, rotate: 720, scale: 1.3 });
+gsap.to(".box3", { duration: 3, x: 200, ease: "elastic", backgroundColor: "red", width: 300, fontSize: 60 });
+</script>
+</body>
+</html>

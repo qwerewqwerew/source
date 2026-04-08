@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>07-5. ScrollTrigger pin</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:sans-serif;background:#1a1a2e;color:#fff}
+section{height:100vh;display:flex;align-items:center;justify-content:center;font-size:24px}
+section:nth-child(odd){background:#16213e}
+section:nth-child(even){background:#0f3460}
+.box{width:150px;height:150px;background:#16c79a;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:bold}
+</style>
+</head>
+<body>
+<section>pin: 스크롤 동안 요소가 고정된다 ↓</section>
+<section><div class="box">pin</div></section>
+<section>끝</section>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.to(".box", {
+  x: 500,
+  rotation: 360,
+  scrollTrigger: {
+    trigger: ".box",
+    start: "top 50%",
+    end: "bottom 200px",
+    scrub: true,
+    pin: true,
+    markers: true,
+  },
+});
+</script>
+</body>
+</html>

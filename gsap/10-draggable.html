@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10. Draggable</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:sans-serif;background:#1a1a2e;color:#fff;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+h1{margin-bottom:30px;font-size:22px}
+.drag-me{width:150px;height:150px;background:#e94560;border-radius:16px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:16px;cursor:grab;user-select:none}
+.drag-me:active{cursor:grabbing}
+#coords{margin-top:20px;font-size:14px;color:#0ae448}
+</style>
+</head>
+<body>
+<h1>10. Draggable — 드래그 앤 드롭</h1>
+<div class="drag-me">드래그해봐!</div>
+<div id="coords">x: 0, y: 0</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/Draggable.min.js"></script>
+<script>
+gsap.registerPlugin(Draggable);
+
+Draggable.create(".drag-me", {
+  type: "x,y",
+  bounds: "body",
+  onDrag: function () {
+    document.getElementById("coords").textContent =
+      "x: " + Math.round(this.x) + ", y: " + Math.round(this.y);
+  },
+});
+</script>
+</body>
+</html>
