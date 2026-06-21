@@ -19,3 +19,4 @@ git push origin main
 ---
 
 # https://qwerewqwerew.github.io/source/notion/main.js
+https://qwerewqwerew.github.io/source/files/0307-border-image.zip
